@@ -31,7 +31,11 @@ module.exports.estimateMobility = async (
     return { baselines, estimations }
   }
 
+  //
   // 答えに従ってestimationを計算
+  //
+
+  // 自家用車をお持ちですか？がYesの場合
   if (mobilityAnswer.hasPrivateCar) {
     if (mobilityAnswer.privateCarType) {
       const intensity = findComponent(
@@ -103,6 +107,51 @@ module.exports.estimateMobility = async (
       // ferry
     }
   }
+
+  // 自家用車以外の移動手段（weekly）
+  let trainWeeklyTravelingTime = 0
+  let busWeeklyTravelingTime = 0
+  let motorbikeWeeklyTravelingTime = 0
+  let otherCarWeeklyTravelingTime = 0
+
+  // 自家用車以外の普通の移動手段を教えて下さい
+  if (!mobilityAnswer.weeklyDetailedMobilityUnknown) {
+    trainWeeklyTravelingTime = mobilityAnswer.trainWeeklyTravelingTime || 0
+    busWeeklyTravelingTime = mobilityAnswer.busWeeklyTravelingTime || 0
+    motorbikeWeeklyTravelingTime =
+      mobilityAnswer.motorbikeWeeklyTravelingTime || 0
+    otherCarWeeklyTravelingTime =
+      mobilityAnswer.otherCarWeeklyTravelingTime || 0
+  } else {
+    // お住まいの地域の規模はどのくらいですか？
+    const params = {
+      TableName: parameterTableName,
+      KeyConditions: {
+        category: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: ['mileage-by-area']
+        },
+        key: {
+          ComparisonOperator: 'BEGINS_WITH',
+          AttributeValueList: [livingAreaSize + '_']
+        }
+      }
+    }
+    const data = await dynamodb.query(params).promise()
+    const milageByArea = data.Items.map((item) => toComponent(item))
+  }
+
+  // 昨年１年間で、旅行などで利用した移動手段を教えてください
+  const otherCarAnnualTravelingTime =
+    mobilityAnswer.otherCarAnnualTravelingTime || 0
+  const trainAnnuallyTravelingTime =
+    mobilityAnswer.trainAnnuallyTravelingTime || 0
+  const busAnnualTravelingTime = mobilityAnswer.busAnnualTravelingTime || 0
+  const motorbikeAnnualTravelingTime =
+    mobilityAnswer.motorbikeAnnualTravelingTime || 0
+  const airplaneAnnualTravelingTime =
+    mobilityAnswer.airplaneAnnualTravelingTime || 0
+  const ferryAnnualTravelingTime = mobilityAnswer.ferryAnnualTravelingTime || 0
 
   console.log(JSON.stringify(estimations))
   return { baselines, estimations }
