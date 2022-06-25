@@ -2,14 +2,33 @@
   "success": "put call succeed!",
   "url": "/profiles/c8f3d796-9439-4976-9229-9ba4be18926d",
   "data": {
-    "updatedAt": "2022-06-20T12:05:01.788Z",
+    "mobilityAnswer": {
+      "hasPrivateCar": true,
+      "privateCarType": "gasoline",
+      "carCharging": "unknown",
+      "carPassengers": "1",
+      "privateCarAnnualMileage": 5000,
+      "trainWeeklyTravelingTime": 7,
+      "busWeeklyTravelingTime": 7,
+      "motorbikeWeeklyTravelingTime": 0,
+      "otherCarWeeklyTravelingTime": 0,
+      "weeklyDetailedMobilityUnknown": false,
+      "livingAreaSize": "unknown",
+      "otherCarAnnualTravelingTime": 10,
+      "trainAnnuallyTravelingTime": 100,
+      "busAnnualTravelingTime": 100,
+      "motorbikeAnnualTravelingTime": 0,
+      "airplaneAnnualTravelingTime": 100,
+      "ferryAnnualTravelingTime": 0
+    },
+    "updatedAt": "2022-06-25T11:10:43.177Z",
     "createdAt": "2022-06-20T12:04:09.413Z",
     "baselines": [
       {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
-        "value": 1161.463556,
+        "value": 0.16666666666666666,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -57,7 +76,7 @@
         "domain": "mobility",
         "item": "bus",
         "type": "amount",
-        "value": 430.6177624,
+        "value": 36.3,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -73,7 +92,7 @@
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "amount",
-        "value": 60.7815956,
+        "value": 0.09298364905393666,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -89,7 +108,7 @@
         "domain": "mobility",
         "item": "car-sharing-rental",
         "type": "amount",
-        "value": 0.161272731,
+        "value": 0.0002467149286432015,
         "unit": "time",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -105,7 +124,7 @@
         "domain": "mobility",
         "item": "ferry",
         "type": "amount",
-        "value": 20.10019321,
+        "value": 0,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -121,7 +140,7 @@
         "domain": "mobility",
         "item": "motorbike-driving",
         "type": "amount",
-        "value": 254.458252,
+        "value": 0,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -137,7 +156,7 @@
         "domain": "mobility",
         "item": "motorbike-maintenance",
         "type": "amount",
-        "value": 0.446120353,
+        "value": 0,
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -153,7 +172,7 @@
         "domain": "mobility",
         "item": "motorbike-purchase",
         "type": "amount",
-        "value": 0.002635317,
+        "value": 0,
         "unit": "unit",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -185,7 +204,7 @@
         "domain": "mobility",
         "item": "private-car-maintenance",
         "type": "amount",
-        "value": 55.72777896,
+        "value": 64.17671713804691,
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -201,7 +220,7 @@
         "domain": "mobility",
         "item": "private-car-purchase",
         "type": "amount",
-        "value": 0.043510227,
+        "value": 0.05010685124909581,
         "unit": "unit",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -217,7 +236,7 @@
         "domain": "mobility",
         "item": "taxi",
         "type": "amount",
-        "value": 48.16514973,
+        "value": 0.07368301761273,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -233,7 +252,7 @@
         "domain": "mobility",
         "item": "train",
         "type": "amount",
-        "value": 2883.143695,
+        "value": 5.716666666666667,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -278,26 +297,91 @@
         "type": "amount",
         "value": 5000,
         "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.05010685124909581,
+        "unit": "unit"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 64.17671713804691,
+        "unit": "000JPY"
+      },
+      {
+        "domain": "mobility",
+        "item": "airplane",
+        "type": "amount",
+        "value": 0.16666666666666666,
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 5.716666666666667,
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 36.3,
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "ferry",
+        "type": "amount",
+        "value": 0,
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 0.07368301761273,
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 0.09298364905393666,
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "unit": "unit"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.0002467149286432015,
+        "unit": "time"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "unit": "000JPY"
       }
-    ],
-    "mobilityAnswer": {
-      "hasPrivateCar": true,
-      "privateCarType": "gasoline",
-      "carCharging": "unknown",
-      "carPassengers": "1",
-      "privateCarAnnualMileage": 5000,
-      "trainWeeklyTravelingTime": 7,
-      "busWeeklyTravelingTime": 7,
-      "motorbikeWeeklyTravelingTime": 0,
-      "otherCarWeeklyTravelingTime": 0,
-      "weeklyDetailedMobilityUnknown": false,
-      "livingAreaSize": "unknown",
-      "otherCarAnnualTravelingTime": 10,
-      "trainAnnuallyTravelingTime": 100,
-      "busAnnualTravelingTime": 100,
-      "motorbikeAnnualTravelingTime": 0,
-      "airplaneAnnualTravelingTime": 100,
-      "ferryAnnualTravelingTime": 0
-    }
+    ]
   }
 }

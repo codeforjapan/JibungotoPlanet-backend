@@ -225,8 +225,6 @@ module.exports.estimateMobility = async (
     return a
   }, {})
 
-  console.log(JSON.stringify(transportationSpeed))
-
   // 飛行機の移動距離の積算
   airplaneMileage +=
     airplaneAnnualTravelingTime / transportationSpeed['airplane-speed']
@@ -289,8 +287,6 @@ module.exports.estimateMobility = async (
     motorbikeMileage
   ]
 
-  console.log(JSON.stringify(components))
-
   for (let i = 0; i < components.length; ++i) {
     components[i].value = mileages[i]
     estimations.push(toEstimation(components[i]))
@@ -308,7 +304,7 @@ module.exports.estimateMobility = async (
 
   estimations.push(toEstimation(motorbikePurchase))
   estimations.push(toEstimation(carSharingRental))
-  estimations.push(toEstimation(motor))
+  estimations.push(toEstimation(motorbikeMaintenance))
 
   console.log(JSON.stringify(estimations))
 
