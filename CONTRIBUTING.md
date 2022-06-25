@@ -15,7 +15,7 @@ v16.13.0 # Node.jsのバージョン
 openjdk 16.0.1 2021-04-20 # 注：M1 Macの場合はこのバージョンでないとうまく動きません（2020/6/11現在）。
 OpenJDK Runtime Environment (build 16.0.1+9-24)
 OpenJDK 64-Bit Server VM (build 16.0.1+9-24, mixed mode, sharing)
-8.4.0 # amplifyのバージョン
+8.3.1 # amplifyのバージョン
 aws-cli/2.7.7 Python/3.9.11 Darwin/21.5.0 exe/x86_64 prompt/off # aws cliのバージョン
 ```
 
