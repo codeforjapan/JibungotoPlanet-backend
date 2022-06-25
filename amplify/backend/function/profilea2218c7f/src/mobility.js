@@ -6,14 +6,18 @@ module.exports.estimateMobility = async (
   footprintTableName,
   parameterTableName
 ) => {
-  // mobilityAnswerのスキーマと取りうる値は
-  // amplify/backend/api/JibungotoPlanetGql/schema.graphql
-  // を参照。
+  // mobilityのベースラインの取得
+  const findAmount = (baselines, item) =>
+    findComponent(baselines, 'mobility', item, 'amount')
+  const findIntensity = (baselines, item) =>
+    findComponent(baselines, 'mobility', item, 'intensity')
 
+  // mobilityAnswerのスキーマと取りうる値は以下を参照。
+  // amplify/backend/api/JibungotoPlanetGql/schema.graphql
   let estimations = []
 
   // ベースラインのフットプリントを取得
-  const params = {
+  let params = {
     TableName: footprintTableName,
     KeyConditions: {
       dirAndDomain: {
@@ -23,7 +27,7 @@ module.exports.estimateMobility = async (
     }
   }
 
-  const data = await dynamodb.query(params).promise()
+  let data = await dynamodb.query(params).promise()
   const baselines = data.Items.map((item) => toComponent(item))
 
   // 回答がない場合はベースラインのみ返す
@@ -38,12 +42,7 @@ module.exports.estimateMobility = async (
   // 自家用車をお持ちですか？がYesの場合
   if (mobilityAnswer.hasPrivateCar) {
     if (mobilityAnswer.privateCarType) {
-      const intensity = findComponent(
-        baselines,
-        'mobility',
-        'private-car-driving',
-        'intensity'
-      )
+      const intensity = findIntensity(baselines, 'private-car-driving')
 
       // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
       const params = {
@@ -72,7 +71,9 @@ module.exports.estimateMobility = async (
         'carPassengers = ' + carPassengers + ', private-car-factor = ' + ratio
       )
 
+      //
       // TODO: PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正が必要。
+      //
       intensity.value = intensity.value * ratio
 
       console.log(
@@ -83,47 +84,71 @@ module.exports.estimateMobility = async (
       estimations.push(toEstimation(intensity))
 
       // 自家用車の移動距離を取得
-      const amount = findComponent(
-        baselines,
-        'mobility',
-        'private-car-driving',
-        'amount'
-      )
+      const amount = findAmount(baselines, 'private-car-driving')
+      const baselineAmount = amount.value
       amount.value = mobilityAnswer.privateCarAnnualMileage
       estimations.push(toEstimation(amount))
+      const mileageRatio = amount.value / baselineAmount
 
-      // TODO: 以下、未実装
-      // --- per week ---
-      // train
-      // bus
-      // taxi
-      // motorbike
+      const privateCarPurchase = findAmount(baselines, 'private-car-purchase')
+      const privateCarMaintenance = findAmount(
+        baselines,
+        'private-car-maintenance'
+      )
 
-      // --- per year ---
-      // airplane
-      // train
-      // express bus
-      // motorbike
-      // ferry
+      // 自家用車の購入・メンテナンスを移動距離比で補正
+      privateCarPurchase.value *= mileageRatio
+      privateCarMaintenance.value *= mileageRatio
+      estimations.push(toEstimation(privateCarPurchase))
+      estimations.push(toEstimation(privateCarMaintenance))
     }
   }
 
-  // 自家用車以外の移動手段（weekly）
-  let trainWeeklyTravelingTime = 0
-  let busWeeklyTravelingTime = 0
-  let motorbikeWeeklyTravelingTime = 0
-  let otherCarWeeklyTravelingTime = 0
+  console.log('calculating weekly mileage')
 
+  // <baselineを使用>
+  // bicycle-driving
+  // bicycle-maintenance
+  // walking
+
+  // mobilityのベースラインの取得
+  const airplane = findAmount(baselines, 'airplane')
+  const train = findAmount(baselines, 'train')
+  const bus = findAmount(baselines, 'bus')
+  const ferry = findAmount(baselines, 'ferry')
+  const taxi = findAmount(baselines, 'taxi')
+  const carSharingDriving = findAmount(baselines, 'car-sharing-driving')
+  const motorbikeDriving = findAmount(baselines, 'motorbike-driving')
+  const motorbikePurchase = findAmount(baselines, 'motorbike-purchase')
+  const carSharingRental = findAmount(baselines, 'car-sharing-rental')
+  const motorbikeMaintenance = findAmount(baselines, 'motorbike-maintenance')
+
+  // 自家用車以外の移動手段（weekly）
+  let trainTravelingTime = 0
+  let busTravelingTime = 0
+  let motorbikeTravelingTime = 0
+  let otherCarTravelingTime = 0
+
+  let airplaneMileage = 0
+  let ferryMileage = 0
+  let trainMileage = 0
+  let busMileage = 0
+  let motorbikeMileage = 0
+  let taxiMileage = 0
+  let carSharingMileage = 0
+
+  //
   // 自家用車以外の普通の移動手段を教えて下さい
+  //
   if (!mobilityAnswer.weeklyDetailedMobilityUnknown) {
-    trainWeeklyTravelingTime = mobilityAnswer.trainWeeklyTravelingTime || 0
-    busWeeklyTravelingTime = mobilityAnswer.busWeeklyTravelingTime || 0
-    motorbikeWeeklyTravelingTime =
-      mobilityAnswer.motorbikeWeeklyTravelingTime || 0
-    otherCarWeeklyTravelingTime =
-      mobilityAnswer.otherCarWeeklyTravelingTime || 0
+    trainTravelingTime = mobilityAnswer.trainWeeklyTravelingTime || 0
+    busTravelingTime = mobilityAnswer.busWeeklyTravelingTime || 0
+    motorbikeTravelingTime = mobilityAnswer.motorbikeWeeklyTravelingTime || 0
+    otherCarTravelingTime = mobilityAnswer.otherCarWeeklyTravelingTime || 0
   } else {
+    //
     // お住まいの地域の規模はどのくらいですか？
+    //
     const params = {
       TableName: parameterTableName,
       KeyConditions: {
@@ -138,13 +163,26 @@ module.exports.estimateMobility = async (
       }
     }
     const data = await dynamodb.query(params).promise()
-    const milageByArea = data.Items.map((item) => toComponent(item))
+    const milageByArea = data.Items.reduce((a, x) => {
+      a[x.key] = x.value
+      return a
+    }, {})
+
+    trainMileage = milageByArea[livingAreaSize + '_train']
+    busMileage = milageByArea[livingAreaSize + '_bus']
+    motorbikeMileage = milageByArea[livingAreaSize + '_motorbike']
+    taxiMileage = milageByArea[livingAreaSize + '_taxi']
+    carSharingMileage = milageByArea[livingAreaSize + 'car-sharing']
   }
 
+  console.log('calculating annual mileage')
+
+  //
   // 昨年１年間で、旅行などで利用した移動手段を教えてください
+  //
   const otherCarAnnualTravelingTime =
     mobilityAnswer.otherCarAnnualTravelingTime || 0
-  const trainAnnuallyTravelingTime =
+  const trainAnnualTravelingTime =
     mobilityAnswer.trainAnnuallyTravelingTime || 0
   const busAnnualTravelingTime = mobilityAnswer.busAnnualTravelingTime || 0
   const motorbikeAnnualTravelingTime =
@@ -153,6 +191,126 @@ module.exports.estimateMobility = async (
     mobilityAnswer.airplaneAnnualTravelingTime || 0
   const ferryAnnualTravelingTime = mobilityAnswer.ferryAnnualTravelingTime || 0
 
+  console.log('getting weeks-per-year-excluding-long-vacations')
+
+  // 年間週数の取得
+  params = {
+    TableName: parameterTableName,
+    Key: {
+      category: 'misc',
+      key: 'weeks-per-year-excluding-long-vacations'
+    }
+  }
+  data = await dynamodb.get(params).promise()
+  let weekCount = 49
+  if (data?.Item) {
+    weekCount = data.Item.value
+  }
+
+  console.log('getting transportation-speed')
+
+  // 時速の取得
+  params = {
+    TableName: parameterTableName,
+    KeyConditions: {
+      category: {
+        ComparisonOperator: 'EQ',
+        AttributeValueList: ['transportation-speed']
+      }
+    }
+  }
+  data = await dynamodb.query(params).promise()
+  const transportationSpeed = data.Items.reduce((a, x) => {
+    a[x.key] = x.value
+    return a
+  }, {})
+
+  console.log(JSON.stringify(transportationSpeed))
+
+  // 飛行機の移動距離の積算
+  airplaneMileage +=
+    airplaneAnnualTravelingTime / transportationSpeed['airplane-speed']
+  // フェリーの移動距離の積算
+  ferryMileage +=
+    ferryAnnualTravelingTime / transportationSpeed['ferry-velocity']
+
+  // 電車の移動距離の積算
+  trainMileage +=
+    (trainTravelingTime * weekCount) / transportationSpeed['train-speed']
+  trainAnnualTravelingTime / transportationSpeed['long-distance-train-speed']
+
+  // バスの移動距離の積算
+  busMileage +=
+    (busTravelingTime * weekCount) / transportationSpeed['bus-speed'] +
+    busAnnualTravelingTime / transportationSpeed['express-bus-speed']
+
+  // バイクの移動距離の積算
+  motorbikeMileage +=
+    (motorbikeTravelingTime * weekCount) /
+      transportationSpeed['motorbike-speed'] +
+    motorbikeAnnualTravelingTime /
+      transportationSpeed['long-distance-motorbike-speed']
+
+  taxiRatio = taxi.value / (taxi.value + carSharingDriving.value)
+  carSharingRatio = 1 - taxiRatio
+
+  // タクシー他、その他の移動の算出
+  const otherCarMileage =
+    (otherCarTravelingTime * weekCount) / transportationSpeed['car-speed'] +
+    otherCarAnnualTravelingTime / transportationSpeed['long-distance-car-speed']
+
+  // タクシーの移動距離の積算
+  taxiMileage += otherCarMileage * taxiRatio
+  // カーシェアリングの移動距離の積算
+  carSharingMileage += otherCarMileage * carSharingRatio
+
+  // 一部のベースライン値のバックアップ
+  const baselineCarSharingDrivingAmount = carSharingDriving.value
+  const baselineMotorbikeDrivingAmount = motorbikeDriving.value
+
+  // ベースラインの値を書き換えてEstimationを生成
+  const components = [
+    airplane,
+    train,
+    bus,
+    ferry,
+    taxi,
+    carSharingDriving,
+    motorbikeDriving
+  ]
+
+  const mileages = [
+    airplaneMileage,
+    trainMileage,
+    busMileage,
+    ferryMileage,
+    taxiMileage,
+    carSharingMileage,
+    motorbikeMileage
+  ]
+
+  console.log(JSON.stringify(components))
+
+  for (let i = 0; i < components.length; ++i) {
+    components[i].value = mileages[i]
+    estimations.push(toEstimation(components[i]))
+  }
+
+  // バイクの購入・メンテナンス、カーシェアの回数はベースラインとの比率で変更
+  const motorbikeDrivingRatio =
+    motorbikeDriving.value / baselineMotorbikeDrivingAmount
+  const carSharingDrivingRatio =
+    carSharingDriving.value / baselineCarSharingDrivingAmount
+
+  motorbikePurchase.value *= motorbikeDrivingRatio
+  carSharingRental.value *= carSharingDrivingRatio
+  motorbikeMaintenance.value *= motorbikeDrivingRatio
+
+  estimations.push(toEstimation(motorbikePurchase))
+  estimations.push(toEstimation(carSharingRental))
+  estimations.push(toEstimation(motor))
+
   console.log(JSON.stringify(estimations))
+
   return { baselines, estimations }
 }
