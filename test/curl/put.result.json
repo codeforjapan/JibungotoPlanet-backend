@@ -21,14 +21,14 @@
       "airplaneAnnualTravelingTime": 100,
       "ferryAnnualTravelingTime": 0
     },
-    "updatedAt": "2022-06-25T11:10:43.177Z",
+    "updatedAt": "2022-06-25T11:36:04.782Z",
     "createdAt": "2022-06-20T12:04:09.413Z",
     "baselines": [
       {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
-        "value": 0.16666666666666666,
+        "value": 60000,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -76,7 +76,7 @@
         "domain": "mobility",
         "item": "bus",
         "type": "amount",
-        "value": 36.3,
+        "value": 8430,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -92,7 +92,7 @@
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "amount",
-        "value": 0.09298364905393666,
+        "value": 334.741136594172,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -108,7 +108,7 @@
         "domain": "mobility",
         "item": "car-sharing-rental",
         "type": "amount",
-        "value": 0.0002467149286432015,
+        "value": 0.8881737431155255,
         "unit": "time",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -236,7 +236,7 @@
         "domain": "mobility",
         "item": "taxi",
         "type": "amount",
-        "value": 0.07368301761273,
+        "value": 265.25886340582804,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -252,7 +252,7 @@
         "domain": "mobility",
         "item": "train",
         "type": "amount",
-        "value": 5.716666666666667,
+        "value": 20580,
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -316,21 +316,21 @@
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
-        "value": 0.16666666666666666,
+        "value": 60000,
         "unit": "km-passenger"
       },
       {
         "domain": "mobility",
         "item": "train",
         "type": "amount",
-        "value": 5.716666666666667,
+        "value": 20580,
         "unit": "km-passenger"
       },
       {
         "domain": "mobility",
         "item": "bus",
         "type": "amount",
-        "value": 36.3,
+        "value": 8430,
         "unit": "km-passenger"
       },
       {
@@ -344,14 +344,14 @@
         "domain": "mobility",
         "item": "taxi",
         "type": "amount",
-        "value": 0.07368301761273,
+        "value": 265.25886340582804,
         "unit": "km-passenger"
       },
       {
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "amount",
-        "value": 0.09298364905393666,
+        "value": 334.741136594172,
         "unit": "km-passenger"
       },
       {
@@ -372,7 +372,7 @@
         "domain": "mobility",
         "item": "car-sharing-rental",
         "type": "amount",
-        "value": 0.0002467149286432015,
+        "value": 0.8881737431155255,
         "unit": "time"
       },
       {

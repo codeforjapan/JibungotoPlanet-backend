@@ -227,26 +227,27 @@ module.exports.estimateMobility = async (
 
   // 飛行機の移動距離の積算
   airplaneMileage +=
-    airplaneAnnualTravelingTime / transportationSpeed['airplane-speed']
+    airplaneAnnualTravelingTime * transportationSpeed['airplane-speed']
   // フェリーの移動距離の積算
   ferryMileage +=
-    ferryAnnualTravelingTime / transportationSpeed['ferry-velocity']
+    ferryAnnualTravelingTime * transportationSpeed['ferry-velocity']
 
   // 電車の移動距離の積算
   trainMileage +=
-    (trainTravelingTime * weekCount) / transportationSpeed['train-speed']
-  trainAnnualTravelingTime / transportationSpeed['long-distance-train-speed']
+    trainTravelingTime * weekCount * transportationSpeed['train-speed']
+  trainAnnualTravelingTime * transportationSpeed['long-distance-train-speed']
 
   // バスの移動距離の積算
   busMileage +=
-    (busTravelingTime * weekCount) / transportationSpeed['bus-speed'] +
-    busAnnualTravelingTime / transportationSpeed['express-bus-speed']
+    busTravelingTime * weekCount * transportationSpeed['bus-speed'] +
+    busAnnualTravelingTime * transportationSpeed['express-bus-speed']
 
   // バイクの移動距離の積算
   motorbikeMileage +=
-    (motorbikeTravelingTime * weekCount) /
+    motorbikeTravelingTime *
+      weekCount *
       transportationSpeed['motorbike-speed'] +
-    motorbikeAnnualTravelingTime /
+    motorbikeAnnualTravelingTime *
       transportationSpeed['long-distance-motorbike-speed']
 
   taxiRatio = taxi.value / (taxi.value + carSharingDriving.value)
@@ -254,8 +255,8 @@ module.exports.estimateMobility = async (
 
   // タクシー他、その他の移動の算出
   const otherCarMileage =
-    (otherCarTravelingTime * weekCount) / transportationSpeed['car-speed'] +
-    otherCarAnnualTravelingTime / transportationSpeed['long-distance-car-speed']
+    otherCarTravelingTime * weekCount * transportationSpeed['car-speed'] +
+    otherCarAnnualTravelingTime * transportationSpeed['long-distance-car-speed']
 
   // タクシーの移動距離の積算
   taxiMileage += otherCarMileage * taxiRatio
