@@ -1,0 +1,1 @@
+curl ${JIBUNGOTO_PLANET_REST}/profiles/c8f3d796-9439-4976-9229-9ba4be18926d > get.result.json

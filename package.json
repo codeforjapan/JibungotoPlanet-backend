@@ -1,0 +1,35 @@
+{
+  "name": "footprint",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@aws-amplify/ui-react": "^2.18.3",
+    "@chakra-ui/icons": "^2.0.1",
+    "@chakra-ui/react": "^2.1.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "aws-amplify": "^4.3.24",
+    "chart.js": "^3.7.1",
+    "framer-motion": "^6",
+    "next": "12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-hook-form": "^7.31.2",
+    "sass": "^1.52.1"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.35",
+    "@types/react": "18.0.9",
+    "@types/react-dom": "18.0.5",
+    "eslint": "8.16.0",
+    "eslint-config-next": "12.1.6",
+    "prettier": "^2.6.2",
+    "typescript": "4.7.2"
+  }
+}
