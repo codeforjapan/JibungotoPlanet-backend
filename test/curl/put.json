@@ -17,5 +17,28 @@
     "motorbikeAnnualTravelingTime": 0,
     "airplaneAnnualTravelingTime": 100,
     "ferryAnnualTravelingTime": 0
+  },
+  "foodAnswer": {
+    "foodIntake": "very-much",
+    "foodDirectwaste": "seldom",
+    "foodLeftover": "seldom",
+    "dishBeef": "everyday",
+    "dishPork": "everyday",
+    "dishChicken": "everyday",
+    "dishSeafood": "everyday",
+    "dairyFood": "3-more-per-day",
+    "alcohol": "everyday",
+    "softdrinkSnack": "3000-less",
+    "eatout": "5000-less"
+  },
+  "otherAnswer": {
+    "dailyGoods": "5000-less",
+    "communication": "5000-less",
+    "applianceFurniture": "50000-less",
+    "service": "5000-less",
+    "hobbyGoods": "5000-less",
+    "clothesBeauty": "5000-less",
+    "leisureSports": "5000-less",
+    "travel": "10000-less"
   }
 }
