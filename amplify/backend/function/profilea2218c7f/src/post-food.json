@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/profiles",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"foodAnswer\": {\"foodIntake\": \"very-much\", \"foodDirectwaste\": \"seldom\", \"foodLeftover\": \"seldom\", \"dishBeef\": \"everyday\", \"dishPork\": \"everyday\", \"dishChicken\": \"everyday\", \"dishSeafood\": \"everyday\", \"dairyFood\": \"3-more-per-day\", \"alcohol\": \"everyday\", \"softdrinkSnack\": \"3000-less\", \"eatout\": \"5000-less\" }}"
+}

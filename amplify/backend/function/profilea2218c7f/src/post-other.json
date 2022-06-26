@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/profiles",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"otherAnswer\": {\"dailyGoods\": \"5000-less\", \"communication\": \"5000-less\", \"applianceFurniture\": \"50000-less\", \"service\": \"5000-less\", \"hobbyGoods\": \"5000-less\", \"clothesBeauty\": \"5000-less\", \"leisureSports\": \"5000-less\", \"travel\": \"10000-less\"}}"
+}
