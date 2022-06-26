@@ -132,6 +132,35 @@ type OtherAnswer {
   travel: String # 10000-less|20000-30000|30000-50000|50000-100000|100000-200000|200000-more|unknown
 }
 
+# 移動に関する質問の回答
+type HousingAnswer {
+  # 一緒に暮らしている人数を教えてください
+  howManyPeople: Int # 人数
+  #　あなたの家の部屋はいくつありますか？
+  howManyRoom: String # 部屋の数; 4|1|2|3|5-6|7|unknown
+  # 現在住んでいる住居の建築年はいつ頃ですか？
+  whenBuildingHouse: String # 建築された年代; 1980|1970|1990|2000|unknown
+  # 自宅の電力は何を使用していますか？
+  electricityType: String # 電力の種類; 100%|50%|30%|solarPanel|normal|unknown
+  # 1ヶ月の電力使用量はどのくらいですか？
+  howManyElectricity: Float # 1ヶ月の電力使用量 kWh
+  howManyElectricityMonth: Int # 対象月
+  # 暖房、温水供給、調理にガスを使用していますか？
+  useGas: Boolean # ガスの使用の有無
+  # 使用しているガスの種類を教えてください
+  gasType: String # ガスの種類　cityGas|propaneGas|unknown
+  # 1ヶ月のガス使用量はどのくらいですか？
+  howManyGas: Float # 1ヶ月のガス使用量 m3
+  howManyGasMonth: Int # 対象月
+  # 暖房などに灯油を使用していますか？
+  useKerosene: Boolean # 灯油の使用の有無
+  # 昨シーズンの灯油の使用量はどのくらいですか？
+  howManyKerosene: Float # 昨シーズンの灯油の使用量 リットル/月
+  howManyKeroseneMonth: Int # ヶ月/年
+  # お住まいの地域（地方）はどちらですか？
+  region: String # 住んでる地域　Hokkaido|kantou-kinki-toukai-tyuugoku-sikoku|
+}
+
 # カーボンフットプリントの計算結果（念の為、AppSync経由でのアクセス不可に設定）
 type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
   # uuid
