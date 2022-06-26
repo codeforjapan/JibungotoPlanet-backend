@@ -20,6 +20,9 @@ See the License for the specific language governing permissions and limitations 
 Amplify Params - DO NOT EDIT */
 
 const { estimateMobility } = require('./mobility')
+const { estimateFood } = require('./food')
+const { estimateOther } = require('./other')
+
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
@@ -92,6 +95,39 @@ app.get(path + '/:id', async (req, res) => {
   }
 })
 
+const updateProfile = async (dynamodb, profile) => {
+  const operations = [
+    {
+      answer: profile.mobilityAnswer,
+      estimate: estimateMobility
+    },
+    {
+      answer: profile.foodAnswer,
+      estimate: estimateFood
+    },
+    {
+      answer: profile.otherAnswer,
+      estimate: estimateOther
+    }
+  ]
+
+  profile.baselines = []
+  profile.estimations = []
+
+  for (let operation of operations) {
+    if (operation.answer) {
+      const { baselines, estimations } = await operation.estimate(
+        dynamodb,
+        operation.answer,
+        footprintTableName,
+        parameterTableName
+      )
+      profile.baselines = profile.baselines.concat(baselines)
+      profile.estimations = profile.estimations.concat(estimations)
+    }
+  }
+}
+
 /************************************
  * HTTP put method for insert object *
  *************************************/
@@ -106,17 +142,19 @@ app.put(path + '/:id', async (req, res) => {
     let data = await dynamodb.get(params).promise()
     const profile = data.Item
     const mobilityAnswer = req.body.mobilityAnswer
+    const foodAnswer = req.body.foodAnswer
+    const otherAnswer = req.body.otherAnswer
 
-    const { baselines, estimations } = await estimateMobility(
-      dynamodb,
-      mobilityAnswer,
-      footprintTableName,
-      parameterTableName
-    )
-
-    profile.mobilityAnswer = mobilityAnswer
-    profile.baselines = baselines
-    profile.estimations = estimations
+    if (mobilityAnswer) {
+      profile.mobilityAnswer = mobilityAnswer
+    }
+    if (foodAnswer) {
+      profile.foodAnswer = foodAnswer
+    }
+    if (otherAnswer) {
+      profile.otherAnswer = otherAnswer
+    }
+    await updateProfile(dynamodb, profile)
     profile.updatedAt = new Date().toISOString()
 
     params = {
@@ -137,24 +175,19 @@ app.put(path + '/:id', async (req, res) => {
 
 app.post(path, async (req, res) => {
   try {
-    const mobilityAnswer = req.body.mobilityAnswer
-
-    const { baselines, estimations } = await estimateMobility(
-      dynamodb,
-      mobilityAnswer,
-      footprintTableName,
-      parameterTableName
-    )
-
     const profile = {
       id: uuid(),
       shareId: shortid.generate(),
-      mobilityAnswer,
-      baselines,
-      estimations,
+      mobilityAnswer: req.body.mobilityAnswer,
+      foodAnswer: req.body.foodAnswer,
+      otherAnswer: req.body.otherAnswer,
+      baselines: [],
+      estimations: [],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     }
+
+    await updateProfile(dynamodb, profile)
 
     const params = {
       TableName: profileTableName,

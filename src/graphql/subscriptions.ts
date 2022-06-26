@@ -107,6 +107,29 @@ export const onCreateProfile = /* GraphQL */ `
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
       }
+      foodAnswer {
+        foodIntake
+        foodDirectwaste
+        foodLeftover
+        dishBeef
+        dishPork
+        dishChicken
+        dishSeafood
+        dairyFood
+        alcohol
+        softdrinkSnack
+        eatout
+      }
+      otherAnswer {
+        dailyGoods
+        communication
+        applianceFurniture
+        service
+        hobbyGoods
+        clothesBeauty
+        leisureSports
+        travel
+      }
       baselines {
         domain
         item
@@ -159,6 +182,29 @@ export const onUpdateProfile = /* GraphQL */ `
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
       }
+      foodAnswer {
+        foodIntake
+        foodDirectwaste
+        foodLeftover
+        dishBeef
+        dishPork
+        dishChicken
+        dishSeafood
+        dairyFood
+        alcohol
+        softdrinkSnack
+        eatout
+      }
+      otherAnswer {
+        dailyGoods
+        communication
+        applianceFurniture
+        service
+        hobbyGoods
+        clothesBeauty
+        leisureSports
+        travel
+      }
       baselines {
         domain
         item
@@ -210,6 +256,29 @@ export const onDeleteProfile = /* GraphQL */ `
         motorbikeAnnualTravelingTime
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
+      }
+      foodAnswer {
+        foodIntake
+        foodDirectwaste
+        foodLeftover
+        dishBeef
+        dishPork
+        dishChicken
+        dishSeafood
+        dairyFood
+        alcohol
+        softdrinkSnack
+        eatout
+      }
+      otherAnswer {
+        dailyGoods
+        communication
+        applianceFurniture
+        service
+        hobbyGoods
+        clothesBeauty
+        leisureSports
+        travel
       }
       baselines {
         domain

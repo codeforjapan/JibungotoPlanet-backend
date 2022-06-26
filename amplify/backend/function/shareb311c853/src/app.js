@@ -69,6 +69,8 @@ app.get(path + '/:id', async (req, res) => {
     if (profile) {
       profile.id = undefined // idを削除
       profile.mobilityAnswer = undefined // 回答を削除
+      profile.foodAnswer = undefined // 回答を削除
+      profile.otherAnswer = undefined // 回答を削除
       res.json(profile)
     } else {
       res.json({})

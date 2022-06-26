@@ -114,6 +114,29 @@ export const getProfile = /* GraphQL */ `
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
       }
+      foodAnswer {
+        foodIntake
+        foodDirectwaste
+        foodLeftover
+        dishBeef
+        dishPork
+        dishChicken
+        dishSeafood
+        dairyFood
+        alcohol
+        softdrinkSnack
+        eatout
+      }
+      otherAnswer {
+        dailyGoods
+        communication
+        applianceFurniture
+        service
+        hobbyGoods
+        clothesBeauty
+        leisureSports
+        travel
+      }
       baselines {
         domain
         item
@@ -178,6 +201,29 @@ export const listProfiles = /* GraphQL */ `
           motorbikeAnnualTravelingTime
           airplaneAnnualTravelingTime
           ferryAnnualTravelingTime
+        }
+        foodAnswer {
+          foodIntake
+          foodDirectwaste
+          foodLeftover
+          dishBeef
+          dishPork
+          dishChicken
+          dishSeafood
+          dairyFood
+          alcohol
+          softdrinkSnack
+          eatout
+        }
+        otherAnswer {
+          dailyGoods
+          communication
+          applianceFurniture
+          service
+          hobbyGoods
+          clothesBeauty
+          leisureSports
+          travel
         }
         baselines {
           domain
@@ -245,6 +291,29 @@ export const profilesByShareId = /* GraphQL */ `
           motorbikeAnnualTravelingTime
           airplaneAnnualTravelingTime
           ferryAnnualTravelingTime
+        }
+        foodAnswer {
+          foodIntake
+          foodDirectwaste
+          foodLeftover
+          dishBeef
+          dishPork
+          dishChicken
+          dishSeafood
+          dairyFood
+          alcohol
+          softdrinkSnack
+          eatout
+        }
+        otherAnswer {
+          dailyGoods
+          communication
+          applianceFurniture
+          service
+          hobbyGoods
+          clothesBeauty
+          leisureSports
+          travel
         }
         baselines {
           domain
