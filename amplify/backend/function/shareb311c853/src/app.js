@@ -1,4 +1,13 @@
-/*
+/* Amplify Params - DO NOT EDIT
+	ENV
+	REGION
+	STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN
+	STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME
+	STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN
+	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN
+	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME
+	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN
+Amplify Params - DO NOT EDIT *//*
 Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
     http://aws.amazon.com/apache2.0/
@@ -13,12 +22,15 @@ const express = require('express')
 
 AWS.config.update({ region: process.env.TABLE_REGION })
 
-const suffix = '3uyvqum6jrc4pf63cde7njsxei'
+let suffix = '3uyvqum6jrc4pf63cde7njsxei-dev'
+if (process.env.ENV && process.env.ENV !== 'NONE') {
+  if (process.env.ENV === 'stg') {
+    suffix = 'epwhhio5abgdthpzpwfkaox4ba-stg'
+  }
+}
+
 let dynamoParam = {}
 let tableName = 'Profile-' + suffix
-if (process.env.ENV && process.env.ENV !== 'NONE') {
-  tableName = tableName + '-' + process.env.ENV
-}
 
 if (
   'AWS_EXECUTION_ENV' in process.env &&

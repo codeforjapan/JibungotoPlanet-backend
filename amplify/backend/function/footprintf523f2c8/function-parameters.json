@@ -1,3 +1,13 @@
 {
-  "lambdaLayers": []
+  "lambdaLayers": [],
+  "permissions": {
+    "storage": {
+      "Footprint3uyvqum6jrc4pf63cde7njsxeidev": [
+        "read"
+      ],
+      "Footprintepwhhio5abgdthpzpwfkaox4bastg": [
+        "read"
+      ]
+    }
+  }
 }
