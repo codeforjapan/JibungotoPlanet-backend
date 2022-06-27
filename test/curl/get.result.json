@@ -18,7 +18,7 @@
     "privateCarAnnualMileage": 5000,
     "busAnnualTravelingTime": 100
   },
-  "updatedAt": "2022-06-26T04:15:02.189Z",
+  "updatedAt": "2022-06-27T11:45:27.309Z",
   "otherAnswer": {
     "applianceFurniture": "50000-less",
     "service": "5000-less",
@@ -29,7 +29,7 @@
     "leisureSports": "5000-less",
     "clothesBeauty": "5000-less"
   },
-  "createdAt": "2022-06-20T12:04:09.413Z",
+  "createdAt": "2022-06-27T11:44:40.002Z",
   "foodAnswer": {
     "alcohol": "everyday",
     "eatout": "5000-less",
@@ -1485,8 +1485,8 @@
       "domain": "other"
     }
   ],
-  "shareId": "CpOFd3FjR",
-  "id": "c8f3d796-9439-4976-9229-9ba4be18926d",
+  "shareId": "dA6o5XDTn",
+  "id": "d66acb51-2c8a-42e1-97a0-22778ce2070a",
   "estimations": [
     {
       "item": "private-car-driving",

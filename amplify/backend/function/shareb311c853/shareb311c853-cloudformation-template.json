@@ -23,6 +23,22 @@
     "storageProfile3uyvqum6jrc4pf63cde7njsxeidevArn": {
       "Type": "String",
       "Default": "storageProfile3uyvqum6jrc4pf63cde7njsxeidevArn"
+    },
+    "storageProfileepwhhio5abgdthpzpwfkaox4bastgName": {
+      "Type": "String",
+      "Default": "storageProfileepwhhio5abgdthpzpwfkaox4bastgName"
+    },
+    "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn": {
+      "Type": "String",
+      "Default": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
+    },
+    "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
+      "Type": "String",
+      "Default": "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn"
+    },
+    "storageProfile3uyvqum6jrc4pf63cde7njsxeidevStreamArn": {
+      "Type": "String",
+      "Default": "storageProfile3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
     }
   },
   "Conditions": {
@@ -77,6 +93,24 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME": {
+              "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgName"
+            },
+            "STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN": {
+              "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
+            },
+            "STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
+              "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn"
+            },
+            "STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME": {
+              "Ref": "storageProfile3uyvqum6jrc4pf63cde7njsxeidevName"
+            },
+            "STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN": {
+              "Ref": "storageProfile3uyvqum6jrc4pf63cde7njsxeidevArn"
+            },
+            "STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN": {
+              "Ref": "storageProfile3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
             }
           }
         },
@@ -190,6 +224,79 @@
                     [
                       {
                         "Ref": "storageProfile3uyvqum6jrc4pf63cde7njsxeidevArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageProfile3uyvqum6jrc4pf63cde7njsxeidevArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageProfile3uyvqum6jrc4pf63cde7njsxeidevArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
                       },
                       "index/*"
                     ]

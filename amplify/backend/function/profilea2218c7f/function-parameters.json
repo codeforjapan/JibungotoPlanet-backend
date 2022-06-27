@@ -12,6 +12,18 @@
         "read",
         "update",
         "delete"
+      ],
+      "Footprintepwhhio5abgdthpzpwfkaox4bastg": [
+        "read"
+      ],
+      "Parameterepwhhio5abgdthpzpwfkaox4bastg": [
+        "read"
+      ],
+      "Profileepwhhio5abgdthpzpwfkaox4bastg": [
+        "create",
+        "read",
+        "update",
+        "delete"
       ]
     }
   },

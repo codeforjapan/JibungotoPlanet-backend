@@ -23,6 +23,22 @@
     "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn": {
       "Type": "String",
       "Default": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn"
+    },
+    "storageFootprintepwhhio5abgdthpzpwfkaox4bastgName": {
+      "Type": "String",
+      "Default": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgName"
+    },
+    "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn": {
+      "Type": "String",
+      "Default": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
+    },
+    "storageFootprintepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
+      "Type": "String",
+      "Default": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgStreamArn"
+    },
+    "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevStreamArn": {
+      "Type": "String",
+      "Default": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
     }
   },
   "Conditions": {
@@ -77,6 +93,24 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME": {
+              "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgName"
+            },
+            "STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN": {
+              "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
+            },
+            "STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
+              "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgStreamArn"
+            },
+            "STORAGE_FOOTPRINT3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME": {
+              "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevName"
+            },
+            "STORAGE_FOOTPRINT3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN": {
+              "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn"
+            },
+            "STORAGE_FOOTPRINT3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN": {
+              "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
             }
           }
         },
@@ -190,6 +224,79 @@
                     [
                       {
                         "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
                       },
                       "index/*"
                     ]
