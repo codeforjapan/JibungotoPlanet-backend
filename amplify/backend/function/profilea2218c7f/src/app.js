@@ -31,6 +31,7 @@ Amplify Params - DO NOT EDIT */
 const { estimateMobility } = require('./mobility')
 const { estimateFood } = require('./food')
 const { estimateOther } = require('./other')
+const {estimateHousing} = require('./housing');
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -111,6 +112,10 @@ const updateProfile = async (dynamodb, profile) => {
       estimate: estimateMobility
     },
     {
+      answer: profile.housingAnswer,
+      estimate: estimateHousing
+    },
+    {
       answer: profile.foodAnswer,
       estimate: estimateFood
     },
@@ -151,11 +156,15 @@ app.put(path + '/:id', async (req, res) => {
     let data = await dynamodb.get(params).promise()
     const profile = data.Item
     const mobilityAnswer = req.body.mobilityAnswer
+    const housingAnswer = req.body.housingAnswer
     const foodAnswer = req.body.foodAnswer
     const otherAnswer = req.body.otherAnswer
 
     if (mobilityAnswer) {
       profile.mobilityAnswer = mobilityAnswer
+    }
+    if (housingAnswer) {
+      profile.housingAnswer = housingAnswer
     }
     if (foodAnswer) {
       profile.foodAnswer = foodAnswer
@@ -188,6 +197,7 @@ app.post(path, async (req, res) => {
       id: uuid(),
       shareId: shortid.generate(),
       mobilityAnswer: req.body.mobilityAnswer,
+      housingAnswer: req.body.housingAnswer,
       foodAnswer: req.body.foodAnswer,
       otherAnswer: req.body.otherAnswer,
       baselines: [],

@@ -107,6 +107,22 @@ export const onCreateProfile = /* GraphQL */ `
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
       }
+      housingAnswer {
+        numberOfPeople
+        housingSize
+        housingInsulation
+        electricityIntensity
+        howManyElectricity
+        electricitySeasonFactor
+        useGas
+        energyHeatIntensity
+        howManyGas
+        gasSeasonFactor
+        useKerosene
+        howManyKerosene
+        howManyKeroseneMonth
+        housingAmountByRegion
+      }
       foodAnswer {
         foodIntake
         foodDirectwaste
@@ -182,6 +198,22 @@ export const onUpdateProfile = /* GraphQL */ `
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
       }
+      housingAnswer {
+        numberOfPeople
+        housingSize
+        housingInsulation
+        electricityIntensity
+        howManyElectricity
+        electricitySeasonFactor
+        useGas
+        energyHeatIntensity
+        howManyGas
+        gasSeasonFactor
+        useKerosene
+        howManyKerosene
+        howManyKeroseneMonth
+        housingAmountByRegion
+      }
       foodAnswer {
         foodIntake
         foodDirectwaste
@@ -256,6 +288,22 @@ export const onDeleteProfile = /* GraphQL */ `
         motorbikeAnnualTravelingTime
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
+      }
+      housingAnswer {
+        numberOfPeople
+        housingSize
+        housingInsulation
+        electricityIntensity
+        howManyElectricity
+        electricitySeasonFactor
+        useGas
+        energyHeatIntensity
+        howManyGas
+        gasSeasonFactor
+        useKerosene
+        howManyKerosene
+        howManyKeroseneMonth
+        housingAmountByRegion
       }
       foodAnswer {
         foodIntake
