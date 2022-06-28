@@ -8,8 +8,6 @@ module.exports.estimateHousing = async (
 ) => {
   const findAmount = (baselines, item) =>
       findComponent(baselines, 'housing', item, 'amount')
-  const findIntensity = (baselines, item) =>
-      findComponent(baselines, 'housing', item, 'intensity')
 
   // housingAnswerのスキーマと取りうる値は以下を参照
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -33,19 +31,62 @@ module.exports.estimateHousing = async (
   if (!housingAnswer) {
     return { baselines, estimations }
   }
-
   const numberOfPeople = housingAnswer.numberOfPeople;
 
+  const estimationAmount = {
+    "landrent": findAmount(baselines,'landrent'),
+    "otherenergy": findAmount(baselines,'otherenergy'),
+    "water": findAmount(baselines, "water"),
+    "imputedrent": findAmount(baselines, "imputedrent"),
+    "rent": findAmount(baselines, "rent"),
+    "housing-maintenance": findAmount(baselines, "housing-maintenance"),
+    "electricity": findAmount(baselines, "electricity"),
+    "urbangas": findAmount(baselines, "urbangas"),
+    "lpg": findAmount(baselines, "lpg"),
+    "kerosene": findAmount(baselines, "kerosene"),
+  }
 
-  const imputedRent = findAmount(baselines, 'imputedrent');
-  const rent = findAmount(baselines, 'rent');
-  const housingMaintenance = findAmount(baselines, 'housing-maintenance');
-  const electricity = findAmount(baselines, 'electricity');
-  const urbanGas = findAmount(baselines, 'urbangas');
-  const lpg = findAmount(baselines, 'lpg');
-  const kerosene = findAmount(baselines, 'kerosene');
-
+  //
+  // # お住まいの地域（地方）はどちらですか？
+  //
+  // 全体の補正値
+  //
+  // housingAmountByRegion: String # northeast|middle|southwest|unknown
+  //
   if (housingAnswer.housingAmountByRegion) {
+    const housingAmountByRegion = housingAnswer.housingAmountByRegion;
+    const params = {
+      TableName: parameterTableName,
+      KeyConditions: {
+        category: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: ['housing-amount-by-region']
+        },
+        key: {
+          ComparisonOperator: 'BEGINS_WITH',
+          AttributeValueList: [housingAmountByRegion]
+        }
+      }
+    }
+    const amountByRegion = await dynamodb.query(params).promise()
+    const re = new RegExp(`${housingAmountByRegion}_(.*)-amount`);
+
+    amountByRegion.Items.forEach((item) => {
+      const key = item.key.match(re)[1];
+      estimationAmount[key].value = item.value
+      estimations.push(toEstimation(estimationAmount[key]))
+    })
+  }
+
+  //
+  // ここから個別補正
+  //
+  // ※ちなみに以下は個別の補正なし。
+  // landrent
+  // otherenergy
+  // water
+
+  if(housingAnswer.housingSize) {
     const housingSizeParams = {
       TableName: parameterTableName,
       KeyConditions: {
@@ -60,41 +101,20 @@ module.exports.estimateHousing = async (
       }
     }
     const housingSize = await dynamodb.query(housingSizeParams).promise()
-    const housingSizePerPeople = housingSize.data?.value / numberOfPeople
-
+    const housingSizePerPeople = housingSize.Items[0]?.value / numberOfPeople
+    const imputedRentValue = estimationAmount.imputedrent.value
+    const rentValue = estimationAmount.rent.value
+    estimationAmount.imputedrent.value = housingSizePerPeople/(imputedRentValue + rentValue) * imputedRentValue
+    estimationAmount.rent.value = housingSizePerPeople/(imputedRentValue + rentValue) * rentValue
+    estimationAmount["housing-maintenance"].value = estimationAmount["housing-maintenance"].value / (imputedRentValue + rentValue) * (estimationAmount.imputedrent.value + estimationAmount.rent.value)
   }
-
-
-
-  //
-  // 答えに従ってestimationを計算
-  //
-
-  //
-  // # お住まいの地域（地方）はどちらですか？
-  //
-  // 全体の補正値
-  //
-  // housingAmountByRegion: String # northeast|middle|southwest|unknown
-  //
-
-
-
-  //
-  // ここから個別補正
-  //
-  // ※ちなみに以下は個別の補正なし。
-  // landrent
-  // otherenergy
-  // water
-
 
   // 灯油の使用の有無
   if (housingAnswer.useKerosene) {
     if (housingAnswer.howManyKerosene && housingAnswer.howManyKeroseneMonth) {
-      kerosene.value = housingAnswer.howManyKerosene * housingAnswer.howManyKeroseneMonth / numberOfPeople
+      estimationAmount.kerosene.value = housingAnswer.howManyKerosene * housingAnswer.howManyKeroseneMonth / numberOfPeople
     } else {
-      kerosene.value = findAmount(baselines, 'kerosene');
+      estimationAmount.kerosene.value = findAmount(baselines, 'kerosene');
       if (housingAnswer.housingAmountByRegion) {
         const keroseneParams = {
           TableName: parameterTableName,
@@ -110,47 +130,16 @@ module.exports.estimateHousing = async (
           }
         }
         const keroseneByRegion = await dynamodb.query(keroseneParams).promise()
-        kerosene.value = keroseneByRegion.data?.value
+        estimationAmount.kerosene.value = keroseneByRegion.Items[0]?.value
       }
     }
+    estimations.push(toEstimation(estimationAmount.kerosene))
   } else {
-    kerosene.value = 0
+    estimationAmount.kerosene.value = 0
+    estimations.push(toEstimation(estimationAmount.kerosene))
   }
-
-  estimations.push(toEstimation(kerosene))
-  const answers = [
-    //
-    // あなたの家の部屋はいくつありますか？
-    //
-    // housingSize: String # 1-room|2-room|3-room|4-room|5-6-room|7-more-room|unknown
-    {
-      category: 'housing-size',
-      key: housingAnswer.housingSize,
-      items: ['']
-    },
-  ]
-
-  for (let ans of answers) {
-    console.log(ans.category)
-    const params = {
-      TableName: parameterTableName,
-      Key: {
-        category: ans.category,
-        key: ans.key
-      }
-    }
-    let data = await dynamodb.get(params).promise()
-    if (data?.Item?.value) {
-      const coefficient = data.Item.value
-      for (let item of ans.items) {
-        const component = findAmount(baselines, item)
-        component.value *= coefficient
-        estimations.push(toEstimation(component))
-      }
-    }
-  }
-
 
   console.log(JSON.stringify(estimations))
   return { baselines, estimations }
+  // return { estimations }
 }

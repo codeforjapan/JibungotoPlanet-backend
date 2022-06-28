@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/profiles",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"housingAnswer\": {\"numberOfPeople\": 2, \"housingSize\": \"unknown\", \"housingAmountByRegion\": \"northeast\"}}"
+}
