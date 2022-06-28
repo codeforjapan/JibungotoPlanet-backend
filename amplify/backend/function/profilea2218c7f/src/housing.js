@@ -8,6 +8,16 @@ module.exports.estimateHousing = async (
 ) => {
   const findAmount = (baselines, item) =>
       findComponent(baselines, 'housing', item, 'amount')
+  const findIntensity = (baselines, item) =>
+      findComponent(baselines, 'housing', item, 'intensity')
+  const pushOrUpdateEstimate = (item, type, estimation) => {
+    const estimate = estimations.find(estimation => estimation.item === item && estimation.type === type)
+    if (estimate) {
+      estimate.value = estimation.value
+    } else {
+      estimations.push(estimation)
+    }
+  }
 
   // housingAnswerのスキーマと取りうる値は以下を参照
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -74,7 +84,7 @@ module.exports.estimateHousing = async (
     amountByRegion.Items.forEach((item) => {
       const key = item.key.match(re)[1];
       estimationAmount[key].value = item.value
-      estimations.push(toEstimation(estimationAmount[key]))
+      // estimations.push(toEstimation(estimationAmount[key]))
     })
   }
 
@@ -107,39 +117,112 @@ module.exports.estimateHousing = async (
     estimationAmount.imputedrent.value = housingSizePerPeople/(imputedRentValue + rentValue) * imputedRentValue
     estimationAmount.rent.value = housingSizePerPeople/(imputedRentValue + rentValue) * rentValue
     estimationAmount["housing-maintenance"].value = estimationAmount["housing-maintenance"].value / (imputedRentValue + rentValue) * (estimationAmount.imputedrent.value + estimationAmount.rent.value)
+    estimations.push(toEstimation(estimationAmount.imputedrent))
+    estimations.push(toEstimation(estimationAmount.rent))
+    estimations.push(toEstimation(estimationAmount['housing-maintenance']))
+    // pushOrUpdateEstimate('imputedrent', 'amount', toEstimation(estimationAmount.imputedrent))
+    // pushOrUpdateEstimate('rent', 'amount', toEstimation(estimationAmount.rent))
+    // pushOrUpdateEstimate('housing-maintenance', 'amount', toEstimation(estimationAmount['housing-maintenance']))
+  }
+
+  // 再生可能エネルギー
+  if (housingAnswer.electricityIntensity) {
+    const electricityIntensityParams = {
+      TableName: parameterTableName,
+      KeyConditions: {
+        category: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: ['electricity-intensity']
+        },
+        key: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: [housingAnswer.electricityIntensity]
+        }
+      }
+    }
+    const electricityParam = await dynamodb.query(electricityIntensityParams).promise()
+    const electricityIntensity = findIntensity(baselines, 'electricity')
+    electricityIntensity.value = electricityParam.Items[0]?.value
+    estimations.push(toEstimation(electricityIntensity))
+  }
+
+  //電力使用量
+  if (housingAnswer.howManyElectricity && housingAnswer.electricitySeasonFactor) {
+    const electricitySeasonParams = {
+      TableName: parameterTableName,
+      KeyConditions: {
+        category: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: ['electricity-season-factor']
+        },
+        key: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: [housingAnswer.electricitySeasonFactor]
+        }
+      }
+    }
+    const electricitySeason = await dynamodb.query(electricitySeasonParams).promise()
+    // todo 電気時自動車分をどうやって取ってくるか
+    estimationAmount.electricity.value = housingAnswer.howManyElectricity * electricitySeason.Items[0]?.value / numberOfPeople
+    estimations.push(toEstimation(estimationAmount.electricity))
+    // pushOrUpdateEstimate('electricity', 'amount', toEstimation(estimationAmount.electricity))
+  }
+
+  //ガスの使用の有無
+  if (housingAnswer.useGas){
+    let gasParam = null
+    if (housingAnswer.howManyGas && housingAnswer.gasSeasonFactor) {
+      const gasSeasonParams = {
+        TableName: parameterTableName,
+        KeyConditions: {
+          category: {
+            ComparisonOperator: 'EQ',
+            AttributeValueList: ['gas-season-factor']
+          },
+          key: {
+            ComparisonOperator: 'EQ',
+            AttributeValueList: [housingAnswer.gasSeasonFactor]
+          }
+        }
+      }
+      const gasSeason = await dynamodb.query(gasSeasonParams).promise()
+      gasParam = housingAnswer.howManyGas * gasSeason.Items[0]?.value / numberOfPeople
+    }
+    if (housingAnswer.energyHeatIntensity === 'lpg') {
+      if (gasParam) {
+        estimationAmount.lpg.value = gasParam
+      }
+      estimationAmount.urbangas.value = 0
+    } else {
+      if (gasParam) {
+        estimationAmount.urbangas.value = gasParam
+      }
+      estimationAmount.lpg.value = 0
+    }
+    estimations.push(toEstimation(estimationAmount.urbangas))
+    estimations.push(toEstimation(estimationAmount.lpg))
+  } else if (housingAnswer.useGas === false) {
+    estimationAmount.urbangas.value = 0
+    estimationAmount.lpg.value = 0
+    estimations.push(toEstimation(estimationAmount.urbangas))
+    estimations.push(toEstimation(estimationAmount.lpg))
+    // pushOrUpdateEstimate('urbangas', 'amount', toEstimation(estimationAmount.urbangas))
+    // pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
   }
 
   // 灯油の使用の有無
   if (housingAnswer.useKerosene) {
     if (housingAnswer.howManyKerosene && housingAnswer.howManyKeroseneMonth) {
       estimationAmount.kerosene.value = housingAnswer.howManyKerosene * housingAnswer.howManyKeroseneMonth / numberOfPeople
-    } else {
-      estimationAmount.kerosene.value = findAmount(baselines, 'kerosene');
-      if (housingAnswer.housingAmountByRegion) {
-        const keroseneParams = {
-          TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['housing-amount-by-region']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [housingAnswer.housingAmountByRegion + '_kerosene-amount']
-            }
-          }
-        }
-        const keroseneByRegion = await dynamodb.query(keroseneParams).promise()
-        estimationAmount.kerosene.value = keroseneByRegion.Items[0]?.value
-      }
     }
     estimations.push(toEstimation(estimationAmount.kerosene))
-  } else {
+    // pushOrUpdateEstimate('kerosene', 'amount', toEstimation(estimationAmount.kerosene))
+  } else if (housingAnswer.useKerosene === false){
     estimationAmount.kerosene.value = 0
     estimations.push(toEstimation(estimationAmount.kerosene))
+    // pushOrUpdateEstimate('kerosene', 'amount', toEstimation(estimationAmount.kerosene))
   }
 
   console.log(JSON.stringify(estimations))
   return { baselines, estimations }
-  // return { estimations }
 }

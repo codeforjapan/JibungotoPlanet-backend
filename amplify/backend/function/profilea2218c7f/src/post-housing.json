@@ -4,5 +4,5 @@
   "headers": {
     "Content-Type": "application/json"
   },
-  "body": "{\"housingAnswer\": {\"numberOfPeople\": 2, \"housingSize\": \"unknown\", \"housingAmountByRegion\": \"northeast\"}}"
+  "body": "{\"housingAnswer\": {\"numberOfPeople\": 2, \"housingSize\": \"unknown\", \"housingAmountByRegion\": \"northeast\", \"electricityIntensity\": \"100-renewable\"}}"
 }
