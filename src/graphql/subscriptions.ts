@@ -83,6 +83,81 @@ export const onDeleteParameter = /* GraphQL */ `
     }
   }
 `;
+export const onCreateOption = /* GraphQL */ `
+  subscription OnCreateOption {
+    onCreateOption {
+      option
+      domainItemAndType
+      value
+      args
+      operation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateOption = /* GraphQL */ `
+  subscription OnUpdateOption {
+    onUpdateOption {
+      option
+      domainItemAndType
+      value
+      args
+      operation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteOption = /* GraphQL */ `
+  subscription OnDeleteOption {
+    onDeleteOption {
+      option
+      domainItemAndType
+      value
+      args
+      operation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateOptionIntensityRate = /* GraphQL */ `
+  subscription OnCreateOptionIntensityRate {
+    onCreateOptionIntensityRate {
+      option
+      defaultValue
+      minValue
+      maxValue
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateOptionIntensityRate = /* GraphQL */ `
+  subscription OnUpdateOptionIntensityRate {
+    onUpdateOptionIntensityRate {
+      option
+      defaultValue
+      minValue
+      maxValue
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteOptionIntensityRate = /* GraphQL */ `
+  subscription OnDeleteOptionIntensityRate {
+    onDeleteOptionIntensityRate {
+      option
+      defaultValue
+      minValue
+      maxValue
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile {
     onCreateProfile {
@@ -146,10 +221,18 @@ export const onCreateProfile = /* GraphQL */ `
         leisureSports
         travel
       }
+      actionIntensityRate {
+        option
+        value
+        defaultValue
+        minValue
+        maxValue
+      }
       baselines {
         domain
         item
         type
+        subdomain
         value
         unit
         citation
@@ -158,16 +241,21 @@ export const onCreateProfile = /* GraphQL */ `
         domain
         item
         type
+        subdomain
         value
         unit
       }
-      options {
+      actions {
         option
         domain
         item
         type
+        subdomain
         value
         unit
+        optionValue
+        args
+        operation
       }
       createdAt
       updatedAt
@@ -237,10 +325,18 @@ export const onUpdateProfile = /* GraphQL */ `
         leisureSports
         travel
       }
+      actionIntensityRate {
+        option
+        value
+        defaultValue
+        minValue
+        maxValue
+      }
       baselines {
         domain
         item
         type
+        subdomain
         value
         unit
         citation
@@ -249,16 +345,21 @@ export const onUpdateProfile = /* GraphQL */ `
         domain
         item
         type
+        subdomain
         value
         unit
       }
-      options {
+      actions {
         option
         domain
         item
         type
+        subdomain
         value
         unit
+        optionValue
+        args
+        operation
       }
       createdAt
       updatedAt
@@ -328,10 +429,18 @@ export const onDeleteProfile = /* GraphQL */ `
         leisureSports
         travel
       }
+      actionIntensityRate {
+        option
+        value
+        defaultValue
+        minValue
+        maxValue
+      }
       baselines {
         domain
         item
         type
+        subdomain
         value
         unit
         citation
@@ -340,16 +449,21 @@ export const onDeleteProfile = /* GraphQL */ `
         domain
         item
         type
+        subdomain
         value
         unit
       }
-      options {
+      actions {
         option
         domain
         item
         type
+        subdomain
         value
         unit
+        optionValue
+        args
+        operation
       }
       createdAt
       updatedAt
