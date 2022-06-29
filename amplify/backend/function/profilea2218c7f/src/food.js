@@ -1,4 +1,4 @@
-const { toComponent, findComponent, toEstimation } = require('./util')
+const { toBaseline, findBaseline, toEstimation } = require('./util')
 
 module.exports.estimateFood = async (
   dynamodb,
@@ -8,9 +8,9 @@ module.exports.estimateFood = async (
 ) => {
   // foodのベースラインの取得
   const findAmount = (baselines, item) =>
-    findComponent(baselines, 'food', item, 'amount')
+    findBaseline(baselines, 'food', item, 'amount')
   const findIntensity = (baselines, item) =>
-    findComponent(baselines, 'food', item, 'intensity')
+    findBaseline(baselines, 'food', item, 'intensity')
 
   // foodAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -28,7 +28,7 @@ module.exports.estimateFood = async (
   }
 
   let data = await dynamodb.query(params).promise()
-  const baselines = data.Items.map((item) => toComponent(item))
+  const baselines = data.Items.map((item) => toBaseline(item))
 
   // 回答がない場合はベースラインのみ返す
   if (!foodAnswer) {

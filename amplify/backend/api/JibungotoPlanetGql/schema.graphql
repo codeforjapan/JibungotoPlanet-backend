@@ -17,11 +17,31 @@ type Parameter @model @auth(rules: [{ allow: public, operations: [read] }]) {
   citation: String
 }
 
-# フットプリント（ベースライン）の１レコード
-type Component {
+# 削減施策の選択肢
+type Option @model @auth(rules: [{ allow: public, operations: [read] }]) {
+  option: String! @primaryKey(sortKeyFields: ["domainItemAndType"])
+  domainItemAndType: String! # 施策対象項目をdomain, item, typeで指定
+  value: Float! # 施策計算に必要な係数
+  args: [String!] # 施策計算に必要な引数
+  operation: String! # 施策の計算種類
+}
+
+# 削減施策の実施率
+type OptionIntensityRate
+  @model
+  @auth(rules: [{ allow: public, operations: [read] }]) {
+  option: String! @primaryKey
+  defaultValue: Float!
+  minValue: Float
+  maxValue: Float
+}
+
+# フットプリント（ベースライン）のProfile内の１レコード
+type Baseline {
   domain: String! # food|mobility|housing|other
   item: String!
   type: String!
+  subdomain: String!
   value: Float!
   unit: String
   citation: String
@@ -32,18 +52,32 @@ type Estimation {
   domain: String!
   item: String!
   type: String!
+  subdomain: String!
   value: Float!
   unit: String
 }
 
-# 削減施策選択肢の１レコード
-type Option {
-  option: String # telework-option|close-work-option|mic-tourism-option|daily-shift-option...
+# 削減施策選択肢のProfile内の１レコード
+type Action {
+  option: String!
   domain: String!
   item: String!
   type: String!
+  subdomain: String!
   value: Float!
   unit: String
+  optionValue: Float!
+  args: [String!]
+  operation: String!
+}
+
+# 削減施策の実施率のProfile内の１レコード
+type ActionIntensityRate {
+  option: String!
+  value: Float!
+  defaultValue: Float!
+  minValue: Float
+  maxValue: Float
 }
 
 # 移動に関する質問の回答
@@ -178,7 +212,12 @@ type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
   # モノとサービスに関する回答
   otherAnswer: OtherAnswer
 
-  baselines: [Component!]
+  # 実施率
+  actionIntensityRate: [ActionIntensityRate!]
+  # フットプリントベースライン
+  baselines: [Baseline!]
+  # フットプリント推定結果
   estimations: [Estimation!]
-  options: [Option!]
+  # 削減施策結果
+  actions: [Action!]
 }

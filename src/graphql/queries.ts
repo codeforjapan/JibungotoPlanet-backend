@@ -90,6 +90,88 @@ export const listParameters = /* GraphQL */ `
     }
   }
 `;
+export const getOption = /* GraphQL */ `
+  query GetOption($option: String!, $domainItemAndType: String!) {
+    getOption(option: $option, domainItemAndType: $domainItemAndType) {
+      option
+      domainItemAndType
+      value
+      args
+      operation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listOptions = /* GraphQL */ `
+  query ListOptions(
+    $option: String
+    $domainItemAndType: ModelStringKeyConditionInput
+    $filter: ModelOptionFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listOptions(
+      option: $option
+      domainItemAndType: $domainItemAndType
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        option
+        domainItemAndType
+        value
+        args
+        operation
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getOptionIntensityRate = /* GraphQL */ `
+  query GetOptionIntensityRate($option: String!) {
+    getOptionIntensityRate(option: $option) {
+      option
+      defaultValue
+      minValue
+      maxValue
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listOptionIntensityRates = /* GraphQL */ `
+  query ListOptionIntensityRates(
+    $option: String
+    $filter: ModelOptionIntensityRateFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listOptionIntensityRates(
+      option: $option
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        option
+        defaultValue
+        minValue
+        maxValue
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getProfile = /* GraphQL */ `
   query GetProfile($id: ID!) {
     getProfile(id: $id) {
@@ -153,10 +235,18 @@ export const getProfile = /* GraphQL */ `
         leisureSports
         travel
       }
+      actionIntensityRate {
+        option
+        value
+        defaultValue
+        minValue
+        maxValue
+      }
       baselines {
         domain
         item
         type
+        subdomain
         value
         unit
         citation
@@ -165,16 +255,21 @@ export const getProfile = /* GraphQL */ `
         domain
         item
         type
+        subdomain
         value
         unit
       }
-      options {
+      actions {
         option
         domain
         item
         type
+        subdomain
         value
         unit
+        optionValue
+        args
+        operation
       }
       createdAt
       updatedAt
@@ -257,10 +352,18 @@ export const listProfiles = /* GraphQL */ `
           leisureSports
           travel
         }
+        actionIntensityRate {
+          option
+          value
+          defaultValue
+          minValue
+          maxValue
+        }
         baselines {
           domain
           item
           type
+          subdomain
           value
           unit
           citation
@@ -269,16 +372,21 @@ export const listProfiles = /* GraphQL */ `
           domain
           item
           type
+          subdomain
           value
           unit
         }
-        options {
+        actions {
           option
           domain
           item
           type
+          subdomain
           value
           unit
+          optionValue
+          args
+          operation
         }
         createdAt
         updatedAt
@@ -363,10 +471,18 @@ export const profilesByShareId = /* GraphQL */ `
           leisureSports
           travel
         }
+        actionIntensityRate {
+          option
+          value
+          defaultValue
+          minValue
+          maxValue
+        }
         baselines {
           domain
           item
           type
+          subdomain
           value
           unit
           citation
@@ -375,16 +491,21 @@ export const profilesByShareId = /* GraphQL */ `
           domain
           item
           type
+          subdomain
           value
           unit
         }
-        options {
+        actions {
           option
           domain
           item
           type
+          subdomain
           value
           unit
+          optionValue
+          args
+          operation
         }
         createdAt
         updatedAt

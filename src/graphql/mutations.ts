@@ -101,6 +101,99 @@ export const deleteParameter = /* GraphQL */ `
     }
   }
 `;
+export const createOption = /* GraphQL */ `
+  mutation CreateOption(
+    $input: CreateOptionInput!
+    $condition: ModelOptionConditionInput
+  ) {
+    createOption(input: $input, condition: $condition) {
+      option
+      domainItemAndType
+      value
+      args
+      operation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateOption = /* GraphQL */ `
+  mutation UpdateOption(
+    $input: UpdateOptionInput!
+    $condition: ModelOptionConditionInput
+  ) {
+    updateOption(input: $input, condition: $condition) {
+      option
+      domainItemAndType
+      value
+      args
+      operation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteOption = /* GraphQL */ `
+  mutation DeleteOption(
+    $input: DeleteOptionInput!
+    $condition: ModelOptionConditionInput
+  ) {
+    deleteOption(input: $input, condition: $condition) {
+      option
+      domainItemAndType
+      value
+      args
+      operation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createOptionIntensityRate = /* GraphQL */ `
+  mutation CreateOptionIntensityRate(
+    $input: CreateOptionIntensityRateInput!
+    $condition: ModelOptionIntensityRateConditionInput
+  ) {
+    createOptionIntensityRate(input: $input, condition: $condition) {
+      option
+      defaultValue
+      minValue
+      maxValue
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateOptionIntensityRate = /* GraphQL */ `
+  mutation UpdateOptionIntensityRate(
+    $input: UpdateOptionIntensityRateInput!
+    $condition: ModelOptionIntensityRateConditionInput
+  ) {
+    updateOptionIntensityRate(input: $input, condition: $condition) {
+      option
+      defaultValue
+      minValue
+      maxValue
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteOptionIntensityRate = /* GraphQL */ `
+  mutation DeleteOptionIntensityRate(
+    $input: DeleteOptionIntensityRateInput!
+    $condition: ModelOptionIntensityRateConditionInput
+  ) {
+    deleteOptionIntensityRate(input: $input, condition: $condition) {
+      option
+      defaultValue
+      minValue
+      maxValue
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createProfile = /* GraphQL */ `
   mutation CreateProfile(
     $input: CreateProfileInput!
@@ -167,10 +260,18 @@ export const createProfile = /* GraphQL */ `
         leisureSports
         travel
       }
+      actionIntensityRate {
+        option
+        value
+        defaultValue
+        minValue
+        maxValue
+      }
       baselines {
         domain
         item
         type
+        subdomain
         value
         unit
         citation
@@ -179,16 +280,21 @@ export const createProfile = /* GraphQL */ `
         domain
         item
         type
+        subdomain
         value
         unit
       }
-      options {
+      actions {
         option
         domain
         item
         type
+        subdomain
         value
         unit
+        optionValue
+        args
+        operation
       }
       createdAt
       updatedAt
@@ -261,10 +367,18 @@ export const updateProfile = /* GraphQL */ `
         leisureSports
         travel
       }
+      actionIntensityRate {
+        option
+        value
+        defaultValue
+        minValue
+        maxValue
+      }
       baselines {
         domain
         item
         type
+        subdomain
         value
         unit
         citation
@@ -273,16 +387,21 @@ export const updateProfile = /* GraphQL */ `
         domain
         item
         type
+        subdomain
         value
         unit
       }
-      options {
+      actions {
         option
         domain
         item
         type
+        subdomain
         value
         unit
+        optionValue
+        args
+        operation
       }
       createdAt
       updatedAt
@@ -355,10 +474,18 @@ export const deleteProfile = /* GraphQL */ `
         leisureSports
         travel
       }
+      actionIntensityRate {
+        option
+        value
+        defaultValue
+        minValue
+        maxValue
+      }
       baselines {
         domain
         item
         type
+        subdomain
         value
         unit
         citation
@@ -367,16 +494,21 @@ export const deleteProfile = /* GraphQL */ `
         domain
         item
         type
+        subdomain
         value
         unit
       }
-      options {
+      actions {
         option
         domain
         item
         type
+        subdomain
         value
         unit
+        optionValue
+        args
+        operation
       }
       createdAt
       updatedAt

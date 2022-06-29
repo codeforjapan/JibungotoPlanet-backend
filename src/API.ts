@@ -140,6 +140,84 @@ export type DeleteParameterInput = {
   key: string,
 };
 
+export type CreateOptionInput = {
+  option: string,
+  domainItemAndType: string,
+  value: number,
+  args?: Array< string > | null,
+  operation: string,
+};
+
+export type ModelOptionConditionInput = {
+  value?: ModelFloatInput | null,
+  args?: ModelStringInput | null,
+  operation?: ModelStringInput | null,
+  and?: Array< ModelOptionConditionInput | null > | null,
+  or?: Array< ModelOptionConditionInput | null > | null,
+  not?: ModelOptionConditionInput | null,
+};
+
+export type Option = {
+  __typename: "Option",
+  option: string,
+  domainItemAndType: string,
+  value: number,
+  args?: Array< string > | null,
+  operation: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateOptionInput = {
+  option: string,
+  domainItemAndType: string,
+  value?: number | null,
+  args?: Array< string > | null,
+  operation?: string | null,
+};
+
+export type DeleteOptionInput = {
+  option: string,
+  domainItemAndType: string,
+};
+
+export type CreateOptionIntensityRateInput = {
+  option: string,
+  defaultValue: number,
+  minValue?: number | null,
+  maxValue?: number | null,
+};
+
+export type ModelOptionIntensityRateConditionInput = {
+  defaultValue?: ModelFloatInput | null,
+  minValue?: ModelFloatInput | null,
+  maxValue?: ModelFloatInput | null,
+  and?: Array< ModelOptionIntensityRateConditionInput | null > | null,
+  or?: Array< ModelOptionIntensityRateConditionInput | null > | null,
+  not?: ModelOptionIntensityRateConditionInput | null,
+};
+
+export type OptionIntensityRate = {
+  __typename: "OptionIntensityRate",
+  option: string,
+  defaultValue: number,
+  minValue?: number | null,
+  maxValue?: number | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateOptionIntensityRateInput = {
+  option: string,
+  defaultValue?: number | null,
+  minValue?: number | null,
+  maxValue?: number | null,
+};
+
+export type DeleteOptionIntensityRateInput = {
+  option: string,
+};
+
 export type CreateProfileInput = {
   id?: string | null,
   shareId: string,
@@ -147,9 +225,10 @@ export type CreateProfileInput = {
   housingAnswer?: HousingAnswerInput | null,
   foodAnswer?: FoodAnswerInput | null,
   otherAnswer?: OtherAnswerInput | null,
-  baselines?: Array< ComponentInput > | null,
+  actionIntensityRate?: Array< ActionIntensityRateInput > | null,
+  baselines?: Array< BaselineInput > | null,
   estimations?: Array< EstimationInput > | null,
-  options?: Array< OptionInput > | null,
+  actions?: Array< ActionInput > | null,
 };
 
 export type MobilityAnswerInput = {
@@ -214,10 +293,19 @@ export type OtherAnswerInput = {
   travel?: string | null,
 };
 
-export type ComponentInput = {
+export type ActionIntensityRateInput = {
+  option: string,
+  value: number,
+  defaultValue: number,
+  minValue?: number | null,
+  maxValue?: number | null,
+};
+
+export type BaselineInput = {
   domain: string,
   item: string,
   type: string,
+  subdomain: string,
   value: number,
   unit?: string | null,
   citation?: string | null,
@@ -227,17 +315,22 @@ export type EstimationInput = {
   domain: string,
   item: string,
   type: string,
+  subdomain: string,
   value: number,
   unit?: string | null,
 };
 
-export type OptionInput = {
-  option?: string | null,
+export type ActionInput = {
+  option: string,
   domain: string,
   item: string,
   type: string,
+  subdomain: string,
   value: number,
   unit?: string | null,
+  optionValue: number,
+  args?: Array< string > | null,
+  operation: string,
 };
 
 export type ModelProfileConditionInput = {
@@ -255,9 +348,10 @@ export type Profile = {
   housingAnswer?: HousingAnswer | null,
   foodAnswer?: FoodAnswer | null,
   otherAnswer?: OtherAnswer | null,
-  baselines?:  Array<Component > | null,
+  actionIntensityRate?:  Array<ActionIntensityRate > | null,
+  baselines?:  Array<Baseline > | null,
   estimations?:  Array<Estimation > | null,
-  options?:  Array<Option > | null,
+  actions?:  Array<Action > | null,
   createdAt: string,
   updatedAt: string,
 };
@@ -328,11 +422,21 @@ export type OtherAnswer = {
   travel?: string | null,
 };
 
-export type Component = {
-  __typename: "Component",
+export type ActionIntensityRate = {
+  __typename: "ActionIntensityRate",
+  option: string,
+  value: number,
+  defaultValue: number,
+  minValue?: number | null,
+  maxValue?: number | null,
+};
+
+export type Baseline = {
+  __typename: "Baseline",
   domain: string,
   item: string,
   type: string,
+  subdomain: string,
   value: number,
   unit?: string | null,
   citation?: string | null,
@@ -343,18 +447,23 @@ export type Estimation = {
   domain: string,
   item: string,
   type: string,
+  subdomain: string,
   value: number,
   unit?: string | null,
 };
 
-export type Option = {
-  __typename: "Option",
-  option?: string | null,
+export type Action = {
+  __typename: "Action",
+  option: string,
   domain: string,
   item: string,
   type: string,
+  subdomain: string,
   value: number,
   unit?: string | null,
+  optionValue: number,
+  args?: Array< string > | null,
+  operation: string,
 };
 
 export type UpdateProfileInput = {
@@ -364,9 +473,10 @@ export type UpdateProfileInput = {
   housingAnswer?: HousingAnswerInput | null,
   foodAnswer?: FoodAnswerInput | null,
   otherAnswer?: OtherAnswerInput | null,
-  baselines?: Array< ComponentInput > | null,
+  actionIntensityRate?: Array< ActionIntensityRateInput > | null,
+  baselines?: Array< BaselineInput > | null,
   estimations?: Array< EstimationInput > | null,
-  options?: Array< OptionInput > | null,
+  actions?: Array< ActionInput > | null,
 };
 
 export type DeleteProfileInput = {
@@ -421,6 +531,39 @@ export type ModelParameterFilterInput = {
 export type ModelParameterConnection = {
   __typename: "ModelParameterConnection",
   items:  Array<Parameter | null >,
+  nextToken?: string | null,
+};
+
+export type ModelOptionFilterInput = {
+  option?: ModelStringInput | null,
+  domainItemAndType?: ModelStringInput | null,
+  value?: ModelFloatInput | null,
+  args?: ModelStringInput | null,
+  operation?: ModelStringInput | null,
+  and?: Array< ModelOptionFilterInput | null > | null,
+  or?: Array< ModelOptionFilterInput | null > | null,
+  not?: ModelOptionFilterInput | null,
+};
+
+export type ModelOptionConnection = {
+  __typename: "ModelOptionConnection",
+  items:  Array<Option | null >,
+  nextToken?: string | null,
+};
+
+export type ModelOptionIntensityRateFilterInput = {
+  option?: ModelStringInput | null,
+  defaultValue?: ModelFloatInput | null,
+  minValue?: ModelFloatInput | null,
+  maxValue?: ModelFloatInput | null,
+  and?: Array< ModelOptionIntensityRateFilterInput | null > | null,
+  or?: Array< ModelOptionIntensityRateFilterInput | null > | null,
+  not?: ModelOptionIntensityRateFilterInput | null,
+};
+
+export type ModelOptionIntensityRateConnection = {
+  __typename: "ModelOptionIntensityRateConnection",
+  items:  Array<OptionIntensityRate | null >,
   nextToken?: string | null,
 };
 
@@ -565,6 +708,111 @@ export type DeleteParameterMutation = {
   } | null,
 };
 
+export type CreateOptionMutationVariables = {
+  input: CreateOptionInput,
+  condition?: ModelOptionConditionInput | null,
+};
+
+export type CreateOptionMutation = {
+  createOption?:  {
+    __typename: "Option",
+    option: string,
+    domainItemAndType: string,
+    value: number,
+    args?: Array< string > | null,
+    operation: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateOptionMutationVariables = {
+  input: UpdateOptionInput,
+  condition?: ModelOptionConditionInput | null,
+};
+
+export type UpdateOptionMutation = {
+  updateOption?:  {
+    __typename: "Option",
+    option: string,
+    domainItemAndType: string,
+    value: number,
+    args?: Array< string > | null,
+    operation: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteOptionMutationVariables = {
+  input: DeleteOptionInput,
+  condition?: ModelOptionConditionInput | null,
+};
+
+export type DeleteOptionMutation = {
+  deleteOption?:  {
+    __typename: "Option",
+    option: string,
+    domainItemAndType: string,
+    value: number,
+    args?: Array< string > | null,
+    operation: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateOptionIntensityRateMutationVariables = {
+  input: CreateOptionIntensityRateInput,
+  condition?: ModelOptionIntensityRateConditionInput | null,
+};
+
+export type CreateOptionIntensityRateMutation = {
+  createOptionIntensityRate?:  {
+    __typename: "OptionIntensityRate",
+    option: string,
+    defaultValue: number,
+    minValue?: number | null,
+    maxValue?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateOptionIntensityRateMutationVariables = {
+  input: UpdateOptionIntensityRateInput,
+  condition?: ModelOptionIntensityRateConditionInput | null,
+};
+
+export type UpdateOptionIntensityRateMutation = {
+  updateOptionIntensityRate?:  {
+    __typename: "OptionIntensityRate",
+    option: string,
+    defaultValue: number,
+    minValue?: number | null,
+    maxValue?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteOptionIntensityRateMutationVariables = {
+  input: DeleteOptionIntensityRateInput,
+  condition?: ModelOptionIntensityRateConditionInput | null,
+};
+
+export type DeleteOptionIntensityRateMutation = {
+  deleteOptionIntensityRate?:  {
+    __typename: "OptionIntensityRate",
+    option: string,
+    defaultValue: number,
+    minValue?: number | null,
+    maxValue?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type CreateProfileMutationVariables = {
   input: CreateProfileInput,
   condition?: ModelProfileConditionInput | null,
@@ -637,11 +885,20 @@ export type CreateProfileMutation = {
       leisureSports?: string | null,
       travel?: string | null,
     } | null,
+    actionIntensityRate?:  Array< {
+      __typename: "ActionIntensityRate",
+      option: string,
+      value: number,
+      defaultValue: number,
+      minValue?: number | null,
+      maxValue?: number | null,
+    } > | null,
     baselines?:  Array< {
-      __typename: "Component",
+      __typename: "Baseline",
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
       citation?: string | null,
@@ -651,17 +908,22 @@ export type CreateProfileMutation = {
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
     } > | null,
-    options?:  Array< {
-      __typename: "Option",
-      option?: string | null,
+    actions?:  Array< {
+      __typename: "Action",
+      option: string,
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
+      optionValue: number,
+      args?: Array< string > | null,
+      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -740,11 +1002,20 @@ export type UpdateProfileMutation = {
       leisureSports?: string | null,
       travel?: string | null,
     } | null,
+    actionIntensityRate?:  Array< {
+      __typename: "ActionIntensityRate",
+      option: string,
+      value: number,
+      defaultValue: number,
+      minValue?: number | null,
+      maxValue?: number | null,
+    } > | null,
     baselines?:  Array< {
-      __typename: "Component",
+      __typename: "Baseline",
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
       citation?: string | null,
@@ -754,17 +1025,22 @@ export type UpdateProfileMutation = {
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
     } > | null,
-    options?:  Array< {
-      __typename: "Option",
-      option?: string | null,
+    actions?:  Array< {
+      __typename: "Action",
+      option: string,
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
+      optionValue: number,
+      args?: Array< string > | null,
+      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -843,11 +1119,20 @@ export type DeleteProfileMutation = {
       leisureSports?: string | null,
       travel?: string | null,
     } | null,
+    actionIntensityRate?:  Array< {
+      __typename: "ActionIntensityRate",
+      option: string,
+      value: number,
+      defaultValue: number,
+      minValue?: number | null,
+      maxValue?: number | null,
+    } > | null,
     baselines?:  Array< {
-      __typename: "Component",
+      __typename: "Baseline",
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
       citation?: string | null,
@@ -857,17 +1142,22 @@ export type DeleteProfileMutation = {
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
     } > | null,
-    options?:  Array< {
-      __typename: "Option",
-      option?: string | null,
+    actions?:  Array< {
+      __typename: "Action",
+      option: string,
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
+      optionValue: number,
+      args?: Array< string > | null,
+      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -964,6 +1254,90 @@ export type ListParametersQuery = {
   } | null,
 };
 
+export type GetOptionQueryVariables = {
+  option: string,
+  domainItemAndType: string,
+};
+
+export type GetOptionQuery = {
+  getOption?:  {
+    __typename: "Option",
+    option: string,
+    domainItemAndType: string,
+    value: number,
+    args?: Array< string > | null,
+    operation: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListOptionsQueryVariables = {
+  option?: string | null,
+  domainItemAndType?: ModelStringKeyConditionInput | null,
+  filter?: ModelOptionFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
+};
+
+export type ListOptionsQuery = {
+  listOptions?:  {
+    __typename: "ModelOptionConnection",
+    items:  Array< {
+      __typename: "Option",
+      option: string,
+      domainItemAndType: string,
+      value: number,
+      args?: Array< string > | null,
+      operation: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetOptionIntensityRateQueryVariables = {
+  option: string,
+};
+
+export type GetOptionIntensityRateQuery = {
+  getOptionIntensityRate?:  {
+    __typename: "OptionIntensityRate",
+    option: string,
+    defaultValue: number,
+    minValue?: number | null,
+    maxValue?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListOptionIntensityRatesQueryVariables = {
+  option?: string | null,
+  filter?: ModelOptionIntensityRateFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
+};
+
+export type ListOptionIntensityRatesQuery = {
+  listOptionIntensityRates?:  {
+    __typename: "ModelOptionIntensityRateConnection",
+    items:  Array< {
+      __typename: "OptionIntensityRate",
+      option: string,
+      defaultValue: number,
+      minValue?: number | null,
+      maxValue?: number | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetProfileQueryVariables = {
   id: string,
 };
@@ -1035,11 +1409,20 @@ export type GetProfileQuery = {
       leisureSports?: string | null,
       travel?: string | null,
     } | null,
+    actionIntensityRate?:  Array< {
+      __typename: "ActionIntensityRate",
+      option: string,
+      value: number,
+      defaultValue: number,
+      minValue?: number | null,
+      maxValue?: number | null,
+    } > | null,
     baselines?:  Array< {
-      __typename: "Component",
+      __typename: "Baseline",
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
       citation?: string | null,
@@ -1049,17 +1432,22 @@ export type GetProfileQuery = {
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
     } > | null,
-    options?:  Array< {
-      __typename: "Option",
-      option?: string | null,
+    actions?:  Array< {
+      __typename: "Action",
+      option: string,
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
+      optionValue: number,
+      args?: Array< string > | null,
+      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1143,11 +1531,20 @@ export type ListProfilesQuery = {
         leisureSports?: string | null,
         travel?: string | null,
       } | null,
+      actionIntensityRate?:  Array< {
+        __typename: "ActionIntensityRate",
+        option: string,
+        value: number,
+        defaultValue: number,
+        minValue?: number | null,
+        maxValue?: number | null,
+      } > | null,
       baselines?:  Array< {
-        __typename: "Component",
+        __typename: "Baseline",
         domain: string,
         item: string,
         type: string,
+        subdomain: string,
         value: number,
         unit?: string | null,
         citation?: string | null,
@@ -1157,17 +1554,22 @@ export type ListProfilesQuery = {
         domain: string,
         item: string,
         type: string,
+        subdomain: string,
         value: number,
         unit?: string | null,
       } > | null,
-      options?:  Array< {
-        __typename: "Option",
-        option?: string | null,
+      actions?:  Array< {
+        __typename: "Action",
+        option: string,
         domain: string,
         item: string,
         type: string,
+        subdomain: string,
         value: number,
         unit?: string | null,
+        optionValue: number,
+        args?: Array< string > | null,
+        operation: string,
       } > | null,
       createdAt: string,
       updatedAt: string,
@@ -1253,11 +1655,20 @@ export type ProfilesByShareIdQuery = {
         leisureSports?: string | null,
         travel?: string | null,
       } | null,
+      actionIntensityRate?:  Array< {
+        __typename: "ActionIntensityRate",
+        option: string,
+        value: number,
+        defaultValue: number,
+        minValue?: number | null,
+        maxValue?: number | null,
+      } > | null,
       baselines?:  Array< {
-        __typename: "Component",
+        __typename: "Baseline",
         domain: string,
         item: string,
         type: string,
+        subdomain: string,
         value: number,
         unit?: string | null,
         citation?: string | null,
@@ -1267,17 +1678,22 @@ export type ProfilesByShareIdQuery = {
         domain: string,
         item: string,
         type: string,
+        subdomain: string,
         value: number,
         unit?: string | null,
       } > | null,
-      options?:  Array< {
-        __typename: "Option",
-        option?: string | null,
+      actions?:  Array< {
+        __typename: "Action",
+        option: string,
         domain: string,
         item: string,
         type: string,
+        subdomain: string,
         value: number,
         unit?: string | null,
+        optionValue: number,
+        args?: Array< string > | null,
+        operation: string,
       } > | null,
       createdAt: string,
       updatedAt: string,
@@ -1367,6 +1783,81 @@ export type OnDeleteParameterSubscription = {
   } | null,
 };
 
+export type OnCreateOptionSubscription = {
+  onCreateOption?:  {
+    __typename: "Option",
+    option: string,
+    domainItemAndType: string,
+    value: number,
+    args?: Array< string > | null,
+    operation: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateOptionSubscription = {
+  onUpdateOption?:  {
+    __typename: "Option",
+    option: string,
+    domainItemAndType: string,
+    value: number,
+    args?: Array< string > | null,
+    operation: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteOptionSubscription = {
+  onDeleteOption?:  {
+    __typename: "Option",
+    option: string,
+    domainItemAndType: string,
+    value: number,
+    args?: Array< string > | null,
+    operation: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateOptionIntensityRateSubscription = {
+  onCreateOptionIntensityRate?:  {
+    __typename: "OptionIntensityRate",
+    option: string,
+    defaultValue: number,
+    minValue?: number | null,
+    maxValue?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateOptionIntensityRateSubscription = {
+  onUpdateOptionIntensityRate?:  {
+    __typename: "OptionIntensityRate",
+    option: string,
+    defaultValue: number,
+    minValue?: number | null,
+    maxValue?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteOptionIntensityRateSubscription = {
+  onDeleteOptionIntensityRate?:  {
+    __typename: "OptionIntensityRate",
+    option: string,
+    defaultValue: number,
+    minValue?: number | null,
+    maxValue?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type OnCreateProfileSubscription = {
   onCreateProfile?:  {
     __typename: "Profile",
@@ -1434,11 +1925,20 @@ export type OnCreateProfileSubscription = {
       leisureSports?: string | null,
       travel?: string | null,
     } | null,
+    actionIntensityRate?:  Array< {
+      __typename: "ActionIntensityRate",
+      option: string,
+      value: number,
+      defaultValue: number,
+      minValue?: number | null,
+      maxValue?: number | null,
+    } > | null,
     baselines?:  Array< {
-      __typename: "Component",
+      __typename: "Baseline",
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
       citation?: string | null,
@@ -1448,17 +1948,22 @@ export type OnCreateProfileSubscription = {
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
     } > | null,
-    options?:  Array< {
-      __typename: "Option",
-      option?: string | null,
+    actions?:  Array< {
+      __typename: "Action",
+      option: string,
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
+      optionValue: number,
+      args?: Array< string > | null,
+      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1532,11 +2037,20 @@ export type OnUpdateProfileSubscription = {
       leisureSports?: string | null,
       travel?: string | null,
     } | null,
+    actionIntensityRate?:  Array< {
+      __typename: "ActionIntensityRate",
+      option: string,
+      value: number,
+      defaultValue: number,
+      minValue?: number | null,
+      maxValue?: number | null,
+    } > | null,
     baselines?:  Array< {
-      __typename: "Component",
+      __typename: "Baseline",
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
       citation?: string | null,
@@ -1546,17 +2060,22 @@ export type OnUpdateProfileSubscription = {
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
     } > | null,
-    options?:  Array< {
-      __typename: "Option",
-      option?: string | null,
+    actions?:  Array< {
+      __typename: "Action",
+      option: string,
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
+      optionValue: number,
+      args?: Array< string > | null,
+      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1630,11 +2149,20 @@ export type OnDeleteProfileSubscription = {
       leisureSports?: string | null,
       travel?: string | null,
     } | null,
+    actionIntensityRate?:  Array< {
+      __typename: "ActionIntensityRate",
+      option: string,
+      value: number,
+      defaultValue: number,
+      minValue?: number | null,
+      maxValue?: number | null,
+    } > | null,
     baselines?:  Array< {
-      __typename: "Component",
+      __typename: "Baseline",
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
       citation?: string | null,
@@ -1644,17 +2172,22 @@ export type OnDeleteProfileSubscription = {
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
     } > | null,
-    options?:  Array< {
-      __typename: "Option",
-      option?: string | null,
+    actions?:  Array< {
+      __typename: "Action",
+      option: string,
       domain: string,
       item: string,
       type: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
+      optionValue: number,
+      args?: Array< string > | null,
+      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,

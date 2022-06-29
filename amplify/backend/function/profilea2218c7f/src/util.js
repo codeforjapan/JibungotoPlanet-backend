@@ -1,21 +1,22 @@
-module.exports.findComponent = (baselines, domain, item, type) => {
-  const component = baselines.find(
+module.exports.findBaseline = (baselines, domain, item, type) => {
+  const baseline = baselines.find(
     (bl) => bl.domain === domain && bl.item === item && bl.type === type
   )
-  return component
+  return baseline
 }
 
-module.exports.toEstimation = (component) => {
+module.exports.toEstimation = (baseline) => {
   return {
-    domain: component.domain,
-    item: component.item,
-    type: component.type,
-    value: component.value,
-    unit: component.unit
+    domain: baseline.domain,
+    item: baseline.item,
+    type: baseline.type,
+    value: baseline.value,
+    subdomain: baseline.subdomain,
+    unit: baseline.unit
   }
 }
 
-module.exports.toComponent = (rec) => {
+module.exports.toBaseline = (rec) => {
   const dirAndDomain = rec.dirAndDomain.split('_')
   const itemAndType = rec.itemAndType.split('_')
   return {
@@ -23,6 +24,7 @@ module.exports.toComponent = (rec) => {
     item: itemAndType[0],
     type: itemAndType[1],
     value: rec.value,
+    subdomain: rec.subdomain,
     unit: rec.unit,
     citation: rec.citation
   }

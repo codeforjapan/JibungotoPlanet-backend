@@ -1,4 +1,4 @@
-const { toComponent, findComponent, toEstimation } = require('./util')
+const { toBaseline, findBaseline, toEstimation } = require('./util')
 
 module.exports.estimateMobility = async (
   dynamodb,
@@ -8,9 +8,9 @@ module.exports.estimateMobility = async (
 ) => {
   // mobilityのベースラインの取得
   const findAmount = (baselines, item) =>
-    findComponent(baselines, 'mobility', item, 'amount')
+    findBaseline(baselines, 'mobility', item, 'amount')
   const findIntensity = (baselines, item) =>
-    findComponent(baselines, 'mobility', item, 'intensity')
+    findBaseline(baselines, 'mobility', item, 'intensity')
 
   // mobilityAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -28,7 +28,7 @@ module.exports.estimateMobility = async (
   }
 
   let data = await dynamodb.query(params).promise()
-  const baselines = data.Items.map((item) => toComponent(item))
+  const baselines = data.Items.map((item) => toBaseline(item))
 
   // 回答がない場合はベースラインのみ返す
   if (!mobilityAnswer) {
