@@ -1,8 +1,10 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
-
-export const getFootprint = /* GraphQL */ `
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.profilesByShareId = exports.listProfiles = exports.getProfile = exports.listOptionIntensityRates = exports.getOptionIntensityRate = exports.listOptions = exports.getOption = exports.listParameters = exports.getParameter = exports.listFootprints = exports.getFootprint = void 0;
+exports.getFootprint = `
   query GetFootprint($dirAndDomain: String!, $itemAndType: String!) {
     getFootprint(dirAndDomain: $dirAndDomain, itemAndType: $itemAndType) {
       dirAndDomain
@@ -16,7 +18,7 @@ export const getFootprint = /* GraphQL */ `
     }
   }
 `;
-export const listFootprints = /* GraphQL */ `
+exports.listFootprints = `
   query ListFootprints(
     $dirAndDomain: String
     $itemAndType: ModelStringKeyConditionInput
@@ -47,7 +49,7 @@ export const listFootprints = /* GraphQL */ `
     }
   }
 `;
-export const getParameter = /* GraphQL */ `
+exports.getParameter = `
   query GetParameter($category: String!, $key: String!) {
     getParameter(category: $category, key: $key) {
       category
@@ -60,7 +62,7 @@ export const getParameter = /* GraphQL */ `
     }
   }
 `;
-export const listParameters = /* GraphQL */ `
+exports.listParameters = `
   query ListParameters(
     $category: String
     $key: ModelStringKeyConditionInput
@@ -90,7 +92,7 @@ export const listParameters = /* GraphQL */ `
     }
   }
 `;
-export const getOption = /* GraphQL */ `
+exports.getOption = `
   query GetOption($option: String!, $domainItemAndType: String!) {
     getOption(option: $option, domainItemAndType: $domainItemAndType) {
       option
@@ -104,7 +106,7 @@ export const getOption = /* GraphQL */ `
     }
   }
 `;
-export const listOptions = /* GraphQL */ `
+exports.listOptions = `
   query ListOptions(
     $option: String
     $domainItemAndType: ModelStringKeyConditionInput
@@ -135,7 +137,7 @@ export const listOptions = /* GraphQL */ `
     }
   }
 `;
-export const getOptionIntensityRate = /* GraphQL */ `
+exports.getOptionIntensityRate = `
   query GetOptionIntensityRate($option: String!) {
     getOptionIntensityRate(option: $option) {
       option
@@ -146,7 +148,7 @@ export const getOptionIntensityRate = /* GraphQL */ `
     }
   }
 `;
-export const listOptionIntensityRates = /* GraphQL */ `
+exports.listOptionIntensityRates = `
   query ListOptionIntensityRates(
     $option: String
     $filter: ModelOptionIntensityRateFilterInput
@@ -172,7 +174,7 @@ export const listOptionIntensityRates = /* GraphQL */ `
     }
   }
 `;
-export const getProfile = /* GraphQL */ `
+exports.getProfile = `
   query GetProfile($id: ID!) {
     getProfile(id: $id) {
       id
@@ -275,7 +277,7 @@ export const getProfile = /* GraphQL */ `
     }
   }
 `;
-export const listProfiles = /* GraphQL */ `
+exports.listProfiles = `
   query ListProfiles(
     $id: ID
     $filter: ModelProfileFilterInput
@@ -393,7 +395,7 @@ export const listProfiles = /* GraphQL */ `
     }
   }
 `;
-export const profilesByShareId = /* GraphQL */ `
+exports.profilesByShareId = `
   query ProfilesByShareId(
     $shareId: String!
     $sortDirection: ModelSortDirection

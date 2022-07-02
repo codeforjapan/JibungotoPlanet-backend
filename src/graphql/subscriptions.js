@@ -1,13 +1,12 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
-
-export const createFootprint = /* GraphQL */ `
-  mutation CreateFootprint(
-    $input: CreateFootprintInput!
-    $condition: ModelFootprintConditionInput
-  ) {
-    createFootprint(input: $input, condition: $condition) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.onDeleteProfile = exports.onUpdateProfile = exports.onCreateProfile = exports.onDeleteOptionIntensityRate = exports.onUpdateOptionIntensityRate = exports.onCreateOptionIntensityRate = exports.onDeleteOption = exports.onUpdateOption = exports.onCreateOption = exports.onDeleteParameter = exports.onUpdateParameter = exports.onCreateParameter = exports.onDeleteFootprint = exports.onUpdateFootprint = exports.onCreateFootprint = void 0;
+exports.onCreateFootprint = `
+  subscription OnCreateFootprint {
+    onCreateFootprint {
       dirAndDomain
       itemAndType
       subdomain
@@ -19,12 +18,9 @@ export const createFootprint = /* GraphQL */ `
     }
   }
 `;
-export const updateFootprint = /* GraphQL */ `
-  mutation UpdateFootprint(
-    $input: UpdateFootprintInput!
-    $condition: ModelFootprintConditionInput
-  ) {
-    updateFootprint(input: $input, condition: $condition) {
+exports.onUpdateFootprint = `
+  subscription OnUpdateFootprint {
+    onUpdateFootprint {
       dirAndDomain
       itemAndType
       subdomain
@@ -36,12 +32,9 @@ export const updateFootprint = /* GraphQL */ `
     }
   }
 `;
-export const deleteFootprint = /* GraphQL */ `
-  mutation DeleteFootprint(
-    $input: DeleteFootprintInput!
-    $condition: ModelFootprintConditionInput
-  ) {
-    deleteFootprint(input: $input, condition: $condition) {
+exports.onDeleteFootprint = `
+  subscription OnDeleteFootprint {
+    onDeleteFootprint {
       dirAndDomain
       itemAndType
       subdomain
@@ -53,12 +46,9 @@ export const deleteFootprint = /* GraphQL */ `
     }
   }
 `;
-export const createParameter = /* GraphQL */ `
-  mutation CreateParameter(
-    $input: CreateParameterInput!
-    $condition: ModelParameterConditionInput
-  ) {
-    createParameter(input: $input, condition: $condition) {
+exports.onCreateParameter = `
+  subscription OnCreateParameter {
+    onCreateParameter {
       category
       key
       value
@@ -69,12 +59,9 @@ export const createParameter = /* GraphQL */ `
     }
   }
 `;
-export const updateParameter = /* GraphQL */ `
-  mutation UpdateParameter(
-    $input: UpdateParameterInput!
-    $condition: ModelParameterConditionInput
-  ) {
-    updateParameter(input: $input, condition: $condition) {
+exports.onUpdateParameter = `
+  subscription OnUpdateParameter {
+    onUpdateParameter {
       category
       key
       value
@@ -85,12 +72,9 @@ export const updateParameter = /* GraphQL */ `
     }
   }
 `;
-export const deleteParameter = /* GraphQL */ `
-  mutation DeleteParameter(
-    $input: DeleteParameterInput!
-    $condition: ModelParameterConditionInput
-  ) {
-    deleteParameter(input: $input, condition: $condition) {
+exports.onDeleteParameter = `
+  subscription OnDeleteParameter {
+    onDeleteParameter {
       category
       key
       value
@@ -101,12 +85,9 @@ export const deleteParameter = /* GraphQL */ `
     }
   }
 `;
-export const createOption = /* GraphQL */ `
-  mutation CreateOption(
-    $input: CreateOptionInput!
-    $condition: ModelOptionConditionInput
-  ) {
-    createOption(input: $input, condition: $condition) {
+exports.onCreateOption = `
+  subscription OnCreateOption {
+    onCreateOption {
       option
       domainItemAndType
       value
@@ -118,12 +99,9 @@ export const createOption = /* GraphQL */ `
     }
   }
 `;
-export const updateOption = /* GraphQL */ `
-  mutation UpdateOption(
-    $input: UpdateOptionInput!
-    $condition: ModelOptionConditionInput
-  ) {
-    updateOption(input: $input, condition: $condition) {
+exports.onUpdateOption = `
+  subscription OnUpdateOption {
+    onUpdateOption {
       option
       domainItemAndType
       value
@@ -135,12 +113,9 @@ export const updateOption = /* GraphQL */ `
     }
   }
 `;
-export const deleteOption = /* GraphQL */ `
-  mutation DeleteOption(
-    $input: DeleteOptionInput!
-    $condition: ModelOptionConditionInput
-  ) {
-    deleteOption(input: $input, condition: $condition) {
+exports.onDeleteOption = `
+  subscription OnDeleteOption {
+    onDeleteOption {
       option
       domainItemAndType
       value
@@ -152,12 +127,9 @@ export const deleteOption = /* GraphQL */ `
     }
   }
 `;
-export const createOptionIntensityRate = /* GraphQL */ `
-  mutation CreateOptionIntensityRate(
-    $input: CreateOptionIntensityRateInput!
-    $condition: ModelOptionIntensityRateConditionInput
-  ) {
-    createOptionIntensityRate(input: $input, condition: $condition) {
+exports.onCreateOptionIntensityRate = `
+  subscription OnCreateOptionIntensityRate {
+    onCreateOptionIntensityRate {
       option
       defaultValue
       range
@@ -166,12 +138,9 @@ export const createOptionIntensityRate = /* GraphQL */ `
     }
   }
 `;
-export const updateOptionIntensityRate = /* GraphQL */ `
-  mutation UpdateOptionIntensityRate(
-    $input: UpdateOptionIntensityRateInput!
-    $condition: ModelOptionIntensityRateConditionInput
-  ) {
-    updateOptionIntensityRate(input: $input, condition: $condition) {
+exports.onUpdateOptionIntensityRate = `
+  subscription OnUpdateOptionIntensityRate {
+    onUpdateOptionIntensityRate {
       option
       defaultValue
       range
@@ -180,12 +149,9 @@ export const updateOptionIntensityRate = /* GraphQL */ `
     }
   }
 `;
-export const deleteOptionIntensityRate = /* GraphQL */ `
-  mutation DeleteOptionIntensityRate(
-    $input: DeleteOptionIntensityRateInput!
-    $condition: ModelOptionIntensityRateConditionInput
-  ) {
-    deleteOptionIntensityRate(input: $input, condition: $condition) {
+exports.onDeleteOptionIntensityRate = `
+  subscription OnDeleteOptionIntensityRate {
+    onDeleteOptionIntensityRate {
       option
       defaultValue
       range
@@ -194,12 +160,9 @@ export const deleteOptionIntensityRate = /* GraphQL */ `
     }
   }
 `;
-export const createProfile = /* GraphQL */ `
-  mutation CreateProfile(
-    $input: CreateProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    createProfile(input: $input, condition: $condition) {
+exports.onCreateProfile = `
+  subscription OnCreateProfile {
+    onCreateProfile {
       id
       shareId
       mobilityAnswer {
@@ -300,12 +263,9 @@ export const createProfile = /* GraphQL */ `
     }
   }
 `;
-export const updateProfile = /* GraphQL */ `
-  mutation UpdateProfile(
-    $input: UpdateProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    updateProfile(input: $input, condition: $condition) {
+exports.onUpdateProfile = `
+  subscription OnUpdateProfile {
+    onUpdateProfile {
       id
       shareId
       mobilityAnswer {
@@ -406,12 +366,9 @@ export const updateProfile = /* GraphQL */ `
     }
   }
 `;
-export const deleteProfile = /* GraphQL */ `
-  mutation DeleteProfile(
-    $input: DeleteProfileInput!
-    $condition: ModelProfileConditionInput
-  ) {
-    deleteProfile(input: $input, condition: $condition) {
+exports.onDeleteProfile = `
+  subscription OnDeleteProfile {
+    onDeleteProfile {
       id
       shareId
       mobilityAnswer {
