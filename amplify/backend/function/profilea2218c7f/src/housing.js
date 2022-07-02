@@ -1,6 +1,6 @@
-const { toBaseline, findBaseline, toEstimation } = require('./util')
+const { toBaseline, findBaseline, toEstimation } = require('./util') // eslint-disable-line no-undef
 
-module.exports.estimateHousing = async (
+module.exports.estimateHousing = async ( // eslint-disable-line no-undef
   dynamodb,
   housingAnswer,
   footprintTableName,
@@ -10,6 +10,8 @@ module.exports.estimateHousing = async (
     findBaseline(baselines, 'housing', item, 'amount')
   const findIntensity = (baselines, item) =>
     findBaseline(baselines, 'housing', item, 'intensity')
+
+  /* eslint-disable no-unused-vars */
   const pushOrUpdateEstimate = (item, type, estimation) => {
     const estimate = estimations.find(
       (estimation) => estimation.item === item && estimation.type === type
@@ -20,10 +22,11 @@ module.exports.estimateHousing = async (
       estimations.push(estimation)
     }
   }
+  /* eslint-disable no-unused-vars */
 
   // housingAnswerのスキーマと取りうる値は以下を参照
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
-  let estimations = []
+  const estimations = []
 
   // ベースラインのフットプリントを取得
   const params = {
@@ -155,7 +158,7 @@ module.exports.estimateHousing = async (
     estimations.push(toEstimation(electricityIntensity))
   }
 
-  //電力使用量
+  // 電力使用量
   if (
     housingAnswer.howManyElectricity &&
     housingAnswer.electricitySeasonFactor
@@ -184,7 +187,7 @@ module.exports.estimateHousing = async (
     // pushOrUpdateEstimate('electricity', 'amount', toEstimation(estimationAmount.electricity))
   }
 
-  //ガスの使用の有無
+  // ガスの使用の有無
   if (housingAnswer.useGas) {
     let gasParam = null
     if (housingAnswer.howManyGas && housingAnswer.gasSeasonFactor) {

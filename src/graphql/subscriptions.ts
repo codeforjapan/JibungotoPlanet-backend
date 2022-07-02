@@ -174,7 +174,7 @@ export const onCreateProfile = /* GraphQL */ `
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
         hasWeeklyTravelingTime
-        mileageByAreaKey
+        mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
         busAnnualTravelingTime
@@ -277,7 +277,7 @@ export const onUpdateProfile = /* GraphQL */ `
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
         hasWeeklyTravelingTime
-        mileageByAreaKey
+        mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
         busAnnualTravelingTime
@@ -380,7 +380,7 @@ export const onDeleteProfile = /* GraphQL */ `
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
         hasWeeklyTravelingTime
-        mileageByAreaKey
+        mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
         busAnnualTravelingTime

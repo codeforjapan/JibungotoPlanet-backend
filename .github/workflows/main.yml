@@ -27,8 +27,7 @@ jobs:
 
       - name: Build app
         run: |
-          yarn install --immutable --immutable-cache --check-cache
-          yarn build
+          echo 'please build app'
       - name: Deploy app to production server
         run: |
           echo 'please create a production server'

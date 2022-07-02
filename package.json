@@ -3,36 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "amplify:footprintf523f2c8": "cd amplify/backend/function/footprintf523f2c8/src && npx tsc && cd -",
+    "amplify:profilea2218c7f": "cd amplify/backend/function/profilea2218c7f/src && npx tsc && cd -",
+    "amplify:shareb311c853": "cd amplify/backend/function/shareb311c853/src && npx tsc && cd -",
     "test": "echo 'please write a test code'",
-    "lint": "next lint",
+    "lint": "eslint amplify/backend/function/**/*.js",
+    "lint:fix": "eslint --fix amplify/backend/function/**/*.js",
     "prepare": "husky install"
   },
-  "dependencies": {
-    "@aws-amplify/ui-react": "^2.18.3",
-    "@chakra-ui/icons": "^2.0.1",
-    "@chakra-ui/react": "^2.1.2",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "aws-amplify": "^4.3.24",
-    "chart.js": "^3.7.1",
-    "framer-motion": "^6",
-    "next": "12.1.6",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "react-hook-form": "^7.31.2",
-    "sass": "^1.52.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "17.0.35",
-    "@types/react": "18.0.9",
-    "@types/react-dom": "18.0.5",
-    "eslint": "8.16.0",
-    "eslint-config-next": "12.1.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.3",
+    "@typescript-eslint/parser": "^5.30.3",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
     "husky": "^8.0.1",
-    "prettier": "^2.6.2",
-    "typescript": "4.7.2"
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
   }
 }
