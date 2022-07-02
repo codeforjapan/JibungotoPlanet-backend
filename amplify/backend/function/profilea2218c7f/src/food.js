@@ -1,23 +1,22 @@
-const { toBaseline, findBaseline, toEstimation } = require('./util')
+const { toBaseline, findBaseline, toEstimation } = require('./util') // eslint-disable-line no-undef
 
-module.exports.estimateFood = async (
+module.exports.estimateFood = async ( // eslint-disable-line no-undef
   dynamodb,
   foodAnswer,
   footprintTableName,
   parameterTableName
 ) => {
   // foodのベースラインの取得
-  const findAmount = (baselines, item) =>
-    findBaseline(baselines, 'food', item, 'amount')
-  const findIntensity = (baselines, item) =>
-    findBaseline(baselines, 'food', item, 'intensity')
+  const findAmount = (baselines, item) => findBaseline(baselines, 'food', item, 'amount')
+
+  const findIntensity = (baselines, item) => findBaseline(baselines, 'food', item, 'intensity') // eslint-disable-line no-unused-vars
 
   // foodAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
-  let estimations = []
+  const estimations = []
 
   // ベースラインのフットプリントを取得
-  let params = {
+  const params = {
     TableName: footprintTableName,
     KeyConditions: {
       dirAndDomain: {
@@ -27,7 +26,7 @@ module.exports.estimateFood = async (
     }
   }
 
-  let data = await dynamodb.query(params).promise()
+  const data = await dynamodb.query(params).promise()
   const baselines = data.Items.map((item) => toBaseline(item))
 
   // 回答がない場合はベースラインのみ返す
@@ -115,7 +114,7 @@ module.exports.estimateFood = async (
     }
   ]
 
-  for (let ans of answers) {
+  for (const ans of answers) {
     console.log(ans.category)
     const params = {
       TableName: parameterTableName,
@@ -124,10 +123,10 @@ module.exports.estimateFood = async (
         key: ans.key
       }
     }
-    let data = await dynamodb.get(params).promise()
+    const data = await dynamodb.get(params).promise()
     if (data?.Item?.value) {
       const coefficient = data.Item.value
-      for (let item of ans.items) {
+      for (const item of ans.items) {
         const component = findAmount(baselines, item)
         component.value *= coefficient
         estimations.push(toEstimation(component))

@@ -31,7 +31,7 @@ Amplify Params - DO NOT EDIT */
 const { estimateMobility } = require('./mobility')
 const { estimateFood } = require('./food')
 const { estimateOther } = require('./other')
-const {estimateHousing} = require('./housing');
+const { estimateHousing } = require('./housing')
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -128,7 +128,7 @@ const updateProfile = async (dynamodb, profile) => {
   profile.baselines = []
   profile.estimations = []
 
-  for (let operation of operations) {
+  for (const operation of operations) {
     if (operation.answer) {
       const { baselines, estimations } = await operation.estimate(
         dynamodb,
