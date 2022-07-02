@@ -1,11 +1,11 @@
-module.exports.findBaseline = (baselines, domain, item, type) => {
+module.exports.findBaseline = (baselines, domain, item, type) => { // eslint-disable-line no-undef
   const baseline = baselines.find(
     (bl) => bl.domain === domain && bl.item === item && bl.type === type
   )
   return baseline
 }
 
-module.exports.toEstimation = (baseline) => {
+module.exports.toEstimation = (baseline) => { // eslint-disable-line no-undef
   return {
     domain: baseline.domain,
     item: baseline.item,
@@ -16,7 +16,7 @@ module.exports.toEstimation = (baseline) => {
   }
 }
 
-module.exports.toBaseline = (rec) => {
+module.exports.toBaseline = (rec) => { // eslint-disable-line no-undef
   const dirAndDomain = rec.dirAndDomain.split('_')
   const itemAndType = rec.itemAndType.split('_')
   return {

@@ -1,23 +1,21 @@
-const { toBaseline, findBaseline, toEstimation } = require('./util')
+const { toBaseline, findBaseline, toEstimation } = require('./util') // eslint-disable-line no-undef
 
-module.exports.estimateOther = async (
+module.exports.estimateOther = async ( // eslint-disable-line no-undef
   dynamodb,
   otherAnswer,
   footprintTableName,
   parameterTableName
 ) => {
   // foodのベースラインの取得
-  const findAmount = (baselines, item) =>
-    findBaseline(baselines, 'other', item, 'amount')
-  const findIntensity = (baselines, item) =>
-    findBaseline(baselines, 'other', item, 'intensity')
+  const findAmount = (baselines, item) => findBaseline(baselines, 'other', item, 'amount')
+  const findIntensity = (baselines, item) => findBaseline(baselines, 'other', item, 'intensity') // eslint-disable-line no-unused-vars
 
   // otherAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
-  let estimations = []
+  const estimations = []
 
   // ベースラインのフットプリントを取得
-  let params = {
+  const params = {
     TableName: footprintTableName,
     KeyConditions: {
       dirAndDomain: {
@@ -27,7 +25,7 @@ module.exports.estimateOther = async (
     }
   }
 
-  let data = await dynamodb.query(params).promise()
+  const data = await dynamodb.query(params).promise()
   const baselines = data.Items.map((item) => toBaseline(item))
 
   // 回答がない場合はベースラインのみ返す
@@ -81,7 +79,7 @@ module.exports.estimateOther = async (
     // personalcare-other-services その他サービス
     // ceremony 冠婚葬祭
     // waste-repair-rental 廃棄物処理・修理・レンタル
-    // welfare-education	医療・福祉・教育サービス
+    // welfare-education 医療・福祉・教育サービス
     {
       category: 'service-factor',
       key: otherAnswer.service,
@@ -144,7 +142,7 @@ module.exports.estimateOther = async (
     },
 
     // 過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？
-    //travel: String # 10000-less|20000-30000|30000-50000|50000-100000|100000-200000|200000-more|unknown
+    // travel: String # 10000-less|20000-30000|30000-50000|50000-100000|100000-200000|200000-more|unknown
     // travel-hotel 旅行・宿泊
     {
       category: 'travel-factor',
@@ -153,7 +151,7 @@ module.exports.estimateOther = async (
     }
   ]
 
-  for (let ans of answers) {
+  for (const ans of answers) {
     console.log(ans.category)
     const params = {
       TableName: parameterTableName,
@@ -162,10 +160,10 @@ module.exports.estimateOther = async (
         key: ans.key
       }
     }
-    let data = await dynamodb.get(params).promise()
+    const data = await dynamodb.get(params).promise()
     if (data?.Item?.value) {
       const coefficient = data.Item.value
-      for (let item of ans.items) {
+      for (const item of ans.items) {
         const component = findAmount(baselines, item)
         component.value *= coefficient
         estimations.push(toEstimation(component))

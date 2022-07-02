@@ -1,6 +1,6 @@
-const { toBaseline, findBaseline, toEstimation } = require('./util')
+const { toBaseline, findBaseline, toEstimation } = require('./util') // eslint-disable-line no-undef
 
-module.exports.estimateMobility = async (
+module.exports.estimateMobility = async ( // eslint-disable-line no-undef
   dynamodb,
   mobilityAnswer,
   footprintTableName,
@@ -14,7 +14,7 @@ module.exports.estimateMobility = async (
 
   // mobilityAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
-  let estimations = []
+  const estimations = []
 
   // ベースラインのフットプリントを取得
   let params = {
@@ -78,7 +78,7 @@ module.exports.estimateMobility = async (
 
       console.log(
         'private-car-driving-intensity after car passenger adjustment  = ' +
-          intensity.value
+        intensity.value
       )
 
       estimations.push(toEstimation(intensity))
@@ -158,7 +158,7 @@ module.exports.estimateMobility = async (
         },
         key: {
           ComparisonOperator: 'BEGINS_WITH',
-          AttributeValueList: [livingAreaSize + '_']
+          AttributeValueList: [livingAreaSize + '_'] // eslint-disable-line no-undef
         }
       }
     }
@@ -168,11 +168,11 @@ module.exports.estimateMobility = async (
       return a
     }, {})
 
-    trainMileage = milageByArea[livingAreaSize + '_train']
-    busMileage = milageByArea[livingAreaSize + '_bus']
-    motorbikeMileage = milageByArea[livingAreaSize + '_motorbike']
-    taxiMileage = milageByArea[livingAreaSize + '_taxi']
-    carSharingMileage = milageByArea[livingAreaSize + 'car-sharing']
+    trainMileage = milageByArea[livingAreaSize + '_train'] // eslint-disable-line no-undef
+    busMileage = milageByArea[livingAreaSize + '_bus'] // eslint-disable-line no-undef
+    motorbikeMileage = milageByArea[livingAreaSize + '_motorbike'] // eslint-disable-line no-undef
+    taxiMileage = milageByArea[livingAreaSize + '_taxi'] // eslint-disable-line no-undef
+    carSharingMileage = milageByArea[livingAreaSize + 'car-sharing'] // eslint-disable-line no-undef
   }
 
   console.log('calculating annual mileage')
@@ -235,7 +235,7 @@ module.exports.estimateMobility = async (
   // 電車の移動距離の積算
   trainMileage +=
     trainTravelingTime * weekCount * transportationSpeed['train-speed']
-  trainAnnualTravelingTime * transportationSpeed['long-distance-train-speed']
+  trainAnnualTravelingTime * transportationSpeed['long-distance-train-speed'] // eslint-disable-line no-unused-expressions
 
   // バスの移動距離の積算
   busMileage +=
@@ -245,13 +245,13 @@ module.exports.estimateMobility = async (
   // バイクの移動距離の積算
   motorbikeMileage +=
     motorbikeTravelingTime *
-      weekCount *
-      transportationSpeed['motorbike-speed'] +
+    weekCount *
+    transportationSpeed['motorbike-speed'] +
     motorbikeAnnualTravelingTime *
-      transportationSpeed['long-distance-motorbike-speed']
+    transportationSpeed['long-distance-motorbike-speed']
 
-  taxiRatio = taxi.value / (taxi.value + carSharingDriving.value)
-  carSharingRatio = 1 - taxiRatio
+  taxiRatio = taxi.value / (taxi.value + carSharingDriving.value) // eslint-disable-line no-undef
+  carSharingRatio = 1 - taxiRatio // eslint-disable-line no-undef
 
   // タクシー他、その他の移動の算出
   const otherCarMileage =
@@ -259,9 +259,9 @@ module.exports.estimateMobility = async (
     otherCarAnnualTravelingTime * transportationSpeed['long-distance-car-speed']
 
   // タクシーの移動距離の積算
-  taxiMileage += otherCarMileage * taxiRatio
+  taxiMileage += otherCarMileage * taxiRatio // eslint-disable-line no-undef
   // カーシェアリングの移動距離の積算
-  carSharingMileage += otherCarMileage * carSharingRatio
+  carSharingMileage += otherCarMileage * carSharingRatio // eslint-disable-line no-undef
 
   // 一部のベースライン値のバックアップ
   const baselineCarSharingDrivingAmount = carSharingDriving.value
