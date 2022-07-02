@@ -24,16 +24,16 @@ type Option @model @auth(rules: [{ allow: public, operations: [read] }]) {
   value: Float! # 施策計算に必要な係数
   args: [String!] # 施策計算に必要な引数
   operation: String! # 施策の計算種類
+  citation: String
 }
 
 # 削減施策の実施率
 type OptionIntensityRate
   @model
-  @auth(rules: [{ allow: public, operations: [read] }]) {
+  @auth(rules: [{ allow: public, operations: [read, create] }]) {
   option: String! @primaryKey
   defaultValue: Float!
-  minValue: Float
-  maxValue: Float
+  range: [Float!]!
 }
 
 # フットプリント（ベースライン）のProfile内の１レコード
@@ -76,9 +76,17 @@ type ActionIntensityRate {
   option: String!
   value: Float!
   defaultValue: Float!
-  minValue: Float
-  maxValue: Float
+  range: [Float!]!
 }
+
+#
+# Answerの項目のネーミングルール
+#  - parameterをテーブルルックアップする場合： category+接尾後にKey, フルキーでない場合は、FirstKey等の接尾語に変更。
+#  - ルックアップ以外の場合
+#    - Intの場合： xxxCountと接尾後をCountとする。
+#    - Booleanの場合： 持っているか=hasXxx, 使っているか=useXxx
+#    - Floatの場合： 時間=xxxTime, 消費=xxxConsumption, 距離=xxxMileage
+#
 
 # 移動に関する質問の回答
 type MobilityAnswer {
@@ -89,15 +97,15 @@ type MobilityAnswer {
   #
   # 最も使用する自動車の種類を教えてください
   #
-  privateCarType: String # 自家用車の種類; gasoline|light|hv|phv|ev|unknown
+  carIntensityFactorKey: String # 自家用車の種類; gasoline_driving-factor|light_driving-factor|hv_driving-factor|phv_driving-factor|ev_driving-factor|unknown_driving-factor
   #
   # 電気自動車・プラグインハイブリッド車を自宅で充電しますか？
   #
-  carCharging: String # 自宅充電の割合; charge-almost-at-home|use-charging-spots-occasionally|use-charging-spots-sometimes|use-charging-spots-usually|unknown
+  carChargingKey: String # 自宅充電の割合; charge-almost-at-home|use-charging-spots-occasionally|use-charging-spots-sometimes|use-charging-spots-usually|unknown
   #
   # 自動車に乗るとき、平均で何人が同じ車に乗リますか？
   #
-  carPassengers: String # 平均乗車人数; 1|1-2|2|2-3|3|3-4|4-more|unknown
+  carPassengersKey: String # 平均乗車人数; 1|1-2|2|2-3|3|3-4|4-more|unknown
   #
   # 年間の走行距離を教えてください
   #
@@ -109,16 +117,16 @@ type MobilityAnswer {
   busWeeklyTravelingTime: Float # バスの移動時間 時間/週
   motorbikeWeeklyTravelingTime: Float # バイクの移動時間 時間/週
   otherCarWeeklyTravelingTime: Float # タクシー、レンタカー、カーシェアの移動時間 時間/週
-  weeklyDetailedMobilityUnknown: Boolean # 自家用車以外の普通の移動手段をスキップした場合はtrue
+  hasWeeklyTravelingTime: Boolean # 自家用車以外の普通の移動手段をスキップした場合はfalse
   #
   # お住いの地域（地方）の規模はどのくらいですか？
   #
-  livingAreaSize: String # 住んでいる地域の規模 city-50k-150k|major-city-or-metropolitan-area|city-150k-or-more|area-less-than-50k|unknown
+  mileageByAreaFirstKey: String # 住んでいる地域の規模 city-50k-150k|major-city-or-metropolitan-area|city-150k-more|area-less-than-50k|unknown
   #
   # 昨年１年間で、旅行などで利用した移動手段を教えてください
   #
   otherCarAnnualTravelingTime: Float # タクシー、レンタカー、カーシェアの移動時間 時間/年
-  trainAnnuallyTravelingTime: Float # 鉄道の移動時間 時間/年
+  trainAnnualTravelingTime: Float # 鉄道の移動時間 時間/年
   busAnnualTravelingTime: Float # バスの移動時間 時間/年
   motorbikeAnnualTravelingTime: Float # バイクの移動時間 時間/年
   airplaneAnnualTravelingTime: Float # 飛行機の移動時間 時間/年
@@ -128,71 +136,71 @@ type MobilityAnswer {
 # 食に関する質問の回答
 type FoodAnswer {
   # 1日の活動量（摂取カロリー量）はどのくらいですか？
-  foodIntake: String # very-little|somewhat-little|moderate|somewhat-much|very-much
+  foodIntakeFactorKey: String # very-little|somewhat-little|moderate|somewhat-much|very-much
   # 食材を捨てたり食べ残し（食品ロス）が生じる頻度はどのくらいですか？
-  foodDirectwaste: String # seldom|1-per-week|2-3-per-week|4-7-per-week|8-or-more-per-week|unknown
+  foodDirectWasteFactorKey: String # seldom|1-per-week|2-3-per-week|4-7-per-week|8-more-per-week|unknown
   # 普段の食生活を教えてください
-  foodLeftover: String # seldom|1-per-week|2-3-per-week|4-7-per-week|8-or-more-per-week|unknown
-  dishBeef: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
-  dishPork: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
-  dishChicken: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
-  dishSeafood: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
-  dairyFood: String # 3-more-per-day|2-per-day|1-per-day|half-of-week|1-2-less-per-week|never|unknown
+  foodLeftoverFactorKey: String # seldom|1-per-week|2-3-per-week|4-7-per-week|8-more-per-week|unknown
+  dishBeefFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
+  dishPorkFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
+  dishChickenFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
+  dishSeafoodFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
+  dairyFoodFactorKey: String # 3-more-per-day|2-per-day|1-per-day|half-of-week|1-2-less-per-week|never|unknown
   # １週間にどのくらいの頻度でお酒を飲みますか？
-  alcohol: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
+  alcoholFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
   # お酒以外の飲み物、お菓子類の1ヶ月の支出はどのくらいですか？
-  softdrinkSnack: String #3000-less|3000-5000|5000-10000|10000-15000|15000-more|unknown
+  softDrinkSnackFactorKey: String #3k-less|3k-5k|5k-10k|10k-15k|15k-more|unknown
   # 1ヶ月の外食費はどのくらいですか？
-  eatout: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+  eatOutFactorKey: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
 }
 
 # モノとサービスに関する質問の回答
 type OtherAnswer {
   # 日用消耗品の支出はどのくらいですか？
-  dailyGoods: String # 5000-less|5000-10000|10000-20000|20000-30000|30000-more|unknown|average-per-capita
+  dailyGoodsAmountKey: String # 5k-less|5k-10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
   # 通信費、放送受信料を合わせた支出はどのくらいですか？
-  communication: String # 5000-less|5000-10000|10000-20000|20000-30000|30000-more|unknown|average-per-capita
+  communicationAmountKey: String # 5k-less|5k-10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
   # 過去1年間の家電、家具などの大型な買い物の支出はどのくらいですか？
-  applianceFurniture: String # 50000-less|50000-100000|100000-200000|200000-300000||300000-400000|400000-more|unknown|average-per-capita
+  applianceFurnitureAmountKey: String # 50k-less|50k-100k|100k-200k|200k-300k||300k-400k|400k-more|unknown|average-per-capita
   # 医療、福祉、教育、塾などの習い事の支出はどのくらいですか？
-  service: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+  serviceFactorKey: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
   # 趣味にかかるの物の支出はどのくらいですか？
-  hobbyGoods: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+  hobbyGoodsFactorKey: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
   # 衣類、かばん、宝飾品、美容関連などの支出はどのくらいですか？
-  clothesBeauty: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+  clothesBeautyFactorKey: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
   # レジャー、スポーツへの支出はどのくらいですか？
-  leisureSports: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+  leisureSportsFactorKey: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
   # 過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？
-  travel: String # 10000-less|20000-30000|30000-50000|50000-100000|100000-200000|200000-more|unknown
+  travelFactorKey: String # 10k-less|20k-30k|30k-50k|50k-100k|100k-200k|200k-more|unknown
 }
 
 # 移動に関する質問の回答
 type HousingAnswer {
   # 一緒に暮らしている人数を教えてください
-  numberOfPeople: Int # 人数
+  residentCount: Int # 人数
   #　あなたの家の部屋はいくつありますか？
-  housingSize: String # 1-room|2-room|3-room|4-room|5-6-room|7-more-room|unknown
+  housingSizeKey: String # 1-room|2-room|3-room|4-room|5-6-room|7-more-room|unknown
   # 現在住んでいる住居の建築年はいつ頃ですか？
-  housingInsulation: String # 建築された年代; no-insulation|2-level|3-level|4-level|unknown
+  housingInsulationKey: String # 建築された年代; no-insulation|2-level|3-level|4-level|unknown
   # 自宅の電力は何を使用していますか？
-  electricityIntensity: String # 電力の種類; conventional|30-renewable|50-renewable|100-renewable|solar-panel|unknown
+  electricityIntensityKey: String # 電力の種類; conventional|30-renewable|50-renewable|100-renewable|solar-panel|unknown
   # 1ヶ月の電力使用量はどのくらいですか？
-  howManyElectricity: Float # 1ヶ月の電力使用量 kWh
-  electricitySeasonFactor: String # 対象月 january|february|march|april|may|june|july|august|september|october|december
+  electricityMonthlyConsumption: Float # 1ヶ月の電力使用量 kWh
+  electricitySeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|december
   # 暖房、温水供給、調理にガスを使用していますか？
   useGas: Boolean # ガスの使用の有無
   # 使用しているガスの種類を教えてください
-  energyHeatIntensity: String # ガスの種類　urban-gas|lpg|kerosene
+  energyHeatIntensityKey: String # ガスの種類　urban-gas|lpg|kerosene
   # 1ヶ月のガス使用量はどのくらいですか？
-  howManyGas: Float # 1ヶ月のガス使用量 m3
-  gasSeasonFactor: String # 対象月 january|february|march|april|may|june|july|august|september|october|december
+  gasMonthlyConsumption: Float # 1ヶ月のガス使用量 m3
+  gasSeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|december
   # 暖房などに灯油を使用していますか？
   useKerosene: Boolean # 灯油の使用の有無
   # 昨シーズンの灯油の使用量はどのくらいですか？
-  howManyKerosene: Float # 昨シーズンの灯油の使用量 リットル/月
-  howManyKeroseneMonth: Int # ヶ月/年
+  keroseneMonthlyConsumption: Float # 昨シーズンの灯油の使用量 リットル/月
+  keroseneMonthCount: Int # ヶ月/年
   # お住まいの地域（地方）はどちらですか？
-  housingAmountByRegion: String # northeast|middle|southwest|unknown
+  housingAmountByRegionKey: String # northeast|middle|southwest|unknown
 }
 
 # カーボンフットプリントの計算結果（念の為、AppSync経由でのアクセス不可に設定）
