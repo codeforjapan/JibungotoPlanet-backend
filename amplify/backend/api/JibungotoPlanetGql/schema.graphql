@@ -81,7 +81,7 @@ type ActionIntensityRate {
 
 #
 # Answerの項目のネーミングルール
-#  - parameterをテーブルルックアップする場合： category+接尾後にKey
+#  - parameterをテーブルルックアップする場合： category+接尾後にKey, フルキーでない場合は、FirstKey等の接尾語に変更。
 #  - ルックアップ以外の場合
 #    - Intの場合： xxxCountと接尾後をCountとする。
 #    - Booleanの場合： 持っているか=hasXxx, 使っているか=useXxx
@@ -121,7 +121,7 @@ type MobilityAnswer {
   #
   # お住いの地域（地方）の規模はどのくらいですか？
   #
-  mileageByAreaKey: String # 住んでいる地域の規模 city-50k-150k|major-city-or-metropolitan-area|city-150k-more|area-less-than-50k|unknown
+  mileageByAreaFirstKey: String # 住んでいる地域の規模 city-50k-150k|major-city-or-metropolitan-area|city-150k-more|area-less-than-50k|unknown
   #
   # 昨年１年間で、旅行などで利用した移動手段を教えてください
   #
