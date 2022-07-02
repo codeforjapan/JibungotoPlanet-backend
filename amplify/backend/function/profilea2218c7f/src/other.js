@@ -7,8 +7,8 @@ module.exports.estimateOther = async ( // eslint-disable-line no-undef
   parameterTableName
 ) => {
   // foodのベースラインの取得
-  const findAmount = (baselines, item) => findBaseline(baselines, 'other', item, 'amount')
-  const findIntensity = (baselines, item) => findBaseline(baselines, 'other', item, 'intensity') // eslint-disable-line no-unused-vars
+  const findAmount = (baselines, item) =>
+    findBaseline(baselines, 'other', item, 'amount')
 
   // otherAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -35,39 +35,39 @@ module.exports.estimateOther = async ( // eslint-disable-line no-undef
 
   const answers = [
     // 日用消耗品の支出はどのくらいですか？
-    // dailyGoods: String # 5000-less|5000-10000|10000-20000|20000-30000|30000-more|unknown|average-per-capita
+    // dailyGoods: String # 5k-less|5k-10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
     // daily-goods-medicine 日用品・化粧品・医薬品
     {
       category: 'clothes-beauty-factor',
-      key: otherAnswer.dailyGoods,
+      key: otherAnswer.dailyGoodsAmountKey,
       items: [
         'cosmetics',
         'sanitation',
         'medicine',
-        'kitchengoods',
-        'paper-stationaries' // stationeriesのタイポ?
+        'kitchen-goods',
+        'paper-stationery'
       ]
     },
 
     // 通信費、放送受信料を合わせた支出はどのくらいですか？
-    // communication: String # 5000-less|5000-10000|10000-20000|20000-30000|30000-more|unknown|average-per-capita
+    // communication: String # 5k-less|5k10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
     // communication-delivery 通信・配送・放送サービス
     {
       category: 'communication-amount',
-      key: otherAnswer.communication,
+      key: otherAnswer.communicationAmountKey,
       items: ['postal-delivery', 'communication', 'broadcasting']
     },
 
     // 過去1年間の家電、家具などの大型な買い物の支出はどのくらいですか？
-    // applianceFurniture: String # 50000-less|50000-100000|100000-200000|200000-300000||300000-400000|400000-more|unknown|average-per-capita
+    // applianceFurniture: String # 50k-less|50k-100k|100k-200k|200k-300k||300k-400k|400k-more|unknown|average-per-capita
     // appliance-furniture 家電・家具
     {
       category: 'appliance-furniture-amount',
-      key: otherAnswer.applianceFurniture,
+      key: otherAnswer.applianceFurnitureAmountKey,
       items: [
-        'cookingappliances',
-        'heatingcoolingappliances',
-        'otherappliances',
+        'cooking-appliances',
+        'heating-cooling-appliances',
+        'other-appliances',
         'electronics',
         'furniture',
         'covering'
@@ -75,34 +75,34 @@ module.exports.estimateOther = async ( // eslint-disable-line no-undef
     },
 
     //  医療、福祉、教育、塾などの習い事の支出はどのくらいですか？
-    // service: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
-    // personalcare-other-services その他サービス
+    // service: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
+    // personal-care-other-services その他サービス
     // ceremony 冠婚葬祭
     // waste-repair-rental 廃棄物処理・修理・レンタル
     // welfare-education 医療・福祉・教育サービス
     {
       category: 'service-factor',
-      key: otherAnswer.service,
+      key: otherAnswer.serviceFactorKey,
       items: [
         'housework',
         'washing',
         'haircare',
         'bath-spa',
         'finance-insurance',
-        'otherservices',
+        'other-services',
         'ceremony',
         'waste',
-        'furniture-dailygoods-repair-rental',
+        'furniture-daily-goods-repair-rental',
         'clothes-repair-rental',
         'bags-jewelries-repair-rental',
-        'electrics-appliances-repair-rental',
+        'electrical-appliances-repair-rental',
         'sports-culture-repair-rental',
         'sports-entertainment-repair-rental',
-        'medicalcare',
+        'medical-care',
         'nursing',
         'caring',
-        'formaleducation',
-        'informaleducation'
+        'formal-education',
+        'informal-education'
       ]
     },
 
@@ -111,7 +111,7 @@ module.exports.estimateOther = async ( // eslint-disable-line no-undef
     // hobby-books 趣味用品・書籍・雑誌
     {
       category: 'hobby-goods-factor',
-      key: otherAnswer.hobbyGoods,
+      key: otherAnswer.hobbyGoodsFactorKey,
       items: [
         'culture-goods',
         'entertainment-goods',
@@ -128,7 +128,7 @@ module.exports.estimateOther = async ( // eslint-disable-line no-undef
     // clothes 衣類・宝飾品
     {
       category: 'clothes-beauty-factor',
-      key: otherAnswer.clothesBeauty,
+      key: otherAnswer.clothesBeautyFactorKey,
       items: ['clothes-goods', 'bags-jewelries-goods']
     },
 
@@ -137,7 +137,7 @@ module.exports.estimateOther = async ( // eslint-disable-line no-undef
     // leisure-sports レジャー・スポーツ施設
     {
       category: 'leisure-sports-factor',
-      key: otherAnswer.leisureSports,
+      key: otherAnswer.leisureSportsFactorKey,
       items: ['culture-leisure', 'entertainment-leisure', 'sports-leisure']
     },
 
@@ -146,13 +146,12 @@ module.exports.estimateOther = async ( // eslint-disable-line no-undef
     // travel-hotel 旅行・宿泊
     {
       category: 'travel-factor',
-      key: otherAnswer.travel,
+      key: otherAnswer.travelFactorKey,
       items: ['hotel', 'travel']
     }
   ]
 
-  for (const ans of answers) {
-    console.log(ans.category)
+  for (let ans of answers) {
     const params = {
       TableName: parameterTableName,
       Key: {
@@ -163,14 +162,13 @@ module.exports.estimateOther = async ( // eslint-disable-line no-undef
     const data = await dynamodb.get(params).promise()
     if (data?.Item?.value) {
       const coefficient = data.Item.value
-      for (const item of ans.items) {
-        const component = findAmount(baselines, item)
-        component.value *= coefficient
-        estimations.push(toEstimation(component))
+      for (let item of ans.items) {
+        const baseline = findAmount(baselines, item)
+        baseline.value *= coefficient
+        estimations.push(toEstimation(baseline))
       }
     }
   }
 
-  console.log(JSON.stringify(estimations))
   return { baselines, estimations }
 }
