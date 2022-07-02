@@ -91,6 +91,7 @@ export const onCreateOption = /* GraphQL */ `
       value
       args
       operation
+      citation
       createdAt
       updatedAt
     }
@@ -104,6 +105,7 @@ export const onUpdateOption = /* GraphQL */ `
       value
       args
       operation
+      citation
       createdAt
       updatedAt
     }
@@ -117,6 +119,7 @@ export const onDeleteOption = /* GraphQL */ `
       value
       args
       operation
+      citation
       createdAt
       updatedAt
     }
@@ -127,8 +130,7 @@ export const onCreateOptionIntensityRate = /* GraphQL */ `
     onCreateOptionIntensityRate {
       option
       defaultValue
-      minValue
-      maxValue
+      range
       createdAt
       updatedAt
     }
@@ -139,8 +141,7 @@ export const onUpdateOptionIntensityRate = /* GraphQL */ `
     onUpdateOptionIntensityRate {
       option
       defaultValue
-      minValue
-      maxValue
+      range
       createdAt
       updatedAt
     }
@@ -151,8 +152,7 @@ export const onDeleteOptionIntensityRate = /* GraphQL */ `
     onDeleteOptionIntensityRate {
       option
       defaultValue
-      minValue
-      maxValue
+      range
       createdAt
       updatedAt
     }
@@ -165,68 +165,67 @@ export const onCreateProfile = /* GraphQL */ `
       shareId
       mobilityAnswer {
         hasPrivateCar
-        privateCarType
-        carCharging
-        carPassengers
+        carIntensityFactorKey
+        carChargingKey
+        carPassengersKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        weeklyDetailedMobilityUnknown
-        livingAreaSize
+        hasWeeklyTravelingTime
+        mileageByAreaKey
         otherCarAnnualTravelingTime
-        trainAnnuallyTravelingTime
+        trainAnnualTravelingTime
         busAnnualTravelingTime
         motorbikeAnnualTravelingTime
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
       }
       housingAnswer {
-        numberOfPeople
-        housingSize
-        housingInsulation
-        electricityIntensity
-        howManyElectricity
-        electricitySeasonFactor
+        residentCount
+        housingSizeKey
+        housingInsulationKey
+        electricityIntensityKey
+        electricityMonthlyConsumption
+        electricitySeasonFactorKey
         useGas
-        energyHeatIntensity
-        howManyGas
-        gasSeasonFactor
+        energyHeatIntensityKey
+        gasMonthlyConsumption
+        gasSeasonFactorKey
         useKerosene
-        howManyKerosene
-        howManyKeroseneMonth
-        housingAmountByRegion
+        keroseneMonthlyConsumption
+        keroseneMonthCount
+        housingAmountByRegionKey
       }
       foodAnswer {
-        foodIntake
-        foodDirectwaste
-        foodLeftover
-        dishBeef
-        dishPork
-        dishChicken
-        dishSeafood
-        dairyFood
-        alcohol
-        softdrinkSnack
-        eatout
+        foodIntakeFactorKey
+        foodDirectWasteFactorKey
+        foodLeftoverFactorKey
+        dishBeefFactorKey
+        dishPorkFactorKey
+        dishChickenFactorKey
+        dishSeafoodFactorKey
+        dairyFoodFactorKey
+        alcoholFactorKey
+        softDrinkSnackFactorKey
+        eatOutFactorKey
       }
       otherAnswer {
-        dailyGoods
-        communication
-        applianceFurniture
-        service
-        hobbyGoods
-        clothesBeauty
-        leisureSports
-        travel
+        dailyGoodsAmountKey
+        communicationAmountKey
+        applianceFurnitureAmountKey
+        serviceFactorKey
+        hobbyGoodsFactorKey
+        clothesBeautyFactorKey
+        leisureSportsFactorKey
+        travelFactorKey
       }
       actionIntensityRate {
         option
         value
         defaultValue
-        minValue
-        maxValue
+        range
       }
       baselines {
         domain
@@ -269,68 +268,67 @@ export const onUpdateProfile = /* GraphQL */ `
       shareId
       mobilityAnswer {
         hasPrivateCar
-        privateCarType
-        carCharging
-        carPassengers
+        carIntensityFactorKey
+        carChargingKey
+        carPassengersKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        weeklyDetailedMobilityUnknown
-        livingAreaSize
+        hasWeeklyTravelingTime
+        mileageByAreaKey
         otherCarAnnualTravelingTime
-        trainAnnuallyTravelingTime
+        trainAnnualTravelingTime
         busAnnualTravelingTime
         motorbikeAnnualTravelingTime
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
       }
       housingAnswer {
-        numberOfPeople
-        housingSize
-        housingInsulation
-        electricityIntensity
-        howManyElectricity
-        electricitySeasonFactor
+        residentCount
+        housingSizeKey
+        housingInsulationKey
+        electricityIntensityKey
+        electricityMonthlyConsumption
+        electricitySeasonFactorKey
         useGas
-        energyHeatIntensity
-        howManyGas
-        gasSeasonFactor
+        energyHeatIntensityKey
+        gasMonthlyConsumption
+        gasSeasonFactorKey
         useKerosene
-        howManyKerosene
-        howManyKeroseneMonth
-        housingAmountByRegion
+        keroseneMonthlyConsumption
+        keroseneMonthCount
+        housingAmountByRegionKey
       }
       foodAnswer {
-        foodIntake
-        foodDirectwaste
-        foodLeftover
-        dishBeef
-        dishPork
-        dishChicken
-        dishSeafood
-        dairyFood
-        alcohol
-        softdrinkSnack
-        eatout
+        foodIntakeFactorKey
+        foodDirectWasteFactorKey
+        foodLeftoverFactorKey
+        dishBeefFactorKey
+        dishPorkFactorKey
+        dishChickenFactorKey
+        dishSeafoodFactorKey
+        dairyFoodFactorKey
+        alcoholFactorKey
+        softDrinkSnackFactorKey
+        eatOutFactorKey
       }
       otherAnswer {
-        dailyGoods
-        communication
-        applianceFurniture
-        service
-        hobbyGoods
-        clothesBeauty
-        leisureSports
-        travel
+        dailyGoodsAmountKey
+        communicationAmountKey
+        applianceFurnitureAmountKey
+        serviceFactorKey
+        hobbyGoodsFactorKey
+        clothesBeautyFactorKey
+        leisureSportsFactorKey
+        travelFactorKey
       }
       actionIntensityRate {
         option
         value
         defaultValue
-        minValue
-        maxValue
+        range
       }
       baselines {
         domain
@@ -373,68 +371,67 @@ export const onDeleteProfile = /* GraphQL */ `
       shareId
       mobilityAnswer {
         hasPrivateCar
-        privateCarType
-        carCharging
-        carPassengers
+        carIntensityFactorKey
+        carChargingKey
+        carPassengersKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        weeklyDetailedMobilityUnknown
-        livingAreaSize
+        hasWeeklyTravelingTime
+        mileageByAreaKey
         otherCarAnnualTravelingTime
-        trainAnnuallyTravelingTime
+        trainAnnualTravelingTime
         busAnnualTravelingTime
         motorbikeAnnualTravelingTime
         airplaneAnnualTravelingTime
         ferryAnnualTravelingTime
       }
       housingAnswer {
-        numberOfPeople
-        housingSize
-        housingInsulation
-        electricityIntensity
-        howManyElectricity
-        electricitySeasonFactor
+        residentCount
+        housingSizeKey
+        housingInsulationKey
+        electricityIntensityKey
+        electricityMonthlyConsumption
+        electricitySeasonFactorKey
         useGas
-        energyHeatIntensity
-        howManyGas
-        gasSeasonFactor
+        energyHeatIntensityKey
+        gasMonthlyConsumption
+        gasSeasonFactorKey
         useKerosene
-        howManyKerosene
-        howManyKeroseneMonth
-        housingAmountByRegion
+        keroseneMonthlyConsumption
+        keroseneMonthCount
+        housingAmountByRegionKey
       }
       foodAnswer {
-        foodIntake
-        foodDirectwaste
-        foodLeftover
-        dishBeef
-        dishPork
-        dishChicken
-        dishSeafood
-        dairyFood
-        alcohol
-        softdrinkSnack
-        eatout
+        foodIntakeFactorKey
+        foodDirectWasteFactorKey
+        foodLeftoverFactorKey
+        dishBeefFactorKey
+        dishPorkFactorKey
+        dishChickenFactorKey
+        dishSeafoodFactorKey
+        dairyFoodFactorKey
+        alcoholFactorKey
+        softDrinkSnackFactorKey
+        eatOutFactorKey
       }
       otherAnswer {
-        dailyGoods
-        communication
-        applianceFurniture
-        service
-        hobbyGoods
-        clothesBeauty
-        leisureSports
-        travel
+        dailyGoodsAmountKey
+        communicationAmountKey
+        applianceFurnitureAmountKey
+        serviceFactorKey
+        hobbyGoodsFactorKey
+        clothesBeautyFactorKey
+        leisureSportsFactorKey
+        travelFactorKey
       }
       actionIntensityRate {
         option
         value
         defaultValue
-        minValue
-        maxValue
+        range
       }
       baselines {
         domain

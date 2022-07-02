@@ -1,0 +1,9 @@
+[CSV_SPEC]
+option=S
+domainItemAndType=S
+value=D
+args=SL
+operation=S
+citation=S
+createdAt=S
+updatedAt=S

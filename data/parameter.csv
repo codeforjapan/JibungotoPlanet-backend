@@ -1,404 +1,386 @@
 category,key,value,unit,citation,createdAt,updatedAt
-housing-size,1-room,20,m2,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-size,2-room,30,m2,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-size,3-room,40,m2,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-size,4-room,60,m2,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-size,5-6-room,80,m2,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-size,7-more-room,120,m2,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-size,unknown,77.99224364,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-intensity,conventional,0.634319811,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-intensity,30-renewable,0.53349389,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-intensity,50-renewable,0.399059329,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-intensity,100-renewable,0.062972926,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-intensity,solar-panel,0.042861845,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-intensity,unknown,0.634319811,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-energy-amount-unknown,electricity,2156.268842,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-energy-amount-unknown,gas,1325.561369,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-energy-amount-unknown,kerosene,650.7599302,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-energy-heat-intensity,urban-gas,11.0399255,kWh/m3,資源エネルギー庁. 2006. 市町村別エネルギー消費統計作成のためのガイドライン,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-energy-heat-intensity,lpg,27.916689,kWh/m3,資源エネルギー庁. 2006. 市町村別エネルギー消費統計作成のためのガイドライン,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-energy-heat-intensity,kerosene,10.1944526,kWh/L,資源エネルギー庁. 2006. 市町村別エネルギー消費統計作成のためのガイドライン,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,january,9.155365047,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,february,8.92083057,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,march,9.165491073,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,april,10.81397346,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,may,12.9543285,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,june,14.98864011,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,july,15.46045726,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,august,13.1065718,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,september,13.1141993,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,october,14.58262306,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-electricity-season-factor,december,14.71506023,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,january,6.916666667,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,february,7.720930233,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,march,8.512820513,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,april,9.485714286,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,may,12.76923077,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,june,16.6,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,july,18.44444444,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,august,23.71428571,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,september,23.71428571,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,october,18.44444444,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-gas-season-factor,december,13.83333333,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_imputedrent-amount,38.98080772,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_rent-amount,8.518158765,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_landrent-amount,0.428215789,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_housing-maintenance-amount,42.19606566,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_electricity-amount,2429.879348,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_urbangas-amount,483.3918243,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_lpg-amount,449.045623,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_kerosene-amount,2171.346349,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_otherenergy-amount,57.80704881,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,northeast_water-amount,96.53645058,m3,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_imputedrent-amount,32.00344548,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_rent-amount,6.063525186,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_landrent-amount,1.7464516,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_housing-maintenance-amount,41.78341404,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_electricity-amount,2249.623235,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_urbangas-amount,839.5280673,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_lpg-amount,468.1377938,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_kerosene-amount,418.9412402,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_otherenergy-amount,59.5350204,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,middle_water-amount,103.1075979,m3,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_imputedrent-amount,23.4960231,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_rent-amount,11.67527498,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_landrent-amount,1.364856292,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_housing-maintenance-amount,36.20086626,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_electricity-amount,2000.687747,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_urbangas-amount,278.4233619,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_lpg-amount,722.6599564,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_kerosene-amount,338.5522031,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_otherenergy-amount,51.57550805,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,southwest_water-amount,89.94119651,m3,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_imputedrent-amount,32.06179314,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_rent-amount,6.934328682,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_landrent-amount,1.96142204,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_housing-maintenance-amount,44.18305217,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_electricity-amount,2156.268842,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_urbangas-amount,886.8038344,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_lpg-amount,438.7575348,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_kerosene-amount,650.7599302,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_otherenergy-amount,54.81742592,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-amount-by-region,unknown_water-amount,103.5505,m3,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,no-insulation_clothing,-0.4,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,2-level_clothing,-0.4,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,3-level_clothing,-0.2,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,4-level_clothing,-0.1,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,unknown_clothing,-0.4,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,no-insulation_renovation,-0.607142857,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,2-level_renovation,-0.435897436,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,3-level_renovation,-0.3125,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,4-level_renovation,0,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-insulation,unknown_renovation,-0.478549419,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,almost-filament _filament,0.75,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,filament-fluorescent-mix_filament,0.5,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,almost-fluorescent _filament,0.25,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,fluorescent-led-mix_filament,0,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,led-only_filament,0,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,unknown_filament,0.25,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,almost-filament _fluorescent,0.25,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,filament-fluorescent-mix_fluorescent,0.5,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,almost-fluorescent _fluorescent,0.75,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,fluorescent-led-mix_fluorescent,0.75,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,led-only_fluorescent,0,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,unknown_fluorescent,0.75,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,almost-filament _led,0,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,filament-fluorescent-mix_led,0,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,almost-fluorescent _led,0,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,fluorescent-led-mix_led,0.25,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,led-only_led,1,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-housing-led-share,unknown_led,0,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,gasoline_driving-factor,1.140989342,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,light_driving-factor,0.847680722,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,hv_driving-factor,0.731232701,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,phv_driving-factor,0.656334942,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,ev_driving-factor,0.606403103,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,unknown_driving-factor,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,gasoline_manufacturing-factor,0.986856847,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,light_manufacturing-factor,0.986856847,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,hv_manufacturing-factor,1.085542532,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,phv_manufacturing-factor,1.649976509,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,ev_manufacturing-factor,2.214410486,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,unknown_manufacturing-factor,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,gasoline_driving-intensity,0.150984647,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,light_driving-intensity,0.112171753,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,hv_driving-intensity,0.096762438,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,phv_driving-intensity,0.08685138,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,ev_driving-intensity,0.080244008,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,unknown_driving-intensity,0.132327833,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,gasoline_manufacturing-intensity,4100,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,light_manufacturing-intensity,4100,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,hv_manufacturing-intensity,4510,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,phv_manufacturing-intensity,6855,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,ev_manufacturing-intensity,9200,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,unknown_manufacturing-intensity,4154.604604,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,gasoline_electricity-intensity,0,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,light_electricity-intensity,0,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,hv_electricity-intensity,0,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,phv_electricity-intensity,0.05129771,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,ev_electricity-intensity,0.085496183,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-intensity-factor,unknown_electricity-intensity,0,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-charging,charge-almost-at-home,0.9,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-charging,use-charging-spots-occasionally,0.7,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-charging,use-charging-spots-sometimes,0.5,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-charging,use-charging-spots-usually,0.1,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-charging,unknown,0.7,times,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-renewable-car-intensity-factor,phv_driving-factor,0.328206127,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-renewable-car-intensity-factor,ev_driving-factor,0.059521744,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-renewable-car-intensity-factor,phv-driving-intensity,0.043430805,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-renewable-car-intensity-factor,ev_driving-intensity,0.007876383,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,1_private-car-factor,1.31,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,1-2_private-car-factor,0.873333333,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,2_private-car-factor,0.655,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,2-3_private-car-factor,0.524,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,3_private-car-factor,0.436666667,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,3-4_private-car-factor,0.374285714,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,4-more_private-car-factor,0.3275,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,unknown_private-car-factor,1,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,1_taxi-factor,1.65,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,1-2_taxi-factor,1.1,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,2_taxi-factor,0.825,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,2-3_taxi-factor,0.66,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,3_taxi-factor,0.55,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,3-4_taxi-factor,0.471428571,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,4-more_taxi-factor,0.4125,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,unknown_taxi-factor,1,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,1_private-car-passengers,1,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,1-2_private-car-passengers,1.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,2_private-car-passengers,2,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,2-3_private-car-passengers,2.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,3_private-car-passengers,3,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,3-4_private-car-passengers,3.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,4-more_private-car-passengers,4,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,unknown_private-car-passengers,1.31,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,1_taxi-passengers,1,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,1-2_taxi-passengers,1.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,2_taxi-passengers,2,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,2-3_taxi-passengers,2.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,3_taxi-passengers,3,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,3-4_taxi-passengers,3.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,4-more_taxi-passengers,4,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-car-passengers,unknown_taxi-passengers,1.65,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,car-speed,25,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,train-speed,60,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,bus-speed,10,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,motorbike-speed,25,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,long-distance-car-speed,60,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,long-distance-train-speed,100,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,express-bus-speed,50,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,long-distance-motorbike-speed,60,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,airplane-speed,600,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-transportation-speed,ferry-velocity,40,km/hour,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-misc,weeks-per-year-excluding-long-vacations,49,week,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_airplane,1507.345223,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_airplane,1144.893404,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_airplane,1016.677146,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_airplane,775.2649318,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_airplane,1161.463556,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_train,4002.878879,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_train,2831.211796,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_train,2506.637751,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_train,1544.263668,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_train,2883.143695,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_bus,698.5895508,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_bus,388.0210822,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_bus,310.4002107,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_bus,304.4881964,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_bus,430.6177624,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_ferry,20.16526175,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_ferry,20.85237234,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_ferry,20.92105917,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_ferry,17.30611523,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_ferry,20.10019321,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_taxi,77.0691577,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_taxi,44.27463,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_taxi,33.7682362,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_taxi,24.05233786,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_taxi,48.16514973,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_private-car-driving,2844.387081,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_private-car-driving,4392.707122,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_private-car-driving,5114.65296,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_private-car-driving,6002.11848,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_private-car-driving,4341.744284,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_car-sharing-driving,89.06216,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_car-sharing-driving,51.30309174,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_car-sharing-driving,47.62176474,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_car-sharing-driving,46.47394961,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_car-sharing-driving,60.7815956,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_motorbike-driving,169.5552676,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_motorbike-driving,256.8545121,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_motorbike-driving,298.3669602,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_motorbike-driving,349.5926185,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_motorbike-driving,254.458252,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_bicycle-driving,340.2621468,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_bicycle-driving,249.8138366,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_bicycle-driving,272.4527352,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_bicycle-driving,139.4906834,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_bicycle-driving,264.0133354,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_private-car-purchase,0.027547541,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_private-car-purchase,0.03698957,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_private-car-purchase,0.058101776,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_private-car-purchase,0.063023882,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_private-car-purchase,0.043510227,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_motorbike-purchase,0.001481261,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_motorbike-purchase,0.003256596,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_motorbike-purchase,0.003018645,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_motorbike-purchase,0.002882468,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_motorbike-purchase,0.002635317,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_car-sharing-rental,0.236309982,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_car-sharing-rental,0.136123272,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_car-sharing-rental,0.126355552,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_car-sharing-rental,0.123310036,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_car-sharing-rental,0.161272731,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_private-car-maintenance,47.41693663,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_private-car-maintenance,57.62349476,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_private-car-maintenance,59.64400728,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_private-car-maintenance,62.14332377,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_private-car-maintenance,55.72777896,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_motorbike-maintenance,0.297496117,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_motorbike-maintenance,0.568630562,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_motorbike-maintenance,0.464008876,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_motorbike-maintenance,0.475465667,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_motorbike-maintenance,0.446120353,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,major-city-or-metropolitan-area_bicycle-maintenance,0.482425985,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-150k-or-more_bicycle-maintenance,0.399241827,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,city-50k-150k_bicycle-maintenance,0.429252268,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,area-less-than-50k_bicycle-maintenance,0.240751767,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-mileage-by-area,unknown_bicycle-maintenance,0.406667749,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-intake-factor,very-little,0.741132875,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-intake-factor,somewhat-little,1.058761249,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-intake-factor,moderate,1.164637374,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-intake-factor,somewhat-much,1.270513499,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-intake-factor,very-much,1.588141874,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-intake-factor,unknown,1,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-directwaste-factor,seldom,0.275165763,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-directwaste-factor,1-per-week,1.10066305,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-directwaste-factor,2-3-per-week,2.751657625,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-directwaste-factor,4-7-per-week,6.053646775,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-directwaste-factor,8-or-more-per-week,8.8053044,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-directwaste-factor,unknown,1,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-leftover-factor,seldom,0.221172481,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-leftover-factor,1-per-week,1.10066305,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-leftover-factor,2-3-per-week,2.751657625,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-leftover-factor,4-7-per-week,6.053646775,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-leftover-factor,8-or-more-per-week,8.8053044,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-leftover-factor,unknown,1,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-waste-share,directwaste-per-foodwaste,0.411764706,times,"農林水産省. 2016. 食品ロス統計調査報告（世帯調査）より算出	",2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-waste-share,leftover-per-foodwaste,0.588235294,times,"農林水産省. 2016. 食品ロス統計調査報告（世帯調査）より算出	",2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-food-waste-share,foodwaste-per-purchasefood,0.037,times,"農林水産省. 2016. 食品ロス統計調査報告（世帯調査）より算出	",2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-beef-factor,everyday,3.734827264,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-beef-factor,4-5-per-week,2.400960384,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-beef-factor,2-3-per-week,1.33386688,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-beef-factor,1-per-week,0.533546752,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-beef-factor,2-3-per-month,0.33346672,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-beef-factor,1-less-per-month,0.133386688,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-beef-factor,never,0,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-beef-factor,unknown,1,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-pork-factor,everyday,2.652997413,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-pork-factor,4-5-per-week,1.705498337,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-pork-factor,2-3-per-week,0.947499076,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-pork-factor,1-per-week,0.37899963,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-pork-factor,2-3-per-month,0.236874769,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-pork-factor,1-less-per-month,0.094749908,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-pork-factor,never,0,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-pork-factor,unknown,1,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-chicken-factor,everyday,2.773540424,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-chicken-factor,4-5-per-week,1.782990273,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-chicken-factor,2-3-per-week,0.990550152,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-chicken-factor,1-per-week,0.396220061,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-chicken-factor,2-3-per-month,0.247637538,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-chicken-factor,1-less-per-month,0.099055015,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-chicken-factor,never,0,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-chicken-factor,unknown,1,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-seafood-factor,everyday,2.783189535,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-seafood-factor,4-5-per-week,1.789193273,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-seafood-factor,2-3-per-week,0.993996263,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-seafood-factor,1-per-week,0.397598505,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-seafood-factor,2-3-per-month,0.248499066,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-seafood-factor,1-less-per-month,0.099399626,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-seafood-factor,never,0,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dish-seafood-factor,unknown,1,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dairy-food-factor,3-more-per-day,1.809645792,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dairy-food-factor,2-per-day,1.206430528,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dairy-food-factor,1-per-day,0.603215264,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dairy-food-factor,half-of-week,0.301607632,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dairy-food-factor,1-2-less-per-week,0.129260414,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dairy-food-factor,never,0,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-dairy-food-factor,unknown,1,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-alcohol-factor,everyday,1.803310363,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-alcohol-factor,4-5-per-week,1.159270947,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-alcohol-factor,2-3-per-week,0.644039415,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-alcohol-factor,1-per-week,0.257615766,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-alcohol-factor,2-3-less-per-month,0.064403942,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-alcohol-factor,never,0,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-alcohol-factor,unknown,1,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-softdrink-snack-factor,3000-less,0.326078322,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-softdrink-snack-factor,3000-5000,0.652156644,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-softdrink-snack-factor,5000-10000,1.222793708,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-softdrink-snack-factor,10000-15000,2.037989514,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-softdrink-snack-factor,15000-more,2.853185319,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-softdrink-snack-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-eatout-factor,5000-less,0.264415047,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-eatout-factor,5000-10000,0.661037617,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-eatout-factor,10000-20000,1.322075235,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-eatout-factor,20000-50000,3.084842215,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-eatout-factor,50000-more,5.288300939,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-eatout-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-clothes-beauty-factor,5000-less,0.264415047,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-clothes-beauty-factor,5000-10000,0.661037617,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-clothes-beauty-factor,10000-20000,1.322075235,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-clothes-beauty-factor,20000-50000,3.084842215,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-clothes-beauty-factor,50000-more,5.288300939,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-clothes-beauty-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-hobby-goods-factor,5000-less,0.46277351,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-hobby-goods-factor,5000-10000,1.156933774,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-hobby-goods-factor,10000-20000,2.313867548,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-hobby-goods-factor,20000-50000,5.399024278,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-hobby-goods-factor,50000-more,9.25547019,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-hobby-goods-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-daily-goods-amount,5000-less,3000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-daily-goods-amount,5000-10000,7500,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-daily-goods-amount,10000-20000,15000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-daily-goods-amount,20000-30000,25000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-daily-goods-amount,30000-more,40000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-daily-goods-amount,unknown,7190.489222,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-daily-goods-amount,average-per-capita,3595.244611,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-communication-amount,5000-less,3000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-communication-amount,5000-10000,7500,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-communication-amount,10000-20000,15000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-communication-amount,20000-30000,25000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-communication-amount,30000-more,40000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-communication-amount,unknown,24666.50711,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-communication-amount,average-per-capita,12333.25355,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-service-factor,5000-less,0.262661425,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-service-factor,5000-10000,0.562845911,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-service-factor,10000-20000,1.125691821,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-service-factor,20000-50000,2.626614249,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-service-factor,50000-more,5.628459105,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-service-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-appliance-furniture-amount,50000-less,25000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-appliance-furniture-amount,50000-100000,75000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-appliance-furniture-amount,100000-200000,150000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-appliance-furniture-amount,200000-300000,250000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-appliance-furniture-amount,300000-400000,350000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-appliance-furniture-amount,400000-more,500000,JPY,Assumption,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-appliance-furniture-amount,unknown,159943.0306,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-appliance-furniture-amount,average-per-capita,79971.51531,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-leisure-sports-factor,5000-less,0.285556309,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-leisure-sports-factor,5000-10000,0.856668926,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-leisure-sports-factor,10000-20000,1.713337852,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-leisure-sports-factor,20000-50000,3.99778832,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-leisure-sports-factor,50000-more,8.566689258,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-leisure-sports-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-travel-factor,10000-less,0.17764228,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-travel-factor,20000-30000,0.888211399,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-travel-factor,30000-50000,1.421138239,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-travel-factor,50000-100000,2.664634197,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-travel-factor,100000-200000,5.329268395,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-travel-factor,200000-more,10.65853679,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
-travel-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-19T01:10:14.350Z,2022-06-19T01:10:14.350Z
+housing-size,1-room,20,m2,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-size,2-room,30,m2,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-size,3-room,40,m2,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-size,4-room,60,m2,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-size,5-6-room,80,m2,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-size,7-more-room,120,m2,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-size,unknown,77.99224364,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-intensity,conventional,0.634319811,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-intensity,30-renewable,0.53349389,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-intensity,50-renewable,0.399059329,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-intensity,100-renewable,0.062972926,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-intensity,solar-panel,0.042861845,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-intensity,unknown,0.634319811,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+energy-amount-unknown,electricity,2156.268842,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+energy-amount-unknown,gas,1325.561369,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+energy-amount-unknown,kerosene,650.7599302,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+energy-heat-intensity,urban-gas,11.0399255,kWh/m3,資源エネルギー庁. 2006. 市町村別エネルギー消費統計作成のためのガイドライン,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+energy-heat-intensity,lpg,27.916689,kWh/m3,資源エネルギー庁. 2006. 市町村別エネルギー消費統計作成のためのガイドライン,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+energy-heat-intensity,kerosene,10.1944526,kWh/L,資源エネルギー庁. 2006. 市町村別エネルギー消費統計作成のためのガイドライン,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,january,9.155365047,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,february,8.92083057,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,march,9.165491073,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,april,10.81397346,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,may,12.9543285,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,june,14.98864011,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,july,15.46045726,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,august,13.1065718,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,september,13.1141993,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,october,14.58262306,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+electricity-season-factor,december,14.71506023,times,総務省統計局. 2015. 電気使用量の推移 平成27年２月27日より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,january,6.916666667,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,february,7.720930233,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,march,8.512820513,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,april,9.485714286,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,may,12.76923077,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,june,16.6,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,july,18.44444444,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,august,23.71428571,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,september,23.71428571,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,october,18.44444444,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+gas-season-factor,december,13.83333333,times,環境省. 2015. 家庭からの二酸化炭素排出量の推計に係る実態調査 全国試験調査 平成26年10月～平成27年9月より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_imputed-rent-amount,38.98080772,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_rent-amount,8.518158765,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_land-rent-amount,0.428215789,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_housing-maintenance-amount,42.19606566,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_electricity-amount,2429.879348,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_urban-gas-amount,483.3918243,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_lpg-amount,449.045623,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_kerosene-amount,2171.346349,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_other-energy-amount,57.80704881,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_water-amount,96.53645058,m3,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_imputed-rent-amount,32.00344548,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,middle_rent-amount,6.063525186,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_land-rent-amount,1.7464516,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,middle_housing-maintenance-amount,41.78341404,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,middle_electricity-amount,2249.623235,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_urban-gas-amount,839.5280673,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,middle_lpg-amount,468.1377938,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,middle_kerosene-amount,418.9412402,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_other-energy-amount,59.5350204,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,middle_water-amount,103.1075979,m3,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_imputed-rent-amount,23.4960231,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,southwest_rent-amount,11.67527498,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_land-rent-amount,1.364856292,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,southwest_housing-maintenance-amount,36.20086626,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,southwest_electricity-amount,2000.687747,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_urban-gas-amount,278.4233619,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,southwest_lpg-amount,722.6599564,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,southwest_kerosene-amount,338.5522031,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_other-energy-amount,51.57550805,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,southwest_water-amount,89.94119651,m3,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_imputed-rent-amount,32.06179314,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,unknown_rent-amount,6.934328682,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_land-rent-amount,1.96142204,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,unknown_housing-maintenance-amount,44.18305217,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,unknown_electricity-amount,2156.268842,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_urban-gas-amount,886.8038344,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,unknown_lpg-amount,438.7575348,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,unknown_kerosene-amount,650.7599302,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,northeast_other-energy-amount,54.81742592,kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-amount-by-region,unknown_water-amount,103.5505,m3,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,no-insulation_clothing,-0.4,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,2-level_clothing,-0.4,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,3-level_clothing,-0.2,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,4-level_clothing,-0.1,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,unknown_clothing,-0.4,times,田澤慎也ほか. 2013. 住宅における冬期の節電手法に関する効果の検討 （第 2 報）サーマルマネキンを用いた実験による評価. 空気調和・衛生工学会大会学術講演論文集より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,no-insulation_renovation,-0.607142857,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,2-level_renovation,-0.435897436,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,3-level_renovation,-0.3125,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,4-level_renovation,0,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+housing-insulation,unknown_renovation,-0.478549419,times,資源エネルギー庁. n.d. 断熱化で暖冷房コストを削減より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,gasoline_driving-factor,1.140989342,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,light_driving-factor,0.847680722,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,hv_driving-factor,0.731232701,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,phv_driving-factor,0.656334942,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,ev_driving-factor,0.606403103,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,unknown_driving-factor,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,gasoline_manufacturing-factor,0.986856847,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,light_manufacturing-factor,0.986856847,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,hv_manufacturing-factor,1.085542532,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,phv_manufacturing-factor,1.649976509,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,ev_manufacturing-factor,2.214410486,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,unknown_manufacturing-factor,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,gasoline_driving-intensity,0.150984647,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,light_driving-intensity,0.112171753,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,hv_driving-intensity,0.096762438,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,phv_driving-intensity,0.08685138,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,ev_driving-intensity,0.080244008,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,unknown_driving-intensity,0.132327833,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,gasoline_manufacturing-intensity,4100,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,light_manufacturing-intensity,4100,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,hv_manufacturing-intensity,4510,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,phv_manufacturing-intensity,6855,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,ev_manufacturing-intensity,9200,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,unknown_manufacturing-intensity,4154.604604,kgCO2/car,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,gasoline_electricity-intensity,0,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,light_electricity-intensity,0,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,hv_electricity-intensity,0,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,phv_electricity-intensity,0.05129771,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,ev_electricity-intensity,0.085496183,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-intensity-factor,unknown_electricity-intensity,0,kWh/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-charging,charge-almost-at-home,0.9,times,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-charging,use-charging-spots-occasionally,0.7,times,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-charging,use-charging-spots-sometimes,0.5,times,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-charging,use-charging-spots-usually,0.1,times,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-charging,unknown,0.7,times,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+renewable-car-intensity-factor,phv_driving-factor,0.328206127,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+renewable-car-intensity-factor,ev_driving-factor,0.059521744,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+renewable-car-intensity-factor,phv-driving-intensity,0.043430805,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+renewable-car-intensity-factor,ev_driving-intensity,0.007876383,kgCO2eq/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,1_private-car-factor,1.31,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,1-2_private-car-factor,0.873333333,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,2_private-car-factor,0.655,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,2-3_private-car-factor,0.524,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,3_private-car-factor,0.436666667,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,3-4_private-car-factor,0.374285714,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,4-more_private-car-factor,0.3275,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,unknown_private-car-factor,1,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,1_taxi-factor,1.65,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,1-2_taxi-factor,1.1,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,2_taxi-factor,0.825,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,2-3_taxi-factor,0.66,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,3_taxi-factor,0.55,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,3-4_taxi-factor,0.471428571,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,4-more_taxi-factor,0.4125,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,unknown_taxi-factor,1,times,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,1_private-car-passengers,1,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,1-2_private-car-passengers,1.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,2_private-car-passengers,2,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,2-3_private-car-passengers,2.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,3_private-car-passengers,3,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,3-4_private-car-passengers,3.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,4-more_private-car-passengers,4,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,unknown_private-car-passengers,1.31,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,1_taxi-passengers,1,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,1-2_taxi-passengers,1.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,2_taxi-passengers,2,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,2-3_taxi-passengers,2.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,3_taxi-passengers,3,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,3-4_taxi-passengers,3.5,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,4-more_taxi-passengers,4,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+car-passengers,unknown_taxi-passengers,1.65,person,国土交通省. 2015. 全国道路・街路交通情勢調査 自動車起終点調査（OD調査）結果より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,car-speed,25,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,train-speed,60,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,bus-speed,10,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,motorbike-speed,25,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,long-distance-car-speed,60,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,long-distance-train-speed,100,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,express-bus-speed,50,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,long-distance-motorbike-speed,60,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,airplane-speed,600,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+transportation-speed,ferry-speed,40,km/hour,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+misc,weeks-per-year-excluding-long-vacations,49,week,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_airplane,1507.345223,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_airplane,1144.893404,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_airplane,1016.677146,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_airplane,775.2649318,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_airplane,1161.463556,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_train,4002.878879,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_train,2831.211796,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_train,2506.637751,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_train,1544.263668,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_train,2883.143695,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_bus,698.5895508,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_bus,388.0210822,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_bus,310.4002107,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_bus,304.4881964,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_bus,430.6177624,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_ferry,20.16526175,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_ferry,20.85237234,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_ferry,20.92105917,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_ferry,17.30611523,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_ferry,20.10019321,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_taxi,77.0691577,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_taxi,44.27463,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_taxi,33.7682362,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_taxi,24.05233786,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_taxi,48.16514973,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_private-car-driving,2844.387081,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_private-car-driving,4392.707122,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_private-car-driving,5114.65296,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_private-car-driving,6002.11848,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_private-car-driving,4341.744284,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_car-sharing-driving,89.06216,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_car-sharing-driving,51.30309174,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_car-sharing-driving,47.62176474,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_car-sharing-driving,46.47394961,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_car-sharing-driving,60.7815956,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_motorbike-driving,169.5552676,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_motorbike-driving,256.8545121,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_motorbike-driving,298.3669602,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_motorbike-driving,349.5926185,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_motorbike-driving,254.458252,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_bicycle-driving,340.2621468,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_bicycle-driving,249.8138366,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_bicycle-driving,272.4527352,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_bicycle-driving,139.4906834,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_bicycle-driving,264.0133354,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_walking,168.9344406,km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_private-car-purchase,0.027547541,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_private-car-purchase,0.03698957,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_private-car-purchase,0.058101776,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_private-car-purchase,0.063023882,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_private-car-purchase,0.043510227,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_motorbike-purchase,0.001481261,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_motorbike-purchase,0.003256596,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_motorbike-purchase,0.003018645,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_motorbike-purchase,0.002882468,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_motorbike-purchase,0.002635317,vehicle,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_car-sharing-rental,0.236309982,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_car-sharing-rental,0.136123272,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_car-sharing-rental,0.126355552,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_car-sharing-rental,0.123310036,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_car-sharing-rental,0.161272731,use,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_private-car-maintenance,47.41693663,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_private-car-maintenance,57.62349476,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_private-car-maintenance,59.64400728,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_private-car-maintenance,62.14332377,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_private-car-maintenance,55.72777896,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_motorbike-maintenance,0.297496117,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_motorbike-maintenance,0.568630562,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_motorbike-maintenance,0.464008876,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_motorbike-maintenance,0.475465667,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_motorbike-maintenance,0.446120353,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,major-city-or-metropolitan-area_bicycle-maintenance,0.482425985,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-150k-more_bicycle-maintenance,0.399241827,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,city-50k-150k_bicycle-maintenance,0.429252268,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,area-less-than-50k_bicycle-maintenance,0.240751767,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+mileage-by-area,unknown_bicycle-maintenance,0.406667749,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-intake-factor,very-little,0.741132875,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-intake-factor,somewhat-little,1.058761249,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-intake-factor,moderate,1.164637374,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-intake-factor,somewhat-much,1.270513499,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-intake-factor,very-much,1.588141874,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-intake-factor,unknown,1,times,農林水産省. n.d. 食事バランスガイド. 厚生労働省. 2015. 国民健康・栄養調査より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-direct-waste-factor,seldom,0.275165763,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-direct-waste-factor,1-per-week,1.10066305,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-direct-waste-factor,2-3-per-week,2.751657625,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-direct-waste-factor,4-7-per-week,6.053646775,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-direct-waste-factor,8-more-per-week,8.8053044,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-direct-waste-factor,unknown,1,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-leftover-factor,seldom,0.221172481,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-leftover-factor,1-per-week,1.10066305,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-leftover-factor,2-3-per-week,2.751657625,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-leftover-factor,4-7-per-week,6.053646775,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-leftover-factor,8-more-per-week,8.8053044,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-leftover-factor,unknown,1,times,東京都環境局. 2017. 家庭系食品ロス発生要因等調査より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-waste-share,direct-waste-per-food-waste,0.411764706,times,"農林水産省. 2016. 食品ロス統計調査報告（世帯調査）より算出	",2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-waste-share,leftover-per-food-waste,0.588235294,times,"農林水産省. 2016. 食品ロス統計調査報告（世帯調査）より算出	",2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+food-waste-share,food-waste-per-food,0.037,times,"農林水産省. 2016. 食品ロス統計調査報告（世帯調査）より算出	",2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-beef-factor,everyday,3.734827264,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-beef-factor,4-5-per-week,2.400960384,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-beef-factor,2-3-per-week,1.33386688,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-beef-factor,1-per-week,0.533546752,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-beef-factor,2-3-per-month,0.33346672,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-beef-factor,1-less-per-month,0.133386688,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-beef-factor,never,0,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-beef-factor,unknown,1,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-pork-factor,everyday,2.652997413,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-pork-factor,4-5-per-week,1.705498337,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-pork-factor,2-3-per-week,0.947499076,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-pork-factor,1-per-week,0.37899963,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-pork-factor,2-3-per-month,0.236874769,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-pork-factor,1-less-per-month,0.094749908,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-pork-factor,never,0,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-pork-factor,unknown,1,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-chicken-factor,everyday,2.773540424,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-chicken-factor,4-5-per-week,1.782990273,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-chicken-factor,2-3-per-week,0.990550152,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-chicken-factor,1-per-week,0.396220061,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-chicken-factor,2-3-per-month,0.247637538,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-chicken-factor,1-less-per-month,0.099055015,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-chicken-factor,never,0,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-chicken-factor,unknown,1,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-seafood-factor,everyday,2.783189535,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-seafood-factor,4-5-per-week,1.789193273,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-seafood-factor,2-3-per-week,0.993996263,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-seafood-factor,1-per-week,0.397598505,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-seafood-factor,2-3-per-month,0.248499066,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-seafood-factor,1-less-per-month,0.099399626,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-seafood-factor,never,0,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dish-seafood-factor,unknown,1,times,日本食肉消費総合センター.  2020. 食肉に関する意識調査報告書より算出,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dairy-food-factor,3-more-per-day,1.809645792,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dairy-food-factor,2-per-day,1.206430528,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dairy-food-factor,1-per-day,0.603215264,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dairy-food-factor,half-of-week,0.301607632,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dairy-food-factor,1-2-less-per-week,0.129260414,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dairy-food-factor,never,0,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+dairy-food-factor,unknown,1,times,農畜産業振興機構. 2025. 牛乳・乳製品の消費動向に関する調査.  一般社団法人ＪＣ総研. 2015. たまごの消費行動調査の概要より算出　,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+alcohol-factor,everyday,1.803310363,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+alcohol-factor,4-5-per-week,1.159270947,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+alcohol-factor,2-3-per-week,0.644039415,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+alcohol-factor,1-per-week,0.257615766,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+alcohol-factor,2-3-less-per-month,0.064403942,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+alcohol-factor,never,0,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+alcohol-factor,unknown,1,times,国税庁. n.d. お酒に関するアンケートの集計より算出 ,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+soft-drink-snack-factor,3k-less,0.326078322,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+soft-drink-snack-factor,3k-5k,0.652156644,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+soft-drink-snack-factor,5k-10k,1.222793708,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+soft-drink-snack-factor,10k-15k,2.037989514,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+soft-drink-snack-factor,15k-more,2.853185319,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+soft-drink-snack-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+eat-out-factor,5k-less,0.258895762,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+eat-out-factor,5k-10k,0.647239404,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+eat-out-factor,10k-20k,1.294478809,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+eat-out-factor,20k-50k,3.020450553,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+eat-out-factor,50k-more,5.177915234,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+eat-out-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+clothes-beauty-factor,5k-less,0.258895762,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+clothes-beauty-factor,5k-10k,0.647239404,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+clothes-beauty-factor,10k-20k,1.294478809,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+clothes-beauty-factor,20k-50k,3.020450553,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+clothes-beauty-factor,50k-more,5.177915234,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+clothes-beauty-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+hobby-goods-factor,5k-less,0.46277351,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+hobby-goods-factor,5k-10k,1.156933774,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+hobby-goods-factor,10k-20k,2.313867548,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+hobby-goods-factor,20k-50k,5.399024278,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+hobby-goods-factor,50k-more,9.25547019,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+hobby-goods-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+daily-goods-amount,5k-less,3000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+daily-goods-amount,5k-10k,7500,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+daily-goods-amount,10k-20k,15000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+daily-goods-amount,20k-30k,25000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+daily-goods-amount,30k-more,40000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+daily-goods-amount,unknown,7190.489222,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+daily-goods-amount,average-per-capita,3595.244611,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+communication-amount,5k-less,3000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+communication-amount,5k-10k,7500,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+communication-amount,10k-20k,15000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+communication-amount,20k-30k,25000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+communication-amount,30k-more,40000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+communication-amount,unknown,24666.50711,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+communication-amount,average-per-capita,12333.25355,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+service-factor,5k-less,0.262661425,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+service-factor,5k-10k,0.562845911,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+service-factor,10k-20k,1.125691821,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+service-factor,20k-50k,2.626614249,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+service-factor,50k-more,5.628459105,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+service-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+appliance-furniture-amount,50k-less,25000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+appliance-furniture-amount,50k-100k,75000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+appliance-furniture-amount,100k-200k,150000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+appliance-furniture-amount,200k-300k,250000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+appliance-furniture-amount,300k-400k,350000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+appliance-furniture-amount,400k-more,500000,JPY,Assumption,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+appliance-furniture-amount,unknown,159943.0306,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+appliance-furniture-amount,average-per-capita,79971.51531,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+leisure-sports-factor,5k-less,0.285556309,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+leisure-sports-factor,5k-10k,0.856668926,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+leisure-sports-factor,10k-20k,1.713337852,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+leisure-sports-factor,20k-50k,3.99778832,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+leisure-sports-factor,50k-more,8.566689258,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+leisure-sports-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+travel-factor,10k-less,0.17764228,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+travel-factor,20k-30k,0.888211399,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+travel-factor,30k-50k,1.421138239,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+travel-factor,50k-100k,2.664634197,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+travel-factor,100k-200k,5.329268395,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+travel-factor,200k-more,10.65853679,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
+travel-factor,unknown,1,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-02T00:36:43.120Z,2022-07-02T00:36:43.120Z
