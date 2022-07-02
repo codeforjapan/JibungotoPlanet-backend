@@ -1,8 +1,10 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
-
-export const createFootprint = /* GraphQL */ `
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteProfile = exports.updateProfile = exports.createProfile = exports.deleteOptionIntensityRate = exports.updateOptionIntensityRate = exports.createOptionIntensityRate = exports.deleteOption = exports.updateOption = exports.createOption = exports.deleteParameter = exports.updateParameter = exports.createParameter = exports.deleteFootprint = exports.updateFootprint = exports.createFootprint = void 0;
+exports.createFootprint = `
   mutation CreateFootprint(
     $input: CreateFootprintInput!
     $condition: ModelFootprintConditionInput
@@ -19,7 +21,7 @@ export const createFootprint = /* GraphQL */ `
     }
   }
 `;
-export const updateFootprint = /* GraphQL */ `
+exports.updateFootprint = `
   mutation UpdateFootprint(
     $input: UpdateFootprintInput!
     $condition: ModelFootprintConditionInput
@@ -36,7 +38,7 @@ export const updateFootprint = /* GraphQL */ `
     }
   }
 `;
-export const deleteFootprint = /* GraphQL */ `
+exports.deleteFootprint = `
   mutation DeleteFootprint(
     $input: DeleteFootprintInput!
     $condition: ModelFootprintConditionInput
@@ -53,7 +55,7 @@ export const deleteFootprint = /* GraphQL */ `
     }
   }
 `;
-export const createParameter = /* GraphQL */ `
+exports.createParameter = `
   mutation CreateParameter(
     $input: CreateParameterInput!
     $condition: ModelParameterConditionInput
@@ -69,7 +71,7 @@ export const createParameter = /* GraphQL */ `
     }
   }
 `;
-export const updateParameter = /* GraphQL */ `
+exports.updateParameter = `
   mutation UpdateParameter(
     $input: UpdateParameterInput!
     $condition: ModelParameterConditionInput
@@ -85,7 +87,7 @@ export const updateParameter = /* GraphQL */ `
     }
   }
 `;
-export const deleteParameter = /* GraphQL */ `
+exports.deleteParameter = `
   mutation DeleteParameter(
     $input: DeleteParameterInput!
     $condition: ModelParameterConditionInput
@@ -101,7 +103,7 @@ export const deleteParameter = /* GraphQL */ `
     }
   }
 `;
-export const createOption = /* GraphQL */ `
+exports.createOption = `
   mutation CreateOption(
     $input: CreateOptionInput!
     $condition: ModelOptionConditionInput
@@ -118,7 +120,7 @@ export const createOption = /* GraphQL */ `
     }
   }
 `;
-export const updateOption = /* GraphQL */ `
+exports.updateOption = `
   mutation UpdateOption(
     $input: UpdateOptionInput!
     $condition: ModelOptionConditionInput
@@ -135,7 +137,7 @@ export const updateOption = /* GraphQL */ `
     }
   }
 `;
-export const deleteOption = /* GraphQL */ `
+exports.deleteOption = `
   mutation DeleteOption(
     $input: DeleteOptionInput!
     $condition: ModelOptionConditionInput
@@ -152,7 +154,7 @@ export const deleteOption = /* GraphQL */ `
     }
   }
 `;
-export const createOptionIntensityRate = /* GraphQL */ `
+exports.createOptionIntensityRate = `
   mutation CreateOptionIntensityRate(
     $input: CreateOptionIntensityRateInput!
     $condition: ModelOptionIntensityRateConditionInput
@@ -166,7 +168,7 @@ export const createOptionIntensityRate = /* GraphQL */ `
     }
   }
 `;
-export const updateOptionIntensityRate = /* GraphQL */ `
+exports.updateOptionIntensityRate = `
   mutation UpdateOptionIntensityRate(
     $input: UpdateOptionIntensityRateInput!
     $condition: ModelOptionIntensityRateConditionInput
@@ -180,7 +182,7 @@ export const updateOptionIntensityRate = /* GraphQL */ `
     }
   }
 `;
-export const deleteOptionIntensityRate = /* GraphQL */ `
+exports.deleteOptionIntensityRate = `
   mutation DeleteOptionIntensityRate(
     $input: DeleteOptionIntensityRateInput!
     $condition: ModelOptionIntensityRateConditionInput
@@ -194,7 +196,7 @@ export const deleteOptionIntensityRate = /* GraphQL */ `
     }
   }
 `;
-export const createProfile = /* GraphQL */ `
+exports.createProfile = `
   mutation CreateProfile(
     $input: CreateProfileInput!
     $condition: ModelProfileConditionInput
@@ -300,7 +302,7 @@ export const createProfile = /* GraphQL */ `
     }
   }
 `;
-export const updateProfile = /* GraphQL */ `
+exports.updateProfile = `
   mutation UpdateProfile(
     $input: UpdateProfileInput!
     $condition: ModelProfileConditionInput
@@ -406,7 +408,7 @@ export const updateProfile = /* GraphQL */ `
     }
   }
 `;
-export const deleteProfile = /* GraphQL */ `
+exports.deleteProfile = `
   mutation DeleteProfile(
     $input: DeleteProfileInput!
     $condition: ModelProfileConditionInput
