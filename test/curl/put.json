@@ -1,16 +1,16 @@
 {
   "mobilityAnswer": {
     "hasPrivateCar": true,
-    "privateCarType": "gasoline",
-    "carCharging": "unknown",
-    "carPassengers": "1",
+    "carIntensityFactorKey": "gasoline_driving-factor",
+    "carChargingKey": "unknown",
+    "carPassengersKey": "1",
     "privateCarAnnualMileage": 5000,
     "trainWeeklyTravelingTime": 7,
     "busWeeklyTravelingTime": 7,
     "motorbikeWeeklyTravelingTime": 0,
     "otherCarWeeklyTravelingTime": 0,
     "weeklyDetailedMobilityUnknown": false,
-    "livingAreaSize": "unknown",
+    "mileageByAreaFirstKey": "unknown",
     "otherCarAnnualTravelingTime": 10,
     "trainAnnuallyTravelingTime": 100,
     "busAnnualTravelingTime": 100,
@@ -19,26 +19,26 @@
     "ferryAnnualTravelingTime": 0
   },
   "foodAnswer": {
-    "foodIntake": "very-much",
-    "foodDirectwaste": "seldom",
-    "foodLeftover": "seldom",
-    "dishBeef": "everyday",
-    "dishPork": "everyday",
-    "dishChicken": "everyday",
-    "dishSeafood": "everyday",
-    "dairyFood": "3-more-per-day",
-    "alcohol": "everyday",
-    "softdrinkSnack": "3000-less",
-    "eatout": "5000-less"
+    "foodIntakeFactorKey": "very-much",
+    "foodDirectWasteFactorKey": "seldom",
+    "foodLeftoverFactorKey": "seldom",
+    "dishBeefFactorKey": "everyday",
+    "dishPorkFactorKey": "everyday",
+    "dishChickenFactorKey": "everyday",
+    "dishSeafoodFactorKey": "everyday",
+    "dairyFoodFactorKey": "3-more-per-day",
+    "alcoholFactorKey": "everyday",
+    "softDrinkSnackFactorKey": "3k-less",
+    "eatOutFactorKey": "5k-less"
   },
   "otherAnswer": {
-    "dailyGoods": "5000-less",
-    "communication": "5000-less",
-    "applianceFurniture": "50000-less",
-    "service": "5000-less",
-    "hobbyGoods": "5000-less",
-    "clothesBeauty": "5000-less",
-    "leisureSports": "5000-less",
-    "travel": "10000-less"
+    "dailyGoodsAmountKey": "5k-less",
+    "communicationAmountKey": "5k-less",
+    "applianceFurnitureAmountKey": "50k-less",
+    "serviceFactorKey": "5k-less",
+    "hobbyGoodsFactorKey": "5k-less",
+    "clothesBeautyFactorKey": "5k-less",
+    "leisureSportsFactorKey": "5k-less",
+    "travelFactorKey": "10k-less"
   }
 }
