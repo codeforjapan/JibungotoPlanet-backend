@@ -95,7 +95,7 @@ module.exports.estimateOther = async (
         'furniture-daily-goods-repair-rental',
         'clothes-repair-rental',
         'bags-jewelries-repair-rental',
-        'electrics-appliances-repair-rental',
+        'electrical-appliances-repair-rental',
         'sports-culture-repair-rental',
         'sports-entertainment-repair-rental',
         'medical-care',
@@ -163,9 +163,9 @@ module.exports.estimateOther = async (
     if (data?.Item?.value) {
       const coefficient = data.Item.value
       for (let item of ans.items) {
-        const component = findAmount(baselines, item)
-        component.value *= coefficient
-        estimations.push(toEstimation(component))
+        const baseline = findAmount(baselines, item)
+        baseline.value *= coefficient
+        estimations.push(toEstimation(baseline))
       }
     }
   }

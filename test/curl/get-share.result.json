@@ -1,1458 +1,1154 @@
 {
-  "updatedAt": "2022-06-27T13:03:20.404Z",
-  "createdAt": "2022-06-26T04:11:07.855Z",
+  "updatedAt": "2022-07-02T07:19:18.898Z",
+  "createdAt": "2022-07-02T07:00:49.913Z",
   "baselines": [
     {
       "item": "airplane",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 60000,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "airplane",
+      "type": "amount",
+      "value": 60000
     },
     {
       "item": "airplane",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.124064635,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "airplane",
+      "type": "intensity",
+      "value": 0.124064635
     },
     {
       "item": "bicycle-driving",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 264.0133354,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "bicycle",
+      "type": "amount",
+      "value": 264.0133354
     },
     {
       "item": "bicycle-driving",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.013134541,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "bicycle",
+      "type": "intensity",
+      "value": 0.013134541
     },
     {
       "item": "bicycle-maintenance",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.406667749,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "bicycle",
+      "type": "amount",
+      "value": 0.406667749
     },
     {
       "item": "bicycle-maintenance",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.324385029,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "bicycle",
+      "type": "intensity",
+      "value": 2.324385029
     },
     {
       "item": "bus",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 8430,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "bus",
+      "type": "amount",
+      "value": 8430
     },
     {
       "item": "bus",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.082993045,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "bus",
+      "type": "intensity",
+      "value": 0.082993045
     },
     {
       "item": "car-sharing-driving",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 334.741136594172,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "carsharing-taxi",
+      "type": "amount",
+      "value": 334.741136594172
     },
     {
       "item": "car-sharing-driving",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.168721197,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "carsharing-taxi",
+      "type": "intensity",
+      "value": 0.168721197
     },
     {
       "item": "car-sharing-rental",
-      "unit": "time",
+      "unit": "use",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility",
+      "subdomain": "carsharing-taxi",
       "type": "amount",
-      "value": 0.8881737431155255,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "value": 0.8881737431155255
     },
     {
       "item": "car-sharing-rental",
-      "unit": "kgCO2e/time",
-      "type": "intensity",
-      "value": 8.698477742,
+      "unit": "kgCO2e/use",
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "carsharing-taxi",
+      "type": "intensity",
+      "value": 8.698477742
     },
     {
       "item": "ferry",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 0,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "ferry",
+      "type": "amount",
+      "value": 0
     },
     {
       "item": "ferry",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.424691332,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "ferry",
+      "type": "intensity",
+      "value": 0.424691332
     },
     {
       "item": "motorbike-driving",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 0,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "motorbike",
+      "type": "amount",
+      "value": 0
     },
     {
       "item": "motorbike-driving",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.057043135,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "motorbike",
+      "type": "intensity",
+      "value": 0.057043135
     },
     {
       "item": "motorbike-maintenance",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "motorbike",
+      "type": "amount",
+      "value": 0
     },
     {
       "item": "motorbike-maintenance",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.965801837,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "motorbike",
+      "type": "intensity",
+      "value": 1.965801837
     },
     {
       "item": "motorbike-purchase",
-      "unit": "unit",
+      "unit": "vehicle",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility",
+      "subdomain": "motorbike",
       "type": "amount",
-      "value": 0,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "value": 0
     },
     {
       "item": "motorbike-purchase",
-      "unit": "kgCO2e/unit",
-      "type": "intensity",
-      "value": 979.6575783,
+      "unit": "kgCO2e/vehicle",
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "motorbike",
+      "type": "intensity",
+      "value": 979.6575783
     },
     {
       "item": "private-car-driving",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 5000,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "privatecar",
+      "type": "amount",
+      "value": 5000
     },
     {
       "item": "private-car-driving",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 1.4946960380199998,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "privatecar",
+      "type": "intensity",
+      "value": 1.140989342
     },
     {
       "item": "private-car-maintenance",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 64.17671713804691,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "privatecar",
+      "type": "amount",
+      "value": 64.17671713804691
     },
     {
       "item": "private-car-maintenance",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.648088312,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "privatecar",
+      "type": "intensity",
+      "value": 1.648088312
     },
     {
       "item": "private-car-purchase",
-      "unit": "unit",
+      "unit": "vehicle",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility",
+      "subdomain": "privatecar",
       "type": "amount",
-      "value": 0.05010685124909581,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "value": 0.05010685124909581
     },
     {
       "item": "private-car-purchase",
-      "unit": "kgCO2e/unit",
-      "type": "intensity",
-      "value": 5112.506479,
+      "unit": "kgCO2e/vehicle",
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "privatecar",
+      "type": "intensity",
+      "value": 5112.506479
     },
     {
       "item": "taxi",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 265.25886340582804,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "carsharing-taxi",
+      "type": "amount",
+      "value": 265.25886340582804
     },
     {
       "item": "taxi",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.429510033,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "carsharing-taxi",
+      "type": "intensity",
+      "value": 0.429510033
     },
     {
       "item": "train",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 20580,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "train",
+      "type": "amount",
+      "value": 30580
     },
     {
       "item": "train",
       "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.031326557,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "train",
+      "type": "intensity",
+      "value": 0.031326557
     },
     {
       "item": "walking",
       "unit": "km-passenger",
-      "type": "amount",
-      "value": 168.9344406,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
+      "domain": "mobility",
+      "subdomain": "walking",
+      "type": "amount",
+      "value": 168.9344406
     },
     {
       "item": "walking",
       "unit": "kgCO2e/km-passenger",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility",
+      "subdomain": "walking",
       "type": "intensity",
-      "value": 0,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
-    },
-    {
-      "item": "alcohol",
-      "unit": "kg",
-      "type": "amount",
-      "value": 97.08425141104044,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "alcohol",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 0.944414337,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "barcafe",
-      "unit": "000JPY",
-      "type": "amount",
-      "value": 34.44703713,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "barcafe",
-      "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.991595476,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "beans",
-      "unit": "kg",
-      "type": "amount",
-      "value": 21.04303905,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "beans",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 1.058728707,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "beef",
-      "unit": "kg",
-      "type": "amount",
-      "value": 7.646621896802867,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "beef",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 18.34219895,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "bread-flour",
-      "unit": "kg",
-      "type": "amount",
-      "value": 25.42246341,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "bread-flour",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 2.655219688,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "chicken",
-      "unit": "kg",
-      "type": "amount",
-      "value": 14.051266901560416,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "chicken",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 5.250241141,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "coffee-tea",
-      "unit": "kg",
-      "type": "amount",
-      "value": 136.4468369,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "coffee-tea",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 0.465905509,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "colddrink",
-      "unit": "kg",
-      "type": "amount",
-      "value": 129.9537532,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "colddrink",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 0.482549688,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "eggs",
-      "unit": "kg",
-      "type": "amount",
-      "value": 18.473448959387852,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "eggs",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 1.450456835,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "fish",
-      "unit": "kg",
-      "type": "amount",
-      "value": 48.230953656301025,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "fish",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 5.528206567,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "fruits",
-      "unit": "kg",
-      "type": "amount",
-      "value": 35.41537591,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "fruits",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 1.305111781,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "milk",
-      "unit": "kg",
-      "type": "amount",
-      "value": 50.65245626217884,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "milk",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 0.876594709,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "noodle",
-      "unit": "kg",
-      "type": "amount",
-      "value": 17.07580051,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "noodle",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 2.03794552,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "oil",
-      "unit": "kg",
-      "type": "amount",
-      "value": 4.234655533,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "oil",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 2.404909632,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "otherdairy",
-      "unit": "kg",
-      "type": "amount",
-      "value": 24.819971830721766,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "otherdairy",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 2.204505819,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "othermeat",
-      "unit": "kg",
-      "type": "amount",
-      "value": 1.093763838,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "othermeat",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 7.689625825,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "pork",
-      "unit": "kg",
-      "type": "amount",
-      "value": 16.914869684194855,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "pork",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 8.051661719,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "potatoes",
-      "unit": "kg",
-      "type": "amount",
-      "value": 10.63988512,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "potatoes",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 1.567735484,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "processedfish",
-      "unit": "kg",
-      "type": "amount",
-      "value": 18.00693265938768,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "processedfish",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 4.080158747,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "processedmeat",
-      "unit": "kg",
-      "type": "amount",
-      "value": 4.140424111,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "processedmeat",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 5.336739155,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "processedvegetables",
-      "unit": "kg",
-      "type": "amount",
-      "value": 9.352578159,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "processedvegetables",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 3.390013568,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "readymeal",
-      "unit": "kg",
-      "type": "amount",
-      "value": 40.11077093,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "readymeal",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 3.940265729,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "restaurant",
-      "unit": "000JPY",
-      "type": "amount",
-      "value": 122.1836001,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "restaurant",
-      "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.972239521,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "rice",
-      "unit": "kg",
-      "type": "amount",
-      "value": 36.32022954,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "rice",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 2.852329875,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "seasoning",
-      "unit": "kg",
-      "type": "amount",
-      "value": 24.03977302,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "seasoning",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 1.897020567,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "sweets-snack",
-      "unit": "kg",
-      "type": "amount",
-      "value": 20.70887802,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "sweets-snack",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 4.939585725,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "vegetables",
-      "unit": "kg",
-      "type": "amount",
-      "value": 84.35864392,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
-    },
-    {
-      "item": "vegetables",
-      "unit": "kgCO2e/kg",
-      "type": "intensity",
-      "value": 1.281591651,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "food"
+      "value": 0
     },
     {
       "item": "bags-jewelries-goods",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 4.331029777120785,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "clothes",
+      "type": "amount",
+      "value": 4.2406257401545515
     },
     {
       "item": "bags-jewelries-goods",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.558629508,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "clothes",
+      "type": "intensity",
+      "value": 2.558629508
     },
     {
       "item": "bags-jewelries-repair-rental",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.11449911360441775,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "amount",
+      "value": 0.11449911360441775
     },
     {
       "item": "bags-jewelries-repair-rental",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.106075818,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "intensity",
+      "value": 1.106075818
     },
     {
       "item": "bath-spa",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 3.245171811796437,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "amount",
+      "value": 3.245171811796437
     },
     {
       "item": "bath-spa",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 5.754233873,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "intensity",
+      "value": 5.754233873
     },
     {
       "item": "books-magazines",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 8.516147294319948,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "amount",
+      "value": 8.516147294319948
     },
     {
       "item": "books-magazines",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.52738082,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "intensity",
+      "value": 2.52738082
     },
     {
       "item": "broadcasting",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 52568.94369,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "communication-delivery",
+      "type": "amount",
+      "value": 52568.94369
     },
     {
       "item": "broadcasting",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.141584281,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "communication-delivery",
+      "type": "intensity",
+      "value": 1.141584281
     },
     {
       "item": "caring",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 1.1413648888828338,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "welfare-education",
+      "type": "amount",
+      "value": 1.1413648888828338
     },
     {
       "item": "caring",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.283734545,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "welfare-education",
+      "type": "intensity",
+      "value": 1.283734545
     },
     {
       "item": "ceremony",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 8.575385198740754,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "ceremony",
+      "type": "amount",
+      "value": 8.575385198740754
     },
     {
       "item": "ceremony",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.31786394,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "ceremony",
+      "type": "intensity",
+      "value": 2.31786394
     },
     {
       "item": "clothes-goods",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 25.168017144506752,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "clothes",
+      "type": "amount",
+      "value": 24.642670871359822
     },
     {
       "item": "clothes-goods",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.670916765,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "clothes",
+      "type": "intensity",
+      "value": 2.670916765
     },
     {
       "item": "clothes-repair-rental",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.35927418572148706,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "amount",
+      "value": 0.35927418572148706
     },
     {
       "item": "clothes-repair-rental",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.021369922,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "intensity",
+      "value": 1.021369922
     },
     {
       "item": "communication",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 391428.18419999996,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "communication-delivery",
+      "type": "amount",
+      "value": 391428.18419999996
     },
     {
       "item": "communication",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.02634832,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "communication-delivery",
+      "type": "intensity",
+      "value": 1.02634832
     },
     {
-      "item": "cookingappliances",
+      "item": "cooking-appliances",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 270217.9305,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "amount",
+      "value": 270217.9305
     },
     {
-      "item": "cookingappliances",
+      "item": "cooking-appliances",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.852827088,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "intensity",
+      "value": 2.852827088
     },
     {
       "item": "cosmetics",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 3.7163721374224155,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "amount",
+      "value": 3.6387981974170507
     },
     {
       "item": "cosmetics",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.276312315,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "intensity",
+      "value": 2.276312315
     },
     {
       "item": "covering",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 222081.41285,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "amount",
+      "value": 222081.41285
     },
     {
       "item": "covering",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.512668069,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "intensity",
+      "value": 2.512668069
     },
     {
       "item": "culture-goods",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 5.2123971318506355,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "amount",
+      "value": 5.2123971318506355
     },
     {
       "item": "culture-goods",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.39985402,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "intensity",
+      "value": 2.39985402
     },
     {
       "item": "culture-leisure",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 7.476429265566569,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "leisure-sports",
+      "type": "amount",
+      "value": 7.476429265566569
     },
     {
       "item": "culture-leisure",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.189658709,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "leisure-sports",
+      "type": "intensity",
+      "value": 2.189658709
     },
     {
-      "item": "electrics-appliances-repair-rental",
+      "item": "electrical-appliances-repair-rental",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.22944276512297823,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "amount",
+      "value": 0.22944276512297823
     },
     {
-      "item": "electrics-appliances-repair-rental",
+      "item": "electrical-appliances-repair-rental",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.953281338,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "intensity",
+      "value": 1.953281338
     },
     {
       "item": "electronics",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 650980.08975,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "amount",
+      "value": 650980.08975
     },
     {
       "item": "electronics",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.274573158,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "intensity",
+      "value": 2.274573158
     },
     {
       "item": "entertainment-goods",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.7064336492454941,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "amount",
+      "value": 0.7064336492454941
     },
     {
       "item": "entertainment-goods",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.570433632,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "intensity",
+      "value": 1.570433632
     },
     {
       "item": "entertainment-leisure",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 6.598602991898161,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "leisure-sports",
+      "type": "amount",
+      "value": 6.598602991898161
     },
     {
       "item": "entertainment-leisure",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.973982363,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "leisure-sports",
+      "type": "intensity",
+      "value": 1.973982363
     },
     {
       "item": "finance-insurance",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 29.203414980109955,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "amount",
+      "value": 29.203414980109955
     },
     {
       "item": "finance-insurance",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 0.707292151,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "intensity",
+      "value": 0.707292151
     },
     {
-      "item": "formaleducation",
+      "item": "formal-education",
       "unit": "000JPY",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "other",
+      "subdomain": "welfare-education",
       "type": "amount",
-      "value": 8.602369833182541,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "value": 8.602369833182541
     },
     {
-      "item": "formaleducation",
+      "item": "formal-education",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.074215614,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "welfare-education",
+      "type": "intensity",
+      "value": 1.074215614
     },
     {
-      "item": "furniture-dailygoods-repair-rental",
+      "item": "furniture-daily-goods-repair-rental",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.7390855845893851,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "amount",
+      "value": 0.7390855845893851
     },
     {
-      "item": "furniture-dailygoods-repair-rental",
+      "item": "furniture-daily-goods-repair-rental",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.799958663,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "intensity",
+      "value": 1.799958663
     },
     {
       "item": "furniture",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 162625.10125,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "amount",
+      "value": 162625.10125
     },
     {
       "item": "furniture",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.207048567,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "intensity",
+      "value": 2.207048567
     },
     {
       "item": "gardening-flower",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 5.720752416498694,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "amount",
+      "value": 5.720752416498694
     },
     {
       "item": "gardening-flower",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 4.85232258,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "intensity",
+      "value": 4.85232258
     },
     {
       "item": "haircare",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 2.292340079161333,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "amount",
+      "value": 2.292340079161333
     },
     {
       "item": "haircare",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.712161189,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "intensity",
+      "value": 1.712161189
     },
     {
-      "item": "heatingcoolingappliances",
+      "item": "heating-cooling-appliances",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 309738.00725,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "amount",
+      "value": 309738.00725
     },
     {
-      "item": "heatingcoolingappliances",
+      "item": "heating-cooling-appliances",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 7.449174796,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "intensity",
+      "value": 7.449174796
     },
     {
       "item": "hotel",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 4.206479358475427,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "travel-hotel",
+      "type": "amount",
+      "value": 4.206479358475427
     },
     {
       "item": "hotel",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 3.770333888,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "travel-hotel",
+      "type": "intensity",
+      "value": 3.770333888
     },
     {
       "item": "housework",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.19458920387735204,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "amount",
+      "value": 0.19458920387735204
     },
     {
       "item": "housework",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.215004276,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "intensity",
+      "value": 1.215004276
     },
     {
-      "item": "informaleducation",
+      "item": "informal-education",
       "unit": "000JPY",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "other",
+      "subdomain": "welfare-education",
       "type": "amount",
-      "value": 3.9611761240006116,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "value": 3.9611761240006116
     },
     {
-      "item": "informaleducation",
+      "item": "informal-education",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.21314144,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "welfare-education",
+      "type": "intensity",
+      "value": 1.21314144
     },
     {
-      "item": "kitchengoods",
+      "item": "kitchen-goods",
       "unit": "000JPY",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
       "type": "amount",
-      "value": 2.284279074859413,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "value": 2.2365980242659287
     },
     {
-      "item": "kitchengoods",
+      "item": "kitchen-goods",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 3.23125458,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "intensity",
+      "value": 3.23125458
     },
     {
-      "item": "medicalcare",
+      "item": "medical-care",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 20.798688802167522,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "welfare-education",
+      "type": "amount",
+      "value": 20.798688802167522
     },
     {
-      "item": "medicalcare",
+      "item": "medical-care",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.169394129,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "welfare-education",
+      "type": "intensity",
+      "value": 1.169394129
     },
     {
       "item": "medicine",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 5.378707691586077,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "amount",
+      "value": 5.266434880267757
     },
     {
       "item": "medicine",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.132542476,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "intensity",
+      "value": 2.132542476
     },
     {
       "item": "nursing",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 1.1963971850633226,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "welfare-education",
+      "type": "amount",
+      "value": 1.1963971850633226
     },
     {
       "item": "nursing",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.209159482,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "welfare-education",
+      "type": "intensity",
+      "value": 1.209159482
     },
     {
-      "item": "otherappliances",
+      "item": "other-appliances",
       "unit": "000JPY",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "other",
+      "subdomain": "appliance-furniture",
       "type": "amount",
-      "value": 291461.23475,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "value": 291461.23475
     },
     {
-      "item": "otherappliances",
+      "item": "other-appliances",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.750735655,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "appliance-furniture",
+      "type": "intensity",
+      "value": 2.750735655
     },
     {
-      "item": "otherservices",
+      "item": "other-services",
       "unit": "000JPY",
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
       "type": "amount",
-      "value": 5.3584479378027945,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "value": 5.3584479378027945
     },
     {
-      "item": "otherservices",
+      "item": "other-services",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 0.949580643,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "intensity",
+      "value": 0.949580643
     },
     {
-      "item": "paper-stationaries",
+      "item": "paper-stationery",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.6932374330491348,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "amount",
+      "value": 0.67876709556616
     },
     {
-      "item": "paper-stationaries",
+      "item": "paper-stationery",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 3.056810847,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "intensity",
+      "value": 3.056810847
     },
     {
       "item": "pet",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 5.620057102706165,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "amount",
+      "value": 5.620057102706165
     },
     {
       "item": "pet",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.103916343,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "intensity",
+      "value": 2.103916343
     },
     {
       "item": "postal-delivery",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 17962.01727,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "communication-delivery",
+      "type": "amount",
+      "value": 17962.01727
     },
     {
       "item": "postal-delivery",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 3.81741193,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "communication-delivery",
+      "type": "intensity",
+      "value": 3.81741193
     },
     {
       "item": "sanitation",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 8.430124765091364,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "amount",
+      "value": 8.254157997344981
     },
     {
       "item": "sanitation",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 3.129136419,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "daily-goods-medicine",
+      "type": "intensity",
+      "value": 3.129136419
     },
     {
       "item": "sports-culture-repair-rental",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.026706121137127576,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "amount",
+      "value": 0.026706121137127576
     },
     {
       "item": "sports-culture-repair-rental",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.953281338,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "intensity",
+      "value": 1.953281338
     },
     {
       "item": "sports-entertainment-repair-rental",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.24903840456475043,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "amount",
+      "value": 0.24903840456475043
     },
     {
       "item": "sports-entertainment-repair-rental",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 0.82229875,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "intensity",
+      "value": 0.82229875
     },
     {
       "item": "sports-goods",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 4.41204459278814,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "amount",
+      "value": 4.41204459278814
     },
     {
       "item": "sports-goods",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.497630942,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "intensity",
+      "value": 2.497630942
     },
     {
       "item": "sports-leisure",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 12.396930558535834,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "leisure-sports",
+      "type": "amount",
+      "value": 12.396930558535834
     },
     {
       "item": "sports-leisure",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 1.703889647,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "leisure-sports",
+      "type": "intensity",
+      "value": 1.703889647
     },
     {
       "item": "tobacco",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 5.326343705948848,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "amount",
+      "value": 5.326343705948848
     },
     {
       "item": "tobacco",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 0.996872147,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "hobby-books",
+      "type": "intensity",
+      "value": 0.996872147
     },
     {
       "item": "travel",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.7935206469513141,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "travel-hotel",
+      "type": "amount",
+      "value": 0.7935206469513141
     },
     {
       "item": "travel",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 0.653433284,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "travel-hotel",
+      "type": "intensity",
+      "value": 0.653433284
     },
     {
       "item": "washing",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.7623783086148708,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "amount",
+      "value": 0.7623783086148708
     },
     {
       "item": "washing",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 2.437149813,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "personalcare-other-services",
+      "type": "intensity",
+      "value": 2.437149813
     },
     {
       "item": "waste",
       "unit": "000JPY",
-      "type": "amount",
-      "value": 0.8204183470769084,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "amount",
+      "value": 0.8204183470769084
     },
     {
       "item": "waste",
       "unit": "kgCO2e/000JPY",
-      "type": "intensity",
-      "value": 8.586030351,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "other"
+      "domain": "other",
+      "subdomain": "waste-repair-rental",
+      "type": "intensity",
+      "value": 8.586030351
     }
   ],
-  "shareId": "gSqzog_QH",
+  "shareId": "JIYXUQiCR",
   "estimations": [
     {
+      "subdomain": "privatecar",
       "item": "private-car-driving",
       "unit": "kgCO2e/km-passenger",
       "type": "intensity",
-      "value": 1.4946960380199998,
+      "value": 1.140989342,
       "domain": "mobility"
     },
     {
+      "subdomain": "privatecar",
       "item": "private-car-driving",
       "unit": "km-passenger",
       "type": "amount",
@@ -1460,13 +1156,15 @@
       "domain": "mobility"
     },
     {
+      "subdomain": "privatecar",
       "item": "private-car-purchase",
-      "unit": "unit",
+      "unit": "vehicle",
       "type": "amount",
       "value": 0.05010685124909581,
       "domain": "mobility"
     },
     {
+      "subdomain": "privatecar",
       "item": "private-car-maintenance",
       "unit": "000JPY",
       "type": "amount",
@@ -1474,6 +1172,7 @@
       "domain": "mobility"
     },
     {
+      "subdomain": "airplane",
       "item": "airplane",
       "unit": "km-passenger",
       "type": "amount",
@@ -1481,13 +1180,15 @@
       "domain": "mobility"
     },
     {
+      "subdomain": "train",
       "item": "train",
       "unit": "km-passenger",
       "type": "amount",
-      "value": 20580,
+      "value": 30580,
       "domain": "mobility"
     },
     {
+      "subdomain": "bus",
       "item": "bus",
       "unit": "km-passenger",
       "type": "amount",
@@ -1495,6 +1196,7 @@
       "domain": "mobility"
     },
     {
+      "subdomain": "ferry",
       "item": "ferry",
       "unit": "km-passenger",
       "type": "amount",
@@ -1502,6 +1204,7 @@
       "domain": "mobility"
     },
     {
+      "subdomain": "carsharing-taxi",
       "item": "taxi",
       "unit": "km-passenger",
       "type": "amount",
@@ -1509,6 +1212,7 @@
       "domain": "mobility"
     },
     {
+      "subdomain": "carsharing-taxi",
       "item": "car-sharing-driving",
       "unit": "km-passenger",
       "type": "amount",
@@ -1516,6 +1220,7 @@
       "domain": "mobility"
     },
     {
+      "subdomain": "motorbike",
       "item": "motorbike-driving",
       "unit": "km-passenger",
       "type": "amount",
@@ -1523,20 +1228,23 @@
       "domain": "mobility"
     },
     {
+      "subdomain": "motorbike",
       "item": "motorbike-purchase",
-      "unit": "unit",
+      "unit": "vehicle",
       "type": "amount",
       "value": 0,
       "domain": "mobility"
     },
     {
+      "subdomain": "carsharing-taxi",
       "item": "car-sharing-rental",
-      "unit": "time",
+      "unit": "use",
       "type": "amount",
       "value": 0.8881737431155255,
       "domain": "mobility"
     },
     {
+      "subdomain": "motorbike",
       "item": "motorbike-maintenance",
       "unit": "000JPY",
       "type": "amount",
@@ -1544,104 +1252,47 @@
       "domain": "mobility"
     },
     {
-      "item": "beef",
-      "unit": "kg",
-      "type": "amount",
-      "value": 7.646621896802867,
-      "domain": "food"
-    },
-    {
-      "item": "pork",
-      "unit": "kg",
-      "type": "amount",
-      "value": 16.914869684194855,
-      "domain": "food"
-    },
-    {
-      "item": "chicken",
-      "unit": "kg",
-      "type": "amount",
-      "value": 14.051266901560416,
-      "domain": "food"
-    },
-    {
-      "item": "fish",
-      "unit": "kg",
-      "type": "amount",
-      "value": 48.230953656301025,
-      "domain": "food"
-    },
-    {
-      "item": "processedfish",
-      "unit": "kg",
-      "type": "amount",
-      "value": 18.00693265938768,
-      "domain": "food"
-    },
-    {
-      "item": "milk",
-      "unit": "kg",
-      "type": "amount",
-      "value": 50.65245626217884,
-      "domain": "food"
-    },
-    {
-      "item": "otherdairy",
-      "unit": "kg",
-      "type": "amount",
-      "value": 24.819971830721766,
-      "domain": "food"
-    },
-    {
-      "item": "eggs",
-      "unit": "kg",
-      "type": "amount",
-      "value": 18.473448959387852,
-      "domain": "food"
-    },
-    {
-      "item": "alcohol",
-      "unit": "kg",
-      "type": "amount",
-      "value": 97.08425141104044,
-      "domain": "food"
-    },
-    {
+      "subdomain": "daily-goods-medicine",
       "item": "cosmetics",
       "unit": "000JPY",
       "type": "amount",
-      "value": 3.7163721374224155,
+      "value": 3.6387981974170507,
       "domain": "other"
     },
     {
+      "subdomain": "daily-goods-medicine",
       "item": "sanitation",
       "unit": "000JPY",
       "type": "amount",
-      "value": 8.430124765091364,
+      "value": 8.254157997344981,
       "domain": "other"
     },
     {
+      "subdomain": "daily-goods-medicine",
       "item": "medicine",
       "unit": "000JPY",
       "type": "amount",
-      "value": 5.378707691586077,
+      "value": 5.266434880267757,
       "domain": "other"
     },
     {
-      "item": "kitchengoods",
+      "subdomain": "daily-goods-medicine",
+      "item": "kitchen-goods",
       "unit": "000JPY",
       "type": "amount",
-      "value": 2.284279074859413,
+      "value": 2.2365980242659287,
       "domain": "other"
     },
     {
-      "item": "paper-stationaries",
+      "subdomain": "daily-goods-medicine",
+      "item": "paper-stationery",
       "unit": "000JPY",
       "type": "amount",
-      "value": 0.6932374330491348,
+      "value": 0.67876709556616,
       "domain": "other"
     },
     {
+      "subdomain": "communication-delivery",
       "item": "postal-delivery",
       "unit": "000JPY",
       "type": "amount",
@@ -1649,6 +1300,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "communication-delivery",
       "item": "communication",
       "unit": "000JPY",
       "type": "amount",
@@ -1656,6 +1308,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "communication-delivery",
       "item": "broadcasting",
       "unit": "000JPY",
       "type": "amount",
@@ -1663,27 +1316,31 @@
       "domain": "other"
     },
     {
-      "item": "cookingappliances",
+      "subdomain": "appliance-furniture",
+      "item": "cooking-appliances",
       "unit": "000JPY",
       "type": "amount",
       "value": 270217.9305,
       "domain": "other"
     },
     {
-      "item": "heatingcoolingappliances",
+      "subdomain": "appliance-furniture",
+      "item": "heating-cooling-appliances",
       "unit": "000JPY",
       "type": "amount",
       "value": 309738.00725,
       "domain": "other"
     },
     {
-      "item": "otherappliances",
+      "subdomain": "appliance-furniture",
+      "item": "other-appliances",
       "unit": "000JPY",
       "type": "amount",
       "value": 291461.23475,
       "domain": "other"
     },
     {
+      "subdomain": "appliance-furniture",
       "item": "electronics",
       "unit": "000JPY",
       "type": "amount",
@@ -1691,6 +1348,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "appliance-furniture",
       "item": "furniture",
       "unit": "000JPY",
       "type": "amount",
@@ -1698,6 +1356,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "appliance-furniture",
       "item": "covering",
       "unit": "000JPY",
       "type": "amount",
@@ -1705,6 +1364,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "personalcare-other-services",
       "item": "housework",
       "unit": "000JPY",
       "type": "amount",
@@ -1712,6 +1372,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "personalcare-other-services",
       "item": "washing",
       "unit": "000JPY",
       "type": "amount",
@@ -1719,6 +1380,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "personalcare-other-services",
       "item": "haircare",
       "unit": "000JPY",
       "type": "amount",
@@ -1726,6 +1388,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "personalcare-other-services",
       "item": "bath-spa",
       "unit": "000JPY",
       "type": "amount",
@@ -1733,6 +1396,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "personalcare-other-services",
       "item": "finance-insurance",
       "unit": "000JPY",
       "type": "amount",
@@ -1740,13 +1404,15 @@
       "domain": "other"
     },
     {
-      "item": "otherservices",
+      "subdomain": "personalcare-other-services",
+      "item": "other-services",
       "unit": "000JPY",
       "type": "amount",
       "value": 5.3584479378027945,
       "domain": "other"
     },
     {
+      "subdomain": "ceremony",
       "item": "ceremony",
       "unit": "000JPY",
       "type": "amount",
@@ -1754,6 +1420,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "waste-repair-rental",
       "item": "waste",
       "unit": "000JPY",
       "type": "amount",
@@ -1761,13 +1428,15 @@
       "domain": "other"
     },
     {
-      "item": "furniture-dailygoods-repair-rental",
+      "subdomain": "waste-repair-rental",
+      "item": "furniture-daily-goods-repair-rental",
       "unit": "000JPY",
       "type": "amount",
       "value": 0.7390855845893851,
       "domain": "other"
     },
     {
+      "subdomain": "waste-repair-rental",
       "item": "clothes-repair-rental",
       "unit": "000JPY",
       "type": "amount",
@@ -1775,6 +1444,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "waste-repair-rental",
       "item": "bags-jewelries-repair-rental",
       "unit": "000JPY",
       "type": "amount",
@@ -1782,13 +1452,15 @@
       "domain": "other"
     },
     {
-      "item": "electrics-appliances-repair-rental",
+      "subdomain": "waste-repair-rental",
+      "item": "electrical-appliances-repair-rental",
       "unit": "000JPY",
       "type": "amount",
       "value": 0.22944276512297823,
       "domain": "other"
     },
     {
+      "subdomain": "waste-repair-rental",
       "item": "sports-culture-repair-rental",
       "unit": "000JPY",
       "type": "amount",
@@ -1796,6 +1468,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "waste-repair-rental",
       "item": "sports-entertainment-repair-rental",
       "unit": "000JPY",
       "type": "amount",
@@ -1803,13 +1476,15 @@
       "domain": "other"
     },
     {
-      "item": "medicalcare",
+      "subdomain": "welfare-education",
+      "item": "medical-care",
       "unit": "000JPY",
       "type": "amount",
       "value": 20.798688802167522,
       "domain": "other"
     },
     {
+      "subdomain": "welfare-education",
       "item": "nursing",
       "unit": "000JPY",
       "type": "amount",
@@ -1817,6 +1492,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "welfare-education",
       "item": "caring",
       "unit": "000JPY",
       "type": "amount",
@@ -1824,20 +1500,23 @@
       "domain": "other"
     },
     {
-      "item": "formaleducation",
+      "subdomain": "welfare-education",
+      "item": "formal-education",
       "unit": "000JPY",
       "type": "amount",
       "value": 8.602369833182541,
       "domain": "other"
     },
     {
-      "item": "informaleducation",
+      "subdomain": "welfare-education",
+      "item": "informal-education",
       "unit": "000JPY",
       "type": "amount",
       "value": 3.9611761240006116,
       "domain": "other"
     },
     {
+      "subdomain": "hobby-books",
       "item": "culture-goods",
       "unit": "000JPY",
       "type": "amount",
@@ -1845,6 +1524,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "hobby-books",
       "item": "entertainment-goods",
       "unit": "000JPY",
       "type": "amount",
@@ -1852,6 +1532,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "hobby-books",
       "item": "sports-goods",
       "unit": "000JPY",
       "type": "amount",
@@ -1859,6 +1540,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "hobby-books",
       "item": "gardening-flower",
       "unit": "000JPY",
       "type": "amount",
@@ -1866,6 +1548,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "hobby-books",
       "item": "pet",
       "unit": "000JPY",
       "type": "amount",
@@ -1873,6 +1556,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "hobby-books",
       "item": "tobacco",
       "unit": "000JPY",
       "type": "amount",
@@ -1880,6 +1564,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "hobby-books",
       "item": "books-magazines",
       "unit": "000JPY",
       "type": "amount",
@@ -1887,20 +1572,23 @@
       "domain": "other"
     },
     {
+      "subdomain": "clothes",
       "item": "clothes-goods",
       "unit": "000JPY",
       "type": "amount",
-      "value": 25.168017144506752,
+      "value": 24.642670871359822,
       "domain": "other"
     },
     {
+      "subdomain": "clothes",
       "item": "bags-jewelries-goods",
       "unit": "000JPY",
       "type": "amount",
-      "value": 4.331029777120785,
+      "value": 4.2406257401545515,
       "domain": "other"
     },
     {
+      "subdomain": "leisure-sports",
       "item": "culture-leisure",
       "unit": "000JPY",
       "type": "amount",
@@ -1908,6 +1596,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "leisure-sports",
       "item": "entertainment-leisure",
       "unit": "000JPY",
       "type": "amount",
@@ -1915,6 +1604,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "leisure-sports",
       "item": "sports-leisure",
       "unit": "000JPY",
       "type": "amount",
@@ -1922,6 +1612,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "travel-hotel",
       "item": "hotel",
       "unit": "000JPY",
       "type": "amount",
@@ -1929,6 +1620,7 @@
       "domain": "other"
     },
     {
+      "subdomain": "travel-hotel",
       "item": "travel",
       "unit": "000JPY",
       "type": "amount",
