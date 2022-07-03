@@ -70,9 +70,9 @@ const estimateMobility = async (
       console.log('private-car-driving-intensity = ' + intensity.value)
       console.log(
         'carPassengersKey = ' +
-        carPassengersKey +
-        ', private-car-factor = ' +
-        ratio
+          carPassengersKey +
+          ', private-car-factor = ' +
+          ratio
       )
 
       //
@@ -82,7 +82,7 @@ const estimateMobility = async (
 
       console.log(
         'private-car-driving-intensity after car passenger adjustment  = ' +
-        intensity.value
+          intensity.value
       )
 
       estimations.push(toEstimation(intensity))
