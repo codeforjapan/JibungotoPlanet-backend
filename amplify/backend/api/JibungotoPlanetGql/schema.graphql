@@ -139,8 +139,8 @@ type FoodAnswer {
   foodIntakeFactorKey: String # very-little|somewhat-little|moderate|somewhat-much|very-much
   # 食材を捨てたり食べ残し（食品ロス）が生じる頻度はどのくらいですか？
   foodDirectWasteFactorKey: String # seldom|1-per-week|2-3-per-week|4-7-per-week|8-more-per-week|unknown
-  # 普段の食生活を教えてください
   foodLeftoverFactorKey: String # seldom|1-per-week|2-3-per-week|4-7-per-week|8-more-per-week|unknown
+  # 普段の食生活を教えてください
   dishBeefFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
   dishPorkFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
   dishChickenFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
@@ -200,7 +200,7 @@ type HousingAnswer {
   keroseneMonthlyConsumption: Float # 昨シーズンの灯油の使用量 リットル/月
   keroseneMonthCount: Int # ヶ月/年
   # お住まいの地域（地方）はどちらですか？
-  housingAmountByRegionKey: String # northeast|middle|southwest|unknown
+  housingAmountByRegionFirstKey: String # northeast|middle|southwest|unknown
 }
 
 # カーボンフットプリントの計算結果（念の為、AppSync経由でのアクセス不可に設定）

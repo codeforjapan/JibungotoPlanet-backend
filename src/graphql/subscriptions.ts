@@ -196,7 +196,7 @@ export const onCreateProfile = /* GraphQL */ `
         useKerosene
         keroseneMonthlyConsumption
         keroseneMonthCount
-        housingAmountByRegionKey
+        housingAmountByRegionFirstKey
       }
       foodAnswer {
         foodIntakeFactorKey
@@ -299,7 +299,7 @@ export const onUpdateProfile = /* GraphQL */ `
         useKerosene
         keroseneMonthlyConsumption
         keroseneMonthCount
-        housingAmountByRegionKey
+        housingAmountByRegionFirstKey
       }
       foodAnswer {
         foodIntakeFactorKey
@@ -402,7 +402,7 @@ export const onDeleteProfile = /* GraphQL */ `
         useKerosene
         keroseneMonthlyConsumption
         keroseneMonthCount
-        housingAmountByRegionKey
+        housingAmountByRegionFirstKey
       }
       foodAnswer {
         foodIntakeFactorKey

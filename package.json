@@ -3,17 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "amplify:footprintf523f2c8": "cd amplify/backend/function/footprintf523f2c8/src && npx tsc && cd -",
-    "amplify:profilea2218c7f": "cd amplify/backend/function/profilea2218c7f/src && npx tsc && cd -",
-    "amplify:shareb311c853": "cd amplify/backend/function/shareb311c853/src && npx tsc && cd -",
+    "amplify:footprintf523f2c8": "cd amplify/backend/function/footprintf523f2c8 && tsc -p ./tsconfig.json && cd -",
+    "amplify:profilea2218c7f": "cd amplify/backend/function/profilea2218c7f && tsc -p ./tsconfig.json && cd -",
+    "amplify:shareb311c853": "cd amplify/backend/function/shareb311c853 && tsc -p ./tsconfig.json && cd -",
     "test": "echo 'please write a test code'",
-    "lint": "eslint amplify/backend/function/**/*.js",
-    "lint:fix": "eslint --fix amplify/backend/function/**/*.js",
+    "lint": "eslint --ext .ts,.js amplify/backend/function/**/lib/",
+    "lint:fix": "prettier --write 'amplify/backend/function/**/lib/*.ts' && eslint --fix amplify/backend/function/**/lib/*.ts",
     "prepare": "husky install"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "17.0.35",
+    "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.3",
     "@typescript-eslint/parser": "^5.30.3",
     "eslint": "^8.0.1",

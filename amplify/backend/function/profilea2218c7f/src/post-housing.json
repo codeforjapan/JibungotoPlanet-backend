@@ -4,5 +4,5 @@
   "headers": {
     "Content-Type": "application/json"
   },
-  "body": "{\"housingAnswer\": {\"numberOfPeople\": 2, \"housingSize\": \"unknown\", \"housingAmountByRegion\": \"northeast\", \"electricityIntensity\": \"100-renewable\"}}"
+  "body": "{\"housingAnswer\": {\"residentCount\": 2, \"housingSizeKey\": \"unknown\", \"housingAmountByRegionFirstKey\": \"northeast\", \"electricityIntensityKey\": \"100-renewable\", \"electricityMonthlyConsumption\": 1000, \"electricitySeasonFactorKey\": \"january\", \"useGas\": true, \"energyHeatIntensityKey\": \"urban-ga\", \"gasMonthlyConsumption\": 1000, \"gasSeasonFactorKey\": \"january\", \"useKerosene\": true, \"keroseneMonthlyConsumption\": 100, \"keroseneMonthCount\": 4 }}"
 }
