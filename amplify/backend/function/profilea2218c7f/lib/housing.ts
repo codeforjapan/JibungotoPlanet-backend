@@ -181,7 +181,8 @@ const estimateHousing = async (
       .promise()
     // todo 電気時自動車分をどうやって取ってくるか
     estimationAmount.electricity.value =
-      (housingAnswer.electricityMonthlyConsumption * electricitySeason.Items[0]?.value) /
+      (housingAnswer.electricityMonthlyConsumption *
+        electricitySeason.Items[0]?.value) /
       residentCount
     estimations.push(toEstimation(estimationAmount.electricity))
     // pushOrUpdateEstimate('electricity', 'amount', toEstimation(estimationAmount.electricity))
@@ -190,7 +191,10 @@ const estimateHousing = async (
   // ガスの使用の有無
   if (housingAnswer.useGas) {
     let gasParam = null
-    if (housingAnswer.gasMonthlyConsumption && housingAnswer.gasSeasonFactorKey) {
+    if (
+      housingAnswer.gasMonthlyConsumption &&
+      housingAnswer.gasSeasonFactorKey
+    ) {
       const gasSeasonParams = {
         TableName: parameterTableName,
         KeyConditions: {
@@ -206,7 +210,8 @@ const estimateHousing = async (
       }
       const gasSeason = await dynamodb.query(gasSeasonParams).promise()
       gasParam =
-        (housingAnswer.gasMonthlyConsumption * gasSeason.Items[0]?.value) / residentCount
+        (housingAnswer.gasMonthlyConsumption * gasSeason.Items[0]?.value) /
+        residentCount
     }
     if (housingAnswer.energyHeatIntensityKey === 'lpg') {
       if (gasParam) {
@@ -232,9 +237,13 @@ const estimateHousing = async (
 
   // 灯油の使用の有無
   if (housingAnswer.useKerosene) {
-    if (housingAnswer.keroseneMonthlyConsumption && housingAnswer.keroseneMonthCount) {
+    if (
+      housingAnswer.keroseneMonthlyConsumption &&
+      housingAnswer.keroseneMonthCount
+    ) {
       estimationAmount.kerosene.value =
-        (housingAnswer.keroseneMonthlyConsumption * housingAnswer.keroseneMonthCount) /
+        (housingAnswer.keroseneMonthlyConsumption *
+          housingAnswer.keroseneMonthCount) /
         residentCount
     }
     estimations.push(toEstimation(estimationAmount.kerosene))
