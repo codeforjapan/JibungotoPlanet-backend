@@ -2,7 +2,7 @@ src/models
 src/graphql
 src/API.ts
 
-amplify/backend/function/**/src/app.js
 amplify/backend/function/**/src/index.js
+amplify/backend/function/**/src/app.js
 
 **/*.json

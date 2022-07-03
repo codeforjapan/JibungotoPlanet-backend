@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.ModelSortDirection = exports.ModelAttributeTypes = void 0;
 var ModelAttributeTypes;
 (function (ModelAttributeTypes) {
