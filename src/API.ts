@@ -265,7 +265,7 @@ export type HousingAnswerInput = {
   useKerosene?: boolean | null,
   keroseneMonthlyConsumption?: number | null,
   keroseneMonthCount?: number | null,
-  housingAmountByRegionKey?: string | null,
+  housingAmountByRegionFirstKey?: string | null,
 };
 
 export type FoodAnswerInput = {
@@ -391,7 +391,7 @@ export type HousingAnswer = {
   useKerosene?: boolean | null,
   keroseneMonthlyConsumption?: number | null,
   keroseneMonthCount?: number | null,
-  housingAmountByRegionKey?: string | null,
+  housingAmountByRegionFirstKey?: string | null,
 };
 
 export type FoodAnswer = {
@@ -856,7 +856,7 @@ export type CreateProfileMutation = {
       useKerosene?: boolean | null,
       keroseneMonthlyConsumption?: number | null,
       keroseneMonthCount?: number | null,
-      housingAmountByRegionKey?: string | null,
+      housingAmountByRegionFirstKey?: string | null,
     } | null,
     foodAnswer?:  {
       __typename: "FoodAnswer",
@@ -972,7 +972,7 @@ export type UpdateProfileMutation = {
       useKerosene?: boolean | null,
       keroseneMonthlyConsumption?: number | null,
       keroseneMonthCount?: number | null,
-      housingAmountByRegionKey?: string | null,
+      housingAmountByRegionFirstKey?: string | null,
     } | null,
     foodAnswer?:  {
       __typename: "FoodAnswer",
@@ -1088,7 +1088,7 @@ export type DeleteProfileMutation = {
       useKerosene?: boolean | null,
       keroseneMonthlyConsumption?: number | null,
       keroseneMonthCount?: number | null,
-      housingAmountByRegionKey?: string | null,
+      housingAmountByRegionFirstKey?: string | null,
     } | null,
     foodAnswer?:  {
       __typename: "FoodAnswer",
@@ -1377,7 +1377,7 @@ export type GetProfileQuery = {
       useKerosene?: boolean | null,
       keroseneMonthlyConsumption?: number | null,
       keroseneMonthCount?: number | null,
-      housingAmountByRegionKey?: string | null,
+      housingAmountByRegionFirstKey?: string | null,
     } | null,
     foodAnswer?:  {
       __typename: "FoodAnswer",
@@ -1498,7 +1498,7 @@ export type ListProfilesQuery = {
         useKerosene?: boolean | null,
         keroseneMonthlyConsumption?: number | null,
         keroseneMonthCount?: number | null,
-        housingAmountByRegionKey?: string | null,
+        housingAmountByRegionFirstKey?: string | null,
       } | null,
       foodAnswer?:  {
         __typename: "FoodAnswer",
@@ -1621,7 +1621,7 @@ export type ProfilesByShareIdQuery = {
         useKerosene?: boolean | null,
         keroseneMonthlyConsumption?: number | null,
         keroseneMonthCount?: number | null,
-        housingAmountByRegionKey?: string | null,
+        housingAmountByRegionFirstKey?: string | null,
       } | null,
       foodAnswer?:  {
         __typename: "FoodAnswer",
@@ -1890,7 +1890,7 @@ export type OnCreateProfileSubscription = {
       useKerosene?: boolean | null,
       keroseneMonthlyConsumption?: number | null,
       keroseneMonthCount?: number | null,
-      housingAmountByRegionKey?: string | null,
+      housingAmountByRegionFirstKey?: string | null,
     } | null,
     foodAnswer?:  {
       __typename: "FoodAnswer",
@@ -2001,7 +2001,7 @@ export type OnUpdateProfileSubscription = {
       useKerosene?: boolean | null,
       keroseneMonthlyConsumption?: number | null,
       keroseneMonthCount?: number | null,
-      housingAmountByRegionKey?: string | null,
+      housingAmountByRegionFirstKey?: string | null,
     } | null,
     foodAnswer?:  {
       __typename: "FoodAnswer",
@@ -2112,7 +2112,7 @@ export type OnDeleteProfileSubscription = {
       useKerosene?: boolean | null,
       keroseneMonthlyConsumption?: number | null,
       keroseneMonthCount?: number | null,
-      housingAmountByRegionKey?: string | null,
+      housingAmountByRegionFirstKey?: string | null,
     } | null,
     foodAnswer?:  {
       __typename: "FoodAnswer",

@@ -21,7 +21,17 @@
       "airplaneAnnualTravelingTime": 100,
       "ferryAnnualTravelingTime": 0
     },
-    "updatedAt": "2022-07-02T07:19:18.898Z",
+    "updatedAt": "2022-07-03T05:22:11.966Z",
+    "otherAnswer": {
+      "dailyGoodsAmountKey": "5k-less",
+      "communicationAmountKey": "5k-less",
+      "applianceFurnitureAmountKey": "50k-less",
+      "serviceFactorKey": "5k-less",
+      "hobbyGoodsFactorKey": "5k-less",
+      "clothesBeautyFactorKey": "5k-less",
+      "leisureSportsFactorKey": "5k-less",
+      "travelFactorKey": "10k-less"
+    },
     "createdAt": "2022-07-02T07:00:49.913Z",
     "baselines": [
       {
@@ -310,6 +320,186 @@
         "value": 0,
         "subdomain": "walking",
         "unit": "kgCO2e/km-passenger",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4577.6825235,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.183052167733976,
+        "subdomain": "construction-maintenance",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "intensity",
+        "value": 1.378245204,
+        "subdomain": "construction-maintenance",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179313835564,
+        "subdomain": "construction-maintenance",
+        "unit": "m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "intensity",
+        "value": 0.930699,
+        "subdomain": "construction-maintenance",
+        "unit": "kgCO2e/m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 200,
+        "subdomain": "otherenergy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "intensity",
+        "value": 0.280081108,
+        "subdomain": "otherenergy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.96142204,
+        "subdomain": "construction-maintenance",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "intensity",
+        "value": 0.542386441,
+        "subdomain": "construction-maintenance",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "otherenergy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "intensity",
+        "value": 0.327564907,
+        "subdomain": "otherenergy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "amount",
+        "value": 54.81742592,
+        "subdomain": "otherenergy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "intensity",
+        "value": 0.037319212,
+        "subdomain": "otherenergy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328681644358,
+        "subdomain": "construction-maintenance",
+        "unit": "m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "intensity",
+        "value": 3.418080692,
+        "subdomain": "construction-maintenance",
+        "unit": "kgCO2e/m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 3458.3333335,
+        "subdomain": "otherenergy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "intensity",
+        "value": 0.310544763,
+        "subdomain": "otherenergy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "amount",
+        "value": 103.5505,
+        "subdomain": "water",
+        "unit": "m3",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "intensity",
+        "value": 0.584462203,
+        "subdomain": "water",
+        "unit": "kgCO2e/m3",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
@@ -1275,6 +1465,70 @@
         "unit": "000JPY"
       },
       {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179313835564,
+        "subdomain": "construction-maintenance",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328681644358,
+        "subdomain": "construction-maintenance",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.183052167733976,
+        "subdomain": "construction-maintenance",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4577.6825235,
+        "subdomain": "electricity",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 3458.3333335,
+        "subdomain": "otherenergy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "otherenergy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 200,
+        "subdomain": "otherenergy",
+        "unit": "kWh"
+      },
+      {
         "domain": "other",
         "item": "cosmetics",
         "type": "amount",
@@ -1651,15 +1905,20 @@
         "unit": "000JPY"
       }
     ],
-    "otherAnswer": {
-      "dailyGoodsAmountKey": "5k-less",
-      "communicationAmountKey": "5k-less",
-      "applianceFurnitureAmountKey": "50k-less",
-      "serviceFactorKey": "5k-less",
-      "hobbyGoodsFactorKey": "5k-less",
-      "clothesBeautyFactorKey": "5k-less",
-      "leisureSportsFactorKey": "5k-less",
-      "travelFactorKey": "10k-less"
+    "housingAnswer": {
+      "residentCount": 2,
+      "housingSizeKey": "unknown",
+      "housingAmountByRegionFirstKey": "northeast",
+      "electricityIntensityKey": "100-renewable",
+      "electricityMonthlyConsumption": 1000,
+      "electricitySeasonFactorKey": "january",
+      "useGas": true,
+      "energyHeatIntensityKey": "urban-ga",
+      "gasMonthlyConsumption": 1000,
+      "gasSeasonFactorKey": "january",
+      "useKerosene": true,
+      "keroseneMonthlyConsumption": 100,
+      "keroseneMonthCount": 4
     }
   }
 }

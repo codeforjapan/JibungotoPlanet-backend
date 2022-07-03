@@ -39,7 +39,7 @@ exports.__esModule = true;
 exports.estimateHousing = void 0;
 var util_1 = require("./util");
 var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, findIntensity, pushOrUpdateEstimate, estimations, params, data, baselines, numberOfPeople, estimationAmount, housingAmountByRegion, params_1, amountByRegion, re_1, housingSizeParams, housingSize, housingSizePerPeople, imputedRentValue, rentValue, electricityIntensityParams, electricityParam, electricityIntensity, electricitySeasonParams, electricitySeason, gasParam, gasSeasonParams, gasSeason;
+    var findAmount, findIntensity, pushOrUpdateEstimate, estimations, params, data, baselines, residentCount, estimationAmount, housingAmountByRegion, params_1, amountByRegion, re_1, housingSizeParams, housingSize, housingSizePerPeople, imputedRentValue, rentValue, electricityIntensityParams, electricityParam, electricityIntensity, electricitySeasonParams, electricitySeason, gasParam, gasSeasonParams, gasSeason;
     var _a, _b, _c, _d;
     return __generator(this, function (_e) {
         switch (_e.label) {
@@ -77,21 +77,21 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 if (!housingAnswer) {
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
-                numberOfPeople = housingAnswer.numberOfPeople;
+                residentCount = housingAnswer.residentCount;
                 estimationAmount = {
-                    landrent: findAmount(baselines, 'landrent'),
-                    otherenergy: findAmount(baselines, 'otherenergy'),
+                    landRent: findAmount(baselines, 'land-rent'),
+                    otherEnergy: findAmount(baselines, 'other-energy'),
                     water: findAmount(baselines, 'water'),
-                    imputedrent: findAmount(baselines, 'imputedrent'),
+                    imputedRent: findAmount(baselines, 'imputed-rent'),
                     rent: findAmount(baselines, 'rent'),
                     'housing-maintenance': findAmount(baselines, 'housing-maintenance'),
                     electricity: findAmount(baselines, 'electricity'),
-                    urbangas: findAmount(baselines, 'urbangas'),
+                    urbanGas: findAmount(baselines, 'urban-gas'),
                     lpg: findAmount(baselines, 'lpg'),
                     kerosene: findAmount(baselines, 'kerosene')
                 };
-                if (!housingAnswer.housingAmountByRegion) return [3 /*break*/, 3];
-                housingAmountByRegion = housingAnswer.housingAmountByRegion;
+                if (!housingAnswer.housingAmountByRegionKey) return [3 /*break*/, 3];
+                housingAmountByRegion = housingAnswer.housingAmountByRegionFirstKey;
                 params_1 = {
                     TableName: parameterTableName,
                     KeyConditions: {
@@ -116,7 +116,7 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 });
                 _e.label = 3;
             case 3:
-                if (!housingAnswer.housingSize) return [3 /*break*/, 5];
+                if (!housingAnswer.housingSizeKey) return [3 /*break*/, 5];
                 housingSizeParams = {
                     TableName: parameterTableName,
                     KeyConditions: {
@@ -126,30 +126,30 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                         },
                         key: {
                             ComparisonOperator: 'EQ',
-                            AttributeValueList: [housingAnswer.housingSize]
+                            AttributeValueList: [housingAnswer.housingSizeKey]
                         }
                     }
                 };
                 return [4 /*yield*/, dynamodb.query(housingSizeParams).promise()];
             case 4:
                 housingSize = _e.sent();
-                housingSizePerPeople = ((_a = housingSize.Items[0]) === null || _a === void 0 ? void 0 : _a.value) / numberOfPeople;
-                imputedRentValue = estimationAmount.imputedrent.value;
+                housingSizePerPeople = ((_a = housingSize.Items[0]) === null || _a === void 0 ? void 0 : _a.value) / residentCount;
+                imputedRentValue = estimationAmount.imputedRent.value;
                 rentValue = estimationAmount.rent.value;
-                estimationAmount.imputedrent.value =
+                estimationAmount.imputedRent.value =
                     (housingSizePerPeople / (imputedRentValue + rentValue)) * imputedRentValue;
                 estimationAmount.rent.value =
                     (housingSizePerPeople / (imputedRentValue + rentValue)) * rentValue;
                 estimationAmount['housing-maintenance'].value =
                     (estimationAmount['housing-maintenance'].value /
                         (imputedRentValue + rentValue)) *
-                        (estimationAmount.imputedrent.value + estimationAmount.rent.value);
-                estimations.push((0, util_1.toEstimation)(estimationAmount.imputedrent));
+                        (estimationAmount.imputedRent.value + estimationAmount.rent.value);
+                estimations.push((0, util_1.toEstimation)(estimationAmount.imputedRent));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.rent));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['housing-maintenance']));
                 _e.label = 5;
             case 5:
-                if (!housingAnswer.electricityIntensity) return [3 /*break*/, 7];
+                if (!housingAnswer.electricityIntensityKey) return [3 /*break*/, 7];
                 electricityIntensityParams = {
                     TableName: parameterTableName,
                     KeyConditions: {
@@ -159,7 +159,7 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                         },
                         key: {
                             ComparisonOperator: 'EQ',
-                            AttributeValueList: [housingAnswer.electricityIntensity]
+                            AttributeValueList: [housingAnswer.electricityIntensityKey]
                         }
                     }
                 };
@@ -173,8 +173,8 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 estimations.push((0, util_1.toEstimation)(electricityIntensity));
                 _e.label = 7;
             case 7:
-                if (!(housingAnswer.howManyElectricity &&
-                    housingAnswer.electricitySeasonFactor)) return [3 /*break*/, 9];
+                if (!(housingAnswer.electricityMonthlyConsumption &&
+                    housingAnswer.electricitySeasonFactorKey)) return [3 /*break*/, 9];
                 electricitySeasonParams = {
                     TableName: parameterTableName,
                     KeyConditions: {
@@ -184,7 +184,7 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                         },
                         key: {
                             ComparisonOperator: 'EQ',
-                            AttributeValueList: [housingAnswer.electricitySeasonFactor]
+                            AttributeValueList: [housingAnswer.electricitySeasonFactorKey]
                         }
                     }
                 };
@@ -197,14 +197,16 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 electricitySeason = _e.sent();
                 // todo 電気時自動車分をどうやって取ってくるか
                 estimationAmount.electricity.value =
-                    (housingAnswer.howManyElectricity * ((_c = electricitySeason.Items[0]) === null || _c === void 0 ? void 0 : _c.value)) /
-                        numberOfPeople;
+                    (housingAnswer.electricityMonthlyConsumption *
+                        ((_c = electricitySeason.Items[0]) === null || _c === void 0 ? void 0 : _c.value)) /
+                        residentCount;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.electricity));
                 _e.label = 9;
             case 9:
                 if (!housingAnswer.useGas) return [3 /*break*/, 12];
                 gasParam = null;
-                if (!(housingAnswer.howManyGas && housingAnswer.gasSeasonFactor)) return [3 /*break*/, 11];
+                if (!(housingAnswer.gasMonthlyConsumption &&
+                    housingAnswer.gasSeasonFactorKey)) return [3 /*break*/, 11];
                 gasSeasonParams = {
                     TableName: parameterTableName,
                     KeyConditions: {
@@ -214,7 +216,7 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                         },
                         key: {
                             ComparisonOperator: 'EQ',
-                            AttributeValueList: [housingAnswer.gasSeasonFactor]
+                            AttributeValueList: [housingAnswer.gasSeasonFactorKey]
                         }
                     }
                 };
@@ -222,41 +224,44 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
             case 10:
                 gasSeason = _e.sent();
                 gasParam =
-                    (housingAnswer.howManyGas * ((_d = gasSeason.Items[0]) === null || _d === void 0 ? void 0 : _d.value)) / numberOfPeople;
+                    (housingAnswer.gasMonthlyConsumption * ((_d = gasSeason.Items[0]) === null || _d === void 0 ? void 0 : _d.value)) /
+                        residentCount;
                 _e.label = 11;
             case 11:
-                if (housingAnswer.energyHeatIntensity === 'lpg') {
+                if (housingAnswer.energyHeatIntensityKey === 'lpg') {
                     if (gasParam) {
                         estimationAmount.lpg.value = gasParam;
                     }
-                    estimationAmount.urbangas.value = 0;
+                    estimationAmount.urbanGas.value = 0;
                 }
                 else {
                     if (gasParam) {
-                        estimationAmount.urbangas.value = gasParam;
+                        estimationAmount.urbanGas.value = gasParam;
                     }
                     estimationAmount.lpg.value = 0;
                 }
-                estimations.push((0, util_1.toEstimation)(estimationAmount.urbangas));
+                estimations.push((0, util_1.toEstimation)(estimationAmount.urbanGas));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.lpg));
                 return [3 /*break*/, 13];
             case 12:
                 if (housingAnswer.useGas === false) {
-                    estimationAmount.urbangas.value = 0;
+                    estimationAmount.urbanGas.value = 0;
                     estimationAmount.lpg.value = 0;
-                    estimations.push((0, util_1.toEstimation)(estimationAmount.urbangas));
+                    estimations.push((0, util_1.toEstimation)(estimationAmount.urbanGas));
                     estimations.push((0, util_1.toEstimation)(estimationAmount.lpg));
-                    // pushOrUpdateEstimate('urbangas', 'amount', toEstimation(estimationAmount.urbangas))
+                    // pushOrUpdateEstimate('urbanGas', 'amount', toEstimation(estimationAmount.urbanGas))
                     // pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
                 }
                 _e.label = 13;
             case 13:
                 // 灯油の使用の有無
                 if (housingAnswer.useKerosene) {
-                    if (housingAnswer.howManyKerosene && housingAnswer.howManyKeroseneMonth) {
+                    if (housingAnswer.keroseneMonthlyConsumption &&
+                        housingAnswer.keroseneMonthCount) {
                         estimationAmount.kerosene.value =
-                            (housingAnswer.howManyKerosene * housingAnswer.howManyKeroseneMonth) /
-                                numberOfPeople;
+                            (housingAnswer.keroseneMonthlyConsumption *
+                                housingAnswer.keroseneMonthCount) /
+                                residentCount;
                     }
                     estimations.push((0, util_1.toEstimation)(estimationAmount.kerosene));
                     // pushOrUpdateEstimate('kerosene', 'amount', toEstimation(estimationAmount.kerosene))

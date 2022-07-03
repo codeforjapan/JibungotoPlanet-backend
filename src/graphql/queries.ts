@@ -210,7 +210,7 @@ export const getProfile = /* GraphQL */ `
         useKerosene
         keroseneMonthlyConsumption
         keroseneMonthCount
-        housingAmountByRegionKey
+        housingAmountByRegionFirstKey
       }
       foodAnswer {
         foodIntakeFactorKey
@@ -326,7 +326,7 @@ export const listProfiles = /* GraphQL */ `
           useKerosene
           keroseneMonthlyConsumption
           keroseneMonthCount
-          housingAmountByRegionKey
+          housingAmountByRegionFirstKey
         }
         foodAnswer {
           foodIntakeFactorKey
@@ -444,7 +444,7 @@ export const profilesByShareId = /* GraphQL */ `
           useKerosene
           keroseneMonthlyConsumption
           keroseneMonthCount
-          housingAmountByRegionKey
+          housingAmountByRegionFirstKey
         }
         foodAnswer {
           foodIntakeFactorKey
