@@ -46,7 +46,7 @@ const estimateHousing = async (
   if (!housingAnswer) {
     return { baselines, estimations }
   }
-  const numberOfPeople = housingAnswer.numberOfPeople
+  const residentCount = housingAnswer.residentCount
 
   const estimationAmount = {
     landrent: findAmount(baselines, 'landrent'),
@@ -68,8 +68,8 @@ const estimateHousing = async (
   //
   // housingAmountByRegion: String # northeast|middle|southwest|unknown
   //
-  if (housingAnswer.housingAmountByRegion) {
-    const housingAmountByRegion = housingAnswer.housingAmountByRegion
+  if (housingAnswer.housingAmountByRegionKey) {
+    const housingAmountByRegion = housingAnswer.housingAmountByRegionKey
     const params = {
       TableName: parameterTableName,
       KeyConditions: {
@@ -101,7 +101,7 @@ const estimateHousing = async (
   // otherenergy
   // water
 
-  if (housingAnswer.housingSize) {
+  if (housingAnswer.housingSizeKey) {
     const housingSizeParams = {
       TableName: parameterTableName,
       KeyConditions: {
@@ -111,12 +111,12 @@ const estimateHousing = async (
         },
         key: {
           ComparisonOperator: 'EQ',
-          AttributeValueList: [housingAnswer.housingSize]
+          AttributeValueList: [housingAnswer.housingSizeKey]
         }
       }
     }
     const housingSize = await dynamodb.query(housingSizeParams).promise()
-    const housingSizePerPeople = housingSize.Items[0]?.value / numberOfPeople
+    const housingSizePerPeople = housingSize.Items[0]?.value / residentCount
     const imputedRentValue = estimationAmount.imputedrent.value
     const rentValue = estimationAmount.rent.value
     estimationAmount.imputedrent.value =
@@ -136,7 +136,7 @@ const estimateHousing = async (
   }
 
   // 再生可能エネルギー
-  if (housingAnswer.electricityIntensity) {
+  if (housingAnswer.electricityIntensityKey) {
     const electricityIntensityParams = {
       TableName: parameterTableName,
       KeyConditions: {
@@ -146,7 +146,7 @@ const estimateHousing = async (
         },
         key: {
           ComparisonOperator: 'EQ',
-          AttributeValueList: [housingAnswer.electricityIntensity]
+          AttributeValueList: [housingAnswer.electricityIntensityKey]
         }
       }
     }
@@ -160,8 +160,8 @@ const estimateHousing = async (
 
   // 電力使用量
   if (
-    housingAnswer.howManyElectricity &&
-    housingAnswer.electricitySeasonFactor
+    housingAnswer.electricityMonthlyConsumption &&
+    housingAnswer.electricitySeasonFactorKey
   ) {
     const electricitySeasonParams = {
       TableName: parameterTableName,
@@ -172,7 +172,7 @@ const estimateHousing = async (
         },
         key: {
           ComparisonOperator: 'EQ',
-          AttributeValueList: [housingAnswer.electricitySeasonFactor]
+          AttributeValueList: [housingAnswer.electricitySeasonFactorKey]
         }
       }
     }
@@ -181,8 +181,8 @@ const estimateHousing = async (
       .promise()
     // todo 電気時自動車分をどうやって取ってくるか
     estimationAmount.electricity.value =
-      (housingAnswer.howManyElectricity * electricitySeason.Items[0]?.value) /
-      numberOfPeople
+      (housingAnswer.electricityMonthlyConsumption * electricitySeason.Items[0]?.value) /
+      residentCount
     estimations.push(toEstimation(estimationAmount.electricity))
     // pushOrUpdateEstimate('electricity', 'amount', toEstimation(estimationAmount.electricity))
   }
@@ -190,7 +190,7 @@ const estimateHousing = async (
   // ガスの使用の有無
   if (housingAnswer.useGas) {
     let gasParam = null
-    if (housingAnswer.howManyGas && housingAnswer.gasSeasonFactor) {
+    if (housingAnswer.gasMonthlyConsumption && housingAnswer.gasSeasonFactorKey) {
       const gasSeasonParams = {
         TableName: parameterTableName,
         KeyConditions: {
@@ -200,15 +200,15 @@ const estimateHousing = async (
           },
           key: {
             ComparisonOperator: 'EQ',
-            AttributeValueList: [housingAnswer.gasSeasonFactor]
+            AttributeValueList: [housingAnswer.gasSeasonFactorKey]
           }
         }
       }
       const gasSeason = await dynamodb.query(gasSeasonParams).promise()
       gasParam =
-        (housingAnswer.howManyGas * gasSeason.Items[0]?.value) / numberOfPeople
+        (housingAnswer.gasMonthlyConsumption * gasSeason.Items[0]?.value) / residentCount
     }
-    if (housingAnswer.energyHeatIntensity === 'lpg') {
+    if (housingAnswer.energyHeatIntensityKey === 'lpg') {
       if (gasParam) {
         estimationAmount.lpg.value = gasParam
       }
@@ -232,10 +232,10 @@ const estimateHousing = async (
 
   // 灯油の使用の有無
   if (housingAnswer.useKerosene) {
-    if (housingAnswer.howManyKerosene && housingAnswer.howManyKeroseneMonth) {
+    if (housingAnswer.keroseneMonthlyConsumption && housingAnswer.keroseneMonthCount) {
       estimationAmount.kerosene.value =
-        (housingAnswer.howManyKerosene * housingAnswer.howManyKeroseneMonth) /
-        numberOfPeople
+        (housingAnswer.keroseneMonthlyConsumption * housingAnswer.keroseneMonthCount) /
+        residentCount
     }
     estimations.push(toEstimation(estimationAmount.kerosene))
     // pushOrUpdateEstimate('kerosene', 'amount', toEstimation(estimationAmount.kerosene))
