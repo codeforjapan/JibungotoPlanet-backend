@@ -49,14 +49,14 @@ const estimateHousing = async (
   const residentCount = housingAnswer.residentCount
 
   const estimationAmount = {
-    landRent: findAmount(baselines, 'land-rent'),
-    otherEnergy: findAmount(baselines, 'other-energy'),
+    landrent: findAmount(baselines, 'landrent'),
+    otherenergy: findAmount(baselines, 'otherenergy'),
     water: findAmount(baselines, 'water'),
-    imputedRent: findAmount(baselines, 'imputed-rent'),
+    imputedrent: findAmount(baselines, 'imputedrent'),
     rent: findAmount(baselines, 'rent'),
     'housing-maintenance': findAmount(baselines, 'housing-maintenance'),
     electricity: findAmount(baselines, 'electricity'),
-    urbanGas: findAmount(baselines, 'urban-gas'),
+    urbangas: findAmount(baselines, 'urbangas'),
     lpg: findAmount(baselines, 'lpg'),
     kerosene: findAmount(baselines, 'kerosene')
   }
@@ -68,7 +68,7 @@ const estimateHousing = async (
   //
   // housingAmountByRegion: String # northeast|middle|southwest|unknown
   //
-  if (housingAnswer.housingAmountByRegionKey) {
+  if (housingAnswer.housingAmountByRegionFirstKey) {
     const housingAmountByRegion = housingAnswer.housingAmountByRegionFirstKey
     const params = {
       TableName: parameterTableName,
@@ -117,20 +117,20 @@ const estimateHousing = async (
     }
     const housingSize = await dynamodb.query(housingSizeParams).promise()
     const housingSizePerPeople = housingSize.Items[0]?.value / residentCount
-    const imputedRentValue = estimationAmount.imputedRent.value
+    const imputedRentValue = estimationAmount.imputedrent.value
     const rentValue = estimationAmount.rent.value
-    estimationAmount.imputedRent.value =
+    estimationAmount.imputedrent.value =
       (housingSizePerPeople / (imputedRentValue + rentValue)) * imputedRentValue
     estimationAmount.rent.value =
       (housingSizePerPeople / (imputedRentValue + rentValue)) * rentValue
     estimationAmount['housing-maintenance'].value =
       (estimationAmount['housing-maintenance'].value /
         (imputedRentValue + rentValue)) *
-      (estimationAmount.imputedRent.value + estimationAmount.rent.value)
-    estimations.push(toEstimation(estimationAmount.imputedRent))
+      (estimationAmount.imputedrent.value + estimationAmount.rent.value)
+    estimations.push(toEstimation(estimationAmount.imputedrent))
     estimations.push(toEstimation(estimationAmount.rent))
     estimations.push(toEstimation(estimationAmount['housing-maintenance']))
-    // pushOrUpdateEstimate('imputedRent', 'amount', toEstimation(estimationAmount.imputedRent))
+    // pushOrUpdateEstimate('imputedrent', 'amount', toEstimation(estimationAmount.imputedrent))
     // pushOrUpdateEstimate('rent', 'amount', toEstimation(estimationAmount.rent))
     // pushOrUpdateEstimate('housing-maintenance', 'amount', toEstimation(estimationAmount['housing-maintenance']))
   }
@@ -217,21 +217,21 @@ const estimateHousing = async (
       if (gasParam) {
         estimationAmount.lpg.value = gasParam
       }
-      estimationAmount.urbanGas.value = 0
+      estimationAmount.urbangas.value = 0
     } else {
       if (gasParam) {
-        estimationAmount.urbanGas.value = gasParam
+        estimationAmount.urbangas.value = gasParam
       }
       estimationAmount.lpg.value = 0
     }
-    estimations.push(toEstimation(estimationAmount.urbanGas))
+    estimations.push(toEstimation(estimationAmount.urbangas))
     estimations.push(toEstimation(estimationAmount.lpg))
   } else if (housingAnswer.useGas === false) {
-    estimationAmount.urbanGas.value = 0
+    estimationAmount.urbangas.value = 0
     estimationAmount.lpg.value = 0
-    estimations.push(toEstimation(estimationAmount.urbanGas))
+    estimations.push(toEstimation(estimationAmount.urbangas))
     estimations.push(toEstimation(estimationAmount.lpg))
-    // pushOrUpdateEstimate('urbanGas', 'amount', toEstimation(estimationAmount.urbanGas))
+    // pushOrUpdateEstimate('urbangas', 'amount', toEstimation(estimationAmount.urbangas))
     // pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
   }
 
