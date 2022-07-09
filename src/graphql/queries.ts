@@ -3,10 +3,10 @@
 // this is an auto generated file. This will be overwritten
 
 export const getFootprint = /* GraphQL */ `
-  query GetFootprint($dirAndDomain: String!, $itemAndType: String!) {
-    getFootprint(dirAndDomain: $dirAndDomain, itemAndType: $itemAndType) {
-      dirAndDomain
-      itemAndType
+  query GetFootprint($dir_domain: String!, $item_type: String!) {
+    getFootprint(dir_domain: $dir_domain, item_type: $item_type) {
+      dir_domain
+      item_type
       subdomain
       value
       unit
@@ -18,24 +18,24 @@ export const getFootprint = /* GraphQL */ `
 `;
 export const listFootprints = /* GraphQL */ `
   query ListFootprints(
-    $dirAndDomain: String
-    $itemAndType: ModelStringKeyConditionInput
+    $dir_domain: String
+    $item_type: ModelStringKeyConditionInput
     $filter: ModelFootprintFilterInput
     $limit: Int
     $nextToken: String
     $sortDirection: ModelSortDirection
   ) {
     listFootprints(
-      dirAndDomain: $dirAndDomain
-      itemAndType: $itemAndType
+      dir_domain: $dir_domain
+      item_type: $item_type
       filter: $filter
       limit: $limit
       nextToken: $nextToken
       sortDirection: $sortDirection
     ) {
       items {
-        dirAndDomain
-        itemAndType
+        dir_domain
+        item_type
         subdomain
         value
         unit
@@ -91,10 +91,10 @@ export const listParameters = /* GraphQL */ `
   }
 `;
 export const getOption = /* GraphQL */ `
-  query GetOption($option: String!, $domainItemAndType: String!) {
-    getOption(option: $option, domainItemAndType: $domainItemAndType) {
+  query GetOption($option: String!, $domain_item_type: String!) {
+    getOption(option: $option, domain_item_type: $domain_item_type) {
       option
-      domainItemAndType
+      domain_item_type
       value
       args
       operation
@@ -107,7 +107,7 @@ export const getOption = /* GraphQL */ `
 export const listOptions = /* GraphQL */ `
   query ListOptions(
     $option: String
-    $domainItemAndType: ModelStringKeyConditionInput
+    $domain_item_type: ModelStringKeyConditionInput
     $filter: ModelOptionFilterInput
     $limit: Int
     $nextToken: String
@@ -115,7 +115,7 @@ export const listOptions = /* GraphQL */ `
   ) {
     listOptions(
       option: $option
-      domainItemAndType: $domainItemAndType
+      domain_item_type: $domain_item_type
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -123,7 +123,7 @@ export const listOptions = /* GraphQL */ `
     ) {
       items {
         option
-        domainItemAndType
+        domain_item_type
         value
         args
         operation
@@ -235,7 +235,7 @@ export const getProfile = /* GraphQL */ `
         leisureSportsFactorKey
         travelFactorKey
       }
-      actionIntensityRate {
+      actionIntensityRates {
         option
         value
         defaultValue
@@ -351,7 +351,7 @@ export const listProfiles = /* GraphQL */ `
           leisureSportsFactorKey
           travelFactorKey
         }
-        actionIntensityRate {
+        actionIntensityRates {
           option
           value
           defaultValue
@@ -469,7 +469,7 @@ export const profilesByShareId = /* GraphQL */ `
           leisureSportsFactorKey
           travelFactorKey
         }
-        actionIntensityRate {
+        actionIntensityRates {
           option
           value
           defaultValue

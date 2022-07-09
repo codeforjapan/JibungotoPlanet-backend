@@ -20,7 +20,7 @@ const estimateMobility = async (
   let params = {
     TableName: footprintTableName,
     KeyConditions: {
-      dirAndDomain: {
+      dir_domain: {
         ComparisonOperator: 'EQ',
         AttributeValueList: ['baseline_mobility']
       }
@@ -206,14 +206,14 @@ const estimateMobility = async (
   console.log('getting weeks-per-year-excluding-long-vacations')
 
   // 年間週数の取得
-  const params_wpyelv = {
+  const paramsWeeks = {
     TableName: parameterTableName,
     Key: {
       category: 'misc',
       key: 'weeks-per-year-excluding-long-vacations'
     }
   }
-  data = await dynamodb.get(params_wpyelv).promise()
+  data = await dynamodb.get(paramsWeeks).promise()
   let weekCount = 49
   if (data?.Item) {
     weekCount = data.Item.value
@@ -222,7 +222,7 @@ const estimateMobility = async (
   console.log('getting transportation-speed')
 
   // 時速の取得
-  const params_ts = {
+  const paramsTransportation = {
     TableName: parameterTableName,
     KeyConditions: {
       category: {
@@ -231,7 +231,7 @@ const estimateMobility = async (
       }
     }
   }
-  data = await dynamodb.query(params_ts).promise()
+  data = await dynamodb.query(paramsTransportation).promise()
   const speed = data.Items.reduce((a, x) => {
     a[x.key] = x.value
     return a
@@ -274,18 +274,7 @@ const estimateMobility = async (
   const baselineCarSharingAmount = estimationAmount.carSharing.value
 
   // ベースラインの値を書き換えてEstimationを生成
-
-  const items = [
-    'airplane',
-    'train',
-    'bus',
-    'ferry',
-    'taxi',
-    'carSharing',
-    'motorbike'
-  ]
-
-  for (let item of items) {
+  for (let item of Object.keys(mileage)) {
     estimationAmount[item].value = mileage[item]
     estimations.push(toEstimation(estimationAmount[item]))
   }

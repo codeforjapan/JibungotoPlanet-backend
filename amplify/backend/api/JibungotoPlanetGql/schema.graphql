@@ -1,7 +1,7 @@
 # カーボンフットプリントの統計情報（物量、原単位、削減物量係数、削減原単位係数）
 type Footprint @model @auth(rules: [{ allow: public, operations: [read] }]) {
-  dirAndDomain: String! @primaryKey(sortKeyFields: ["itemAndType"])
-  itemAndType: String!
+  dir_domain: String! @primaryKey(sortKeyFields: ["item_type"])
+  item_type: String!
   subdomain: String!
   value: Float!
   unit: String
@@ -19,8 +19,8 @@ type Parameter @model @auth(rules: [{ allow: public, operations: [read] }]) {
 
 # 削減施策の選択肢
 type Option @model @auth(rules: [{ allow: public, operations: [read] }]) {
-  option: String! @primaryKey(sortKeyFields: ["domainItemAndType"])
-  domainItemAndType: String! # 施策対象項目をdomain, item, typeで指定
+  option: String! @primaryKey(sortKeyFields: ["domain_item_type"])
+  domain_item_type: String! # 施策対象項目をdomain, item, typeで指定
   value: Float! # 施策計算に必要な係数
   args: [String!] # 施策計算に必要な引数
   operation: String! # 施策の計算種類
@@ -30,7 +30,7 @@ type Option @model @auth(rules: [{ allow: public, operations: [read] }]) {
 # 削減施策の実施率
 type OptionIntensityRate
   @model
-  @auth(rules: [{ allow: public, operations: [read, create] }]) {
+  @auth(rules: [{ allow: public, operations: [read] }]) {
   option: String! @primaryKey
   defaultValue: Float!
   range: [Float!]!
@@ -221,7 +221,7 @@ type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
   otherAnswer: OtherAnswer
 
   # 実施率
-  actionIntensityRate: [ActionIntensityRate!]
+  actionIntensityRates: [ActionIntensityRate!]
   # フットプリントベースライン
   baselines: [Baseline!]
   # フットプリント推定結果

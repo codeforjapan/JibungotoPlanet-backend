@@ -18,12 +18,12 @@ var toEstimation = function (baseline) {
 };
 exports.toEstimation = toEstimation;
 var toBaseline = function (rec) {
-    var dirAndDomain = rec.dirAndDomain.split('_');
-    var itemAndType = rec.itemAndType.split('_');
+    var dir_domain = rec.dir_domain.split('_');
+    var item_type = rec.item_type.split('_');
     return {
-        domain: dirAndDomain[1],
-        item: itemAndType[0],
-        type: itemAndType[1],
+        domain: dir_domain[1],
+        item: item_type[0],
+        type: item_type[1],
         value: rec.value,
         subdomain: rec.subdomain,
         unit: rec.unit,
