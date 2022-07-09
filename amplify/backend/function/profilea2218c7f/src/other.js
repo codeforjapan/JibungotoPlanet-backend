@@ -51,7 +51,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                 params = {
                     TableName: footprintTableName,
                     KeyConditions: {
-                        dirAndDomain: {
+                        dir_domain: {
                             ComparisonOperator: 'EQ',
                             AttributeValueList: ['baseline_other']
                         }
@@ -135,7 +135,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                         ]
                     },
                     // 趣味にかかるの物の支出はどのくらいですか？
-                    // hobbyGoods: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+                    // hobbyGoods: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
                     // hobby-books 趣味用品・書籍・雑誌
                     {
                         category: 'hobby-goods-factor',
@@ -151,7 +151,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                         ]
                     },
                     // 衣類、かばん、宝飾品、美容関連などの支出はどのくらいですか？
-                    // clothesBeauty: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+                    // clothesBeauty: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
                     // clothes 衣類・宝飾品
                     {
                         category: 'clothes-beauty-factor',
@@ -159,7 +159,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                         items: ['clothes-goods', 'bags-jewelries-goods']
                     },
                     // レジャー、スポーツへの支出はどのくらいですか？
-                    // leisureSports: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+                    // leisureSports: String # 5000-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
                     // leisure-sports レジャー・スポーツ施設
                     {
                         category: 'leisure-sports-factor',
@@ -167,7 +167,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                         items: ['culture-leisure', 'entertainment-leisure', 'sports-leisure']
                     },
                     // 過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？
-                    // travel: String # 10000-less|20000-30000|30000-50000|50000-100000|100000-200000|200000-more|unknown
+                    // travel: String # 10k-less|20k-30k|30k-50k|50k-100k|100k-200k|200k-more|unknown
                     // travel-hotel 旅行・宿泊
                     {
                         category: 'travel-factor',

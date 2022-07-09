@@ -17,12 +17,12 @@ const toEstimation = (baseline) => {
 }
 
 const toBaseline = (rec) => {
-  const dirAndDomain = rec.dirAndDomain.split('_')
-  const itemAndType = rec.itemAndType.split('_')
+  const dir_domain = rec.dir_domain.split('_')
+  const item_type = rec.item_type.split('_')
   return {
-    domain: dirAndDomain[1],
-    item: itemAndType[0],
-    type: itemAndType[1],
+    domain: dir_domain[1],
+    item: item_type[0],
+    type: item_type[1],
     value: rec.value,
     subdomain: rec.subdomain,
     unit: rec.unit,

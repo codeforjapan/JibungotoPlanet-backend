@@ -1,6 +1,6 @@
 [CSV_SPEC]
 option=S
-domainItemAndType=S
+domain_item_type=S
 value=D
 args=SL
 operation=S

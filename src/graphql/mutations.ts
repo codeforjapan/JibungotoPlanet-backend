@@ -8,8 +8,8 @@ export const createFootprint = /* GraphQL */ `
     $condition: ModelFootprintConditionInput
   ) {
     createFootprint(input: $input, condition: $condition) {
-      dirAndDomain
-      itemAndType
+      dir_domain
+      item_type
       subdomain
       value
       unit
@@ -25,8 +25,8 @@ export const updateFootprint = /* GraphQL */ `
     $condition: ModelFootprintConditionInput
   ) {
     updateFootprint(input: $input, condition: $condition) {
-      dirAndDomain
-      itemAndType
+      dir_domain
+      item_type
       subdomain
       value
       unit
@@ -42,8 +42,8 @@ export const deleteFootprint = /* GraphQL */ `
     $condition: ModelFootprintConditionInput
   ) {
     deleteFootprint(input: $input, condition: $condition) {
-      dirAndDomain
-      itemAndType
+      dir_domain
+      item_type
       subdomain
       value
       unit
@@ -108,7 +108,7 @@ export const createOption = /* GraphQL */ `
   ) {
     createOption(input: $input, condition: $condition) {
       option
-      domainItemAndType
+      domain_item_type
       value
       args
       operation
@@ -125,7 +125,7 @@ export const updateOption = /* GraphQL */ `
   ) {
     updateOption(input: $input, condition: $condition) {
       option
-      domainItemAndType
+      domain_item_type
       value
       args
       operation
@@ -142,7 +142,7 @@ export const deleteOption = /* GraphQL */ `
   ) {
     deleteOption(input: $input, condition: $condition) {
       option
-      domainItemAndType
+      domain_item_type
       value
       args
       operation
@@ -260,7 +260,7 @@ export const createProfile = /* GraphQL */ `
         leisureSportsFactorKey
         travelFactorKey
       }
-      actionIntensityRate {
+      actionIntensityRates {
         option
         value
         defaultValue
@@ -366,7 +366,7 @@ export const updateProfile = /* GraphQL */ `
         leisureSportsFactorKey
         travelFactorKey
       }
-      actionIntensityRate {
+      actionIntensityRates {
         option
         value
         defaultValue
@@ -472,7 +472,7 @@ export const deleteProfile = /* GraphQL */ `
         leisureSportsFactorKey
         travelFactorKey
       }
-      actionIntensityRate {
+      actionIntensityRates {
         option
         value
         defaultValue
