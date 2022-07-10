@@ -125,7 +125,7 @@ To access AWS resources outside of this Amplify app, edit the /.../projects/code
 
 [Amplify Function を TypeScript で開発し、ESLint, Prettier で解析する CI/CD 環境](https://qiita.com/t-kurasawa/items/3275d37053f4b0bea983)に基づいて Typescript の環境を整備してもらいました！amplify/backend/function/[function 名]/lib にある typescript のコードを編集下さい。
 
-#### テストのやり方
+#### テストのやり方（mock での簡易テスト）
 
 ```bash
 amplify mock # モック環境の起動
@@ -136,3 +136,86 @@ amplify mock function profilea2218c7f
 ? Provide the path to the event JSON object relative to /.../projects/code-for-japan/Footprint-Jibungoto/amplify/backend/function/profilea2218c7f src/post-empty.json
 
 ```
+
+#### テストのやり方(jest+supertest)
+
+jest+supertest でのローカルテスト環境を構築しています。以下のパッケージを導入しました。
+
+```bash
+yarn add --dev jest ts-jest supertest eslint-plugin-jest @types/jest @types/supertest
+```
+
+.eslintrc.json の extends に"plugin:jest/recommended", plugins に"jest"を追加します。.eslintrc.json は以下のようになります。
+
+```json
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:jest/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "jest"],
+  "root": true,
+  "rules": {}
+}
+```
+
+tsconfig.json をプロジェクトルートに作成します。内容は以下です。
+
+````json
+{
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
+}
+```json
+````
+
+jest.config.js をプロジェクトルートに作成します。内容は以下です。
+
+```javascript
+module.exports = {
+  roots: ['<rootDir>/src'],
+  testMatch: [
+    '**/__tests__/**/*.+(ts|tsx|js)',
+    '**/?(*.)+(spec|test).+(ts|tsx|js)'
+  ],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest'
+  }
+}
+```
+
+package.json の scripts にテストを実行するコマンドを追加します。`yarn test`で事前準備を全て実行してテスト、`yarn jest`で事前準備をスキップしてテストを実施します。テストコードを修正しただけの場合は、`yarn jest`の実行で十分です。
+
+```json
+  "scripts": {
+    ... 中略
+    "amplify:footprintf523f2c8": "cd amplify/backend/function/footprintf523f2c8 && tsc -p ./tsconfig.json && cd -",
+    "amplify:profilea2218c7f": "cd amplify/backend/function/profilea2218c7f && tsc -p ./tsconfig.json && cd -",
+    "amplify:shareb311c853": "cd amplify/backend/function/shareb311c853 && tsc -p ./tsconfig.json && cd -",
+    "tc:all": "yarn amplify:footprintf523f2c8 && yarn amplify:profilea2218c7f && yarn amplify:shareb311c853",
+    "yarn:footprintf523f2c8": "cd amplify/backend/function/footprintf523f2c8/src && yarn && cd -",
+    "yarn:profilea2218c7f": "cd amplify/backend/function/profilea2218c7f/src && yarn && cd -",
+    "yarn:shareb311c853": "cd amplify/backend/function/shareb311c853/src && yarn && cd -",
+    "yarn:all": "yarn && yarn yarn:footprintf523f2c8 && yarn yarn:profilea2218c7f && yarn yarn:shareb311c853",
+    "test": "yarn yarn:all && yarn tc:all && jest",
+    "jest": "jest",
+    ... 中略
+  }
+```
+
+現状、lambda のソースは app.js でクライアントからのリクエストを listen していますが、テスト時に listen があると不都合なことから、app.js の以下のコードを index.js へ移行します。
+
+```javascript
+app.listen(3000, function () {
+  console.log('App started')
+})
+```
+
+`src/__test__`テストコードを保存します。
