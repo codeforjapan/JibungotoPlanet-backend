@@ -35,6 +35,7 @@
     "prettier": "^2.7.1",
     "supertest": "^6.2.4",
     "ts-jest": "^28.0.5",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "xlsx": "^0.18.5"
   }
 }

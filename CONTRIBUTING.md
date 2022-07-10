@@ -218,4 +218,4 @@ app.listen(3000, function () {
 })
 ```
 
-`src/__test__`テストコードを保存します。
+`src/__test__`にテストコードを保存します。`amplify mock`を別シェルで実行後、`yarn test`もしくは`yarn jest`を実行下さい。
