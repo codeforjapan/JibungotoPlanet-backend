@@ -25,7 +25,6 @@ describe('Estimation', () => {
 
     // 生成したProfileに対してテストケースを順番に適用
     for (const testCase of testCases) {
-      console.log(JSON.stringify(testCase.toRequest()))
       const resPut = await request(app)
         .put('/profiles/' + id)
         .send(testCase.toRequest())
@@ -36,8 +35,6 @@ describe('Estimation', () => {
 
       // 計算したestimationがexpectationとあっているを確認
       const estimations = resPut.body.data.estimations
-      console.log(JSON.stringify(resPut.body.data.estimations))
-      console.log(JSON.stringify(testCase.expectations))
 
       for (const estimation of estimations) {
         const exp = testCase.expectations.find(
@@ -46,7 +43,9 @@ describe('Estimation', () => {
             e.item === estimation.item &&
             e.type === estimation.type
         )
-        console.log(exp.domain + '_' + exp.item + '_' + exp.type)
+        console.log(
+          'checking : ' + exp.domain + '_' + exp.item + '_' + exp.type
+        )
         expect(exp).not.toBeNull()
         expect(exp.estimated).toBeTruthy()
         expect(estimation.value).toBeCloseTo(exp.value)

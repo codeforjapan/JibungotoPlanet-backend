@@ -219,3 +219,7 @@ app.listen(3000, function () {
 ```
 
 `src/__test__`にテストコードを保存します。`amplify mock`を別シェルで実行後、`yarn test`もしくは`yarn jest`を実行下さい。
+
+#### テストツール
+
+テストの効率化のため、Excel からテストケース、期待する結果を読み込んで検証する仕組みを構築しました。`src/tests/test-cases.xlsx`の answers シートにテストケース（xxxAnswer の値を設定）を作成し、case 名と同じ名前のシートに期待する結果を記入します。一行目が黄色の列のデータを取り込み、テストを実施します。
