@@ -400,6 +400,24 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 estimations.push((0, util_1.toEstimation)(estimationAmount['cold-drink']));
                 _5.label = 21;
             case 21:
+                if (!foodAnswer.eatOutFactorKey) return [3 /*break*/, 23];
+                return [4 /*yield*/, dynamodb
+                        .get({
+                        TableName: parameterTableName,
+                        Key: {
+                            category: 'eat-out-factor',
+                            key: foodAnswer.eatOutFactorKey
+                        }
+                    })
+                        .promise()];
+            case 22:
+                eatOutFactor = _5.sent();
+                estimationAmount.restaurant.value = estimationAmount.restaurant.value * ((_3 = eatOutFactor.Item) === null || _3 === void 0 ? void 0 : _3.value);
+                estimationAmount['bar-cafe'].value = estimationAmount['bar-cafe'].value * ((_4 = eatOutFactor.Item) === null || _4 === void 0 ? void 0 : _4.value);
+                estimations.push((0, util_1.toEstimation)(estimationAmount.restaurant));
+                estimations.push((0, util_1.toEstimation)(estimationAmount['bar-cafe']));
+                _5.label = 23;
+            case 23:
                 console.log(JSON.stringify(estimations));
                 return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }

@@ -386,6 +386,25 @@ const estimateFood = async (
     }
   }
 
+  // 外食部分の計算
+  if (foodAnswer.eatOutFactorKey) {
+    const eatOutFactor = await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: 'eat-out-factor',
+          key: foodAnswer.eatOutFactorKey
+        }
+      })
+      .promise()
+    estimationAmount.restaurant.value =
+      estimationAmount.restaurant.value * eatOutFactor.Item?.value
+    estimationAmount['bar-cafe'].value =
+      estimationAmount['bar-cafe'].value * eatOutFactor.Item?.value
+    estimations.push(toEstimation(estimationAmount.restaurant))
+    estimations.push(toEstimation(estimationAmount['bar-cafe']))
+  }
+
   console.log(JSON.stringify(estimations))
   return { baselines, estimations }
 }
