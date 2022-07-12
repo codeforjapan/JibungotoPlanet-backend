@@ -39,10 +39,10 @@ exports.__esModule = true;
 exports.estimateFood = void 0;
 var util_1 = require("./util");
 var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, estimations, params, data, baselines, foodIntakeFactor, estimationAmount, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio, dairyFoodFactor, dishBeefFactor, dishPorkFactor, dishChickenFactor, dishSeafoodFactor, alcoholFactor, alcoholFactor, softDrinkSnackFactor;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2;
-    return __generator(this, function (_3) {
-        switch (_3.label) {
+    var findAmount, estimations, params, data, baselines, foodIntakeFactor, estimationAmount, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio, dairyFoodFactor, dishBeefFactor, dishPorkFactor, dishChickenFactor, dishSeafoodFactor, alcoholFactor, alcoholFactor, softDrinkSnackFactor, eatOutFactor;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4;
+    return __generator(this, function (_5) {
+        switch (_5.label) {
             case 0:
                 findAmount = function (baselines, item) {
                     return (0, util_1.findBaseline)(baselines, 'food', item, 'amount');
@@ -59,29 +59,23 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 };
                 return [4 /*yield*/, dynamodb.query(params).promise()];
             case 1:
-                data = _3.sent();
+                data = _5.sent();
                 baselines = data.Items.map(function (item) { return (0, util_1.toBaseline)(item); });
                 // 回答がない場合はベースラインのみ返す
                 if (!foodAnswer) {
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['food-intake-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.foodIntakeFactorKey]
-                            }
+                        Key: {
+                            category: 'food-intake-factor',
+                            key: foodAnswer.foodIntakeFactorKey
                         }
                     })
                         .promise()];
             case 2:
-                foodIntakeFactor = _3.sent();
+                foodIntakeFactor = _5.sent();
                 estimationAmount = {
                     rice: findAmount(baselines, 'rice'),
                     'bread-flour': findAmount(baselines, 'bread-flour'),
@@ -107,43 +101,33 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     'ready-meal': findAmount(baselines, 'ready-meal'),
                     alcohol: findAmount(baselines, 'alcohol'),
                     'coffee-tea': findAmount(baselines, 'coffee-tea'),
-                    'cold-drink': findAmount(baselines, 'cold-drink')
+                    'cold-drink': findAmount(baselines, 'cold-drink'),
+                    restaurant: findAmount(baselines, 'restaurant'),
+                    'bar-cafe': findAmount(baselines, 'bar-cafe')
                 };
                 if (!(foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey)) return [3 /*break*/, 21];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['food-direct-waste-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.foodDirectWasteFactorKey]
-                            }
+                        Key: {
+                            category: 'food-direct-waste-factor',
+                            key: foodAnswer.foodDirectWasteFactorKey
                         }
                     })
                         .promise()];
             case 3:
-                foodDirectWasteFactor = _3.sent();
+                foodDirectWasteFactor = _5.sent();
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['food-leftover-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.foodLeftoverFactorKey]
-                            }
+                        Key: {
+                            category: 'food-leftover-factor',
+                            key: foodAnswer.foodLeftoverFactorKey
                         }
                     })
                         .promise()];
             case 4:
-                foodLeftoverFactor = _3.sent();
+                foodLeftoverFactor = _5.sent();
                 return [4 /*yield*/, dynamodb
                         .query({
                         TableName: parameterTableName,
@@ -156,57 +140,57 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     })
                         .promise()];
             case 5:
-                foodWastRatio = _3.sent();
+                foodWastRatio = _5.sent();
                 leftoverRatio = foodWastRatio.Items.find(function (item) { return item.key === 'leftover-per-food-waste'; });
                 directWasteRatio = foodWastRatio.Items.find(function (item) { return item.key === 'direct-waste-per-food-waste'; });
                 foodWasteRatio = foodWastRatio.Items.find(function (item) { return item.key === 'food-waste-per-food'; });
-                foodLossAverageRatio = ((_a = foodDirectWasteFactor.Items[0]) === null || _a === void 0 ? void 0 : _a.value) * directWasteRatio.value +
-                    ((_b = foodLeftoverFactor.Items[0]) === null || _b === void 0 ? void 0 : _b.value) * leftoverRatio.value;
+                foodLossAverageRatio = ((_a = foodDirectWasteFactor.Item) === null || _a === void 0 ? void 0 : _a.value) * directWasteRatio.value +
+                    ((_b = foodLeftoverFactor.Item) === null || _b === void 0 ? void 0 : _b.value) * leftoverRatio.value;
                 foodPurchaseAmountConsideringFoodLossRatio = (1 + foodLossAverageRatio * foodWasteRatio.value) /
                     (1 + foodWasteRatio.value);
                 estimationAmount.rice.value =
                     estimationAmount.rice.value *
-                        ((_c = foodIntakeFactor.Items[0]) === null || _c === void 0 ? void 0 : _c.value) *
+                        ((_c = foodIntakeFactor.Item) === null || _c === void 0 ? void 0 : _c.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount['bread-flour'].value =
                     estimationAmount['bread-flour'].value *
-                        ((_d = foodIntakeFactor.Items[0]) === null || _d === void 0 ? void 0 : _d.value) *
+                        ((_d = foodIntakeFactor.Item) === null || _d === void 0 ? void 0 : _d.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount.noodle.value =
                     estimationAmount.noodle.value *
-                        ((_e = foodIntakeFactor.Items[0]) === null || _e === void 0 ? void 0 : _e.value) *
+                        ((_e = foodIntakeFactor.Item) === null || _e === void 0 ? void 0 : _e.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount.potatoes.value =
                     estimationAmount.potatoes.value *
-                        ((_f = foodIntakeFactor.Items[0]) === null || _f === void 0 ? void 0 : _f.value) *
+                        ((_f = foodIntakeFactor.Item) === null || _f === void 0 ? void 0 : _f.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount.vegetables.value =
                     estimationAmount.vegetables.value *
-                        ((_g = foodIntakeFactor.Items[0]) === null || _g === void 0 ? void 0 : _g.value) *
+                        ((_g = foodIntakeFactor.Item) === null || _g === void 0 ? void 0 : _g.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount['processed-vegetables'].value =
                     estimationAmount['processed-vegetables'].value *
-                        ((_h = foodIntakeFactor.Items[0]) === null || _h === void 0 ? void 0 : _h.value) *
+                        ((_h = foodIntakeFactor.Item) === null || _h === void 0 ? void 0 : _h.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount.beans.value =
                     estimationAmount.beans.value *
-                        ((_j = foodIntakeFactor.Items[0]) === null || _j === void 0 ? void 0 : _j.value) *
+                        ((_j = foodIntakeFactor.Item) === null || _j === void 0 ? void 0 : _j.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount.fruits.value =
                     estimationAmount.fruits.value *
-                        ((_k = foodIntakeFactor.Items[0]) === null || _k === void 0 ? void 0 : _k.value) *
+                        ((_k = foodIntakeFactor.Item) === null || _k === void 0 ? void 0 : _k.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount.oil.value =
                     estimationAmount.oil.value *
-                        ((_l = foodIntakeFactor.Items[0]) === null || _l === void 0 ? void 0 : _l.value) *
+                        ((_l = foodIntakeFactor.Item) === null || _l === void 0 ? void 0 : _l.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount.seasoning.value =
                     estimationAmount.seasoning.value *
-                        ((_m = foodIntakeFactor.Items[0]) === null || _m === void 0 ? void 0 : _m.value) *
+                        ((_m = foodIntakeFactor.Item) === null || _m === void 0 ? void 0 : _m.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount['ready-meal'].value =
                     estimationAmount['ready-meal'].value *
-                        ((_o = foodIntakeFactor.Items[0]) === null || _o === void 0 ? void 0 : _o.value) *
+                        ((_o = foodIntakeFactor.Item) === null || _o === void 0 ? void 0 : _o.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.rice));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['bread-flour']));
@@ -221,121 +205,97 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 estimations.push((0, util_1.toEstimation)(estimationAmount['ready-meal']));
                 if (!foodAnswer.dairyFoodFactorKey) return [3 /*break*/, 7];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['dairy-food-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.dairyFoodFactorKey]
-                            }
+                        Key: {
+                            category: 'dairy-food-factor',
+                            key: foodAnswer.dairyFoodFactorKey
                         }
                     })
                         .promise()];
             case 6:
-                dairyFoodFactor = _3.sent();
+                dairyFoodFactor = _5.sent();
                 estimationAmount.milk.value =
                     estimationAmount.milk.value *
-                        ((_p = dairyFoodFactor.Items[0]) === null || _p === void 0 ? void 0 : _p.value) *
+                        ((_p = dairyFoodFactor.Item) === null || _p === void 0 ? void 0 : _p.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount['other-dairy'].value =
                     estimationAmount['other-dairy'].value *
-                        ((_q = dairyFoodFactor.Items[0]) === null || _q === void 0 ? void 0 : _q.value) *
+                        ((_q = dairyFoodFactor.Item) === null || _q === void 0 ? void 0 : _q.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount.eggs.value =
                     estimationAmount.eggs.value *
-                        ((_r = dairyFoodFactor.Items[0]) === null || _r === void 0 ? void 0 : _r.value) *
+                        ((_r = dairyFoodFactor.Item) === null || _r === void 0 ? void 0 : _r.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.milk));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['other-dairy']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.eggs));
-                _3.label = 7;
+                _5.label = 7;
             case 7:
                 dishBeefFactor = null;
                 if (!foodAnswer.dishBeefFactorKey) return [3 /*break*/, 9];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['dish-beef-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.dishBeefFactorKey]
-                            }
+                        Key: {
+                            category: 'dish-beef-factor',
+                            key: foodAnswer.dishBeefFactorKey
                         }
                     })
                         .promise()];
             case 8:
-                dishBeefFactor = _3.sent();
+                dishBeefFactor = _5.sent();
                 estimationAmount.beef.value =
                     estimationAmount.beef.value *
-                        ((_s = dishBeefFactor.Items[0]) === null || _s === void 0 ? void 0 : _s.value) *
+                        ((_s = dishBeefFactor.Item) === null || _s === void 0 ? void 0 : _s.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.beef));
-                _3.label = 9;
+                _5.label = 9;
             case 9:
                 dishPorkFactor = null;
                 if (!foodAnswer.dishPorkFactorKey) return [3 /*break*/, 11];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['dish-pork-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.dishPorkFactorKey]
-                            }
+                        Key: {
+                            category: 'dish-pork-factor',
+                            key: foodAnswer.dishPorkFactorKey
                         }
                     })
                         .promise()];
             case 10:
-                dishPorkFactor = _3.sent();
+                dishPorkFactor = _5.sent();
                 estimationAmount.pork.value =
                     estimationAmount.pork.value *
-                        ((_t = dishPorkFactor.Items[0]) === null || _t === void 0 ? void 0 : _t.value) *
+                        ((_t = dishPorkFactor.Item) === null || _t === void 0 ? void 0 : _t.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount['other-meat'].value =
                     estimationAmount['other-meat'].value *
-                        ((_u = dishPorkFactor.Items[0]) === null || _u === void 0 ? void 0 : _u.value) *
+                        ((_u = dishPorkFactor.Item) === null || _u === void 0 ? void 0 : _u.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.pork));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['other-meat']));
-                _3.label = 11;
+                _5.label = 11;
             case 11:
                 dishChickenFactor = null;
                 if (!foodAnswer.dishChickenFactorKey) return [3 /*break*/, 13];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['dish-chicken-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.dishChickenFactorKey]
-                            }
+                        Key: {
+                            category: 'dish-chicken-factor',
+                            key: foodAnswer.dishChickenFactorKey
                         }
                     })
                         .promise()];
             case 12:
-                dishChickenFactor = _3.sent();
+                dishChickenFactor = _5.sent();
                 estimationAmount.chicken.value =
                     estimationAmount.chicken.value *
-                        ((_v = dishChickenFactor.Items[0]) === null || _v === void 0 ? void 0 : _v.value) *
+                        ((_v = dishChickenFactor.Item) === null || _v === void 0 ? void 0 : _v.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.chicken));
-                _3.label = 13;
+                _5.label = 13;
             case 13:
                 // 加工肉補正
                 if (dishBeefFactor && dishPorkFactor && dishChickenFactor) {
@@ -351,118 +311,94 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 }
                 if (!foodAnswer.dishSeafoodFactorKey) return [3 /*break*/, 15];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['dish-seafood-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.dishSeafoodFactorKey]
-                            }
+                        Key: {
+                            category: 'dish-seafood-factor',
+                            key: foodAnswer.dishSeafoodFactorKey
                         }
                     })
                         .promise()];
             case 14:
-                dishSeafoodFactor = _3.sent();
+                dishSeafoodFactor = _5.sent();
                 estimationAmount.fish.value =
                     estimationAmount.pork.value *
-                        ((_w = dishSeafoodFactor.Items[0]) === null || _w === void 0 ? void 0 : _w.value) *
+                        ((_w = dishSeafoodFactor.Item) === null || _w === void 0 ? void 0 : _w.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount['processed-fish'].value =
                     estimationAmount['processed-fish'].value *
-                        ((_x = dishSeafoodFactor.Items[0]) === null || _x === void 0 ? void 0 : _x.value) *
+                        ((_x = dishSeafoodFactor.Item) === null || _x === void 0 ? void 0 : _x.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.fish));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['processed-fish']));
-                _3.label = 15;
+                _5.label = 15;
             case 15:
                 if (!foodAnswer.alcoholFactorKey) return [3 /*break*/, 17];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['alcohol-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.alcoholFactorKey]
-                            }
+                        Key: {
+                            category: 'alcohol-factor',
+                            key: foodAnswer.alcoholFactorKey
                         }
                     })
                         .promise()];
             case 16:
-                alcoholFactor = _3.sent();
+                alcoholFactor = _5.sent();
                 estimationAmount.alcohol.value =
                     estimationAmount.alcohol.value *
-                        ((_y = alcoholFactor.Items[0]) === null || _y === void 0 ? void 0 : _y.value) *
+                        ((_y = alcoholFactor.Item) === null || _y === void 0 ? void 0 : _y.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.alcohol));
-                _3.label = 17;
+                _5.label = 17;
             case 17:
                 if (!foodAnswer.alcoholFactorKey) return [3 /*break*/, 19];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['alcohol-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.alcoholFactorKey]
-                            }
+                        Key: {
+                            category: 'alcohol-factor',
+                            key: foodAnswer.alcoholFactorKey
                         }
                     })
                         .promise()];
             case 18:
-                alcoholFactor = _3.sent();
+                alcoholFactor = _5.sent();
                 estimationAmount.alcohol.value =
                     estimationAmount.alcohol.value *
-                        ((_z = alcoholFactor.Items[0]) === null || _z === void 0 ? void 0 : _z.value) *
+                        ((_z = alcoholFactor.Item) === null || _z === void 0 ? void 0 : _z.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.alcohol));
-                _3.label = 19;
+                _5.label = 19;
             case 19:
                 if (!foodAnswer.softDrinkSnackFactorKey) return [3 /*break*/, 21];
                 return [4 /*yield*/, dynamodb
-                        .query({
+                        .get({
                         TableName: parameterTableName,
-                        KeyConditions: {
-                            category: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: ['soft-drink-snack-factor']
-                            },
-                            key: {
-                                ComparisonOperator: 'EQ',
-                                AttributeValueList: [foodAnswer.softDrinkSnackFactorKey]
-                            }
+                        Key: {
+                            category: 'soft-drink-snack-factor',
+                            key: foodAnswer.softDrinkSnackFactorKey
                         }
                     })
                         .promise()];
             case 20:
-                softDrinkSnackFactor = _3.sent();
+                softDrinkSnackFactor = _5.sent();
                 estimationAmount['sweets-snack'].value =
                     estimationAmount['sweets-snack'].value *
-                        ((_0 = softDrinkSnackFactor.Items[0]) === null || _0 === void 0 ? void 0 : _0.value) *
+                        ((_0 = softDrinkSnackFactor.Item) === null || _0 === void 0 ? void 0 : _0.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount['coffee-tea'].value =
                     estimationAmount['coffee-tea'].value *
-                        ((_1 = softDrinkSnackFactor.Items[0]) === null || _1 === void 0 ? void 0 : _1.value) *
+                        ((_1 = softDrinkSnackFactor.Item) === null || _1 === void 0 ? void 0 : _1.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimationAmount['cold-drink'].value =
                     estimationAmount['cold-drink'].value *
-                        ((_2 = softDrinkSnackFactor.Items[0]) === null || _2 === void 0 ? void 0 : _2.value) *
+                        ((_2 = softDrinkSnackFactor.Item) === null || _2 === void 0 ? void 0 : _2.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount['sweets-snack']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['coffee-tea']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['cold-drink']));
-                _3.label = 21;
+                _5.label = 21;
             case 21:
                 console.log(JSON.stringify(estimations));
                 return [2 /*return*/, { baselines: baselines, estimations: estimations }];

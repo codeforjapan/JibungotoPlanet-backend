@@ -36,17 +36,11 @@ const estimateFood = async (
   }
 
   const foodIntakeFactor = await dynamodb
-    .query({
+    .get({
       TableName: parameterTableName,
-      KeyConditions: {
-        category: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: ['food-intake-factor']
-        },
-        key: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: [foodAnswer.foodIntakeFactorKey]
-        }
+      Key: {
+        category: 'food-intake-factor',
+        key: foodAnswer.foodIntakeFactorKey
       }
     })
     .promise()
@@ -76,38 +70,28 @@ const estimateFood = async (
     'ready-meal': findAmount(baselines, 'ready-meal'),
     alcohol: findAmount(baselines, 'alcohol'),
     'coffee-tea': findAmount(baselines, 'coffee-tea'),
-    'cold-drink': findAmount(baselines, 'cold-drink')
+    'cold-drink': findAmount(baselines, 'cold-drink'),
+    restaurant: findAmount(baselines, 'restaurant'),
+    'bar-cafe': findAmount(baselines, 'bar-cafe')
   }
 
   if (foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey) {
     const foodDirectWasteFactor = await dynamodb
-      .query({
+      .get({
         TableName: parameterTableName,
-        KeyConditions: {
-          category: {
-            ComparisonOperator: 'EQ',
-            AttributeValueList: ['food-direct-waste-factor']
-          },
-          key: {
-            ComparisonOperator: 'EQ',
-            AttributeValueList: [foodAnswer.foodDirectWasteFactorKey]
-          }
+        Key: {
+          category: 'food-direct-waste-factor',
+          key: foodAnswer.foodDirectWasteFactorKey
         }
       })
       .promise()
 
     const foodLeftoverFactor = await dynamodb
-      .query({
+      .get({
         TableName: parameterTableName,
-        KeyConditions: {
-          category: {
-            ComparisonOperator: 'EQ',
-            AttributeValueList: ['food-leftover-factor']
-          },
-          key: {
-            ComparisonOperator: 'EQ',
-            AttributeValueList: [foodAnswer.foodLeftoverFactorKey]
-          }
+        Key: {
+          category: 'food-leftover-factor',
+          key: foodAnswer.foodLeftoverFactorKey
         }
       })
       .promise()
@@ -134,8 +118,8 @@ const estimateFood = async (
     )
 
     const foodLossAverageRatio =
-      foodDirectWasteFactor.Items[0]?.value * directWasteRatio.value +
-      foodLeftoverFactor.Items[0]?.value * leftoverRatio.value
+      foodDirectWasteFactor.Item?.value * directWasteRatio.value +
+      foodLeftoverFactor.Item?.value * leftoverRatio.value
 
     // 全体に影響する割合
     // 食品ロスを考慮した食材購入量の平均に対する比率
@@ -145,47 +129,47 @@ const estimateFood = async (
 
     estimationAmount.rice.value =
       estimationAmount.rice.value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount['bread-flour'].value =
       estimationAmount['bread-flour'].value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount.noodle.value =
       estimationAmount.noodle.value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount.potatoes.value =
       estimationAmount.potatoes.value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount.vegetables.value =
       estimationAmount.vegetables.value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount['processed-vegetables'].value =
       estimationAmount['processed-vegetables'].value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount.beans.value =
       estimationAmount.beans.value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount.fruits.value =
       estimationAmount.fruits.value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount.oil.value =
       estimationAmount.oil.value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount.seasoning.value =
       estimationAmount.seasoning.value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimationAmount['ready-meal'].value =
       estimationAmount['ready-meal'].value *
-      foodIntakeFactor.Items[0]?.value *
+      foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
     estimations.push(toEstimation(estimationAmount.rice))
     estimations.push(toEstimation(estimationAmount['bread-flour']))
@@ -206,32 +190,26 @@ const estimateFood = async (
     // 乳製品補正
     if (foodAnswer.dairyFoodFactorKey) {
       const dairyFoodFactor = await dynamodb
-        .query({
+        .get({
           TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['dairy-food-factor']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [foodAnswer.dairyFoodFactorKey]
-            }
+          Key: {
+            category: 'dairy-food-factor',
+            key: foodAnswer.dairyFoodFactorKey
           }
         })
         .promise()
 
       estimationAmount.milk.value =
         estimationAmount.milk.value *
-        dairyFoodFactor.Items[0]?.value *
+        dairyFoodFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimationAmount['other-dairy'].value =
         estimationAmount['other-dairy'].value *
-        dairyFoodFactor.Items[0]?.value *
+        dairyFoodFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimationAmount.eggs.value =
         estimationAmount.eggs.value *
-        dairyFoodFactor.Items[0]?.value *
+        dairyFoodFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount.milk))
       estimations.push(toEstimation(estimationAmount['other-dairy']))
@@ -242,24 +220,18 @@ const estimateFood = async (
     let dishBeefFactor = null
     if (foodAnswer.dishBeefFactorKey) {
       dishBeefFactor = await dynamodb
-        .query({
+        .get({
           TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['dish-beef-factor']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [foodAnswer.dishBeefFactorKey]
-            }
+          Key: {
+            category: 'dish-beef-factor',
+            key: foodAnswer.dishBeefFactorKey
           }
         })
         .promise()
 
       estimationAmount.beef.value =
         estimationAmount.beef.value *
-        dishBeefFactor.Items[0]?.value *
+        dishBeefFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount.beef))
     }
@@ -268,28 +240,22 @@ const estimateFood = async (
     let dishPorkFactor = null
     if (foodAnswer.dishPorkFactorKey) {
       dishPorkFactor = await dynamodb
-        .query({
+        .get({
           TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['dish-pork-factor']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [foodAnswer.dishPorkFactorKey]
-            }
+          Key: {
+            category: 'dish-pork-factor',
+            key: foodAnswer.dishPorkFactorKey
           }
         })
         .promise()
 
       estimationAmount.pork.value =
         estimationAmount.pork.value *
-        dishPorkFactor.Items[0]?.value *
+        dishPorkFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimationAmount['other-meat'].value =
         estimationAmount['other-meat'].value *
-        dishPorkFactor.Items[0]?.value *
+        dishPorkFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount.pork))
       estimations.push(toEstimation(estimationAmount['other-meat']))
@@ -299,24 +265,18 @@ const estimateFood = async (
     let dishChickenFactor = null
     if (foodAnswer.dishChickenFactorKey) {
       dishChickenFactor = await dynamodb
-        .query({
+        .get({
           TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['dish-chicken-factor']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [foodAnswer.dishChickenFactorKey]
-            }
+          Key: {
+            category: 'dish-chicken-factor',
+            key: foodAnswer.dishChickenFactorKey
           }
         })
         .promise()
 
       estimationAmount.chicken.value =
         estimationAmount.chicken.value *
-        dishChickenFactor.Items[0]?.value *
+        dishChickenFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount.chicken))
     }
@@ -337,28 +297,22 @@ const estimateFood = async (
     // 魚補正
     if (foodAnswer.dishSeafoodFactorKey) {
       const dishSeafoodFactor = await dynamodb
-        .query({
+        .get({
           TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['dish-seafood-factor']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [foodAnswer.dishSeafoodFactorKey]
-            }
+          Key: {
+            category: 'dish-seafood-factor',
+            key: foodAnswer.dishSeafoodFactorKey
           }
         })
         .promise()
 
       estimationAmount.fish.value =
         estimationAmount.pork.value *
-        dishSeafoodFactor.Items[0]?.value *
+        dishSeafoodFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimationAmount['processed-fish'].value =
         estimationAmount['processed-fish'].value *
-        dishSeafoodFactor.Items[0]?.value *
+        dishSeafoodFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount.fish))
       estimations.push(toEstimation(estimationAmount['processed-fish']))
@@ -367,24 +321,18 @@ const estimateFood = async (
     // アルコール補正
     if (foodAnswer.alcoholFactorKey) {
       const alcoholFactor = await dynamodb
-        .query({
+        .get({
           TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['alcohol-factor']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [foodAnswer.alcoholFactorKey]
-            }
+          Key: {
+            category: 'alcohol-factor',
+            key: foodAnswer.alcoholFactorKey
           }
         })
         .promise()
 
       estimationAmount.alcohol.value =
         estimationAmount.alcohol.value *
-        alcoholFactor.Items[0]?.value *
+        alcoholFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount.alcohol))
     }
@@ -392,24 +340,18 @@ const estimateFood = async (
     // アルコール補正
     if (foodAnswer.alcoholFactorKey) {
       const alcoholFactor = await dynamodb
-        .query({
+        .get({
           TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['alcohol-factor']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [foodAnswer.alcoholFactorKey]
-            }
+          Key: {
+            category: 'alcohol-factor',
+            key: foodAnswer.alcoholFactorKey
           }
         })
         .promise()
 
       estimationAmount.alcohol.value =
         estimationAmount.alcohol.value *
-        alcoholFactor.Items[0]?.value *
+        alcoholFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount.alcohol))
     }
@@ -417,32 +359,26 @@ const estimateFood = async (
     // 菓子など補正
     if (foodAnswer.softDrinkSnackFactorKey) {
       const softDrinkSnackFactor = await dynamodb
-        .query({
+        .get({
           TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['soft-drink-snack-factor']
-            },
-            key: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: [foodAnswer.softDrinkSnackFactorKey]
-            }
+          Key: {
+            category: 'soft-drink-snack-factor',
+            key: foodAnswer.softDrinkSnackFactorKey
           }
         })
         .promise()
 
       estimationAmount['sweets-snack'].value =
         estimationAmount['sweets-snack'].value *
-        softDrinkSnackFactor.Items[0]?.value *
+        softDrinkSnackFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimationAmount['coffee-tea'].value =
         estimationAmount['coffee-tea'].value *
-        softDrinkSnackFactor.Items[0]?.value *
+        softDrinkSnackFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimationAmount['cold-drink'].value =
         estimationAmount['cold-drink'].value *
-        softDrinkSnackFactor.Items[0]?.value *
+        softDrinkSnackFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount['sweets-snack']))
       estimations.push(toEstimation(estimationAmount['coffee-tea']))
