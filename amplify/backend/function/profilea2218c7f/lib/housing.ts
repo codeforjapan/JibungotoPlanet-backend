@@ -32,7 +32,7 @@ const estimateHousing = async (
   const params = {
     TableName: footprintTableName,
     KeyConditions: {
-      dirAndDomain: {
+      dir_domain: {
         ComparisonOperator: 'EQ',
         AttributeValueList: ['baseline_housing']
       }
@@ -49,14 +49,14 @@ const estimateHousing = async (
   const residentCount = housingAnswer.residentCount
 
   const estimationAmount = {
-    landrent: findAmount(baselines, 'landrent'),
-    otherenergy: findAmount(baselines, 'otherenergy'),
+    'land-rent': findAmount(baselines, 'land-rent'),
+    'other-energy': findAmount(baselines, 'other-energy'),
     water: findAmount(baselines, 'water'),
-    imputedrent: findAmount(baselines, 'imputedrent'),
+    'imputed-rent': findAmount(baselines, 'imputed-rent'),
     rent: findAmount(baselines, 'rent'),
     'housing-maintenance': findAmount(baselines, 'housing-maintenance'),
     electricity: findAmount(baselines, 'electricity'),
-    urbangas: findAmount(baselines, 'urbangas'),
+    'urban-gas': findAmount(baselines, 'urban-gas'),
     lpg: findAmount(baselines, 'lpg'),
     kerosene: findAmount(baselines, 'kerosene')
   }
@@ -117,20 +117,20 @@ const estimateHousing = async (
     }
     const housingSize = await dynamodb.query(housingSizeParams).promise()
     const housingSizePerPeople = housingSize.Items[0]?.value / residentCount
-    const imputedRentValue = estimationAmount.imputedrent.value
+    const imputedRentValue = estimationAmount['imputed-rent'].value
     const rentValue = estimationAmount.rent.value
-    estimationAmount.imputedrent.value =
+    estimationAmount['imputed-rent'].value =
       (housingSizePerPeople / (imputedRentValue + rentValue)) * imputedRentValue
     estimationAmount.rent.value =
       (housingSizePerPeople / (imputedRentValue + rentValue)) * rentValue
     estimationAmount['housing-maintenance'].value =
       (estimationAmount['housing-maintenance'].value /
         (imputedRentValue + rentValue)) *
-      (estimationAmount.imputedrent.value + estimationAmount.rent.value)
-    estimations.push(toEstimation(estimationAmount.imputedrent))
+      (estimationAmount['imputed-rent'].value + estimationAmount.rent.value)
+    estimations.push(toEstimation(estimationAmount['imputed-rent']))
     estimations.push(toEstimation(estimationAmount.rent))
     estimations.push(toEstimation(estimationAmount['housing-maintenance']))
-    // pushOrUpdateEstimate('imputedrent', 'amount', toEstimation(estimationAmount.imputedrent))
+    // pushOrUpdateEstimate('imputed-rent', 'amount', toEstimation(estimationAmount['imputed-rent]))
     // pushOrUpdateEstimate('rent', 'amount', toEstimation(estimationAmount.rent))
     // pushOrUpdateEstimate('housing-maintenance', 'amount', toEstimation(estimationAmount['housing-maintenance']))
   }
@@ -217,21 +217,21 @@ const estimateHousing = async (
       if (gasParam) {
         estimationAmount.lpg.value = gasParam
       }
-      estimationAmount.urbangas.value = 0
+      estimationAmount['urban-gas'].value = 0
     } else {
       if (gasParam) {
-        estimationAmount.urbangas.value = gasParam
+        estimationAmount['urban-gas'].value = gasParam
       }
       estimationAmount.lpg.value = 0
     }
-    estimations.push(toEstimation(estimationAmount.urbangas))
+    estimations.push(toEstimation(estimationAmount['urban-gas']))
     estimations.push(toEstimation(estimationAmount.lpg))
   } else if (housingAnswer.useGas === false) {
-    estimationAmount.urbangas.value = 0
+    estimationAmount['urban-gas'].value = 0
     estimationAmount.lpg.value = 0
-    estimations.push(toEstimation(estimationAmount.urbangas))
+    estimations.push(toEstimation(estimationAmount['urban-gas']))
     estimations.push(toEstimation(estimationAmount.lpg))
-    // pushOrUpdateEstimate('urbangas', 'amount', toEstimation(estimationAmount.urbangas))
+    // pushOrUpdateEstimate('urban-gas', 'amount', toEstimation(estimationAmount['urban-gas']))
     // pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
   }
 
