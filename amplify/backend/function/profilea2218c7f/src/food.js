@@ -412,8 +412,10 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                         .promise()];
             case 22:
                 eatOutFactor = _5.sent();
-                estimationAmount.restaurant.value = estimationAmount.restaurant.value * ((_3 = eatOutFactor.Item) === null || _3 === void 0 ? void 0 : _3.value);
-                estimationAmount['bar-cafe'].value = estimationAmount['bar-cafe'].value * ((_4 = eatOutFactor.Item) === null || _4 === void 0 ? void 0 : _4.value);
+                estimationAmount.restaurant.value =
+                    estimationAmount.restaurant.value * ((_3 = eatOutFactor.Item) === null || _3 === void 0 ? void 0 : _3.value);
+                estimationAmount['bar-cafe'].value =
+                    estimationAmount['bar-cafe'].value * ((_4 = eatOutFactor.Item) === null || _4 === void 0 ? void 0 : _4.value);
                 estimations.push((0, util_1.toEstimation)(estimationAmount.restaurant));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['bar-cafe']));
                 _5.label = 23;
