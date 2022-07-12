@@ -1,6 +1,6 @@
 {
   "success": "put call succeed!",
-  "url": "/profiles/c9cb3a15-d093-4040-82fb-eacbcd090348",
+  "url": "/profiles/89f5361d-3b10-4991-b750-d42b9bd1ad81",
   "data": {
     "mobilityAnswer": {
       "busWeeklyTravelingTime": 7,
@@ -21,7 +21,7 @@
       "carIntensityFactorKey": "gasoline_driving-factor",
       "hasWeeklyTravelingTime": true
     },
-    "updatedAt": "2022-07-12T12:56:48.567Z",
+    "updatedAt": "2022-07-12T13:44:31.384Z",
     "otherAnswer": {
       "communicationAmountKey": "5k-less",
       "dailyGoodsAmountKey": "5k-less",
@@ -32,7 +32,7 @@
       "leisureSportsFactorKey": "5k-less",
       "clothesBeautyFactorKey": "5k-less"
     },
-    "createdAt": "2022-07-09T07:12:56.998Z",
+    "createdAt": "2022-07-12T13:37:54.027Z",
     "foodAnswer": {
       "dishChickenFactorKey": "everyday",
       "dairyFoodFactorKey": "3-more-per-day",
@@ -1848,23 +1848,8 @@
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       }
     ],
-    "shareId": "WMOPH-qTH",
-    "id": "c9cb3a15-d093-4040-82fb-eacbcd090348",
-    "housingAnswer": {
-      "residentCount": 2,
-      "housingSizeKey": "unknown",
-      "housingAmountByRegionFirstKey": "northeast",
-      "electricityIntensityKey": "100-renewable",
-      "electricityMonthlyConsumption": 1000,
-      "electricitySeasonFactorKey": "january",
-      "useGas": true,
-      "energyHeatIntensityKey": "urban-gas",
-      "gasMonthlyConsumption": 1000,
-      "gasSeasonFactorKey": "january",
-      "useKerosene": true,
-      "keroseneMonthlyConsumption": 100,
-      "keroseneMonthCount": 4
-    },
+    "shareId": "GHF5rkpKX",
+    "id": "89f5361d-3b10-4991-b750-d42b9bd1ad81",
     "estimations": [
       {
         "domain": "mobility",
@@ -2626,6 +2611,21 @@
         "subdomain": "travel-hotel",
         "unit": "000JPY"
       }
-    ]
+    ],
+    "housingAnswer": {
+      "residentCount": 2,
+      "housingSizeKey": "unknown",
+      "housingAmountByRegionFirstKey": "northeast",
+      "electricityIntensityKey": "100-renewable",
+      "electricityMonthlyConsumption": 1000,
+      "electricitySeasonFactorKey": "january",
+      "useGas": true,
+      "energyHeatIntensityKey": "urban-gas",
+      "gasMonthlyConsumption": 1000,
+      "gasSeasonFactorKey": "january",
+      "useKerosene": true,
+      "keroseneMonthlyConsumption": 100,
+      "keroseneMonthCount": 4
+    }
   }
 }

@@ -18,7 +18,7 @@
     "carIntensityFactorKey": "gasoline_driving-factor",
     "hasWeeklyTravelingTime": true
   },
-  "updatedAt": "2022-07-12T12:45:34.431Z",
+  "updatedAt": "2022-07-12T13:44:31.384Z",
   "otherAnswer": {
     "communicationAmountKey": "5k-less",
     "dailyGoodsAmountKey": "5k-less",
@@ -29,7 +29,7 @@
     "leisureSportsFactorKey": "5k-less",
     "clothesBeautyFactorKey": "5k-less"
   },
-  "createdAt": "2022-07-09T07:12:56.998Z",
+  "createdAt": "2022-07-12T13:37:54.027Z",
   "foodAnswer": {
     "dishChickenFactorKey": "everyday",
     "dairyFoodFactorKey": "3-more-per-day",
@@ -1845,8 +1845,8 @@
       "value": 8.586030351
     }
   ],
-  "shareId": "WMOPH-qTH",
-  "id": "c9cb3a15-d093-4040-82fb-eacbcd090348",
+  "shareId": "GHF5rkpKX",
+  "id": "89f5361d-3b10-4991-b750-d42b9bd1ad81",
   "housingAnswer": {
     "keroseneMonthCount": 4,
     "useKerosene": true,
@@ -1859,7 +1859,7 @@
     "useGas": true,
     "gasMonthlyConsumption": 1000,
     "electricityIntensityKey": "100-renewable",
-    "energyHeatIntensityKey": "urban-ga",
+    "energyHeatIntensityKey": "urban-gas",
     "residentCount": 2
   },
   "estimations": [

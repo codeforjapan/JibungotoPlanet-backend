@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2022-07-12T12:45:34.431Z",
-  "createdAt": "2022-07-09T07:12:56.998Z",
+  "updatedAt": "2022-07-12T13:44:31.384Z",
+  "createdAt": "2022-07-12T13:37:54.027Z",
   "baselines": [
     {
       "item": "airplane",
@@ -1803,7 +1803,7 @@
       "value": 8.586030351
     }
   ],
-  "shareId": "WMOPH-qTH",
+  "shareId": "GHF5rkpKX",
   "housingAnswer": {
     "keroseneMonthCount": 4,
     "useKerosene": true,
@@ -1816,7 +1816,7 @@
     "useGas": true,
     "gasMonthlyConsumption": 1000,
     "electricityIntensityKey": "100-renewable",
-    "energyHeatIntensityKey": "urban-ga",
+    "energyHeatIntensityKey": "urban-gas",
     "residentCount": 2
   },
   "estimations": [
