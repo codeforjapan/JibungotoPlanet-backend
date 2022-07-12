@@ -51,7 +51,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 params = {
                     TableName: footprintTableName,
                     KeyConditions: {
-                        dirAndDomain: {
+                        dir_domain: {
                             ComparisonOperator: 'EQ',
                             AttributeValueList: ['baseline_food']
                         }

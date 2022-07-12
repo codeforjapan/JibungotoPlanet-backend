@@ -20,7 +20,7 @@ const estimateFood = async (
   const params = {
     TableName: footprintTableName,
     KeyConditions: {
-      dirAndDomain: {
+      dir_domain: {
         ComparisonOperator: 'EQ',
         AttributeValueList: ['baseline_food']
       }
