@@ -6,7 +6,7 @@
       "hasPrivateCar": true,
       "carIntensityFactorKey": "gasoline_driving-factor",
       "carChargingKey": "unknown",
-      "carPassengersKey": "1",
+      "carPassengersKey": "1-2_private-car-factor",
       "privateCarAnnualMileage": 5000,
       "trainWeeklyTravelingTime": 7,
       "busWeeklyTravelingTime": 7,
@@ -21,7 +21,7 @@
       "airplaneAnnualTravelingTime": 100,
       "ferryAnnualTravelingTime": 0
     },
-    "updatedAt": "2022-07-12T10:27:42.126Z",
+    "updatedAt": "2022-07-12T12:44:36.725Z",
     "otherAnswer": {
       "dailyGoodsAmountKey": "5k-less",
       "communicationAmountKey": "5k-less",
@@ -33,6 +33,19 @@
       "travelFactorKey": "10k-less"
     },
     "createdAt": "2022-07-09T07:12:56.998Z",
+    "foodAnswer": {
+      "dishChickenFactorKey": "everyday",
+      "dairyFoodFactorKey": "3-more-per-day",
+      "foodIntakeFactorKey": "very-much",
+      "foodDirectWasteFactorKey": "seldom",
+      "foodLeftoverFactorKey": "seldom",
+      "eatOutFactorKey": "5k-less",
+      "dishBeefFactorKey": "everyday",
+      "alcoholFactorKey": "everyday",
+      "dishPorkFactorKey": "everyday",
+      "dishSeafoodFactorKey": "everyday",
+      "softDrinkSnackFactorKey": "3k-less"
+    },
     "baselines": [
       {
         "domain": "mobility",
@@ -227,7 +240,7 @@
         "domain": "mobility",
         "item": "private-car-driving",
         "type": "intensity",
-        "value": 1.140989342,
+        "value": 0.9964640249663369,
         "subdomain": "private-car",
         "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -320,6 +333,672 @@
         "value": 0,
         "subdomain": "walking",
         "unit": "kgCO2e/km-passenger",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4577.6825235,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.183052167733976,
+        "subdomain": "construction-maintenance",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "intensity",
+        "value": 1.378245204,
+        "subdomain": "construction-maintenance",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179313835564,
+        "subdomain": "construction-maintenance",
+        "unit": "m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "intensity",
+        "value": 0.930699,
+        "subdomain": "construction-maintenance",
+        "unit": "kgCO2e/m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 200,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "intensity",
+        "value": 0.280081108,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.96142204,
+        "subdomain": "construction-maintenance",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "intensity",
+        "value": 0.542386441,
+        "subdomain": "construction-maintenance",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "intensity",
+        "value": 0.327564907,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "amount",
+        "value": 54.81742592,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "intensity",
+        "value": 0.037319212,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328681644358,
+        "subdomain": "construction-maintenance",
+        "unit": "m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "intensity",
+        "value": 3.418080692,
+        "subdomain": "construction-maintenance",
+        "unit": "kgCO2e/m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 3458.3333335,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "intensity",
+        "value": 0.310544763,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "amount",
+        "value": 103.5505,
+        "subdomain": "water",
+        "unit": "m3",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "intensity",
+        "value": 0.584462203,
+        "subdomain": "water",
+        "unit": "kgCO2e/m3",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "amount",
+        "value": 165.74835878353653,
+        "subdomain": "beverages",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "intensity",
+        "value": 0.944414337,
+        "subdomain": "beverages",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "amount",
+        "value": 8.918191926413641,
+        "subdomain": "restaurant",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "intensity",
+        "value": 2.991595476,
+        "subdomain": "restaurant",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "amount",
+        "value": 32.517170183660326,
+        "subdomain": "beans-nuts",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "intensity",
+        "value": 1.058728707,
+        "subdomain": "beans-nuts",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 7.440199866365461,
+        "subdomain": "meat",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "intensity",
+        "value": 18.34219895,
+        "subdomain": "meat",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "amount",
+        "value": 39.28456185566255,
+        "subdomain": "cereals",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "intensity",
+        "value": 2.655219688,
+        "subdomain": "cereals",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 13.671950246025148,
+        "subdomain": "meat",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "intensity",
+        "value": 5.250241141,
+        "subdomain": "meat",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "coffee-tea",
+        "type": "amount",
+        "value": 43.29127591177226,
+        "subdomain": "beverages",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "coffee-tea",
+        "type": "intensity",
+        "value": 0.465905509,
+        "subdomain": "beverages",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "cold-drink",
+        "type": "amount",
+        "value": 41.2311777492847,
+        "subdomain": "beverages",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "cold-drink",
+        "type": "intensity",
+        "value": 0.482549688,
+        "subdomain": "beverages",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "amount",
+        "value": 17.97475464772416,
+        "subdomain": "eggs",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "intensity",
+        "value": 1.450456835,
+        "subdomain": "eggs",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 44.569874489813664,
+        "subdomain": "fish",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "intensity",
+        "value": 5.528206567,
+        "subdomain": "fish",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "amount",
+        "value": 54.72630654001349,
+        "subdomain": "fruits",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "intensity",
+        "value": 1.305111781,
+        "subdomain": "fruits",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "amount",
+        "value": 49.28508345240875,
+        "subdomain": "dairy",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "intensity",
+        "value": 0.876594709,
+        "subdomain": "dairy",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "amount",
+        "value": 26.3867167611374,
+        "subdomain": "cereals",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "intensity",
+        "value": 2.03794552,
+        "subdomain": "cereals",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "oil",
+        "type": "amount",
+        "value": 6.543684793273234,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "oil",
+        "type": "intensity",
+        "value": 2.404909632,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "amount",
+        "value": 24.149951912143216,
+        "subdomain": "dairy",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "intensity",
+        "value": 2.204505819,
+        "subdomain": "dairy",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 2.823419261605222,
+        "subdomain": "meat",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "intensity",
+        "value": 7.689625825,
+        "subdomain": "meat",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 16.45824952016458,
+        "subdomain": "meat",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "intensity",
+        "value": 8.051661719,
+        "subdomain": "meat",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "amount",
+        "value": 16.441491856739923,
+        "subdomain": "vegetables",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "intensity",
+        "value": 1.567735484,
+        "subdomain": "vegetables",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 17.52083204506875,
+        "subdomain": "fish",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "intensity",
+        "value": 4.080158747,
+        "subdomain": "fish",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 4.140424111,
+        "subdomain": "meat",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "intensity",
+        "value": 5.336739155,
+        "subdomain": "meat",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "amount",
+        "value": 14.452255443216869,
+        "subdomain": "vegetables",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "intensity",
+        "value": 3.390013568,
+        "subdomain": "vegetables",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "amount",
+        "value": 61.981958092152354,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "intensity",
+        "value": 3.940265729,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "amount",
+        "value": 31.632816251792775,
+        "subdomain": "restaurant",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "intensity",
+        "value": 2.972239521,
+        "subdomain": "restaurant",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "amount",
+        "value": 56.12454941776991,
+        "subdomain": "cereals",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "intensity",
+        "value": 2.852329875,
+        "subdomain": "cereals",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "seasoning",
+        "type": "amount",
+        "value": 37.14793232149165,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "seasoning",
+        "type": "intensity",
+        "value": 1.897020567,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "sweets-snack",
+        "type": "amount",
+        "value": 6.570425321358666,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "sweets-snack",
+        "type": "intensity",
+        "value": 4.939585725,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "amount",
+        "value": 130.35685455373627,
+        "subdomain": "vegetables",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "intensity",
+        "value": 1.281591651,
+        "subdomain": "vegetables",
+        "unit": "kgCO2e/kg",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
@@ -1171,12 +1850,27 @@
     ],
     "shareId": "WMOPH-qTH",
     "id": "c9cb3a15-d093-4040-82fb-eacbcd090348",
+    "housingAnswer": {
+      "keroseneMonthCount": 4,
+      "useKerosene": true,
+      "gasSeasonFactorKey": "january",
+      "housingSizeKey": "unknown",
+      "housingAmountByRegionFirstKey": "northeast",
+      "electricityMonthlyConsumption": 1000,
+      "electricitySeasonFactorKey": "january",
+      "keroseneMonthlyConsumption": 100,
+      "useGas": true,
+      "gasMonthlyConsumption": 1000,
+      "electricityIntensityKey": "100-renewable",
+      "energyHeatIntensityKey": "urban-ga",
+      "residentCount": 2
+    },
     "estimations": [
       {
         "domain": "mobility",
         "item": "private-car-driving",
         "type": "intensity",
-        "value": 1.140989342,
+        "value": 0.9964640249663369,
         "subdomain": "private-car",
         "unit": "kgCO2e/km-passenger"
       },
@@ -1282,6 +1976,318 @@
         "type": "amount",
         "value": 0,
         "subdomain": "motorbike",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4577.6825235,
+        "subdomain": "electricity",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.183052167733976,
+        "subdomain": "construction-maintenance",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179313835564,
+        "subdomain": "construction-maintenance",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 200,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.96142204,
+        "subdomain": "construction-maintenance",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "amount",
+        "value": 54.81742592,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328681644358,
+        "subdomain": "construction-maintenance",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 3458.3333335,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "amount",
+        "value": 103.5505,
+        "subdomain": "water",
+        "unit": "m3"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "amount",
+        "value": 56.12454941776991,
+        "subdomain": "cereals",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "amount",
+        "value": 39.28456185566255,
+        "subdomain": "cereals",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "amount",
+        "value": 26.3867167611374,
+        "subdomain": "cereals",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "amount",
+        "value": 16.441491856739923,
+        "subdomain": "vegetables",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "amount",
+        "value": 130.35685455373627,
+        "subdomain": "vegetables",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "amount",
+        "value": 14.452255443216869,
+        "subdomain": "vegetables",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "amount",
+        "value": 32.517170183660326,
+        "subdomain": "beans-nuts",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "amount",
+        "value": 54.72630654001349,
+        "subdomain": "fruits",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "oil",
+        "type": "amount",
+        "value": 6.543684793273234,
+        "subdomain": "other-food",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "seasoning",
+        "type": "amount",
+        "value": 37.14793232149165,
+        "subdomain": "other-food",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "amount",
+        "value": 61.981958092152354,
+        "subdomain": "other-food",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "amount",
+        "value": 49.28508345240875,
+        "subdomain": "dairy",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "amount",
+        "value": 24.149951912143216,
+        "subdomain": "dairy",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "amount",
+        "value": 17.97475464772416,
+        "subdomain": "eggs",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 7.440199866365461,
+        "subdomain": "meat",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 16.45824952016458,
+        "subdomain": "meat",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 2.823419261605222,
+        "subdomain": "meat",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 13.671950246025148,
+        "subdomain": "meat",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 4.140424111,
+        "subdomain": "meat",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 44.569874489813664,
+        "subdomain": "fish",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 17.52083204506875,
+        "subdomain": "fish",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "amount",
+        "value": 94.4634433509294,
+        "subdomain": "beverages",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "amount",
+        "value": 165.74835878353653,
+        "subdomain": "beverages",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "sweets-snack",
+        "type": "amount",
+        "value": 6.570425321358666,
+        "subdomain": "other-food",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "coffee-tea",
+        "type": "amount",
+        "value": 43.29127591177226,
+        "subdomain": "beverages",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "cold-drink",
+        "type": "amount",
+        "value": 41.2311777492847,
+        "subdomain": "beverages",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "amount",
+        "value": 31.632816251792775,
+        "subdomain": "restaurant",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "amount",
+        "value": 8.918191926413641,
+        "subdomain": "restaurant",
         "unit": "000JPY"
       },
       {

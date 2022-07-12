@@ -2,26 +2,8 @@
   "success": "put call succeed!",
   "url": "/profiles/c9cb3a15-d093-4040-82fb-eacbcd090348",
   "data": {
-    "mobilityAnswer": {
-      "busWeeklyTravelingTime": 7,
-      "motorbikeAnnualTravelingTime": 0,
-      "mileageByAreaFirstKey": "unknown",
-      "ferryAnnualTravelingTime": 0,
-      "trainWeeklyTravelingTime": 7,
-      "otherCarAnnualTravelingTime": 10,
-      "carChargingKey": "unknown",
-      "hasPrivateCar": true,
-      "carPassengersKey": "1-2_private-car-factor",
-      "otherCarWeeklyTravelingTime": 0,
-      "airplaneAnnualTravelingTime": 100,
-      "trainAnnualTravelingTime": 100,
-      "motorbikeWeeklyTravelingTime": 0,
-      "privateCarAnnualMileage": 5000,
-      "busAnnualTravelingTime": 100,
-      "carIntensityFactorKey": "gasoline_driving-factor",
-      "hasWeeklyTravelingTime": true
-    },
-    "updatedAt": "2022-07-12T12:45:27.998Z",
+    "mobilityAnswer": {},
+    "updatedAt": "2022-07-12T12:42:02.649Z",
     "otherAnswer": {
       "communicationAmountKey": "5k-less",
       "dailyGoodsAmountKey": "5k-less",
@@ -34,24 +16,24 @@
     },
     "createdAt": "2022-07-09T07:12:56.998Z",
     "foodAnswer": {
+      "dishChickenFactorKey": "everyday",
+      "dairyFoodFactorKey": "3-more-per-day",
       "foodIntakeFactorKey": "very-much",
       "foodDirectWasteFactorKey": "seldom",
       "foodLeftoverFactorKey": "seldom",
+      "eatOutFactorKey": "5k-less",
       "dishBeefFactorKey": "everyday",
-      "dishPorkFactorKey": "everyday",
-      "dishChickenFactorKey": "everyday",
-      "dishSeafoodFactorKey": "everyday",
-      "dairyFoodFactorKey": "3-more-per-day",
       "alcoholFactorKey": "everyday",
-      "softDrinkSnackFactorKey": "3k-less",
-      "eatOutFactorKey": "5k-less"
+      "dishPorkFactorKey": "everyday",
+      "dishSeafoodFactorKey": "everyday",
+      "softDrinkSnackFactorKey": "3k-less"
     },
     "baselines": [
       {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
-        "value": 60000,
+        "value": 0,
         "subdomain": "airplane",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -105,7 +87,7 @@
         "domain": "mobility",
         "item": "bus",
         "type": "amount",
-        "value": 8430,
+        "value": 430.6177624,
         "subdomain": "bus",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -123,7 +105,7 @@
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "amount",
-        "value": 334.741136594172,
+        "value": 60.7815956,
         "subdomain": "car-sharing-taxi",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -141,7 +123,7 @@
         "domain": "mobility",
         "item": "car-sharing-rental",
         "type": "amount",
-        "value": 0.8881737431155255,
+        "value": 0.161272731,
         "subdomain": "car-sharing-taxi",
         "unit": "use",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -177,7 +159,7 @@
         "domain": "mobility",
         "item": "motorbike-driving",
         "type": "amount",
-        "value": 0,
+        "value": 254.458252,
         "subdomain": "motorbike",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -195,7 +177,7 @@
         "domain": "mobility",
         "item": "motorbike-maintenance",
         "type": "amount",
-        "value": 0,
+        "value": 0.446120353,
         "subdomain": "motorbike",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -213,7 +195,7 @@
         "domain": "mobility",
         "item": "motorbike-purchase",
         "type": "amount",
-        "value": 0,
+        "value": 0.002635317,
         "subdomain": "motorbike",
         "unit": "vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -231,7 +213,7 @@
         "domain": "mobility",
         "item": "private-car-driving",
         "type": "amount",
-        "value": 5000,
+        "value": 4341.744284,
         "subdomain": "private-car",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -240,7 +222,7 @@
         "domain": "mobility",
         "item": "private-car-driving",
         "type": "intensity",
-        "value": 0.9964640249663369,
+        "value": 0.168396977,
         "subdomain": "private-car",
         "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -249,7 +231,7 @@
         "domain": "mobility",
         "item": "private-car-maintenance",
         "type": "amount",
-        "value": 64.17671713804691,
+        "value": 55.72777896,
         "subdomain": "private-car",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -267,7 +249,7 @@
         "domain": "mobility",
         "item": "private-car-purchase",
         "type": "amount",
-        "value": 0.05010685124909581,
+        "value": 0.043510227,
         "subdomain": "private-car",
         "unit": "vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -285,7 +267,7 @@
         "domain": "mobility",
         "item": "taxi",
         "type": "amount",
-        "value": 265.25886340582804,
+        "value": 48.16514973,
         "subdomain": "car-sharing-taxi",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -303,7 +285,7 @@
         "domain": "mobility",
         "item": "train",
         "type": "amount",
-        "value": 30580,
+        "value": 2883.143695,
         "subdomain": "train",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -1868,41 +1850,9 @@
     "estimations": [
       {
         "domain": "mobility",
-        "item": "private-car-driving",
-        "type": "intensity",
-        "value": 0.9964640249663369,
-        "subdomain": "private-car",
-        "unit": "kgCO2e/km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-driving",
-        "type": "amount",
-        "value": 5000,
-        "subdomain": "private-car",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-purchase",
-        "type": "amount",
-        "value": 0.05010685124909581,
-        "subdomain": "private-car",
-        "unit": "vehicle"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-maintenance",
-        "type": "amount",
-        "value": 64.17671713804691,
-        "subdomain": "private-car",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "mobility",
         "item": "airplane",
         "type": "amount",
-        "value": 60000,
+        "value": 0,
         "subdomain": "airplane",
         "unit": "km-passenger"
       },
@@ -1918,7 +1868,7 @@
         "domain": "mobility",
         "item": "train",
         "type": "amount",
-        "value": 30580,
+        "value": 2883.143695,
         "subdomain": "train",
         "unit": "km-passenger"
       },
@@ -1926,7 +1876,7 @@
         "domain": "mobility",
         "item": "bus",
         "type": "amount",
-        "value": 8430,
+        "value": 430.6177624,
         "subdomain": "bus",
         "unit": "km-passenger"
       },
@@ -1934,7 +1884,7 @@
         "domain": "mobility",
         "item": "motorbike-driving",
         "type": "amount",
-        "value": 0,
+        "value": 254.458252,
         "subdomain": "motorbike",
         "unit": "km-passenger"
       },
@@ -1942,7 +1892,7 @@
         "domain": "mobility",
         "item": "taxi",
         "type": "amount",
-        "value": 265.25886340582804,
+        "value": 48.16514973,
         "subdomain": "car-sharing-taxi",
         "unit": "km-passenger"
       },
@@ -1950,7 +1900,7 @@
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "amount",
-        "value": 334.741136594172,
+        "value": 60.7815956,
         "subdomain": "car-sharing-taxi",
         "unit": "km-passenger"
       },
@@ -1958,7 +1908,7 @@
         "domain": "mobility",
         "item": "motorbike-purchase",
         "type": "amount",
-        "value": 0,
+        "value": 0.002635317,
         "subdomain": "motorbike",
         "unit": "vehicle"
       },
@@ -1966,7 +1916,7 @@
         "domain": "mobility",
         "item": "car-sharing-rental",
         "type": "amount",
-        "value": 0.8881737431155255,
+        "value": 0.161272731,
         "subdomain": "car-sharing-taxi",
         "unit": "use"
       },
@@ -1974,7 +1924,7 @@
         "domain": "mobility",
         "item": "motorbike-maintenance",
         "type": "amount",
-        "value": 0,
+        "value": 0.446120353,
         "subdomain": "motorbike",
         "unit": "000JPY"
       },
