@@ -38,15 +38,10 @@ const estimateOther = async (
     // dailyGoods: String # 5k-less|5k-10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
     // daily-goods-medicine 日用品・化粧品・医薬品
     {
-      category: 'clothes-beauty-factor',
+      category: 'daily-goods-amount',
       key: otherAnswer.dailyGoodsAmountKey,
-      items: [
-        'cosmetics',
-        'sanitation',
-        'medicine',
-        'kitchen-goods',
-        'paper-stationery'
-      ]
+      base: 'average-per-capita',
+      items: ['sanitation', 'kitchen-goods', 'paper-stationery']
     },
 
     // 通信費、放送受信料を合わせた支出はどのくらいですか？
@@ -55,7 +50,8 @@ const estimateOther = async (
     {
       category: 'communication-amount',
       key: otherAnswer.communicationAmountKey,
-      items: ['postal-delivery', 'communication', 'broadcasting']
+      base: 'average-per-capita',
+      items: ['communication', 'broadcasting']
     },
 
     // 過去1年間の家電、家具などの大型な買い物の支出はどのくらいですか？
@@ -64,7 +60,10 @@ const estimateOther = async (
     {
       category: 'appliance-furniture-amount',
       key: otherAnswer.applianceFurnitureAmountKey,
+      base: 'average-per-capita',
       items: [
+        'electrical-appliances-repair-rental',
+        'furniture-daily-goods-repair-rental',
         'cooking-appliances',
         'heating-cooling-appliances',
         'other-appliances',
@@ -84,20 +83,9 @@ const estimateOther = async (
       category: 'service-factor',
       key: otherAnswer.serviceFactorKey,
       items: [
+        'medicine',
         'housework',
         'washing',
-        'haircare',
-        'bath-spa',
-        'finance-insurance',
-        'other-services',
-        'ceremony',
-        'waste',
-        'furniture-daily-goods-repair-rental',
-        'clothes-repair-rental',
-        'bags-jewelries-repair-rental',
-        'electrical-appliances-repair-rental',
-        'sports-culture-repair-rental',
-        'sports-entertainment-repair-rental',
         'medical-care',
         'nursing',
         'caring',
@@ -119,7 +107,9 @@ const estimateOther = async (
         'gardening-flower',
         'pet',
         'tobacco',
-        'books-magazines'
+        'books-magazines',
+        'sports-culture-repair-rental',
+        'sports-entertainment-repair-rental'
       ]
     },
 
@@ -129,7 +119,14 @@ const estimateOther = async (
     {
       category: 'clothes-beauty-factor',
       key: otherAnswer.clothesBeautyFactorKey,
-      items: ['clothes-goods', 'bags-jewelries-goods']
+      items: [
+        'haircare',
+        'cosmetics',
+        'clothes-goods',
+        'bags-jewelries-goods',
+        'clothes-repair-rental',
+        'bags-jewelries-repair-rental'
+      ]
     },
 
     // レジャー、スポーツへの支出はどのくらいですか？
@@ -138,7 +135,12 @@ const estimateOther = async (
     {
       category: 'leisure-sports-factor',
       key: otherAnswer.leisureSportsFactorKey,
-      items: ['culture-leisure', 'entertainment-leisure', 'sports-leisure']
+      items: [
+        'culture-leisure',
+        'entertainment-leisure',
+        'sports-leisure',
+        'bath-spa'
+      ]
     },
 
     // 過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？
@@ -152,16 +154,35 @@ const estimateOther = async (
   ]
 
   for (let ans of answers) {
-    const params = {
-      TableName: parameterTableName,
-      Key: {
-        category: ans.category,
-        key: ans.key
+    const data = await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: ans.category,
+          key: ans.key
+        }
+      })
+      .promise()
+
+    let denominator = 1
+
+    if (ans.base) {
+      const base = await dynamodb
+        .get({
+          TableName: parameterTableName,
+          Key: {
+            category: ans.category,
+            key: ans.base
+          }
+        })
+        .promise()
+      if (base?.Item?.value) {
+        denominator = base.Item.value
       }
     }
-    const data = await dynamodb.get(params).promise()
+
     if (data?.Item?.value) {
-      const coefficient = data.Item.value
+      const coefficient = data.Item.value / denominator
       for (let item of ans.items) {
         const baseline = findAmount(baselines, item)
         baseline.value *= coefficient

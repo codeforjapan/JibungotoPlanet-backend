@@ -7,7 +7,7 @@
 	STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN
 	STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME
 	STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN
-Amplify Params - DO NOT EDIT *//*
+Amplify Params - DO NOT EDIT */ /*
 Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
     http://aws.amazon.com/apache2.0/
@@ -21,13 +21,13 @@ const bodyParser = require('body-parser')
 const express = require('express')
 
 const toComponent = (item) => {
-  const dirAndDomain = item.dirAndDomain.split('_')
-  const itemAndType = item.itemAndType.split('_')
+  const dir_domain = item.dir_domain.split('_')
+  const item_type = item.item_type.split('_')
   return {
-    dir: dirAndDomain[0],
-    domain: dirAndDomain[1],
-    item: itemAndType[0],
-    type: itemAndType[1],
+    dir: dir_domain[0],
+    domain: dir_domain[1],
+    item: item_type[0],
+    type: item_type[1],
     value: item.value,
     unit: item.unit,
     citation: item.citation
@@ -87,7 +87,7 @@ app.get(path + '/:dir/:domain', async (req, res) => {
   const params = {
     TableName: tableName,
     KeyConditions: {
-      dirAndDomain: {
+      dir_domain: {
         ComparisonOperator: 'EQ',
         AttributeValueList: [dir + '_' + domain]
       }
@@ -116,8 +116,8 @@ app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
   const params = {
     TableName: tableName,
     Key: {
-      dirAndDomain: dir + '_' + domain,
-      itemAndType: item + '_' + type
+      dir_domain: dir + '_' + domain,
+      item_type: item + '_' + type
     }
   }
 
@@ -128,10 +128,6 @@ app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
     res.statusCode = 500
     res.json({ error: 'Could not load items: ' + err.message })
   }
-})
-
-app.listen(3000, function () {
-  console.log('App started')
 })
 
 // Export the app object. When executing the application local this does nothing. However,
