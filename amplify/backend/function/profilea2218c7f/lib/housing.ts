@@ -102,13 +102,15 @@ const estimateHousing = async (
   // water
 
   if (housingAnswer.housingSizeKey) {
-    const housingSize = await dynamodb.get({
-      TableName: parameterTableName,
-      Key: {
-        category: 'housing-size',
-        key: housingAnswer.housingSizeKey
-      }
-    }).promise()
+    const housingSize = await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: 'housing-size',
+          key: housingAnswer.housingSizeKey
+        }
+      })
+      .promise()
     const housingSizePerPeople = housingSize.Item?.value / residentCount
     const imputedRentValue = estimationAmount['imputed-rent'].value
     const rentValue = estimationAmount.rent.value
@@ -120,9 +122,17 @@ const estimateHousing = async (
       (estimationAmount['housing-maintenance'].value /
         (imputedRentValue + rentValue)) *
       (estimationAmount['imputed-rent'].value + estimationAmount.rent.value)
-    pushOrUpdateEstimate('imputed-rent', 'amount', toEstimation(estimationAmount['imputed-rent']))
+    pushOrUpdateEstimate(
+      'imputed-rent',
+      'amount',
+      toEstimation(estimationAmount['imputed-rent'])
+    )
     pushOrUpdateEstimate('rent', 'amount', toEstimation(estimationAmount.rent))
-    pushOrUpdateEstimate('housing-maintenance', 'amount', toEstimation(estimationAmount['housing-maintenance']))
+    pushOrUpdateEstimate(
+      'housing-maintenance',
+      'amount',
+      toEstimation(estimationAmount['housing-maintenance'])
+    )
   }
 
   // 再生可能エネルギー
@@ -160,7 +170,11 @@ const estimateHousing = async (
       (housingAnswer.electricityMonthlyConsumption *
         electricitySeason.Item?.value) /
       residentCount
-    pushOrUpdateEstimate('electricity', 'amount', toEstimation(estimationAmount.electricity))
+    pushOrUpdateEstimate(
+      'electricity',
+      'amount',
+      toEstimation(estimationAmount.electricity)
+    )
   }
 
   // ガスの使用の有無
@@ -170,13 +184,15 @@ const estimateHousing = async (
       housingAnswer.gasMonthlyConsumption &&
       housingAnswer.gasSeasonFactorKey
     ) {
-      const gasSeason = await dynamodb.get({
-        TableName: parameterTableName,
-        Key: {
-          category: 'gas-season-factor',
-          key: housingAnswer.gasSeasonFactorKey
-        }
-      }).promise()
+      const gasSeason = await dynamodb
+        .get({
+          TableName: parameterTableName,
+          Key: {
+            category: 'gas-season-factor',
+            key: housingAnswer.gasSeasonFactorKey
+          }
+        })
+        .promise()
       gasParam =
         (housingAnswer.gasMonthlyConsumption * gasSeason.Item?.value) /
         residentCount
@@ -192,12 +208,20 @@ const estimateHousing = async (
       }
       estimationAmount.lpg.value = 0
     }
-    pushOrUpdateEstimate('urban-gas', 'amount', toEstimation(estimationAmount['urban-gas']))
+    pushOrUpdateEstimate(
+      'urban-gas',
+      'amount',
+      toEstimation(estimationAmount['urban-gas'])
+    )
     pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
   } else if (housingAnswer.useGas === false) {
     estimationAmount['urban-gas'].value = 0
     estimationAmount.lpg.value = 0
-    pushOrUpdateEstimate('urban-gas', 'amount', toEstimation(estimationAmount['urban-gas']))
+    pushOrUpdateEstimate(
+      'urban-gas',
+      'amount',
+      toEstimation(estimationAmount['urban-gas'])
+    )
     pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
   }
 
@@ -212,10 +236,18 @@ const estimateHousing = async (
           housingAnswer.keroseneMonthCount) /
         residentCount
     }
-    pushOrUpdateEstimate('kerosene', 'amount', toEstimation(estimationAmount.kerosene))
+    pushOrUpdateEstimate(
+      'kerosene',
+      'amount',
+      toEstimation(estimationAmount.kerosene)
+    )
   } else if (housingAnswer.useKerosene === false) {
     estimationAmount.kerosene.value = 0
-    pushOrUpdateEstimate('kerosene', 'amount', toEstimation(estimationAmount.kerosene))
+    pushOrUpdateEstimate(
+      'kerosene',
+      'amount',
+      toEstimation(estimationAmount.kerosene)
+    )
   }
 
   console.log(JSON.stringify(estimations))

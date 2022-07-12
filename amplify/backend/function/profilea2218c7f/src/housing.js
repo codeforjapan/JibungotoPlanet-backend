@@ -116,13 +116,15 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 _e.label = 3;
             case 3:
                 if (!housingAnswer.housingSizeKey) return [3 /*break*/, 5];
-                return [4 /*yield*/, dynamodb.get({
+                return [4 /*yield*/, dynamodb
+                        .get({
                         TableName: parameterTableName,
                         Key: {
                             category: 'housing-size',
                             key: housingAnswer.housingSizeKey
                         }
-                    }).promise()];
+                    })
+                        .promise()];
             case 4:
                 housingSize = _e.sent();
                 housingSizePerPeople = ((_a = housingSize.Item) === null || _a === void 0 ? void 0 : _a.value) / residentCount;
@@ -185,13 +187,15 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 gasParam = null;
                 if (!(housingAnswer.gasMonthlyConsumption &&
                     housingAnswer.gasSeasonFactorKey)) return [3 /*break*/, 11];
-                return [4 /*yield*/, dynamodb.get({
+                return [4 /*yield*/, dynamodb
+                        .get({
                         TableName: parameterTableName,
                         Key: {
                             category: 'gas-season-factor',
                             key: housingAnswer.gasSeasonFactorKey
                         }
-                    }).promise()];
+                    })
+                        .promise()];
             case 10:
                 gasSeason = _e.sent();
                 gasParam =
