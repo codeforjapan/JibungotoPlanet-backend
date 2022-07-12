@@ -63,7 +63,7 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 params = {
                     TableName: footprintTableName,
                     KeyConditions: {
-                        dirAndDomain: {
+                        dir_domain: {
                             ComparisonOperator: 'EQ',
                             AttributeValueList: ['baseline_housing']
                         }
@@ -79,14 +79,14 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 }
                 residentCount = housingAnswer.residentCount;
                 estimationAmount = {
-                    landrent: findAmount(baselines, 'landrent'),
-                    otherenergy: findAmount(baselines, 'otherenergy'),
+                    'land-rent': findAmount(baselines, 'land-rent'),
+                    'other-energy': findAmount(baselines, 'other-energy'),
                     water: findAmount(baselines, 'water'),
-                    imputedrent: findAmount(baselines, 'imputedrent'),
+                    'imputed-rent': findAmount(baselines, 'imputed-rent'),
                     rent: findAmount(baselines, 'rent'),
                     'housing-maintenance': findAmount(baselines, 'housing-maintenance'),
                     electricity: findAmount(baselines, 'electricity'),
-                    urbangas: findAmount(baselines, 'urbangas'),
+                    'urban-gas': findAmount(baselines, 'urban-gas'),
                     lpg: findAmount(baselines, 'lpg'),
                     kerosene: findAmount(baselines, 'kerosene')
                 };
@@ -134,17 +134,17 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
             case 4:
                 housingSize = _e.sent();
                 housingSizePerPeople = ((_a = housingSize.Items[0]) === null || _a === void 0 ? void 0 : _a.value) / residentCount;
-                imputedRentValue = estimationAmount.imputedrent.value;
+                imputedRentValue = estimationAmount['imputed-rent'].value;
                 rentValue = estimationAmount.rent.value;
-                estimationAmount.imputedrent.value =
+                estimationAmount['imputed-rent'].value =
                     (housingSizePerPeople / (imputedRentValue + rentValue)) * imputedRentValue;
                 estimationAmount.rent.value =
                     (housingSizePerPeople / (imputedRentValue + rentValue)) * rentValue;
                 estimationAmount['housing-maintenance'].value =
                     (estimationAmount['housing-maintenance'].value /
                         (imputedRentValue + rentValue)) *
-                        (estimationAmount.imputedrent.value + estimationAmount.rent.value);
-                estimations.push((0, util_1.toEstimation)(estimationAmount.imputedrent));
+                        (estimationAmount['imputed-rent'].value + estimationAmount.rent.value);
+                estimations.push((0, util_1.toEstimation)(estimationAmount['imputed-rent']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.rent));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['housing-maintenance']));
                 _e.label = 5;
@@ -232,24 +232,24 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                     if (gasParam) {
                         estimationAmount.lpg.value = gasParam;
                     }
-                    estimationAmount.urbangas.value = 0;
+                    estimationAmount['urban-gas'].value = 0;
                 }
                 else {
                     if (gasParam) {
-                        estimationAmount.urbangas.value = gasParam;
+                        estimationAmount['urban-gas'].value = gasParam;
                     }
                     estimationAmount.lpg.value = 0;
                 }
-                estimations.push((0, util_1.toEstimation)(estimationAmount.urbangas));
+                estimations.push((0, util_1.toEstimation)(estimationAmount['urban-gas']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.lpg));
                 return [3 /*break*/, 13];
             case 12:
                 if (housingAnswer.useGas === false) {
-                    estimationAmount.urbangas.value = 0;
+                    estimationAmount['urban-gas'].value = 0;
                     estimationAmount.lpg.value = 0;
-                    estimations.push((0, util_1.toEstimation)(estimationAmount.urbangas));
+                    estimations.push((0, util_1.toEstimation)(estimationAmount['urban-gas']));
                     estimations.push((0, util_1.toEstimation)(estimationAmount.lpg));
-                    // pushOrUpdateEstimate('urbangas', 'amount', toEstimation(estimationAmount.urbangas))
+                    // pushOrUpdateEstimate('urban-gas', 'amount', toEstimation(estimationAmount['urban-gas']))
                     // pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
                 }
                 _e.label = 13;
