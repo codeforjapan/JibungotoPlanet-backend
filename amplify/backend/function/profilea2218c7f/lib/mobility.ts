@@ -184,9 +184,11 @@ const estimateMobility = async (
 
     mileage.train = milageByArea[mileageByAreaFirstKey + '_train']
     mileage.bus = milageByArea[mileageByAreaFirstKey + '_bus']
-    mileage.motorbike = milageByArea[mileageByAreaFirstKey + '_motorbike']
+    mileage.motorbike =
+      milageByArea[mileageByAreaFirstKey + '_motorbike-driving']
     mileage.taxi = milageByArea[mileageByAreaFirstKey + '_taxi']
-    mileage.carSharing = milageByArea[mileageByAreaFirstKey + 'car-sharing']
+    mileage.carSharing =
+      milageByArea[mileageByAreaFirstKey + '_car-sharing-driving']
   }
 
   console.log('calculating annual mileage')
