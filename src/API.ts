@@ -3,8 +3,8 @@
 //  This file was automatically generated and should not be edited.
 
 export type CreateFootprintInput = {
-  dirAndDomain: string,
-  itemAndType: string,
+  dir_domain: string,
+  item_type: string,
   subdomain: string,
   value: number,
   unit?: string | null,
@@ -75,8 +75,8 @@ export type ModelFloatInput = {
 
 export type Footprint = {
   __typename: "Footprint",
-  dirAndDomain: string,
-  itemAndType: string,
+  dir_domain: string,
+  item_type: string,
   subdomain: string,
   value: number,
   unit?: string | null,
@@ -86,8 +86,8 @@ export type Footprint = {
 };
 
 export type UpdateFootprintInput = {
-  dirAndDomain: string,
-  itemAndType: string,
+  dir_domain: string,
+  item_type: string,
   subdomain?: string | null,
   value?: number | null,
   unit?: string | null,
@@ -95,8 +95,8 @@ export type UpdateFootprintInput = {
 };
 
 export type DeleteFootprintInput = {
-  dirAndDomain: string,
-  itemAndType: string,
+  dir_domain: string,
+  item_type: string,
 };
 
 export type CreateParameterInput = {
@@ -142,7 +142,7 @@ export type DeleteParameterInput = {
 
 export type CreateOptionInput = {
   option: string,
-  domainItemAndType: string,
+  domain_item_type: string,
   value: number,
   args?: Array< string > | null,
   operation: string,
@@ -162,7 +162,7 @@ export type ModelOptionConditionInput = {
 export type Option = {
   __typename: "Option",
   option: string,
-  domainItemAndType: string,
+  domain_item_type: string,
   value: number,
   args?: Array< string > | null,
   operation: string,
@@ -173,7 +173,7 @@ export type Option = {
 
 export type UpdateOptionInput = {
   option: string,
-  domainItemAndType: string,
+  domain_item_type: string,
   value?: number | null,
   args?: Array< string > | null,
   operation?: string | null,
@@ -182,7 +182,7 @@ export type UpdateOptionInput = {
 
 export type DeleteOptionInput = {
   option: string,
-  domainItemAndType: string,
+  domain_item_type: string,
 };
 
 export type CreateOptionIntensityRateInput = {
@@ -225,7 +225,7 @@ export type CreateProfileInput = {
   housingAnswer?: HousingAnswerInput | null,
   foodAnswer?: FoodAnswerInput | null,
   otherAnswer?: OtherAnswerInput | null,
-  actionIntensityRate?: Array< ActionIntensityRateInput > | null,
+  actionIntensityRates?: Array< ActionIntensityRateInput > | null,
   baselines?: Array< BaselineInput > | null,
   estimations?: Array< EstimationInput > | null,
   actions?: Array< ActionInput > | null,
@@ -347,7 +347,7 @@ export type Profile = {
   housingAnswer?: HousingAnswer | null,
   foodAnswer?: FoodAnswer | null,
   otherAnswer?: OtherAnswer | null,
-  actionIntensityRate?:  Array<ActionIntensityRate > | null,
+  actionIntensityRates?:  Array<ActionIntensityRate > | null,
   baselines?:  Array<Baseline > | null,
   estimations?:  Array<Estimation > | null,
   actions?:  Array<Action > | null,
@@ -471,7 +471,7 @@ export type UpdateProfileInput = {
   housingAnswer?: HousingAnswerInput | null,
   foodAnswer?: FoodAnswerInput | null,
   otherAnswer?: OtherAnswerInput | null,
-  actionIntensityRate?: Array< ActionIntensityRateInput > | null,
+  actionIntensityRates?: Array< ActionIntensityRateInput > | null,
   baselines?: Array< BaselineInput > | null,
   estimations?: Array< EstimationInput > | null,
   actions?: Array< ActionInput > | null,
@@ -492,8 +492,8 @@ export type ModelStringKeyConditionInput = {
 };
 
 export type ModelFootprintFilterInput = {
-  dirAndDomain?: ModelStringInput | null,
-  itemAndType?: ModelStringInput | null,
+  dir_domain?: ModelStringInput | null,
+  item_type?: ModelStringInput | null,
   subdomain?: ModelStringInput | null,
   value?: ModelFloatInput | null,
   unit?: ModelStringInput | null,
@@ -534,7 +534,7 @@ export type ModelParameterConnection = {
 
 export type ModelOptionFilterInput = {
   option?: ModelStringInput | null,
-  domainItemAndType?: ModelStringInput | null,
+  domain_item_type?: ModelStringInput | null,
   value?: ModelFloatInput | null,
   args?: ModelStringInput | null,
   operation?: ModelStringInput | null,
@@ -603,8 +603,8 @@ export type CreateFootprintMutationVariables = {
 export type CreateFootprintMutation = {
   createFootprint?:  {
     __typename: "Footprint",
-    dirAndDomain: string,
-    itemAndType: string,
+    dir_domain: string,
+    item_type: string,
     subdomain: string,
     value: number,
     unit?: string | null,
@@ -622,8 +622,8 @@ export type UpdateFootprintMutationVariables = {
 export type UpdateFootprintMutation = {
   updateFootprint?:  {
     __typename: "Footprint",
-    dirAndDomain: string,
-    itemAndType: string,
+    dir_domain: string,
+    item_type: string,
     subdomain: string,
     value: number,
     unit?: string | null,
@@ -641,8 +641,8 @@ export type DeleteFootprintMutationVariables = {
 export type DeleteFootprintMutation = {
   deleteFootprint?:  {
     __typename: "Footprint",
-    dirAndDomain: string,
-    itemAndType: string,
+    dir_domain: string,
+    item_type: string,
     subdomain: string,
     value: number,
     unit?: string | null,
@@ -715,7 +715,7 @@ export type CreateOptionMutation = {
   createOption?:  {
     __typename: "Option",
     option: string,
-    domainItemAndType: string,
+    domain_item_type: string,
     value: number,
     args?: Array< string > | null,
     operation: string,
@@ -734,7 +734,7 @@ export type UpdateOptionMutation = {
   updateOption?:  {
     __typename: "Option",
     option: string,
-    domainItemAndType: string,
+    domain_item_type: string,
     value: number,
     args?: Array< string > | null,
     operation: string,
@@ -753,7 +753,7 @@ export type DeleteOptionMutation = {
   deleteOption?:  {
     __typename: "Option",
     option: string,
-    domainItemAndType: string,
+    domain_item_type: string,
     value: number,
     args?: Array< string > | null,
     operation: string,
@@ -883,7 +883,7 @@ export type CreateProfileMutation = {
       leisureSportsFactorKey?: string | null,
       travelFactorKey?: string | null,
     } | null,
-    actionIntensityRate?:  Array< {
+    actionIntensityRates?:  Array< {
       __typename: "ActionIntensityRate",
       option: string,
       value: number,
@@ -999,7 +999,7 @@ export type UpdateProfileMutation = {
       leisureSportsFactorKey?: string | null,
       travelFactorKey?: string | null,
     } | null,
-    actionIntensityRate?:  Array< {
+    actionIntensityRates?:  Array< {
       __typename: "ActionIntensityRate",
       option: string,
       value: number,
@@ -1115,7 +1115,7 @@ export type DeleteProfileMutation = {
       leisureSportsFactorKey?: string | null,
       travelFactorKey?: string | null,
     } | null,
-    actionIntensityRate?:  Array< {
+    actionIntensityRates?:  Array< {
       __typename: "ActionIntensityRate",
       option: string,
       value: number,
@@ -1160,15 +1160,15 @@ export type DeleteProfileMutation = {
 };
 
 export type GetFootprintQueryVariables = {
-  dirAndDomain: string,
-  itemAndType: string,
+  dir_domain: string,
+  item_type: string,
 };
 
 export type GetFootprintQuery = {
   getFootprint?:  {
     __typename: "Footprint",
-    dirAndDomain: string,
-    itemAndType: string,
+    dir_domain: string,
+    item_type: string,
     subdomain: string,
     value: number,
     unit?: string | null,
@@ -1179,8 +1179,8 @@ export type GetFootprintQuery = {
 };
 
 export type ListFootprintsQueryVariables = {
-  dirAndDomain?: string | null,
-  itemAndType?: ModelStringKeyConditionInput | null,
+  dir_domain?: string | null,
+  item_type?: ModelStringKeyConditionInput | null,
   filter?: ModelFootprintFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
@@ -1192,8 +1192,8 @@ export type ListFootprintsQuery = {
     __typename: "ModelFootprintConnection",
     items:  Array< {
       __typename: "Footprint",
-      dirAndDomain: string,
-      itemAndType: string,
+      dir_domain: string,
+      item_type: string,
       subdomain: string,
       value: number,
       unit?: string | null,
@@ -1251,14 +1251,14 @@ export type ListParametersQuery = {
 
 export type GetOptionQueryVariables = {
   option: string,
-  domainItemAndType: string,
+  domain_item_type: string,
 };
 
 export type GetOptionQuery = {
   getOption?:  {
     __typename: "Option",
     option: string,
-    domainItemAndType: string,
+    domain_item_type: string,
     value: number,
     args?: Array< string > | null,
     operation: string,
@@ -1270,7 +1270,7 @@ export type GetOptionQuery = {
 
 export type ListOptionsQueryVariables = {
   option?: string | null,
-  domainItemAndType?: ModelStringKeyConditionInput | null,
+  domain_item_type?: ModelStringKeyConditionInput | null,
   filter?: ModelOptionFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
@@ -1283,7 +1283,7 @@ export type ListOptionsQuery = {
     items:  Array< {
       __typename: "Option",
       option: string,
-      domainItemAndType: string,
+      domain_item_type: string,
       value: number,
       args?: Array< string > | null,
       operation: string,
@@ -1404,7 +1404,7 @@ export type GetProfileQuery = {
       leisureSportsFactorKey?: string | null,
       travelFactorKey?: string | null,
     } | null,
-    actionIntensityRate?:  Array< {
+    actionIntensityRates?:  Array< {
       __typename: "ActionIntensityRate",
       option: string,
       value: number,
@@ -1525,7 +1525,7 @@ export type ListProfilesQuery = {
         leisureSportsFactorKey?: string | null,
         travelFactorKey?: string | null,
       } | null,
-      actionIntensityRate?:  Array< {
+      actionIntensityRates?:  Array< {
         __typename: "ActionIntensityRate",
         option: string,
         value: number,
@@ -1648,7 +1648,7 @@ export type ProfilesByShareIdQuery = {
         leisureSportsFactorKey?: string | null,
         travelFactorKey?: string | null,
       } | null,
-      actionIntensityRate?:  Array< {
+      actionIntensityRates?:  Array< {
         __typename: "ActionIntensityRate",
         option: string,
         value: number,
@@ -1697,8 +1697,8 @@ export type ProfilesByShareIdQuery = {
 export type OnCreateFootprintSubscription = {
   onCreateFootprint?:  {
     __typename: "Footprint",
-    dirAndDomain: string,
-    itemAndType: string,
+    dir_domain: string,
+    item_type: string,
     subdomain: string,
     value: number,
     unit?: string | null,
@@ -1711,8 +1711,8 @@ export type OnCreateFootprintSubscription = {
 export type OnUpdateFootprintSubscription = {
   onUpdateFootprint?:  {
     __typename: "Footprint",
-    dirAndDomain: string,
-    itemAndType: string,
+    dir_domain: string,
+    item_type: string,
     subdomain: string,
     value: number,
     unit?: string | null,
@@ -1725,8 +1725,8 @@ export type OnUpdateFootprintSubscription = {
 export type OnDeleteFootprintSubscription = {
   onDeleteFootprint?:  {
     __typename: "Footprint",
-    dirAndDomain: string,
-    itemAndType: string,
+    dir_domain: string,
+    item_type: string,
     subdomain: string,
     value: number,
     unit?: string | null,
@@ -1779,7 +1779,7 @@ export type OnCreateOptionSubscription = {
   onCreateOption?:  {
     __typename: "Option",
     option: string,
-    domainItemAndType: string,
+    domain_item_type: string,
     value: number,
     args?: Array< string > | null,
     operation: string,
@@ -1793,7 +1793,7 @@ export type OnUpdateOptionSubscription = {
   onUpdateOption?:  {
     __typename: "Option",
     option: string,
-    domainItemAndType: string,
+    domain_item_type: string,
     value: number,
     args?: Array< string > | null,
     operation: string,
@@ -1807,7 +1807,7 @@ export type OnDeleteOptionSubscription = {
   onDeleteOption?:  {
     __typename: "Option",
     option: string,
-    domainItemAndType: string,
+    domain_item_type: string,
     value: number,
     args?: Array< string > | null,
     operation: string,
@@ -1917,7 +1917,7 @@ export type OnCreateProfileSubscription = {
       leisureSportsFactorKey?: string | null,
       travelFactorKey?: string | null,
     } | null,
-    actionIntensityRate?:  Array< {
+    actionIntensityRates?:  Array< {
       __typename: "ActionIntensityRate",
       option: string,
       value: number,
@@ -2028,7 +2028,7 @@ export type OnUpdateProfileSubscription = {
       leisureSportsFactorKey?: string | null,
       travelFactorKey?: string | null,
     } | null,
-    actionIntensityRate?:  Array< {
+    actionIntensityRates?:  Array< {
       __typename: "ActionIntensityRate",
       option: string,
       value: number,
@@ -2139,7 +2139,7 @@ export type OnDeleteProfileSubscription = {
       leisureSportsFactorKey?: string | null,
       travelFactorKey?: string | null,
     } | null,
-    actionIntensityRate?:  Array< {
+    actionIntensityRates?:  Array< {
       __typename: "ActionIntensityRate",
       option: string,
       value: number,

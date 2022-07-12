@@ -20,7 +20,7 @@ const estimateMobility = async (
   let params = {
     TableName: footprintTableName,
     KeyConditions: {
-      dirAndDomain: {
+      dir_domain: {
         ComparisonOperator: 'EQ',
         AttributeValueList: ['baseline_mobility']
       }
@@ -49,7 +49,7 @@ const estimateMobility = async (
         TableName: parameterTableName,
         Key: {
           category: 'car-intensity-factor',
-          key: mobilityAnswer.carIntensityFactorKey
+          key: mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
         }
       }
       let data = await dynamodb.get(params).promise()
@@ -90,7 +90,7 @@ const estimateMobility = async (
       // 自家用車の移動距離を取得
       const amount = findAmount(baselines, 'private-car-driving')
       const baselineAmount = amount.value
-      amount.value = mobilityAnswer.privateCarAnnualMileage
+      amount.value = mobilityAnswer.privateCarAnnualMileage || 0
       estimations.push(toEstimation(amount))
       const mileageRatio = amount.value / baselineAmount
 
@@ -184,9 +184,11 @@ const estimateMobility = async (
 
     mileage.train = milageByArea[mileageByAreaFirstKey + '_train']
     mileage.bus = milageByArea[mileageByAreaFirstKey + '_bus']
-    mileage.motorbike = milageByArea[mileageByAreaFirstKey + '_motorbike']
+    mileage.motorbike =
+      milageByArea[mileageByAreaFirstKey + '_motorbike-driving']
     mileage.taxi = milageByArea[mileageByAreaFirstKey + '_taxi']
-    mileage.carSharing = milageByArea[mileageByAreaFirstKey + 'car-sharing']
+    mileage.carSharing =
+      milageByArea[mileageByAreaFirstKey + '_car-sharing-driving']
   }
 
   console.log('calculating annual mileage')
@@ -206,14 +208,14 @@ const estimateMobility = async (
   console.log('getting weeks-per-year-excluding-long-vacations')
 
   // 年間週数の取得
-  const params_wpyelv = {
+  const paramsWeeks = {
     TableName: parameterTableName,
     Key: {
       category: 'misc',
       key: 'weeks-per-year-excluding-long-vacations'
     }
   }
-  data = await dynamodb.get(params_wpyelv).promise()
+  data = await dynamodb.get(paramsWeeks).promise()
   let weekCount = 49
   if (data?.Item) {
     weekCount = data.Item.value
@@ -222,7 +224,7 @@ const estimateMobility = async (
   console.log('getting transportation-speed')
 
   // 時速の取得
-  const params_ts = {
+  const paramsTransportation = {
     TableName: parameterTableName,
     KeyConditions: {
       category: {
@@ -231,7 +233,7 @@ const estimateMobility = async (
       }
     }
   }
-  data = await dynamodb.query(params_ts).promise()
+  data = await dynamodb.query(paramsTransportation).promise()
   const speed = data.Items.reduce((a, x) => {
     a[x.key] = x.value
     return a
@@ -274,18 +276,7 @@ const estimateMobility = async (
   const baselineCarSharingAmount = estimationAmount.carSharing.value
 
   // ベースラインの値を書き換えてEstimationを生成
-
-  const items = [
-    'airplane',
-    'train',
-    'bus',
-    'ferry',
-    'taxi',
-    'carSharing',
-    'motorbike'
-  ]
-
-  for (let item of items) {
+  for (let item of Object.keys(mileage)) {
     estimationAmount[item].value = mileage[item]
     estimations.push(toEstimation(estimationAmount[item]))
   }

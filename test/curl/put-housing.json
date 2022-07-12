@@ -1,0 +1,17 @@
+{
+  "housingAnswer": {
+    "residentCount": 2,
+    "housingSizeKey": "unknown",
+    "housingAmountByRegionFirstKey": "northeast",
+    "electricityIntensityKey": "100-renewable",
+    "electricityMonthlyConsumption": 1000,
+    "electricitySeasonFactorKey": "january",
+    "useGas": true,
+    "energyHeatIntensityKey": "urban-gas",
+    "gasMonthlyConsumption": 1000,
+    "gasSeasonFactorKey": "january",
+    "useKerosene": true,
+    "keroseneMonthlyConsumption": 100,
+    "keroseneMonthCount": 4
+  }
+}

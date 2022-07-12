@@ -5,8 +5,8 @@
 export const onCreateFootprint = /* GraphQL */ `
   subscription OnCreateFootprint {
     onCreateFootprint {
-      dirAndDomain
-      itemAndType
+      dir_domain
+      item_type
       subdomain
       value
       unit
@@ -19,8 +19,8 @@ export const onCreateFootprint = /* GraphQL */ `
 export const onUpdateFootprint = /* GraphQL */ `
   subscription OnUpdateFootprint {
     onUpdateFootprint {
-      dirAndDomain
-      itemAndType
+      dir_domain
+      item_type
       subdomain
       value
       unit
@@ -33,8 +33,8 @@ export const onUpdateFootprint = /* GraphQL */ `
 export const onDeleteFootprint = /* GraphQL */ `
   subscription OnDeleteFootprint {
     onDeleteFootprint {
-      dirAndDomain
-      itemAndType
+      dir_domain
+      item_type
       subdomain
       value
       unit
@@ -87,7 +87,7 @@ export const onCreateOption = /* GraphQL */ `
   subscription OnCreateOption {
     onCreateOption {
       option
-      domainItemAndType
+      domain_item_type
       value
       args
       operation
@@ -101,7 +101,7 @@ export const onUpdateOption = /* GraphQL */ `
   subscription OnUpdateOption {
     onUpdateOption {
       option
-      domainItemAndType
+      domain_item_type
       value
       args
       operation
@@ -115,7 +115,7 @@ export const onDeleteOption = /* GraphQL */ `
   subscription OnDeleteOption {
     onDeleteOption {
       option
-      domainItemAndType
+      domain_item_type
       value
       args
       operation
@@ -221,7 +221,7 @@ export const onCreateProfile = /* GraphQL */ `
         leisureSportsFactorKey
         travelFactorKey
       }
-      actionIntensityRate {
+      actionIntensityRates {
         option
         value
         defaultValue
@@ -324,7 +324,7 @@ export const onUpdateProfile = /* GraphQL */ `
         leisureSportsFactorKey
         travelFactorKey
       }
-      actionIntensityRate {
+      actionIntensityRates {
         option
         value
         defaultValue
@@ -427,7 +427,7 @@ export const onDeleteProfile = /* GraphQL */ `
         leisureSportsFactorKey
         travelFactorKey
       }
-      actionIntensityRate {
+      actionIntensityRates {
         option
         value
         defaultValue

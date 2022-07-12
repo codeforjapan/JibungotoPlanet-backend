@@ -7,7 +7,7 @@
 	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN
 	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME
 	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN
-Amplify Params - DO NOT EDIT *//*
+Amplify Params - DO NOT EDIT */ /*
 Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
     http://aws.amazon.com/apache2.0/
@@ -91,10 +91,6 @@ app.get(path + '/:id', async (req, res) => {
     res.statusCode = 500
     res.json({ error: 'Could not load item: ' + err })
   }
-})
-
-app.listen(3000, function () {
-  console.log('App started')
 })
 
 // Export the app object. When executing the application local this does nothing. However,

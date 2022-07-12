@@ -39,10 +39,10 @@ exports.__esModule = true;
 exports.estimateOther = void 0;
 var util_1 = require("./util");
 var estimateOther = function (dynamodb, otherAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, estimations, params, data, baselines, answers, _i, answers_1, ans, params_1, data_1, coefficient, _a, _b, item, baseline;
-    var _c;
-    return __generator(this, function (_d) {
-        switch (_d.label) {
+    var findAmount, estimations, params, data, baselines, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, baseline;
+    var _c, _d;
+    return __generator(this, function (_e) {
+        switch (_e.label) {
             case 0:
                 findAmount = function (baselines, item) {
                     return (0, util_1.findBaseline)(baselines, 'other', item, 'amount');
@@ -51,7 +51,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                 params = {
                     TableName: footprintTableName,
                     KeyConditions: {
-                        dirAndDomain: {
+                        dir_domain: {
                             ComparisonOperator: 'EQ',
                             AttributeValueList: ['baseline_other']
                         }
@@ -59,7 +59,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                 };
                 return [4 /*yield*/, dynamodb.query(params).promise()];
             case 1:
-                data = _d.sent();
+                data = _e.sent();
                 baselines = data.Items.map(function (item) { return (0, util_1.toBaseline)(item); });
                 // 回答がない場合はベースラインのみ返す
                 if (!otherAnswer) {
@@ -70,15 +70,10 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     // dailyGoods: String # 5k-less|5k-10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
                     // daily-goods-medicine 日用品・化粧品・医薬品
                     {
-                        category: 'clothes-beauty-factor',
+                        category: 'daily-goods-amount',
                         key: otherAnswer.dailyGoodsAmountKey,
-                        items: [
-                            'cosmetics',
-                            'sanitation',
-                            'medicine',
-                            'kitchen-goods',
-                            'paper-stationery'
-                        ]
+                        base: 'average-per-capita',
+                        items: ['sanitation', 'kitchen-goods', 'paper-stationery']
                     },
                     // 通信費、放送受信料を合わせた支出はどのくらいですか？
                     // communication: String # 5k-less|5k10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
@@ -86,7 +81,8 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     {
                         category: 'communication-amount',
                         key: otherAnswer.communicationAmountKey,
-                        items: ['postal-delivery', 'communication', 'broadcasting']
+                        base: 'average-per-capita',
+                        items: ['communication', 'broadcasting']
                     },
                     // 過去1年間の家電、家具などの大型な買い物の支出はどのくらいですか？
                     // applianceFurniture: String # 50k-less|50k-100k|100k-200k|200k-300k||300k-400k|400k-more|unknown|average-per-capita
@@ -94,7 +90,10 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     {
                         category: 'appliance-furniture-amount',
                         key: otherAnswer.applianceFurnitureAmountKey,
+                        base: 'average-per-capita',
                         items: [
+                            'electrical-appliances-repair-rental',
+                            'furniture-daily-goods-repair-rental',
                             'cooking-appliances',
                             'heating-cooling-appliances',
                             'other-appliances',
@@ -113,20 +112,9 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                         category: 'service-factor',
                         key: otherAnswer.serviceFactorKey,
                         items: [
+                            'medicine',
                             'housework',
                             'washing',
-                            'haircare',
-                            'bath-spa',
-                            'finance-insurance',
-                            'other-services',
-                            'ceremony',
-                            'waste',
-                            'furniture-daily-goods-repair-rental',
-                            'clothes-repair-rental',
-                            'bags-jewelries-repair-rental',
-                            'electrical-appliances-repair-rental',
-                            'sports-culture-repair-rental',
-                            'sports-entertainment-repair-rental',
                             'medical-care',
                             'nursing',
                             'caring',
@@ -135,7 +123,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                         ]
                     },
                     // 趣味にかかるの物の支出はどのくらいですか？
-                    // hobbyGoods: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+                    // hobbyGoods: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
                     // hobby-books 趣味用品・書籍・雑誌
                     {
                         category: 'hobby-goods-factor',
@@ -147,27 +135,41 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                             'gardening-flower',
                             'pet',
                             'tobacco',
-                            'books-magazines'
+                            'books-magazines',
+                            'sports-culture-repair-rental',
+                            'sports-entertainment-repair-rental'
                         ]
                     },
                     // 衣類、かばん、宝飾品、美容関連などの支出はどのくらいですか？
-                    // clothesBeauty: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+                    // clothesBeauty: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
                     // clothes 衣類・宝飾品
                     {
                         category: 'clothes-beauty-factor',
                         key: otherAnswer.clothesBeautyFactorKey,
-                        items: ['clothes-goods', 'bags-jewelries-goods']
+                        items: [
+                            'haircare',
+                            'cosmetics',
+                            'clothes-goods',
+                            'bags-jewelries-goods',
+                            'clothes-repair-rental',
+                            'bags-jewelries-repair-rental'
+                        ]
                     },
                     // レジャー、スポーツへの支出はどのくらいですか？
-                    // leisureSports: String # 5000-less|5000-10000|10000-20000|20000-50000|50000-more|unknown
+                    // leisureSports: String # 5000-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
                     // leisure-sports レジャー・スポーツ施設
                     {
                         category: 'leisure-sports-factor',
                         key: otherAnswer.leisureSportsFactorKey,
-                        items: ['culture-leisure', 'entertainment-leisure', 'sports-leisure']
+                        items: [
+                            'culture-leisure',
+                            'entertainment-leisure',
+                            'sports-leisure',
+                            'bath-spa'
+                        ]
                     },
                     // 過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？
-                    // travel: String # 10000-less|20000-30000|30000-50000|50000-100000|100000-200000|200000-more|unknown
+                    // travel: String # 10k-less|20k-30k|30k-50k|50k-100k|100k-200k|200k-more|unknown
                     // travel-hotel 旅行・宿泊
                     {
                         category: 'travel-factor',
@@ -176,22 +178,41 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     }
                 ];
                 _i = 0, answers_1 = answers;
-                _d.label = 2;
+                _e.label = 2;
             case 2:
-                if (!(_i < answers_1.length)) return [3 /*break*/, 5];
+                if (!(_i < answers_1.length)) return [3 /*break*/, 7];
                 ans = answers_1[_i];
-                params_1 = {
-                    TableName: parameterTableName,
-                    Key: {
-                        category: ans.category,
-                        key: ans.key
-                    }
-                };
-                return [4 /*yield*/, dynamodb.get(params_1).promise()];
+                return [4 /*yield*/, dynamodb
+                        .get({
+                        TableName: parameterTableName,
+                        Key: {
+                            category: ans.category,
+                            key: ans.key
+                        }
+                    })
+                        .promise()];
             case 3:
-                data_1 = _d.sent();
-                if ((_c = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _c === void 0 ? void 0 : _c.value) {
-                    coefficient = data_1.Item.value;
+                data_1 = _e.sent();
+                denominator = 1;
+                if (!ans.base) return [3 /*break*/, 5];
+                return [4 /*yield*/, dynamodb
+                        .get({
+                        TableName: parameterTableName,
+                        Key: {
+                            category: ans.category,
+                            key: ans.base
+                        }
+                    })
+                        .promise()];
+            case 4:
+                base = _e.sent();
+                if ((_c = base === null || base === void 0 ? void 0 : base.Item) === null || _c === void 0 ? void 0 : _c.value) {
+                    denominator = base.Item.value;
+                }
+                _e.label = 5;
+            case 5:
+                if ((_d = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _d === void 0 ? void 0 : _d.value) {
+                    coefficient = data_1.Item.value / denominator;
                     for (_a = 0, _b = ans.items; _a < _b.length; _a++) {
                         item = _b[_a];
                         baseline = findAmount(baselines, item);
@@ -199,11 +220,11 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                         estimations.push((0, util_1.toEstimation)(baseline));
                     }
                 }
-                _d.label = 4;
-            case 4:
+                _e.label = 6;
+            case 6:
                 _i++;
                 return [3 /*break*/, 2];
-            case 5: return [2 /*return*/, { baselines: baselines, estimations: estimations }];
+            case 7: return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }
     });
 }); };

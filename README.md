@@ -1,34 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ジブンゴト Planet バックエンド
 
-## Getting Started
+ジブンゴト Planet のバックエンドのプロジェクトです。個人のカーボンフットプリントを推定するアンケートのための API を提供します。
 
-First, run the development server:
+## REST API
+
+REST API のエンドポイントは Owner に問合せ下さい。
+
+### 個人のカーボンフットプリントプロフィールの作成
+
+空の JSON を渡すと空のプロフィールが作成されます。また、質問への回答を併せて POST するとプロフィールを計算して返します。レスポンスの中に[id]が記載されていますので、以降の更新用に localStorage や cookie に保存して下さい。
 
 ```bash
-npm run dev
-# or
-yarn dev
+POST [REST API endpoint]/profiles
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 質問への回答の更新
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+POST で返されるレスポンスの中に[id]が記載されています。その[id]をキーに回答を更新して下さい。
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+PUT [REST API endpoint]/profiles/[id]
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### カーボンフットプリントプロフィールの取得
 
-## Learn More
+```bash
+GET [REST API endpoint]/profiles/[id]
+```
 
-To learn more about Next.js, take a look at the following resources:
+### カーボンフットプリントプロフィールの取得（シェア用）
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+POST で返されるレスポンスの中に[shareId]も記載されています。その[shareId]をキーにシェア用の情報を取得して下さい。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+GET [REST API endpoint]/shares/[shareId]
+```
 
-## Deploy on Vercel
+### リクエストとレスポンスの内容
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[schema.graphql](amplify/backend/api/JibungotoPlanetGql/schema.graphql)の Profile の定義を確認下さい。2022 年 6 月現在、JSON 形式のみサポートされています。なお、シェア用には各種回答情報と[id]が削除されたレスポンスが返ります。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Profile の baselines, estimations, actions の使い方
+
+Profile に個人のカーボンフットプリントの推定結果が格納されています。
+
+- baselines: 2015 年の日本全国の平均値。全ての domain_item の値が格納されています。
+- estimations: 回答結果に基づき計算された個人の活動量、原単位の推定値。回答があった活動量、原単位のみ格納されています。
+- actions: option で指定された削減施策を実施した場合の活動量、原単位の値が格納されています。option で効果のある活動量、原単位のみ格納されています。
+
+Baseline, Estimation, Action が個別のデータ項目で、domain+item+type がキーになります。
+
+- カーボンフットプリントの値が直接格納されているわけでわなく、カーボンンフットプリントを構成する活動量(amount)、原単位(intensity)が格納されていますので（type で指定されています）、カーボンフットプリントを取得するためにはこれらを domain_item 単位に掛け合わせて下さい。
+- subdomain 単位でカーボンフットプリントを取得したい場合は、domain_item 単位に掛け合わせて取得したカーボンフットプリントを subdomain 単位で合計して下さい。
+
+| 配列        | データ 1                                                                             | データ 2                                                                          | データ 3                                                  | データ 4                                                      | データ 5 | データ 6 | データ 7 |
+| ----------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------- | -------- | -------- | -------- |
+| baselines   | domain=mobility<br>item=airplane<br>type=amount<br>value=1000                        | domain=mobility<br>item=airplane<br>type=intensity<br>value=0.1                   | domain=mobility<br>item=train<br>type=amount<br>value=600 | domain=mobility<br>item=train<br>type=intensity<br>value=0.15 | ...      |
+| estimations | domain=mobility<br>item=airplane<br>type=amount<br>value=1200                        | domain=mobility<br>item=train<br>type=amount<br>value=800                         | ...                                                       |
+| actions     | option=micro-tourism<br>domain=mobility<br>item=airplane<br>type=amount<br>value=500 | option=long-shift<br>domain=mobility<br>item=airplane<br>type=amount<br>value=600 | ...                                                       |
+
+上記のデータは、
+
+- 個人のカーボンフットプリント値を取得する際は、domain_item 毎に estimations 値があるときはそちらを使い、値がないときは baselines の値を利用下さい。上記の例ですと mobility_airplane, mobility_train の amount に関しては、estimations の値を、intensity は baselines の値を使用下さい。
+- 削減施策も同様の考え方で、actions に値があるときはそれを使いない場合は estimations, baselines の順で値を探して値を使用下さい。
+
+各々の計算に用いる各種データは以下を確認下さい。
+| データ | ファイル |
+| ---- | ---- |
+| カーボンフットプリントベースラインデータ |[footprint.csv](data/footprint.csv)|
+| カーボンフットプリントを計算する各種係数 |[parameter.csv](data/parameter.csv)|
+| 削減施策を計算する各種係数 |[option.csv](data/option.csv)|
+
+## バックエンドの開発について
+
+開発は aws Amplify の環境で進めています（2022 年 6 月現在）。詳細は[CONTRIBUTING](CONTRIBUTING.md)を参照下さい。

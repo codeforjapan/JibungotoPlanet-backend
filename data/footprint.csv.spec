@@ -1,6 +1,6 @@
 [CSV_SPEC]
-dirAndDomain=S
-itemAndType=S
+dir_domain=S
+item_type=S
 subdomain=S
 value=D
 unit=S
