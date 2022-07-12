@@ -48,6 +48,7 @@ const estimateHousing = async (
   }
   const residentCount = housingAnswer.residentCount
 
+  // 下記部分でパラメータ名から一致を取る必要があるため、ケバブのまま変数化
   const estimationAmount = {
     'land-rent': findAmount(baselines, 'land-rent'),
     'other-energy': findAmount(baselines, 'other-energy'),
@@ -88,8 +89,7 @@ const estimateHousing = async (
 
     amountByRegion.Items.forEach((item) => {
       const key = item.key.match(re)[1]
-      estimationAmount[key].value = item.value
-      // estimations.push(toEstimation(estimationAmount[key]))
+      estimations.push(toEstimation(estimationAmount[key]))
     })
   }
 
@@ -102,21 +102,16 @@ const estimateHousing = async (
   // water
 
   if (housingAnswer.housingSizeKey) {
-    const housingSizeParams = {
-      TableName: parameterTableName,
-      KeyConditions: {
-        category: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: ['housing-size']
-        },
-        key: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: [housingAnswer.housingSizeKey]
+    const housingSize = await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: 'housing-size',
+          key: housingAnswer.housingSizeKey
         }
-      }
-    }
-    const housingSize = await dynamodb.query(housingSizeParams).promise()
-    const housingSizePerPeople = housingSize.Items[0]?.value / residentCount
+      })
+      .promise()
+    const housingSizePerPeople = housingSize.Item?.value / residentCount
     const imputedRentValue = estimationAmount['imputed-rent'].value
     const rentValue = estimationAmount.rent.value
     estimationAmount['imputed-rent'].value =
@@ -127,34 +122,32 @@ const estimateHousing = async (
       (estimationAmount['housing-maintenance'].value /
         (imputedRentValue + rentValue)) *
       (estimationAmount['imputed-rent'].value + estimationAmount.rent.value)
-    estimations.push(toEstimation(estimationAmount['imputed-rent']))
-    estimations.push(toEstimation(estimationAmount.rent))
-    estimations.push(toEstimation(estimationAmount['housing-maintenance']))
-    // pushOrUpdateEstimate('imputed-rent', 'amount', toEstimation(estimationAmount['imputed-rent]))
-    // pushOrUpdateEstimate('rent', 'amount', toEstimation(estimationAmount.rent))
-    // pushOrUpdateEstimate('housing-maintenance', 'amount', toEstimation(estimationAmount['housing-maintenance']))
+    pushOrUpdateEstimate(
+      'imputed-rent',
+      'amount',
+      toEstimation(estimationAmount['imputed-rent'])
+    )
+    pushOrUpdateEstimate('rent', 'amount', toEstimation(estimationAmount.rent))
+    pushOrUpdateEstimate(
+      'housing-maintenance',
+      'amount',
+      toEstimation(estimationAmount['housing-maintenance'])
+    )
   }
 
   // 再生可能エネルギー
   if (housingAnswer.electricityIntensityKey) {
-    const electricityIntensityParams = {
-      TableName: parameterTableName,
-      KeyConditions: {
-        category: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: ['electricity-intensity']
-        },
-        key: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: [housingAnswer.electricityIntensityKey]
-        }
-      }
-    }
     const electricityParam = await dynamodb
-      .query(electricityIntensityParams)
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: 'electricity-intensity',
+          key: housingAnswer.electricityIntensityKey
+        }
+      })
       .promise()
     const electricityIntensity = findIntensity(baselines, 'electricity')
-    electricityIntensity.value = electricityParam.Items[0]?.value
+    electricityIntensity.value = electricityParam.Item?.value
     estimations.push(toEstimation(electricityIntensity))
   }
 
@@ -163,29 +156,25 @@ const estimateHousing = async (
     housingAnswer.electricityMonthlyConsumption &&
     housingAnswer.electricitySeasonFactorKey
   ) {
-    const electricitySeasonParams = {
-      TableName: parameterTableName,
-      KeyConditions: {
-        category: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: ['electricity-season-factor']
-        },
-        key: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: [housingAnswer.electricitySeasonFactorKey]
-        }
-      }
-    }
     const electricitySeason = await dynamodb
-      .query(electricitySeasonParams)
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: 'electricity-season-factor',
+          key: housingAnswer.electricitySeasonFactorKey
+        }
+      })
       .promise()
     // todo 電気時自動車分をどうやって取ってくるか
     estimationAmount.electricity.value =
       (housingAnswer.electricityMonthlyConsumption *
-        electricitySeason.Items[0]?.value) /
+        electricitySeason.Item?.value) /
       residentCount
-    estimations.push(toEstimation(estimationAmount.electricity))
-    // pushOrUpdateEstimate('electricity', 'amount', toEstimation(estimationAmount.electricity))
+    pushOrUpdateEstimate(
+      'electricity',
+      'amount',
+      toEstimation(estimationAmount.electricity)
+    )
   }
 
   // ガスの使用の有無
@@ -195,22 +184,17 @@ const estimateHousing = async (
       housingAnswer.gasMonthlyConsumption &&
       housingAnswer.gasSeasonFactorKey
     ) {
-      const gasSeasonParams = {
-        TableName: parameterTableName,
-        KeyConditions: {
-          category: {
-            ComparisonOperator: 'EQ',
-            AttributeValueList: ['gas-season-factor']
-          },
-          key: {
-            ComparisonOperator: 'EQ',
-            AttributeValueList: [housingAnswer.gasSeasonFactorKey]
+      const gasSeason = await dynamodb
+        .get({
+          TableName: parameterTableName,
+          Key: {
+            category: 'gas-season-factor',
+            key: housingAnswer.gasSeasonFactorKey
           }
-        }
-      }
-      const gasSeason = await dynamodb.query(gasSeasonParams).promise()
+        })
+        .promise()
       gasParam =
-        (housingAnswer.gasMonthlyConsumption * gasSeason.Items[0]?.value) /
+        (housingAnswer.gasMonthlyConsumption * gasSeason.Item?.value) /
         residentCount
     }
     if (housingAnswer.energyHeatIntensityKey === 'lpg') {
@@ -224,15 +208,21 @@ const estimateHousing = async (
       }
       estimationAmount.lpg.value = 0
     }
-    estimations.push(toEstimation(estimationAmount['urban-gas']))
-    estimations.push(toEstimation(estimationAmount.lpg))
+    pushOrUpdateEstimate(
+      'urban-gas',
+      'amount',
+      toEstimation(estimationAmount['urban-gas'])
+    )
+    pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
   } else if (housingAnswer.useGas === false) {
     estimationAmount['urban-gas'].value = 0
     estimationAmount.lpg.value = 0
-    estimations.push(toEstimation(estimationAmount['urban-gas']))
-    estimations.push(toEstimation(estimationAmount.lpg))
-    // pushOrUpdateEstimate('urban-gas', 'amount', toEstimation(estimationAmount['urban-gas']))
-    // pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
+    pushOrUpdateEstimate(
+      'urban-gas',
+      'amount',
+      toEstimation(estimationAmount['urban-gas'])
+    )
+    pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
   }
 
   // 灯油の使用の有無
@@ -246,12 +236,18 @@ const estimateHousing = async (
           housingAnswer.keroseneMonthCount) /
         residentCount
     }
-    estimations.push(toEstimation(estimationAmount.kerosene))
-    // pushOrUpdateEstimate('kerosene', 'amount', toEstimation(estimationAmount.kerosene))
+    pushOrUpdateEstimate(
+      'kerosene',
+      'amount',
+      toEstimation(estimationAmount.kerosene)
+    )
   } else if (housingAnswer.useKerosene === false) {
     estimationAmount.kerosene.value = 0
-    estimations.push(toEstimation(estimationAmount.kerosene))
-    // pushOrUpdateEstimate('kerosene', 'amount', toEstimation(estimationAmount.kerosene))
+    pushOrUpdateEstimate(
+      'kerosene',
+      'amount',
+      toEstimation(estimationAmount.kerosene)
+    )
   }
 
   console.log(JSON.stringify(estimations))

@@ -50,6 +50,8 @@ baseline_food,ready-meal_amount,other-food,40.11077093,kg,Koide et al. 2021. Env
 baseline_food,alcohol_amount,beverages,53.83668469,kg,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_food,coffee-tea_amount,beverages,136.4468369,kg,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_food,cold-drink_amount,beverages,129.9537532,kg,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
+baseline_food,restaurant_amount,restaurant,122.1836001,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
+baseline_food,bar-cafe_amount,restaurant,34.44703713,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,cooking-appliances_amount,appliance-furniture,10.80871722,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,heating-cooling-appliances_amount,appliance-furniture,12.38952029,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,other-appliances_amount,appliance-furniture,11.65844939,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
@@ -71,8 +73,6 @@ baseline_other,kitchen-goods_amount,daily-goods-medicine,8.638990484,000JPY,Koid
 baseline_other,paper-stationery_amount,daily-goods-medicine,2.621777546,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,books-magazines_amount,hobby-books,18.40240876,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,waste_amount,waste-repair-rental,3.123482434,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
-baseline_food,restaurant_amount,restaurant,122.1836001,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
-baseline_food,bar-cafe_amount,restaurant,34.44703713,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,hotel_amount,travel-hotel,23.67949431,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,travel_amount,travel-hotel,4.466958243,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,culture-leisure_amount,leisure-sports,26.18197893,000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
@@ -150,6 +150,8 @@ baseline_food,ready-meal_intensity,other-food,3.940265729,kgCO2e/kg,Koide et al.
 baseline_food,alcohol_intensity,beverages,0.944414337,kgCO2e/kg,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_food,coffee-tea_intensity,beverages,0.465905509,kgCO2e/kg,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_food,cold-drink_intensity,beverages,0.482549688,kgCO2e/kg,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
+baseline_food,restaurant_intensity,restaurant,2.972239521,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
+baseline_food,bar-cafe_intensity,restaurant,2.991595476,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,cooking-appliances_intensity,appliance-furniture,2.852827088,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,heating-cooling-appliances_intensity,appliance-furniture,7.449174796,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,other-appliances_intensity,appliance-furniture,2.750735655,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
@@ -171,8 +173,6 @@ baseline_other,kitchen-goods_intensity,daily-goods-medicine,3.23125458,kgCO2e/00
 baseline_other,paper-stationery_intensity,daily-goods-medicine,3.056810847,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,books-magazines_intensity,hobby-books,2.52738082,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,waste_intensity,waste-repair-rental,8.586030351,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
-baseline_food,restaurant_intensity,restaurant,2.972239521,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
-baseline_food,bar-cafe_intensity,restaurant,2.991595476,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,hotel_intensity,travel-hotel,3.770333888,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,travel_intensity,travel-hotel,0.653433284,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
 baseline_other,culture-leisure_intensity,leisure-sports,2.189658709,kgCO2e/000JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-09T05:46:48.810Z,2022-07-09T05:46:48.810Z
