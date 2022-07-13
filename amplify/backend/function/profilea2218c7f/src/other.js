@@ -304,18 +304,21 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                 estimationAmount['culture-goods'].value =
                     estimationAmount['culture-goods'].value * ((_q = hobbyGoodsFactor.Item) === null || _q === void 0 ? void 0 : _q.value);
                 estimationAmount['entertainment-goods'].value =
-                    estimationAmount['entertainment-goods'].value * ((_r = hobbyGoodsFactor.Item) === null || _r === void 0 ? void 0 : _r.value);
+                    estimationAmount['entertainment-goods'].value *
+                        ((_r = hobbyGoodsFactor.Item) === null || _r === void 0 ? void 0 : _r.value);
                 estimationAmount['sports-goods'].value =
                     estimationAmount['sports-goods'].value * ((_s = hobbyGoodsFactor.Item) === null || _s === void 0 ? void 0 : _s.value);
                 estimationAmount['gardening-flower'].value =
                     estimationAmount['gardening-flower'].value * ((_t = hobbyGoodsFactor.Item) === null || _t === void 0 ? void 0 : _t.value);
-                estimationAmount.pet.value = estimationAmount.pet.value * ((_u = hobbyGoodsFactor.Item) === null || _u === void 0 ? void 0 : _u.value);
+                estimationAmount.pet.value =
+                    estimationAmount.pet.value * ((_u = hobbyGoodsFactor.Item) === null || _u === void 0 ? void 0 : _u.value);
                 estimationAmount.tobacco.value =
                     estimationAmount.tobacco.value * ((_v = hobbyGoodsFactor.Item) === null || _v === void 0 ? void 0 : _v.value);
                 estimationAmount['books-magazines'].value =
                     estimationAmount['books-magazines'].value * ((_w = hobbyGoodsFactor.Item) === null || _w === void 0 ? void 0 : _w.value);
                 estimationAmount['sports-culture-repair-rental'].value =
-                    estimationAmount['sports-culture-repair-rental'].value * ((_x = hobbyGoodsFactor.Item) === null || _x === void 0 ? void 0 : _x.value);
+                    estimationAmount['sports-culture-repair-rental'].value *
+                        ((_x = hobbyGoodsFactor.Item) === null || _x === void 0 ? void 0 : _x.value);
                 estimationAmount['sports-entertainment-repair-rental'].value =
                     estimationAmount['sports-entertainment-repair-rental'].value *
                         ((_y = hobbyGoodsFactor.Item) === null || _y === void 0 ? void 0 : _y.value);
@@ -346,11 +349,13 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                 estimationAmount['clothes-goods'].value =
                     estimationAmount['clothes-goods'].value * ((_z = clothesBeautyFactor.Item) === null || _z === void 0 ? void 0 : _z.value);
                 estimationAmount['bags-jewelries-goods'].value =
-                    estimationAmount['bags-jewelries-goods'].value * ((_0 = clothesBeautyFactor.Item) === null || _0 === void 0 ? void 0 : _0.value);
+                    estimationAmount['bags-jewelries-goods'].value *
+                        ((_0 = clothesBeautyFactor.Item) === null || _0 === void 0 ? void 0 : _0.value);
                 estimationAmount.cosmetics.value =
                     estimationAmount.cosmetics.value * ((_1 = clothesBeautyFactor.Item) === null || _1 === void 0 ? void 0 : _1.value);
                 estimationAmount['clothes-repair-rental'].value =
-                    estimationAmount['clothes-repair-rental'].value * ((_2 = clothesBeautyFactor.Item) === null || _2 === void 0 ? void 0 : _2.value);
+                    estimationAmount['clothes-repair-rental'].value *
+                        ((_2 = clothesBeautyFactor.Item) === null || _2 === void 0 ? void 0 : _2.value);
                 estimationAmount['bags-jewelries-repair-rental'].value =
                     estimationAmount['bags-jewelries-repair-rental'].value *
                         ((_3 = clothesBeautyFactor.Item) === null || _3 === void 0 ? void 0 : _3.value);
@@ -427,9 +432,11 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
             case 17:
                 leisureSportsFactor = _11.sent();
                 estimationAmount['culture-leisure'].value =
-                    estimationAmount['culture-leisure'].value * ((_5 = leisureSportsFactor.Item) === null || _5 === void 0 ? void 0 : _5.value);
+                    estimationAmount['culture-leisure'].value *
+                        ((_5 = leisureSportsFactor.Item) === null || _5 === void 0 ? void 0 : _5.value);
                 estimationAmount['entertainment-leisure'].value =
-                    estimationAmount['entertainment-leisure'].value * ((_6 = leisureSportsFactor.Item) === null || _6 === void 0 ? void 0 : _6.value);
+                    estimationAmount['entertainment-leisure'].value *
+                        ((_6 = leisureSportsFactor.Item) === null || _6 === void 0 ? void 0 : _6.value);
                 estimationAmount['sports-leisure'].value =
                     estimationAmount['sports-leisure'].value * ((_7 = leisureSportsFactor.Item) === null || _7 === void 0 ? void 0 : _7.value);
                 estimationAmount['bath-spa'].value =
@@ -452,8 +459,10 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                         .promise()];
             case 19:
                 travelFactor = _11.sent();
-                estimationAmount.hotel.value = estimationAmount.hotel.value * ((_9 = travelFactor.Item) === null || _9 === void 0 ? void 0 : _9.value);
-                estimationAmount.travel.value = estimationAmount.travel.value * ((_10 = travelFactor.Item) === null || _10 === void 0 ? void 0 : _10.value);
+                estimationAmount.hotel.value =
+                    estimationAmount.hotel.value * ((_9 = travelFactor.Item) === null || _9 === void 0 ? void 0 : _9.value);
+                estimationAmount.travel.value =
+                    estimationAmount.travel.value * ((_10 = travelFactor.Item) === null || _10 === void 0 ? void 0 : _10.value);
                 estimations.push((0, util_1.toEstimation)(estimationAmount.hotel));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.travel));
                 _11.label = 20;
