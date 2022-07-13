@@ -10,8 +10,6 @@ const estimateFood = async (
   const findAmount = (baselines, item) =>
     findBaseline(baselines, 'food', item, 'amount')
 
-  // const findIntensity = (baselines, item) => findBaseline(baselines, 'food', item, 'intensity')
-
   // foodAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
   const estimations = []
