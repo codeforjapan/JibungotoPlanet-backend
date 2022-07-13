@@ -118,10 +118,6 @@ const updateProfile = async (dynamodb, profile) => {
     {
       answer: profile.foodAnswer,
       estimate: estimateFood
-    },
-    {
-      answer: profile.otherAnswer,
-      estimate: estimateOther
     }
   ]
 
@@ -139,6 +135,17 @@ const updateProfile = async (dynamodb, profile) => {
       profile.baselines = profile.baselines.concat(baselines)
       profile.estimations = profile.estimations.concat(estimations)
     }
+  }
+  if (profile.housingAnswer && profile.otherAnswer) {
+    const { baselines, estimations } = await estimateOther(
+        dynamodb,
+        profile.otherAnswer,
+        profile.housingAnswer,
+        footprintTableName,
+        parameterTableName
+    )
+    profile.baselines = profile.baselines.concat(baselines)
+    profile.estimations = profile.estimations.concat(estimations)
   }
 }
 
