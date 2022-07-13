@@ -75,7 +75,7 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                     TableName: parameterTableName,
                     Key: {
                         category: 'car-intensity-factor',
-                        key: mobilityAnswer.carIntensityFactorKey
+                        key: mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
                     }
                 };
                 return [4 /*yield*/, dynamodb.get(params_1).promise()];
@@ -107,7 +107,7 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                 estimations.push((0, util_1.toEstimation)(intensity));
                 amount = findAmount(baselines, 'private-car-driving');
                 baselineAmount = amount.value;
-                amount.value = mobilityAnswer.privateCarAnnualMileage;
+                amount.value = mobilityAnswer.privateCarAnnualMileage || 0;
                 estimations.push((0, util_1.toEstimation)(amount));
                 mileageRatio = amount.value / baselineAmount;
                 privateCarPurchase = findAmount(baselines, 'private-car-purchase');
@@ -179,9 +179,11 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                 }, {});
                 mileage.train = milageByArea[mileageByAreaFirstKey + '_train'];
                 mileage.bus = milageByArea[mileageByAreaFirstKey + '_bus'];
-                mileage.motorbike = milageByArea[mileageByAreaFirstKey + '_motorbike'];
+                mileage.motorbike =
+                    milageByArea[mileageByAreaFirstKey + '_motorbike-driving'];
                 mileage.taxi = milageByArea[mileageByAreaFirstKey + '_taxi'];
-                mileage.carSharing = milageByArea[mileageByAreaFirstKey + 'car-sharing'];
+                mileage.carSharing =
+                    milageByArea[mileageByAreaFirstKey + '_car-sharing-driving'];
                 _c.label = 7;
             case 7:
                 console.log('calculating annual mileage');

@@ -3,7 +3,7 @@
     "hasPrivateCar": true,
     "carIntensityFactorKey": "gasoline_driving-factor",
     "carChargingKey": "unknown",
-    "carPassengersKey": "1",
+    "carPassengersKey": "1-2_private-car-factor",
     "privateCarAnnualMileage": 5000,
     "trainWeeklyTravelingTime": 7,
     "busWeeklyTravelingTime": 7,
