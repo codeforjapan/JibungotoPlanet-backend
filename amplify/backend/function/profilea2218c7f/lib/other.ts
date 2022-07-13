@@ -257,21 +257,21 @@ const estimateOther = async (
       .promise()
 
     estimationAmount.medicine.value =
-      estimationAmount.medicine.value * serviceFactor
+      estimationAmount.medicine.value * serviceFactor.Item?.value
     estimationAmount.housework.value =
-      estimationAmount.housework.value * serviceFactor
+      estimationAmount.housework.value * serviceFactor.Item?.value
     estimationAmount.washing.value =
-      estimationAmount.washing.value * serviceFactor
+      estimationAmount.washing.value * serviceFactor.Item?.value
     estimationAmount['medical-care'].value =
-      estimationAmount['medical-care'].value * serviceFactor
+      estimationAmount['medical-care'].value * serviceFactor.Item?.value
     estimationAmount.nursing.value =
-      estimationAmount.nursing.value * serviceFactor
+      estimationAmount.nursing.value * serviceFactor.Item?.value
     estimationAmount.caring.value =
-      estimationAmount.caring.value * serviceFactor
+      estimationAmount.caring.value * serviceFactor.Item?.value
     estimationAmount['formal-education'].value =
-      estimationAmount['formal-education'].value * serviceFactor
+      estimationAmount['formal-education'].value * serviceFactor.Item?.value
     estimationAmount['informal-education'].value =
-      estimationAmount['informal-education'].value * serviceFactor
+      estimationAmount['informal-education'].value * serviceFactor.Item?.value
     estimations.push(toEstimation(estimationAmount.medicine))
     estimations.push(toEstimation(estimationAmount.housework))
     estimations.push(toEstimation(estimationAmount.washing))
@@ -296,23 +296,23 @@ const estimateOther = async (
       .promise()
 
     estimationAmount['culture-goods'].value =
-      estimationAmount['culture-goods'].value * hobbyGoodsFactor
+      estimationAmount['culture-goods'].value * hobbyGoodsFactor.Item?.value
     estimationAmount['entertainment-goods'].value =
-      estimationAmount['entertainment-goods'].value * hobbyGoodsFactor
+      estimationAmount['entertainment-goods'].value * hobbyGoodsFactor.Item?.value
     estimationAmount['sports-goods'].value =
-      estimationAmount['sports-goods'].value * hobbyGoodsFactor
+      estimationAmount['sports-goods'].value * hobbyGoodsFactor.Item?.value
     estimationAmount['gardening-flower'].value =
-      estimationAmount['gardening-flower'].value * hobbyGoodsFactor
-    estimationAmount.pet.value = estimationAmount.pet.value * hobbyGoodsFactor
+      estimationAmount['gardening-flower'].value * hobbyGoodsFactor.Item?.value
+    estimationAmount.pet.value = estimationAmount.pet.value * hobbyGoodsFactor.Item?.value
     estimationAmount.tobacco.value =
-      estimationAmount.tobacco.value * hobbyGoodsFactor
+      estimationAmount.tobacco.value * hobbyGoodsFactor.Item?.value
     estimationAmount['books-magazines'].value =
-      estimationAmount['books-magazines'].value * hobbyGoodsFactor
+      estimationAmount['books-magazines'].value * hobbyGoodsFactor.Item?.value
     estimationAmount['sports-culture-repair-rental'].value =
-      estimationAmount['sports-culture-repair-rental'].value * hobbyGoodsFactor
+      estimationAmount['sports-culture-repair-rental'].value * hobbyGoodsFactor.Item?.value
     estimationAmount['sports-entertainment-repair-rental'].value =
       estimationAmount['sports-entertainment-repair-rental'].value *
-      hobbyGoodsFactor
+      hobbyGoodsFactor.Item?.value
     estimations.push(toEstimation(estimationAmount['culture-goods']))
     estimations.push(toEstimation(estimationAmount['entertainment-goods']))
     estimations.push(toEstimation(estimationAmount['sports-goods']))
@@ -342,18 +342,18 @@ const estimateOther = async (
       .promise()
 
     estimationAmount['clothes-goods'].value =
-      estimationAmount['clothes-goods'].value * clothesBeautyFactor
+      estimationAmount['clothes-goods'].value * clothesBeautyFactor.Item?.value
     estimationAmount['bags-jewelries-goods'].value =
-      estimationAmount['bags-jewelries-goods'].value * clothesBeautyFactor
+      estimationAmount['bags-jewelries-goods'].value * clothesBeautyFactor.Item?.value
     estimationAmount.cosmetics.value =
-      estimationAmount.cosmetics.value * clothesBeautyFactor
+      estimationAmount.cosmetics.value * clothesBeautyFactor.Item?.value
     estimationAmount['clothes-repair-rental'].value =
-      estimationAmount['clothes-repair-rental'].value * clothesBeautyFactor
+      estimationAmount['clothes-repair-rental'].value * clothesBeautyFactor.Item?.value
     estimationAmount['bags-jewelries-repair-rental'].value =
       estimationAmount['bags-jewelries-repair-rental'].value *
-      clothesBeautyFactor
+      clothesBeautyFactor.Item?.value
     estimationAmount.haircare.value =
-      estimationAmount.haircare.value * clothesBeautyFactor
+      estimationAmount.haircare.value * clothesBeautyFactor.Item?.value
     estimations.push(toEstimation(estimationAmount['clothes-goods']))
     estimations.push(toEstimation(estimationAmount['bags-jewelries-goods']))
     estimations.push(toEstimation(estimationAmount.cosmetics))
@@ -430,13 +430,13 @@ const estimateOther = async (
       .promise()
 
     estimationAmount['culture-leisure'].value =
-      estimationAmount['culture-leisure'].value * leisureSportsFactor
+      estimationAmount['culture-leisure'].value * leisureSportsFactor.Item?.value
     estimationAmount['entertainment-leisure'].value =
-      estimationAmount['entertainment-leisure'].value * leisureSportsFactor
+      estimationAmount['entertainment-leisure'].value * leisureSportsFactor.Item?.value
     estimationAmount['sports-leisure'].value =
-      estimationAmount['sports-leisure'].value * leisureSportsFactor
+      estimationAmount['sports-leisure'].value * leisureSportsFactor.Item?.value
     estimationAmount['bath-spa'].value =
-      estimationAmount['bath-spa'].value * leisureSportsFactor
+      estimationAmount['bath-spa'].value * leisureSportsFactor.Item?.value
     estimations.push(toEstimation(estimationAmount['culture-leisure']))
     estimations.push(toEstimation(estimationAmount['entertainment-leisure']))
     estimations.push(toEstimation(estimationAmount['sports-leisure']))
@@ -455,8 +455,8 @@ const estimateOther = async (
       })
       .promise()
 
-    estimationAmount.hotel.value = estimationAmount.hotel.value * travelFactor
-    estimationAmount.travel.value = estimationAmount.travel.value * travelFactor
+    estimationAmount.hotel.value = estimationAmount.hotel.value * travelFactor.Item?.value
+    estimationAmount.travel.value = estimationAmount.travel.value * travelFactor.Item?.value
     estimations.push(toEstimation(estimationAmount.hotel))
     estimations.push(toEstimation(estimationAmount.travel))
   }

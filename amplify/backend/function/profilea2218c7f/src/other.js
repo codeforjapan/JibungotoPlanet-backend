@@ -40,9 +40,9 @@ exports.estimateOther = void 0;
 var util_1 = require("./util");
 var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
     var findAmount, estimations, params, data, baselines, estimationAmount, dailyGoodsAmount, dailyGoodsAmountAverage, dailyGoodsNationalAverageRatio, communicationAmount, communicationAmountAverage, communicationNationalAverageRatio, applianceFurnitureAmount, applianceFurnitureAmountAverage, applianceFurnitureNationalAverageRatio, serviceFactor, hobbyGoodsFactor, clothesBeautyFactor, leisureSportsFactor, travelFactor;
-    var _a, _b, _c, _d, _e, _f;
-    return __generator(this, function (_g) {
-        switch (_g.label) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10;
+    return __generator(this, function (_11) {
+        switch (_11.label) {
             case 0:
                 findAmount = function (baselines, item) {
                     return (0, util_1.findBaseline)(baselines, 'other', item, 'amount');
@@ -59,7 +59,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                 };
                 return [4 /*yield*/, dynamodb.query(params).promise()];
             case 1:
-                data = _g.sent();
+                data = _11.sent();
                 baselines = data.Items.map(function (item) { return (0, util_1.toBaseline)(item); });
                 // 回答がない場合はベースラインのみ返す
                 if (!otherAnswer) {
@@ -123,7 +123,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     })
                         .promise()];
             case 2:
-                dailyGoodsAmount = _g.sent();
+                dailyGoodsAmount = _11.sent();
                 return [4 /*yield*/, dynamodb
                         .get({
                         TableName: parameterTableName,
@@ -136,7 +136,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     // 住居の部分から人数を取得する必要がある。
                 ];
             case 3:
-                dailyGoodsAmountAverage = _g.sent();
+                dailyGoodsAmountAverage = _11.sent();
                 dailyGoodsNationalAverageRatio = ((_a = dailyGoodsAmount.Item) === null || _a === void 0 ? void 0 : _a.value) /
                     housingAnswer.residentCount /
                     ((_b = dailyGoodsAmountAverage.Item) === null || _b === void 0 ? void 0 : _b.value);
@@ -150,7 +150,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                 estimations.push((0, util_1.toEstimation)(estimationAmount.sanitation));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['kitchen-goods']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['paper-stationery']));
-                _g.label = 4;
+                _11.label = 4;
             case 4:
                 if (!(otherAnswer.communicationAmountKey && housingAnswer.residentCount)) return [3 /*break*/, 7];
                 return [4 /*yield*/, dynamodb
@@ -163,7 +163,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     })
                         .promise()];
             case 5:
-                communicationAmount = _g.sent();
+                communicationAmount = _11.sent();
                 return [4 /*yield*/, dynamodb
                         .get({
                         TableName: parameterTableName,
@@ -176,7 +176,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     // 住居の部分から人数を取得する必要がある。
                 ];
             case 6:
-                communicationAmountAverage = _g.sent();
+                communicationAmountAverage = _11.sent();
                 communicationNationalAverageRatio = ((_c = communicationAmount.Item) === null || _c === void 0 ? void 0 : _c.value) /
                     housingAnswer.residentCount /
                     ((_d = communicationAmountAverage.Item) === null || _d === void 0 ? void 0 : _d.value);
@@ -186,7 +186,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     estimationAmount.broadcasting.value * communicationNationalAverageRatio;
                 estimations.push((0, util_1.toEstimation)(estimationAmount.communication));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.broadcasting));
-                _g.label = 7;
+                _11.label = 7;
             case 7:
                 applianceFurnitureAmount = null;
                 if (!(otherAnswer.applianceFurnitureAmountKey && housingAnswer.residentCount)) return [3 /*break*/, 10];
@@ -200,7 +200,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     })
                         .promise()];
             case 8:
-                applianceFurnitureAmount = _g.sent();
+                applianceFurnitureAmount = _11.sent();
                 return [4 /*yield*/, dynamodb
                         .get({
                         TableName: parameterTableName,
@@ -213,7 +213,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     // 住居の部分から人数を取得する必要がある。
                 ];
             case 9:
-                applianceFurnitureAmountAverage = _g.sent();
+                applianceFurnitureAmountAverage = _11.sent();
                 applianceFurnitureNationalAverageRatio = ((_e = applianceFurnitureAmount.Item) === null || _e === void 0 ? void 0 : _e.value) /
                     housingAnswer.residentCount /
                     ((_f = applianceFurnitureAmountAverage.Item) === null || _f === void 0 ? void 0 : _f.value);
@@ -247,7 +247,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                 estimations.push((0, util_1.toEstimation)(estimationAmount.covering));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['furniture-daily-goods-repair-rental']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['electrical-appliances-repair-rental']));
-                _g.label = 10;
+                _11.label = 10;
             case 10:
                 serviceFactor = null;
                 if (!otherAnswer.serviceFactorKey) return [3 /*break*/, 12];
@@ -261,23 +261,23 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     })
                         .promise()];
             case 11:
-                serviceFactor = _g.sent();
+                serviceFactor = _11.sent();
                 estimationAmount.medicine.value =
-                    estimationAmount.medicine.value * serviceFactor;
+                    estimationAmount.medicine.value * ((_g = serviceFactor.Item) === null || _g === void 0 ? void 0 : _g.value);
                 estimationAmount.housework.value =
-                    estimationAmount.housework.value * serviceFactor;
+                    estimationAmount.housework.value * ((_h = serviceFactor.Item) === null || _h === void 0 ? void 0 : _h.value);
                 estimationAmount.washing.value =
-                    estimationAmount.washing.value * serviceFactor;
+                    estimationAmount.washing.value * ((_j = serviceFactor.Item) === null || _j === void 0 ? void 0 : _j.value);
                 estimationAmount['medical-care'].value =
-                    estimationAmount['medical-care'].value * serviceFactor;
+                    estimationAmount['medical-care'].value * ((_k = serviceFactor.Item) === null || _k === void 0 ? void 0 : _k.value);
                 estimationAmount.nursing.value =
-                    estimationAmount.nursing.value * serviceFactor;
+                    estimationAmount.nursing.value * ((_l = serviceFactor.Item) === null || _l === void 0 ? void 0 : _l.value);
                 estimationAmount.caring.value =
-                    estimationAmount.caring.value * serviceFactor;
+                    estimationAmount.caring.value * ((_m = serviceFactor.Item) === null || _m === void 0 ? void 0 : _m.value);
                 estimationAmount['formal-education'].value =
-                    estimationAmount['formal-education'].value * serviceFactor;
+                    estimationAmount['formal-education'].value * ((_o = serviceFactor.Item) === null || _o === void 0 ? void 0 : _o.value);
                 estimationAmount['informal-education'].value =
-                    estimationAmount['informal-education'].value * serviceFactor;
+                    estimationAmount['informal-education'].value * ((_p = serviceFactor.Item) === null || _p === void 0 ? void 0 : _p.value);
                 estimations.push((0, util_1.toEstimation)(estimationAmount.medicine));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.housework));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.washing));
@@ -286,7 +286,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                 estimations.push((0, util_1.toEstimation)(estimationAmount.caring));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['formal-education']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['informal-education']));
-                _g.label = 12;
+                _11.label = 12;
             case 12:
                 hobbyGoodsFactor = null;
                 if (!otherAnswer.hobbyGoodsFactorKey) return [3 /*break*/, 14];
@@ -300,25 +300,25 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     })
                         .promise()];
             case 13:
-                hobbyGoodsFactor = _g.sent();
+                hobbyGoodsFactor = _11.sent();
                 estimationAmount['culture-goods'].value =
-                    estimationAmount['culture-goods'].value * hobbyGoodsFactor;
+                    estimationAmount['culture-goods'].value * ((_q = hobbyGoodsFactor.Item) === null || _q === void 0 ? void 0 : _q.value);
                 estimationAmount['entertainment-goods'].value =
-                    estimationAmount['entertainment-goods'].value * hobbyGoodsFactor;
+                    estimationAmount['entertainment-goods'].value * ((_r = hobbyGoodsFactor.Item) === null || _r === void 0 ? void 0 : _r.value);
                 estimationAmount['sports-goods'].value =
-                    estimationAmount['sports-goods'].value * hobbyGoodsFactor;
+                    estimationAmount['sports-goods'].value * ((_s = hobbyGoodsFactor.Item) === null || _s === void 0 ? void 0 : _s.value);
                 estimationAmount['gardening-flower'].value =
-                    estimationAmount['gardening-flower'].value * hobbyGoodsFactor;
-                estimationAmount.pet.value = estimationAmount.pet.value * hobbyGoodsFactor;
+                    estimationAmount['gardening-flower'].value * ((_t = hobbyGoodsFactor.Item) === null || _t === void 0 ? void 0 : _t.value);
+                estimationAmount.pet.value = estimationAmount.pet.value * ((_u = hobbyGoodsFactor.Item) === null || _u === void 0 ? void 0 : _u.value);
                 estimationAmount.tobacco.value =
-                    estimationAmount.tobacco.value * hobbyGoodsFactor;
+                    estimationAmount.tobacco.value * ((_v = hobbyGoodsFactor.Item) === null || _v === void 0 ? void 0 : _v.value);
                 estimationAmount['books-magazines'].value =
-                    estimationAmount['books-magazines'].value * hobbyGoodsFactor;
+                    estimationAmount['books-magazines'].value * ((_w = hobbyGoodsFactor.Item) === null || _w === void 0 ? void 0 : _w.value);
                 estimationAmount['sports-culture-repair-rental'].value =
-                    estimationAmount['sports-culture-repair-rental'].value * hobbyGoodsFactor;
+                    estimationAmount['sports-culture-repair-rental'].value * ((_x = hobbyGoodsFactor.Item) === null || _x === void 0 ? void 0 : _x.value);
                 estimationAmount['sports-entertainment-repair-rental'].value =
                     estimationAmount['sports-entertainment-repair-rental'].value *
-                        hobbyGoodsFactor;
+                        ((_y = hobbyGoodsFactor.Item) === null || _y === void 0 ? void 0 : _y.value);
                 estimations.push((0, util_1.toEstimation)(estimationAmount['culture-goods']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['entertainment-goods']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['sports-goods']));
@@ -328,7 +328,7 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                 estimations.push((0, util_1.toEstimation)(estimationAmount['books-magazines']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['sports-culture-repair-rental']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['sports-entertainment-repair-rental']));
-                _g.label = 14;
+                _11.label = 14;
             case 14:
                 clothesBeautyFactor = null;
                 if (!otherAnswer.clothesBeautyFactorKey) return [3 /*break*/, 16];
@@ -342,27 +342,27 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     })
                         .promise()];
             case 15:
-                clothesBeautyFactor = _g.sent();
+                clothesBeautyFactor = _11.sent();
                 estimationAmount['clothes-goods'].value =
-                    estimationAmount['clothes-goods'].value * clothesBeautyFactor;
+                    estimationAmount['clothes-goods'].value * ((_z = clothesBeautyFactor.Item) === null || _z === void 0 ? void 0 : _z.value);
                 estimationAmount['bags-jewelries-goods'].value =
-                    estimationAmount['bags-jewelries-goods'].value * clothesBeautyFactor;
+                    estimationAmount['bags-jewelries-goods'].value * ((_0 = clothesBeautyFactor.Item) === null || _0 === void 0 ? void 0 : _0.value);
                 estimationAmount.cosmetics.value =
-                    estimationAmount.cosmetics.value * clothesBeautyFactor;
+                    estimationAmount.cosmetics.value * ((_1 = clothesBeautyFactor.Item) === null || _1 === void 0 ? void 0 : _1.value);
                 estimationAmount['clothes-repair-rental'].value =
-                    estimationAmount['clothes-repair-rental'].value * clothesBeautyFactor;
+                    estimationAmount['clothes-repair-rental'].value * ((_2 = clothesBeautyFactor.Item) === null || _2 === void 0 ? void 0 : _2.value);
                 estimationAmount['bags-jewelries-repair-rental'].value =
                     estimationAmount['bags-jewelries-repair-rental'].value *
-                        clothesBeautyFactor;
+                        ((_3 = clothesBeautyFactor.Item) === null || _3 === void 0 ? void 0 : _3.value);
                 estimationAmount.haircare.value =
-                    estimationAmount.haircare.value * clothesBeautyFactor;
+                    estimationAmount.haircare.value * ((_4 = clothesBeautyFactor.Item) === null || _4 === void 0 ? void 0 : _4.value);
                 estimations.push((0, util_1.toEstimation)(estimationAmount['clothes-goods']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['bags-jewelries-goods']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.cosmetics));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['clothes-repair-rental']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['bags-jewelries-repair-rental']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.haircare));
-                _g.label = 16;
+                _11.label = 16;
             case 16:
                 // $355 $299 $310 $326 $340
                 if (applianceFurnitureAmount &&
@@ -425,20 +425,20 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     })
                         .promise()];
             case 17:
-                leisureSportsFactor = _g.sent();
+                leisureSportsFactor = _11.sent();
                 estimationAmount['culture-leisure'].value =
-                    estimationAmount['culture-leisure'].value * leisureSportsFactor;
+                    estimationAmount['culture-leisure'].value * ((_5 = leisureSportsFactor.Item) === null || _5 === void 0 ? void 0 : _5.value);
                 estimationAmount['entertainment-leisure'].value =
-                    estimationAmount['entertainment-leisure'].value * leisureSportsFactor;
+                    estimationAmount['entertainment-leisure'].value * ((_6 = leisureSportsFactor.Item) === null || _6 === void 0 ? void 0 : _6.value);
                 estimationAmount['sports-leisure'].value =
-                    estimationAmount['sports-leisure'].value * leisureSportsFactor;
+                    estimationAmount['sports-leisure'].value * ((_7 = leisureSportsFactor.Item) === null || _7 === void 0 ? void 0 : _7.value);
                 estimationAmount['bath-spa'].value =
-                    estimationAmount['bath-spa'].value * leisureSportsFactor;
+                    estimationAmount['bath-spa'].value * ((_8 = leisureSportsFactor.Item) === null || _8 === void 0 ? void 0 : _8.value);
                 estimations.push((0, util_1.toEstimation)(estimationAmount['culture-leisure']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['entertainment-leisure']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['sports-leisure']));
                 estimations.push((0, util_1.toEstimation)(estimationAmount['bath-spa']));
-                _g.label = 18;
+                _11.label = 18;
             case 18:
                 if (!otherAnswer.travelFactorKey) return [3 /*break*/, 20];
                 return [4 /*yield*/, dynamodb
@@ -451,12 +451,12 @@ var estimateOther = function (dynamodb, otherAnswer, housingAnswer, footprintTab
                     })
                         .promise()];
             case 19:
-                travelFactor = _g.sent();
-                estimationAmount.hotel.value = estimationAmount.hotel.value * travelFactor;
-                estimationAmount.travel.value = estimationAmount.travel.value * travelFactor;
+                travelFactor = _11.sent();
+                estimationAmount.hotel.value = estimationAmount.hotel.value * ((_9 = travelFactor.Item) === null || _9 === void 0 ? void 0 : _9.value);
+                estimationAmount.travel.value = estimationAmount.travel.value * ((_10 = travelFactor.Item) === null || _10 === void 0 ? void 0 : _10.value);
                 estimations.push((0, util_1.toEstimation)(estimationAmount.hotel));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.travel));
-                _g.label = 20;
+                _11.label = 20;
             case 20:
                 console.log(JSON.stringify(estimations));
                 return [2 /*return*/, { baselines: baselines, estimations: estimations }];
