@@ -105,7 +105,7 @@ type MobilityAnswer {
   #
   # 自動車に乗るとき、平均で何人が同じ車に乗リますか？
   #
-  carPassengersKey: String # 平均乗車人数; 1|1-2|2|2-3|3|3-4|4-more|unknown
+  carPassengersKey: String # 平均乗車人数; 1_private-car-factor|1-2_private-car-factor|2_private-car-factor|2-3_private-car-factor|3_private-car-factor|3-4_private-car-factor|4-more_private-car-factor|unknown_private-car-factor
   #
   # 年間の走行距離を教えてください
   #

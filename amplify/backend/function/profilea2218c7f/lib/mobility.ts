@@ -49,7 +49,7 @@ const estimateMobility = async (
         TableName: parameterTableName,
         Key: {
           category: 'car-intensity-factor',
-          key: mobilityAnswer.carIntensityFactorKey
+          key: mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
         }
       }
       let data = await dynamodb.get(params).promise()
@@ -90,7 +90,7 @@ const estimateMobility = async (
       // 自家用車の移動距離を取得
       const amount = findAmount(baselines, 'private-car-driving')
       const baselineAmount = amount.value
-      amount.value = mobilityAnswer.privateCarAnnualMileage
+      amount.value = mobilityAnswer.privateCarAnnualMileage || 0
       estimations.push(toEstimation(amount))
       const mileageRatio = amount.value / baselineAmount
 
@@ -184,9 +184,11 @@ const estimateMobility = async (
 
     mileage.train = milageByArea[mileageByAreaFirstKey + '_train']
     mileage.bus = milageByArea[mileageByAreaFirstKey + '_bus']
-    mileage.motorbike = milageByArea[mileageByAreaFirstKey + '_motorbike']
+    mileage.motorbike =
+      milageByArea[mileageByAreaFirstKey + '_motorbike-driving']
     mileage.taxi = milageByArea[mileageByAreaFirstKey + '_taxi']
-    mileage.carSharing = milageByArea[mileageByAreaFirstKey + 'car-sharing']
+    mileage.carSharing =
+      milageByArea[mileageByAreaFirstKey + '_car-sharing-driving']
   }
 
   console.log('calculating annual mileage')

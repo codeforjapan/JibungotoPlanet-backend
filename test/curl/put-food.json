@@ -1,0 +1,15 @@
+{
+  "foodAnswer": {
+    "foodIntakeFactorKey": "very-much",
+    "foodDirectWasteFactorKey": "seldom",
+    "foodLeftoverFactorKey": "seldom",
+    "dishBeefFactorKey": "everyday",
+    "dishPorkFactorKey": "everyday",
+    "dishChickenFactorKey": "everyday",
+    "dishSeafoodFactorKey": "everyday",
+    "dairyFoodFactorKey": "3-more-per-day",
+    "alcoholFactorKey": "everyday",
+    "softDrinkSnackFactorKey": "3k-less",
+    "eatOutFactorKey": "5k-less"
+  }
+}
