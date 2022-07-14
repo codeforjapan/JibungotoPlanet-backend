@@ -106,39 +106,52 @@ app.get(path + '/:id', async (req, res) => {
 })
 
 const updateProfile = async (dynamodb, profile) => {
-  const operations = [
-    {
-      answer: profile.mobilityAnswer,
-      estimate: estimateMobility
-    },
-    {
-      answer: profile.housingAnswer,
-      estimate: estimateHousing
-    },
-    {
-      answer: profile.foodAnswer,
-      estimate: estimateFood
-    },
-    {
-      answer: profile.otherAnswer,
-      estimate: estimateOther
-    }
-  ]
-
   profile.baselines = []
   profile.estimations = []
 
-  for (const operation of operations) {
-    if (operation.answer) {
-      const { baselines, estimations } = await operation.estimate(
-        dynamodb,
-        operation.answer,
-        footprintTableName,
-        parameterTableName
-      )
-      profile.baselines = profile.baselines.concat(baselines)
-      profile.estimations = profile.estimations.concat(estimations)
-    }
+  if (profile.housingAnswer) {
+    const { baselines, estimations } = await estimateHousing(
+      dynamodb,
+      profile.housingAnswer,
+      footprintTableName,
+      parameterTableName
+    )
+    profile.baselines = profile.baselines.concat(baselines)
+    profile.estimations = profile.estimations.concat(estimations)
+  }
+
+  if (profile.mobilityAnswer) {
+    const { baselines, estimations } = await estimateMobility(
+      dynamodb,
+      profile.mobilityAnswer,
+      footprintTableName,
+      parameterTableName
+    )
+    profile.baselines = profile.baselines.concat(baselines)
+    profile.estimations = profile.estimations.concat(estimations)
+  }
+
+  if (profile.foodAnswer) {
+    const { baselines, estimations } = await estimateFood(
+      dynamodb,
+      profile.foodAnswer,
+      footprintTableName,
+      parameterTableName
+    )
+    profile.baselines = profile.baselines.concat(baselines)
+    profile.estimations = profile.estimations.concat(estimations)
+  }
+
+  if (profile.otherAnswer) {
+    const { baselines, estimations } = await estimateOther(
+      dynamodb,
+      profile.housingAnswer,
+      profile.otherAnswer,
+      footprintTableName,
+      parameterTableName
+    )
+    profile.baselines = profile.baselines.concat(baselines)
+    profile.estimations = profile.estimations.concat(estimations)
   }
 }
 

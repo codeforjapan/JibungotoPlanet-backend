@@ -38,8 +38,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.estimateOther = void 0;
 var util_1 = require("./util");
-var estimateOther = function (dynamodb, otherAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, estimations, params, data, baselines, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, baseline;
+var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+    var findAmount, estimations, params, data, baselines, residentCount, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, baseline;
     var _c, _d;
     return __generator(this, function (_e) {
         switch (_e.label) {
@@ -65,32 +65,36 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                 if (!otherAnswer) {
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
+                residentCount = 2.33;
+                if (housingAnswer && housingAnswer.residentCount) {
+                    residentCount = housingAnswer.residentCount;
+                }
                 answers = [
                     // 日用消耗品の支出はどのくらいですか？
                     // dailyGoods: String # 5k-less|5k-10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
-                    // daily-goods-medicine 日用品・化粧品・医薬品
                     {
                         category: 'daily-goods-amount',
                         key: otherAnswer.dailyGoodsAmountKey,
                         base: 'average-per-capita',
+                        residentCount: residentCount,
                         items: ['sanitation', 'kitchen-goods', 'paper-stationery']
                     },
                     // 通信費、放送受信料を合わせた支出はどのくらいですか？
                     // communication: String # 5k-less|5k10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
-                    // communication-delivery 通信・配送・放送サービス
                     {
                         category: 'communication-amount',
                         key: otherAnswer.communicationAmountKey,
                         base: 'average-per-capita',
+                        residentCount: residentCount,
                         items: ['communication', 'broadcasting']
                     },
                     // 過去1年間の家電、家具などの大型な買い物の支出はどのくらいですか？
                     // applianceFurniture: String # 50k-less|50k-100k|100k-200k|200k-300k||300k-400k|400k-more|unknown|average-per-capita
-                    // appliance-furniture 家電・家具
                     {
                         category: 'appliance-furniture-amount',
                         key: otherAnswer.applianceFurnitureAmountKey,
                         base: 'average-per-capita',
+                        residentCount: residentCount,
                         items: [
                             'electrical-appliances-repair-rental',
                             'furniture-daily-goods-repair-rental',
@@ -104,10 +108,6 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     },
                     //  医療、福祉、教育、塾などの習い事の支出はどのくらいですか？
                     // service: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
-                    // personal-care-other-services その他サービス
-                    // ceremony 冠婚葬祭
-                    // waste-repair-rental 廃棄物処理・修理・レンタル
-                    // welfare-education 医療・福祉・教育サービス
                     {
                         category: 'service-factor',
                         key: otherAnswer.serviceFactorKey,
@@ -124,7 +124,6 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     },
                     // 趣味にかかるの物の支出はどのくらいですか？
                     // hobbyGoods: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
-                    // hobby-books 趣味用品・書籍・雑誌
                     {
                         category: 'hobby-goods-factor',
                         key: otherAnswer.hobbyGoodsFactorKey,
@@ -142,7 +141,6 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     },
                     // 衣類、かばん、宝飾品、美容関連などの支出はどのくらいですか？
                     // clothesBeauty: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
-                    // clothes 衣類・宝飾品
                     {
                         category: 'clothes-beauty-factor',
                         key: otherAnswer.clothesBeautyFactorKey,
@@ -157,7 +155,6 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     },
                     // レジャー、スポーツへの支出はどのくらいですか？
                     // leisureSports: String # 5000-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
-                    // leisure-sports レジャー・スポーツ施設
                     {
                         category: 'leisure-sports-factor',
                         key: otherAnswer.leisureSportsFactorKey,
@@ -170,7 +167,6 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                     },
                     // 過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？
                     // travel: String # 10k-less|20k-30k|30k-50k|50k-100k|100k-200k|200k-more|unknown
-                    // travel-hotel 旅行・宿泊
                     {
                         category: 'travel-factor',
                         key: otherAnswer.travelFactorKey,
@@ -180,7 +176,7 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                 _i = 0, answers_1 = answers;
                 _e.label = 2;
             case 2:
-                if (!(_i < answers_1.length)) return [3 /*break*/, 7];
+                if (!(_i < answers_1.length)) return [3 /*break*/, 8];
                 ans = answers_1[_i];
                 return [4 /*yield*/, dynamodb
                         .get({
@@ -194,25 +190,31 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
             case 3:
                 data_1 = _e.sent();
                 denominator = 1;
-                if (!ans.base) return [3 /*break*/, 5];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: ans.category,
-                            key: ans.base
-                        }
-                    })
-                        .promise()];
-            case 4:
+                if (!ans.base) return [3 /*break*/, 6];
+                if (!(ans.key === 'unknown')) return [3 /*break*/, 4];
+                // 国平均の支出額（average-per-capita）が指定されていて、わからない、の回答の場合は
+                // 国平均に対する比率は1倍。denominatorをundefinedにして計算に使わないようにする。
+                denominator = undefined;
+                return [3 /*break*/, 6];
+            case 4: return [4 /*yield*/, dynamodb
+                    .get({
+                    TableName: parameterTableName,
+                    Key: {
+                        category: ans.category,
+                        key: ans.base
+                    }
+                })
+                    .promise()];
+            case 5:
                 base = _e.sent();
                 if ((_c = base === null || base === void 0 ? void 0 : base.Item) === null || _c === void 0 ? void 0 : _c.value) {
-                    denominator = base.Item.value;
+                    // 分母は国平均の支出額（average-per-capita） * 居住人数
+                    denominator = base.Item.value * residentCount;
                 }
-                _e.label = 5;
-            case 5:
+                _e.label = 6;
+            case 6:
                 if ((_d = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _d === void 0 ? void 0 : _d.value) {
-                    coefficient = data_1.Item.value / denominator;
+                    coefficient = denominator ? data_1.Item.value / denominator : 1;
                     for (_a = 0, _b = ans.items; _a < _b.length; _a++) {
                         item = _b[_a];
                         baseline = findAmount(baselines, item);
@@ -220,11 +222,11 @@ var estimateOther = function (dynamodb, otherAnswer, footprintTableName, paramet
                         estimations.push((0, util_1.toEstimation)(baseline));
                     }
                 }
-                _e.label = 6;
-            case 6:
+                _e.label = 7;
+            case 7:
                 _i++;
                 return [3 /*break*/, 2];
-            case 7: return [2 /*return*/, { baselines: baselines, estimations: estimations }];
+            case 8: return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }
     });
 }); };
