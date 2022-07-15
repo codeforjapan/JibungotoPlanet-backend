@@ -16,12 +16,10 @@ export type Expectation = {
 }
 
 export class TestCase {
-  constructor(testCase: string, output: string) {
+  constructor(testCase: string) {
     this.case = testCase
-    this.output = output
   }
   case: string
-  output: string
   answers: Answer[] = []
   expectations: Expectation[] = []
 
@@ -46,7 +44,7 @@ export const createTestCases = (workbook: xlsx.WorkBook) => {
   for (const answer of answers) {
     let testCase = testCases[answer.case]
     if (!testCase) {
-      testCase = new TestCase(answer.case, answer.output)
+      testCase = new TestCase(answer.case)
       testCases[answer.case] = testCase
       testCaseList.push(testCase)
     }

@@ -80,6 +80,40 @@ app.use(function (req, res, next) {
  * HTTP Get method for list objects *
  ********************************/
 
+app.get(path + '/:dir', async (req, res) => {
+  const dir = req.params.dir
+  let response = []
+
+  // domainは決めうちで設定
+  for (const domain of ['housing', 'mobility', 'food', 'other']) {
+    const params = {
+      TableName: tableName,
+      KeyConditions: {
+        dir_domain: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: [dir + '_' + domain]
+        }
+      }
+    }
+
+    try {
+      const data = await dynamodb.query(params).promise()
+      response = response.concat(data.Items.map((item) => toComponent(item)))
+    } catch (err) {
+      res.statusCode = 500
+      res.json({ error: 'Could not load items: ' + err })
+    }
+  }
+
+  if (res.statusCode !== 500) {
+    res.json(response)
+  }
+})
+
+/********************************
+ * HTTP Get method for list objects *
+ ********************************/
+
 app.get(path + '/:dir/:domain', async (req, res) => {
   const dir = req.params.dir
   const domain = req.params.domain

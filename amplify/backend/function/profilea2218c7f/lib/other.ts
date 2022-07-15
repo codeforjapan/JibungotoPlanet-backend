@@ -152,49 +152,93 @@ const estimateOther = async (
   ]
 
   for (let ans of answers) {
-    const data = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: ans.category,
-          key: ans.key
-        }
-      })
-      .promise()
+    if (ans.key) {
+      const data = await dynamodb
+        .get({
+          TableName: parameterTableName,
+          Key: {
+            category: ans.category,
+            key: ans.key
+          }
+        })
+        .promise()
 
-    let denominator = 1
+      let denominator = 1
 
-    if (ans.base) {
-      if (ans.key === 'unknown') {
-        // 国平均の支出額（average-per-capita）が指定されていて、わからない、の回答の場合は
-        // 国平均に対する比率は1倍。denominatorをundefinedにして計算に使わないようにする。
-        denominator = undefined
-      } else {
-        const base = await dynamodb
-          .get({
-            TableName: parameterTableName,
-            Key: {
-              category: ans.category,
-              key: ans.base
-            }
-          })
-          .promise()
-        if (base?.Item?.value) {
-          // 分母は国平均の支出額（average-per-capita） * 居住人数
-          denominator = base.Item.value * residentCount
+      if (ans.base) {
+        if (ans.key === 'unknown') {
+          // 国平均の支出額（average-per-capita）が指定されていて、わからない、の回答の場合は
+          // 国平均に対する比率は1倍。denominatorをundefinedにして計算に使わないようにする。
+          denominator = undefined
+        } else {
+          const base = await dynamodb
+            .get({
+              TableName: parameterTableName,
+              Key: {
+                category: ans.category,
+                key: ans.base
+              }
+            })
+            .promise()
+          if (base?.Item?.value) {
+            // 分母は国平均の支出額（average-per-capita） * 居住人数
+            denominator = base.Item.value * residentCount
+          }
         }
       }
-    }
 
-    if (data?.Item?.value) {
-      const coefficient = denominator ? data.Item.value / denominator : 1
-      for (let item of ans.items) {
-        const baseline = findAmount(baselines, item)
-        baseline.value *= coefficient
-        estimations.push(toEstimation(baseline))
+      if (data?.Item?.value) {
+        const coefficient = denominator ? data.Item.value / denominator : 1
+        for (let item of ans.items) {
+          const estimation = toEstimation(findAmount(baselines, item))
+          estimation.value *= coefficient
+          estimations.push(estimation)
+        }
       }
     }
   }
+
+  // wasteだけ特殊計算
+  const wasteSet = new Set([
+    'cooking-appliances',
+    'heating-cooling-appliances',
+    'other-appliances',
+    'electronics',
+    'clothes-goods',
+    'bags-jewelries-goods',
+    'culture-goods',
+    'entertainment-goods',
+    'sports-goods',
+    'gardening-flower',
+    'pet',
+    'tobacco',
+    'furniture',
+    'covering',
+    'cosmetics',
+    'sanitation',
+    'medicine',
+    'kitchen-goods',
+    'paper-stationery',
+    'books-magazines'
+  ])
+
+  const isTarget = (t) =>
+    t.domain === 'other' && wasteSet.has(t.item) && t.type === 'amount'
+
+  const baselineSum = baselines
+    .filter((b) => isTarget(b))
+    .reduce((sum, b) => sum + b.value, 0)
+
+  const estimationSum = estimations
+    .filter((e) => isTarget(e))
+    .reduce((sum, e) => sum + e.value, 0)
+
+  const wasteEstimation = toEstimation(findAmount(baselines, 'waste'))
+
+  if (baselineSum !== 0) {
+    wasteEstimation.value *= estimationSum / baselineSum
+  }
+  estimations.push(toEstimation(wasteEstimation))
 
   return { baselines, estimations }
 }

@@ -39,7 +39,7 @@ exports.__esModule = true;
 exports.estimateOther = void 0;
 var util_1 = require("./util");
 var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, estimations, params, data, baselines, residentCount, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, baseline;
+    var findAmount, estimations, params, data, baselines, residentCount, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, estimation, wasteSet, isTarget, baselineSum, estimationSum, wasteEstimation;
     var _c, _d;
     return __generator(this, function (_e) {
         switch (_e.label) {
@@ -178,6 +178,7 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
             case 2:
                 if (!(_i < answers_1.length)) return [3 /*break*/, 8];
                 ans = answers_1[_i];
+                if (!ans.key) return [3 /*break*/, 7];
                 return [4 /*yield*/, dynamodb
                         .get({
                         TableName: parameterTableName,
@@ -217,16 +218,53 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                     coefficient = denominator ? data_1.Item.value / denominator : 1;
                     for (_a = 0, _b = ans.items; _a < _b.length; _a++) {
                         item = _b[_a];
-                        baseline = findAmount(baselines, item);
-                        baseline.value *= coefficient;
-                        estimations.push((0, util_1.toEstimation)(baseline));
+                        estimation = (0, util_1.toEstimation)(findAmount(baselines, item));
+                        estimation.value *= coefficient;
+                        estimations.push(estimation);
                     }
                 }
                 _e.label = 7;
             case 7:
                 _i++;
                 return [3 /*break*/, 2];
-            case 8: return [2 /*return*/, { baselines: baselines, estimations: estimations }];
+            case 8:
+                wasteSet = new Set([
+                    'cooking-appliances',
+                    'heating-cooling-appliances',
+                    'other-appliances',
+                    'electronics',
+                    'clothes-goods',
+                    'bags-jewelries-goods',
+                    'culture-goods',
+                    'entertainment-goods',
+                    'sports-goods',
+                    'gardening-flower',
+                    'pet',
+                    'tobacco',
+                    'furniture',
+                    'covering',
+                    'cosmetics',
+                    'sanitation',
+                    'medicine',
+                    'kitchen-goods',
+                    'paper-stationery',
+                    'books-magazines'
+                ]);
+                isTarget = function (t) {
+                    return t.domain === 'other' && wasteSet.has(t.item) && t.type === 'amount';
+                };
+                baselineSum = baselines
+                    .filter(function (b) { return isTarget(b); })
+                    .reduce(function (sum, b) { return sum + b.value; }, 0);
+                estimationSum = estimations
+                    .filter(function (e) { return isTarget(e); })
+                    .reduce(function (sum, e) { return sum + e.value; }, 0);
+                wasteEstimation = (0, util_1.toEstimation)(findAmount(baselines, 'waste'));
+                if (baselineSum !== 0) {
+                    wasteEstimation.value *= estimationSum / baselineSum;
+                }
+                estimations.push((0, util_1.toEstimation)(wasteEstimation));
+                return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }
     });
 }); };
