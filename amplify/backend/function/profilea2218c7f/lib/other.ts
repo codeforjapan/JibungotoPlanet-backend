@@ -2,6 +2,7 @@ import { toBaseline, findBaseline, toEstimation } from './util'
 
 const estimateOther = async (
   dynamodb,
+  housingAnswer,
   otherAnswer,
   footprintTableName,
   parameterTableName
@@ -33,34 +34,39 @@ const estimateOther = async (
     return { baselines, estimations }
   }
 
+  let residentCount = 2.33
+  if (housingAnswer && housingAnswer.residentCount) {
+    residentCount = housingAnswer.residentCount
+  }
+
   const answers = [
     // 日用消耗品の支出はどのくらいですか？
     // dailyGoods: String # 5k-less|5k-10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
-    // daily-goods-medicine 日用品・化粧品・医薬品
     {
       category: 'daily-goods-amount',
       key: otherAnswer.dailyGoodsAmountKey,
       base: 'average-per-capita',
+      residentCount: residentCount,
       items: ['sanitation', 'kitchen-goods', 'paper-stationery']
     },
 
     // 通信費、放送受信料を合わせた支出はどのくらいですか？
     // communication: String # 5k-less|5k10k|10k-20k|20k-30k|30k-more|unknown|average-per-capita
-    // communication-delivery 通信・配送・放送サービス
     {
       category: 'communication-amount',
       key: otherAnswer.communicationAmountKey,
       base: 'average-per-capita',
+      residentCount: residentCount,
       items: ['communication', 'broadcasting']
     },
 
     // 過去1年間の家電、家具などの大型な買い物の支出はどのくらいですか？
     // applianceFurniture: String # 50k-less|50k-100k|100k-200k|200k-300k||300k-400k|400k-more|unknown|average-per-capita
-    // appliance-furniture 家電・家具
     {
       category: 'appliance-furniture-amount',
       key: otherAnswer.applianceFurnitureAmountKey,
       base: 'average-per-capita',
+      residentCount: residentCount,
       items: [
         'electrical-appliances-repair-rental',
         'furniture-daily-goods-repair-rental',
@@ -75,10 +81,6 @@ const estimateOther = async (
 
     //  医療、福祉、教育、塾などの習い事の支出はどのくらいですか？
     // service: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
-    // personal-care-other-services その他サービス
-    // ceremony 冠婚葬祭
-    // waste-repair-rental 廃棄物処理・修理・レンタル
-    // welfare-education 医療・福祉・教育サービス
     {
       category: 'service-factor',
       key: otherAnswer.serviceFactorKey,
@@ -96,7 +98,6 @@ const estimateOther = async (
 
     // 趣味にかかるの物の支出はどのくらいですか？
     // hobbyGoods: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
-    // hobby-books 趣味用品・書籍・雑誌
     {
       category: 'hobby-goods-factor',
       key: otherAnswer.hobbyGoodsFactorKey,
@@ -115,7 +116,6 @@ const estimateOther = async (
 
     // 衣類、かばん、宝飾品、美容関連などの支出はどのくらいですか？
     // clothesBeauty: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
-    // clothes 衣類・宝飾品
     {
       category: 'clothes-beauty-factor',
       key: otherAnswer.clothesBeautyFactorKey,
@@ -131,7 +131,6 @@ const estimateOther = async (
 
     // レジャー、スポーツへの支出はどのくらいですか？
     // leisureSports: String # 5000-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
-    // leisure-sports レジャー・スポーツ施設
     {
       category: 'leisure-sports-factor',
       key: otherAnswer.leisureSportsFactorKey,
@@ -145,7 +144,6 @@ const estimateOther = async (
 
     // 過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？
     // travel: String # 10k-less|20k-30k|30k-50k|50k-100k|100k-200k|200k-more|unknown
-    // travel-hotel 旅行・宿泊
     {
       category: 'travel-factor',
       key: otherAnswer.travelFactorKey,
@@ -154,42 +152,93 @@ const estimateOther = async (
   ]
 
   for (let ans of answers) {
-    const data = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: ans.category,
-          key: ans.key
-        }
-      })
-      .promise()
-
-    let denominator = 1
-
-    if (ans.base) {
-      const base = await dynamodb
+    if (ans.key) {
+      const data = await dynamodb
         .get({
           TableName: parameterTableName,
           Key: {
             category: ans.category,
-            key: ans.base
+            key: ans.key
           }
         })
         .promise()
-      if (base?.Item?.value) {
-        denominator = base.Item.value
-      }
-    }
 
-    if (data?.Item?.value) {
-      const coefficient = data.Item.value / denominator
-      for (let item of ans.items) {
-        const baseline = findAmount(baselines, item)
-        baseline.value *= coefficient
-        estimations.push(toEstimation(baseline))
+      let denominator = 1
+
+      if (ans.base) {
+        if (ans.key === 'unknown') {
+          // 国平均の支出額（average-per-capita）が指定されていて、わからない、の回答の場合は
+          // 国平均に対する比率は1倍。denominatorをundefinedにして計算に使わないようにする。
+          denominator = undefined
+        } else {
+          const base = await dynamodb
+            .get({
+              TableName: parameterTableName,
+              Key: {
+                category: ans.category,
+                key: ans.base
+              }
+            })
+            .promise()
+          if (base?.Item?.value) {
+            // 分母は国平均の支出額（average-per-capita） * 居住人数
+            denominator = base.Item.value * residentCount
+          }
+        }
+      }
+
+      if (data?.Item?.value) {
+        const coefficient = denominator ? data.Item.value / denominator : 1
+        for (let item of ans.items) {
+          const estimation = toEstimation(findAmount(baselines, item))
+          estimation.value *= coefficient
+          estimations.push(estimation)
+        }
       }
     }
   }
+
+  // wasteだけ特殊計算
+  const wasteSet = new Set([
+    'cooking-appliances',
+    'heating-cooling-appliances',
+    'other-appliances',
+    'electronics',
+    'clothes-goods',
+    'bags-jewelries-goods',
+    'culture-goods',
+    'entertainment-goods',
+    'sports-goods',
+    'gardening-flower',
+    'pet',
+    'tobacco',
+    'furniture',
+    'covering',
+    'cosmetics',
+    'sanitation',
+    'medicine',
+    'kitchen-goods',
+    'paper-stationery',
+    'books-magazines'
+  ])
+
+  const isTarget = (t) =>
+    t.domain === 'other' && wasteSet.has(t.item) && t.type === 'amount'
+
+  const baselineSum = baselines
+    .filter((b) => isTarget(b))
+    .reduce((sum, b) => sum + b.value, 0)
+
+  const estimationSum = estimations
+    .filter((e) => isTarget(e))
+    .reduce((sum, e) => sum + e.value, 0)
+
+  const wasteEstimation = toEstimation(findAmount(baselines, 'waste'))
+
+  if (baselineSum !== 0) {
+    wasteEstimation.value *= estimationSum / baselineSum
+  }
+  estimations.push(toEstimation(wasteEstimation))
 
   return { baselines, estimations }
 }

@@ -133,6 +133,24 @@
             "Arn",
             "StreamArn"
           ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Option3uyvqum6jrc4pf63cde7njsxeidev",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Optionepwhhio5abgdthpzpwfkaox4bastg",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
         }
       ]
     },
@@ -194,6 +212,18 @@
       "dependsOn": []
     },
     "Profileepwhhio5abgdthpzpwfkaox4bastg": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    },
+    "Option3uyvqum6jrc4pf63cde7njsxeidev": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    },
+    "Optionepwhhio5abgdthpzpwfkaox4bastg": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
