@@ -52,6 +52,7 @@ describe('Other Estimation', () => {
             e.item === estimation.item &&
             e.type === estimation.type
         )
+
         expect(exp).not.toBeNull()
         expect(exp.estimated).toBeTruthy()
         expect(estimation.value).toBeCloseTo(exp.value)
@@ -83,16 +84,6 @@ describe('Other Estimation', () => {
             b.domain === exp.domain &&
             b.item === exp.item &&
             b.type === exp.type
-        )
-        console.log(
-          'checking result [' +
-            testCase.case +
-            ']: ' +
-            exp.domain +
-            '_' +
-            exp.item +
-            '_' +
-            exp.type
         )
         const result = estimation ? estimation : baseline
         expect(result.value).toBeCloseTo(exp.value)

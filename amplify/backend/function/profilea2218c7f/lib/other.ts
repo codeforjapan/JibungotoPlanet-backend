@@ -225,14 +225,30 @@ const estimateOther = async (
   const isTarget = (t) =>
     t.domain === 'other' && wasteSet.has(t.item) && t.type === 'amount'
 
-  const baselineSum = baselines
-    .filter((b) => isTarget(b))
-    .reduce((sum, b) => sum + b.value, 0)
+  const targets = baselines.filter((b) => isTarget(b))
+  const results = new Map()
 
-  const estimationSum = estimations
-    .filter((e) => isTarget(e))
-    .reduce((sum, e) => sum + e.value, 0)
+  let baselineSum = 0
+  for (const baseline of targets) {
+    const key = baseline.domain + '_' + baseline.item + '_' + baseline.type
+    results.set(key, toEstimation(baseline))
+    baselineSum += baseline.value
+  }
 
+  for (const estimation of estimations.filter((e) => isTarget(e))) {
+    const key =
+      estimation.domain + '_' + estimation.item + '_' + estimation.type
+    results.set(key, estimation)
+  }
+
+  let estimationSum = 0
+  const it = results.values()
+  let res = it.next()
+  while (!res.done) {
+    const estimation = res.value
+    estimationSum += estimation.value
+    res = it.next()
+  }
   const wasteEstimation = toEstimation(findAmount(baselines, 'waste'))
 
   if (baselineSum !== 0) {

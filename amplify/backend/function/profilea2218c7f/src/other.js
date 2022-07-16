@@ -39,10 +39,10 @@ exports.__esModule = true;
 exports.estimateOther = void 0;
 var util_1 = require("./util");
 var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, estimations, params, data, baselines, residentCount, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, estimation, wasteSet, isTarget, baselineSum, estimationSum, wasteEstimation;
-    var _c, _d;
-    return __generator(this, function (_e) {
-        switch (_e.label) {
+    var findAmount, estimations, params, data, baselines, residentCount, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, estimation, wasteSet, isTarget, targets, results, baselineSum, _c, targets_1, baseline, key, _d, _e, estimation, key, estimationSum, it, res, estimation, wasteEstimation;
+    var _f, _g;
+    return __generator(this, function (_h) {
+        switch (_h.label) {
             case 0:
                 findAmount = function (baselines, item) {
                     return (0, util_1.findBaseline)(baselines, 'other', item, 'amount');
@@ -59,7 +59,7 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                 };
                 return [4 /*yield*/, dynamodb.query(params).promise()];
             case 1:
-                data = _e.sent();
+                data = _h.sent();
                 baselines = data.Items.map(function (item) { return (0, util_1.toBaseline)(item); });
                 // 回答がない場合はベースラインのみ返す
                 if (!otherAnswer) {
@@ -174,7 +174,7 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                     }
                 ];
                 _i = 0, answers_1 = answers;
-                _e.label = 2;
+                _h.label = 2;
             case 2:
                 if (!(_i < answers_1.length)) return [3 /*break*/, 8];
                 ans = answers_1[_i];
@@ -189,7 +189,7 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                     })
                         .promise()];
             case 3:
-                data_1 = _e.sent();
+                data_1 = _h.sent();
                 denominator = 1;
                 if (!ans.base) return [3 /*break*/, 6];
                 if (!(ans.key === 'unknown')) return [3 /*break*/, 4];
@@ -207,14 +207,14 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                 })
                     .promise()];
             case 5:
-                base = _e.sent();
-                if ((_c = base === null || base === void 0 ? void 0 : base.Item) === null || _c === void 0 ? void 0 : _c.value) {
+                base = _h.sent();
+                if ((_f = base === null || base === void 0 ? void 0 : base.Item) === null || _f === void 0 ? void 0 : _f.value) {
                     // 分母は国平均の支出額（average-per-capita） * 居住人数
                     denominator = base.Item.value * residentCount;
                 }
-                _e.label = 6;
+                _h.label = 6;
             case 6:
-                if ((_d = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _d === void 0 ? void 0 : _d.value) {
+                if ((_g = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _g === void 0 ? void 0 : _g.value) {
                     coefficient = denominator ? data_1.Item.value / denominator : 1;
                     for (_a = 0, _b = ans.items; _a < _b.length; _a++) {
                         item = _b[_a];
@@ -223,7 +223,7 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                         estimations.push(estimation);
                     }
                 }
-                _e.label = 7;
+                _h.label = 7;
             case 7:
                 _i++;
                 return [3 /*break*/, 2];
@@ -253,12 +253,28 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                 isTarget = function (t) {
                     return t.domain === 'other' && wasteSet.has(t.item) && t.type === 'amount';
                 };
-                baselineSum = baselines
-                    .filter(function (b) { return isTarget(b); })
-                    .reduce(function (sum, b) { return sum + b.value; }, 0);
-                estimationSum = estimations
-                    .filter(function (e) { return isTarget(e); })
-                    .reduce(function (sum, e) { return sum + e.value; }, 0);
+                targets = baselines.filter(function (b) { return isTarget(b); });
+                results = new Map();
+                baselineSum = 0;
+                for (_c = 0, targets_1 = targets; _c < targets_1.length; _c++) {
+                    baseline = targets_1[_c];
+                    key = baseline.domain + '_' + baseline.item + '_' + baseline.type;
+                    results.set(key, (0, util_1.toEstimation)(baseline));
+                    baselineSum += baseline.value;
+                }
+                for (_d = 0, _e = estimations.filter(function (e) { return isTarget(e); }); _d < _e.length; _d++) {
+                    estimation = _e[_d];
+                    key = estimation.domain + '_' + estimation.item + '_' + estimation.type;
+                    results.set(key, estimation);
+                }
+                estimationSum = 0;
+                it = results.values();
+                res = it.next();
+                while (!res.done) {
+                    estimation = res.value;
+                    estimationSum += estimation.value;
+                    res = it.next();
+                }
                 wasteEstimation = (0, util_1.toEstimation)(findAmount(baselines, 'waste'));
                 if (baselineSum !== 0) {
                     wasteEstimation.value *= estimationSum / baselineSum;
