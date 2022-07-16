@@ -14,6 +14,12 @@ See the License for the specific language governing permissions and limitations 
 	STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN
 	STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME
 	STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN
+	STORAGE_OPTION3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN
+	STORAGE_OPTION3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME
+	STORAGE_OPTION3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN
+	STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN
+	STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME
+	STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN
 	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN
 	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME
 	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN
@@ -32,6 +38,7 @@ const { estimateMobility } = require('./mobility')
 const { estimateFood } = require('./food')
 const { estimateOther } = require('./other')
 const { estimateHousing } = require('./housing')
+const { calculateActions } = require('./action')
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -53,6 +60,7 @@ let dynamoParam = {}
 let footprintTableName = 'Footprint-' + suffix
 let parameterTableName = 'Parameter-' + suffix
 let profileTableName = 'Profile-' + suffix
+let optionTableName = 'Option-' + suffix
 
 if (
   'AWS_EXECUTION_ENV' in process.env &&
@@ -68,6 +76,7 @@ if (
   footprintTableName = 'FootprintTable'
   parameterTableName = 'ParameterTable'
   profileTableName = 'ProfileTable'
+  optionTableName = 'OptionTable'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -153,6 +162,14 @@ const updateProfile = async (dynamodb, profile) => {
     profile.baselines = profile.baselines.concat(baselines)
     profile.estimations = profile.estimations.concat(estimations)
   }
+
+  const actions = await calculateActions(
+    dynamodb,
+    profile.baselines,
+    profile.estimations,
+    optionTableName
+  )
+  profile.actions = actions
 }
 
 /************************************

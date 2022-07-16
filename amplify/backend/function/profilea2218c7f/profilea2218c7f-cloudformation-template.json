@@ -87,6 +87,30 @@
     "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
       "Type": "String",
       "Default": "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn"
+    },
+    "storageOption3uyvqum6jrc4pf63cde7njsxeidevName": {
+      "Type": "String",
+      "Default": "storageOption3uyvqum6jrc4pf63cde7njsxeidevName"
+    },
+    "storageOption3uyvqum6jrc4pf63cde7njsxeidevArn": {
+      "Type": "String",
+      "Default": "storageOption3uyvqum6jrc4pf63cde7njsxeidevArn"
+    },
+    "storageOption3uyvqum6jrc4pf63cde7njsxeidevStreamArn": {
+      "Type": "String",
+      "Default": "storageOption3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
+    },
+    "storageOptionepwhhio5abgdthpzpwfkaox4bastgName": {
+      "Type": "String",
+      "Default": "storageOptionepwhhio5abgdthpzpwfkaox4bastgName"
+    },
+    "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn": {
+      "Type": "String",
+      "Default": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
+    },
+    "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
+      "Type": "String",
+      "Default": "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn"
     }
   },
   "Conditions": {
@@ -195,6 +219,24 @@
             },
             "STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
               "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn"
+            },
+            "STORAGE_OPTION3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME": {
+              "Ref": "storageOption3uyvqum6jrc4pf63cde7njsxeidevName"
+            },
+            "STORAGE_OPTION3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN": {
+              "Ref": "storageOption3uyvqum6jrc4pf63cde7njsxeidevArn"
+            },
+            "STORAGE_OPTION3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN": {
+              "Ref": "storageOption3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
+            },
+            "STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME": {
+              "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgName"
+            },
+            "STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN": {
+              "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
+            },
+            "STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
+              "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn"
             }
           }
         },
@@ -501,6 +543,60 @@
                     [
                       {
                         "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageOption3uyvqum6jrc4pf63cde7njsxeidevArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageOption3uyvqum6jrc4pf63cde7njsxeidevArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
                       },
                       "index/*"
                     ]
