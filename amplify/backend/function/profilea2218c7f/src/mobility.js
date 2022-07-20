@@ -39,10 +39,10 @@ exports.__esModule = true;
 exports.estimateMobility = void 0;
 var util_1 = require("./util");
 var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, findIntensity, estimations, params, data, baselines, intensity, params_1, data_1, carPassengersKey, ratio, amount, baselineAmount, mileageRatio, privateCarPurchase, privateCarMaintenance, estimationAmount, mileage, weeklyTravelingTime, mileageByAreaFirstKey, params_2, data_2, milageByArea, annualTravelingTime, paramsWeeks, weekCount, paramsTransportation, speed, taxiRatio, otherCarMileage, baselineMotorbikeAmount, baselineCarSharingAmount, _i, _a, item, motorbikeDrivingRatio, carSharingDrivingRatio;
-    var _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
+    var findAmount, findIntensity, estimations, params, data, baselines, intensity, params_1, data_1, carPassengersKey, ratio, amount, baselineAmount, mileageRatio, privateCarPurchase, privateCarMaintenance, intensity, data_2, ratio, estimationAmount, mileage, weeklyTravelingTime, mileageByAreaFirstKey, params_2, data_3, milageByArea, annualTravelingTime, paramsWeeks, weekCount, paramsTransportation, speed, taxiRatio, otherCarMileage, baselineMotorbikeAmount, baselineCarSharingAmount, _i, _a, item, motorbikeDrivingRatio, carSharingDrivingRatio;
+    var _b, _c;
+    return __generator(this, function (_d) {
+        switch (_d.label) {
             case 0:
                 findAmount = function (baselines, item) {
                     return (0, util_1.findBaseline)(baselines, 'mobility', item, 'amount');
@@ -62,7 +62,7 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                 };
                 return [4 /*yield*/, dynamodb.query(params).promise()];
             case 1:
-                data = _c.sent();
+                data = _d.sent();
                 baselines = data.Items.map(function (item) { return (0, util_1.toBaseline)(item); });
                 // 回答がない場合はベースラインのみ返す
                 if (!mobilityAnswer) {
@@ -80,9 +80,9 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                 };
                 return [4 /*yield*/, dynamodb.get(params_1).promise()];
             case 2:
-                data_1 = _c.sent();
+                data_1 = _d.sent();
                 if (data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) {
-                    intensity.value = data_1.Item.value;
+                    intensity.value *= data_1.Item.value;
                 }
                 carPassengersKey = mobilityAnswer.carPassengersKey || 'unknown_private-car-factor';
                 params_1.Key = {
@@ -91,7 +91,7 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                 };
                 return [4 /*yield*/, dynamodb.get(params_1).promise()];
             case 3:
-                data_1 = _c.sent();
+                data_1 = _d.sent();
                 ratio = ((_b = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _b === void 0 ? void 0 : _b.value) || 1;
                 console.log('private-car-driving-intensity = ' + intensity.value);
                 console.log('carPassengersKey = ' +
@@ -117,8 +117,30 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                 privateCarMaintenance.value *= mileageRatio;
                 estimations.push((0, util_1.toEstimation)(privateCarPurchase));
                 estimations.push((0, util_1.toEstimation)(privateCarMaintenance));
-                _c.label = 4;
+                _d.label = 4;
             case 4:
+                if (!mobilityAnswer.carPassengersKey) return [3 /*break*/, 6];
+                intensity = findIntensity(baselines, 'taxi');
+                return [4 /*yield*/, dynamodb
+                        .get({
+                        TableName: parameterTableName,
+                        Key: {
+                            category: 'car-passengers',
+                            key: mobilityAnswer.carPassengersKey.replace('_private-car-factor', '_taxi-factor')
+                        }
+                    })
+                        .promise()];
+            case 5:
+                data_2 = _d.sent();
+                ratio = ((_c = data_2 === null || data_2 === void 0 ? void 0 : data_2.Item) === null || _c === void 0 ? void 0 : _c.value) || 1;
+                console.log('taxi ratio = ' +
+                    ratio +
+                    ' : ' +
+                    mobilityAnswer.carPassengersKey.replace('_private-car-factor', '_taxi-factor'));
+                intensity.value *= ratio;
+                estimations.push((0, util_1.toEstimation)(intensity));
+                _d.label = 6;
+            case 6:
                 console.log('calculating weekly mileage');
                 estimationAmount = {
                     airplane: findAmount(baselines, 'airplane'),
@@ -147,15 +169,15 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                     motorbike: 0,
                     otherCar: 0
                 };
-                if (!mobilityAnswer.hasWeeklyTravelingTime) return [3 /*break*/, 5];
+                if (!mobilityAnswer.hasWeeklyTravelingTime) return [3 /*break*/, 7];
                 weeklyTravelingTime.train = mobilityAnswer.trainWeeklyTravelingTime || 0;
                 weeklyTravelingTime.bus = mobilityAnswer.busWeeklyTravelingTime || 0;
                 weeklyTravelingTime.motorbike =
                     mobilityAnswer.motorbikeWeeklyTravelingTime || 0;
                 weeklyTravelingTime.otherCar =
                     mobilityAnswer.otherCarWeeklyTravelingTime || 0;
-                return [3 /*break*/, 7];
-            case 5:
+                return [3 /*break*/, 9];
+            case 7:
                 mileageByAreaFirstKey = mobilityAnswer.mileageByAreaFirstKey || 'unknown';
                 params_2 = {
                     TableName: parameterTableName,
@@ -171,9 +193,9 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                     }
                 };
                 return [4 /*yield*/, dynamodb.query(params_2).promise()];
-            case 6:
-                data_2 = _c.sent();
-                milageByArea = data_2.Items.reduce(function (a, x) {
+            case 8:
+                data_3 = _d.sent();
+                milageByArea = data_3.Items.reduce(function (a, x) {
                     a[x.key] = x.value;
                     return a;
                 }, {});
@@ -184,8 +206,8 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                 mileage.taxi = milageByArea[mileageByAreaFirstKey + '_taxi'];
                 mileage.carSharing =
                     milageByArea[mileageByAreaFirstKey + '_car-sharing-driving'];
-                _c.label = 7;
-            case 7:
+                _d.label = 9;
+            case 9:
                 console.log('calculating annual mileage');
                 annualTravelingTime = {
                     otherCar: mobilityAnswer.otherCarAnnualTravelingTime || 0,
@@ -204,8 +226,8 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                     }
                 };
                 return [4 /*yield*/, dynamodb.get(paramsWeeks).promise()];
-            case 8:
-                data = _c.sent();
+            case 10:
+                data = _d.sent();
                 weekCount = 49;
                 if (data === null || data === void 0 ? void 0 : data.Item) {
                     weekCount = data.Item.value;
@@ -221,8 +243,8 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                     }
                 };
                 return [4 /*yield*/, dynamodb.query(paramsTransportation).promise()];
-            case 9:
-                data = _c.sent();
+            case 11:
+                data = _d.sent();
                 speed = data.Items.reduce(function (a, x) {
                     a[x.key] = x.value;
                     return a;
@@ -265,7 +287,7 @@ var estimateMobility = function (dynamodb, mobilityAnswer, footprintTableName, p
                 estimations.push((0, util_1.toEstimation)(estimationAmount.motorbikePurchase));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.carSharingRental));
                 estimations.push((0, util_1.toEstimation)(estimationAmount.motorbikeMaintenance));
-                console.log(JSON.stringify(estimations));
+                // console.log(JSON.stringify(estimations))
                 return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }
     });

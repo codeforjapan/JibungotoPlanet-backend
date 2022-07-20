@@ -250,7 +250,7 @@ const estimateHousing = async (
     )
   }
 
-  console.log(JSON.stringify(estimations))
+  // console.log(JSON.stringify(estimations))
   return { baselines, estimations }
 }
 

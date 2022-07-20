@@ -54,7 +54,7 @@ const estimateMobility = async (
       }
       let data = await dynamodb.get(params).promise()
       if (data?.Item) {
-        intensity.value = data.Item.value
+        intensity.value *= data.Item.value
       }
 
       // 人数補正値
@@ -107,6 +107,29 @@ const estimateMobility = async (
       estimations.push(toEstimation(privateCarMaintenance))
     }
   }
+
+  /*
+  // taxiのintensity補正。本来はtaxiの乗車人数を確認する必要があるがcarPassengersKeyのprivate_car_factorを代用
+  if (mobilityAnswer.carPassengersKey) {
+    const intensity = findIntensity(baselines, 'taxi')
+    // 人数補正値
+    const data = await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: 'car-passengers',
+          key: mobilityAnswer.carPassengersKey.replace(
+            '_private-car-factor',
+            '_taxi-factor'
+          )
+        }
+      })
+      .promise()
+    const ratio = data?.Item?.value || 1
+    intensity.value *= ratio
+    estimations.push(toEstimation(intensity))
+  }
+  */
 
   console.log('calculating weekly mileage')
 
@@ -295,7 +318,7 @@ const estimateMobility = async (
   estimations.push(toEstimation(estimationAmount.carSharingRental))
   estimations.push(toEstimation(estimationAmount.motorbikeMaintenance))
 
-  console.log(JSON.stringify(estimations))
+  // console.log(JSON.stringify(estimations))
 
   return { baselines, estimations }
 }

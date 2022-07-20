@@ -130,7 +130,6 @@ const calculateActions = async (
       case 'question-answer-to-target':
       case 'question-answer-to-target-inverse':
       case 'question-reduction-rate':
-        console.log(action.operation + ' is under construction ...')
     }
     results.get(action.key).actions.set(action.option, action) // actionを登録
   }
