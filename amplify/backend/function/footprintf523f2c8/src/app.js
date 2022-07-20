@@ -28,6 +28,7 @@ const toComponent = (item) => {
     domain: dir_domain[1],
     item: item_type[0],
     type: item_type[1],
+    subdomain: item.subdomain,
     value: item.value,
     unit: item.unit,
     citation: item.citation

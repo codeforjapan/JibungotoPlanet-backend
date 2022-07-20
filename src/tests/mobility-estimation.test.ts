@@ -54,7 +54,7 @@ describe('Mobility Estimation', () => {
             e.item === estimation.item &&
             e.type === estimation.type
         )
-        // console.log('checking: ' + exp.domain + '_' + exp.item + '_' + exp.type)
+        console.log('checking: ' + exp.domain + '_' + exp.item + '_' + exp.type)
         expect(exp).not.toBeNull()
         expect(exp.estimated).toBeTruthy()
         expect(estimation.value).toBeCloseTo(exp.value)
@@ -72,7 +72,6 @@ describe('Mobility Estimation', () => {
         expect(Boolean(estimation)).toBe(exp.estimated)
       }
 
-      /*
       // estimationsとbaselinesの値を合成し、結果が合っているかを確認。
       const baselines = resPut.body.data.baselines
 
@@ -103,7 +102,6 @@ describe('Mobility Estimation', () => {
         )
         expect(baseline.value).toBeCloseTo(org.value)
       }
-      */
     }
   })
 })
