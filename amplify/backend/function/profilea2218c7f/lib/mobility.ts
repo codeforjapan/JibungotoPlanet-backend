@@ -2,6 +2,7 @@ import { toBaseline, findBaseline, toEstimation } from './util'
 
 const estimateMobility = async (
   dynamodb,
+  housingAnswer,
   mobilityAnswer,
   footprintTableName,
   parameterTableName
@@ -11,6 +12,17 @@ const estimateMobility = async (
     toEstimation(findBaseline(baselines, 'mobility', item, 'amount'))
   const createIntensity = (baselines, item) =>
     toEstimation(findBaseline(baselines, 'mobility', item, 'intensity'))
+
+  const getData = async (category, key) =>
+    await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: category,
+          key: key
+        }
+      })
+      .promise()
 
   // mobilityAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -35,6 +47,19 @@ const estimateMobility = async (
     return { baselines, estimations }
   }
 
+  let electricityIntensityFactor = 0
+
+  // PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正
+  if (housingAnswer?.electricityIntensityKey) {
+    const data = await getData(
+      'electricity-intensity-factor',
+      housingAnswer.electricityIntensityKey
+    )
+    if (data?.Item) {
+      electricityIntensityFactor = data.Item.value
+    }
+  }
+
   //
   // 答えに従ってestimationを計算
   //
@@ -45,35 +70,40 @@ const estimateMobility = async (
       const drivingIntensity = createIntensity(baselines, 'private-car-driving')
 
       // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
-      const params = {
-        TableName: parameterTableName,
-        Key: {
-          category: 'car-intensity-factor',
-          key: mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
-        }
-      }
-      let data = await dynamodb.get(params).promise()
+      let ghgIntensityRatio = 1
+      let data = await getData(
+        'car-intensity-factor',
+        mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
+      )
       if (data?.Item) {
-        drivingIntensity.value *= data.Item.value
+        ghgIntensityRatio *= data.Item.value
+      }
+
+      // PHV, EVの補正
+      if (
+        mobilityAnswer?.carIntensityFactorKey?.startsWith('phv_') ||
+        mobilityAnswer?.carIntensityFactorKey?.startsWith('ev_')
+      ) {
+        const data = await getData(
+          'renewable-car-intensity-factor',
+          mobilityAnswer.carIntensityFactorKey.replace(
+            '_driving-factor',
+            '_driving-intensity'
+          )
+        )
+        if (data?.Item) {
+          ghgIntensityRatio =
+            ghgIntensityRatio * (1 - electricityIntensityFactor) +
+            data.Item.value * electricityIntensityFactor
+        }
       }
 
       // 人数補正値
-      const carPassengersKey =
+      data = await getData(
+        'car-passengers',
         mobilityAnswer.carPassengersKey || 'unknown_private-car-factor'
-      params.Key = {
-        category: 'car-passengers',
-        key: carPassengersKey
-      }
-      data = await dynamodb.get(params).promise()
-      const ratio = data?.Item?.value || 1
-
-      console.log('private-car-driving-intensity = ' + drivingIntensity.value)
-      console.log(
-        'carPassengersKey = ' +
-          carPassengersKey +
-          ', private-car-factor = ' +
-          ratio
       )
+      let passengerIntensityRatio = data?.Item?.value || 1
 
       const purchaseIntensity = createIntensity(
         baselines,
@@ -81,34 +111,19 @@ const estimateMobility = async (
       )
 
       // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
-      const purchaseData = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'car-intensity-factor',
-            key:
-              mobilityAnswer.carIntensityFactorKey.replace(
-                '_driving-factor',
-                '_manufacturing-factor'
-              ) || 'unknown_manufacturing-factor'
-          }
-        })
-        .promise()
+      const purchaseData = await getData(
+        'car-intensity-factor',
+        mobilityAnswer.carIntensityFactorKey.replace(
+          '_driving-factor',
+          '_manufacturing-factor'
+        ) || 'unknown_manufacturing-factor'
+      )
       if (purchaseData?.Item) {
         purchaseIntensity.value *= purchaseData.Item.value
       }
       estimations.push(purchaseIntensity)
 
-      //
-      // TODO: PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正が必要。
-      //
-      drivingIntensity.value = drivingIntensity.value * ratio
-
-      console.log(
-        'private-car-driving-intensity after car passenger adjustment  = ' +
-          drivingIntensity.value
-      )
-
+      drivingIntensity.value *= ghgIntensityRatio * passengerIntensityRatio
       estimations.push(drivingIntensity)
 
       // 自家用車の移動距離を取得
@@ -136,72 +151,68 @@ const estimateMobility = async (
   if (mobilityAnswer.carPassengersKey) {
     const intensity = createIntensity(baselines, 'taxi')
     // 人数補正値
-    const data = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: 'car-passengers',
-          key: mobilityAnswer.carPassengersKey.replace(
-            '_private-car-factor',
-            '_taxi-factor'
-          )
-        }
-      })
-      .promise()
+    const data = await getData(
+      'car-passengers',
+      mobilityAnswer.carPassengersKey.replace(
+        '_private-car-factor',
+        '_taxi-factor'
+      )
+    )
     const ratio = data?.Item?.value || 1
     intensity.value *= ratio
     estimations.push(intensity)
+  }
 
-    if (mobilityAnswer.carIntensityFactorKey) {
-      // car-sharing-drivingのintensity補正
-      // 人数補正値
-      const passengers = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'car-passengers',
-            key: mobilityAnswer.carPassengersKey
-          }
-        })
-        .promise()
-      const ratio = passengers?.Item?.value || 1
+  // カーシェアの補正。本来はcar-sharingの乗車人数を確認する必要があるがcarPassengersKeyのprivate_car_factorを代用
+  if (mobilityAnswer.carPassengersKey && mobilityAnswer.carIntensityFactorKey) {
+    // car-sharing-drivingのintensity補正
+    // 人数補正値
+    const passengers = await getData(
+      'car-passengers',
+      mobilityAnswer.carPassengersKey
+    )
+    const passengerIntensityRatio = passengers?.Item?.value || 1
 
-      const driving = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'car-intensity-factor',
-            key:
-              mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
-          }
-        })
-        .promise()
-      if (driving?.Item) {
-        const intensity = createIntensity(baselines, 'car-sharing-driving')
-        // console.log(intensity.value + ':' + driving.Item.value + ':' + ratio)
-        intensity.value *= driving.Item.value * ratio
-        estimations.push(intensity)
+    const driving = await getData(
+      'car-intensity-factor',
+      mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
+    )
+    let ghgIntensityRatio = driving?.Item?.value || 1
+    // PHV, EVの補正
+    if (
+      mobilityAnswer?.carIntensityFactorKey?.startsWith('phv_') ||
+      mobilityAnswer?.carIntensityFactorKey?.startsWith('ev_')
+    ) {
+      const data = await getData(
+        'renewable-car-intensity-factor',
+        mobilityAnswer.carIntensityFactorKey.replace(
+          '_driving-factor',
+          '_driving-intensity'
+        )
+      )
+      if (data?.Item) {
+        ghgIntensityRatio =
+          ghgIntensityRatio * (1 - electricityIntensityFactor) +
+          data.Item.value * electricityIntensityFactor
       }
+    }
 
-      // car-sharing-rentalのintensity補正
-      const rental = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'car-intensity-factor',
-            key:
-              mobilityAnswer.carIntensityFactorKey.replace(
-                '_driving-factor',
-                '_manufacturing-factor'
-              ) || 'unknown_manufacturing-factor'
-          }
-        })
-        .promise()
-      if (rental?.Item) {
-        const intensity = createIntensity(baselines, 'car-sharing-rental')
-        intensity.value *= rental.Item.value
-        estimations.push(intensity)
-      }
+    const intensity = createIntensity(baselines, 'car-sharing-driving')
+    intensity.value *= ghgIntensityRatio * passengerIntensityRatio
+    estimations.push(intensity)
+
+    // car-sharing-rentalのintensity補正
+    const rental = await getData(
+      'car-intensity-factor',
+      mobilityAnswer.carIntensityFactorKey.replace(
+        '_driving-factor',
+        '_manufacturing-factor'
+      ) || 'unknown_manufacturing-factor'
+    )
+    if (rental?.Item) {
+      const intensity = createIntensity(baselines, 'car-sharing-rental')
+      intensity.value *= rental.Item.value
+      estimations.push(intensity)
     }
   }
 
@@ -305,14 +316,7 @@ const estimateMobility = async (
   console.log('getting weeks-per-year-excluding-long-vacations')
 
   // 年間週数の取得
-  const paramsWeeks = {
-    TableName: parameterTableName,
-    Key: {
-      category: 'misc',
-      key: 'weeks-per-year-excluding-long-vacations'
-    }
-  }
-  data = await dynamodb.get(paramsWeeks).promise()
+  data = await getData('misc', 'weeks-per-year-excluding-long-vacations')
   let weekCount = 49
   if (data?.Item) {
     weekCount = data.Item.value
