@@ -8,11 +8,9 @@ import app from '../../amplify/backend/function/profilea2218c7f/src/app' // テ�
 import footprintApp from '../../amplify/backend/function/footprintf523f2c8/src/app' // テスト対象をインポート
 import { createTestCases } from './util'
 
-describe('Mobility Estimation', () => {
+describe('Housing Estimation', () => {
   // テストケースを記載したExcel
-  const workbook = xlsx.readFile(
-    'src/tests/mobility-estimation.test-cases.xlsx'
-  )
+  const workbook = xlsx.readFile('src/tests/housing-estimation.test-cases.xlsx')
   const testCases = createTestCases(workbook)
 
   test('Estimate', async () => {
@@ -48,13 +46,23 @@ describe('Mobility Estimation', () => {
       const estimations = resPut.body.data.estimations
 
       for (const estimation of estimations.filter(
-        (e) => e.domain === 'mobility'
+        (e) => e.domain === 'housing'
       )) {
         const exp = testCase.expectations.find(
           (e) =>
             e.domain === estimation.domain &&
             e.item === estimation.item &&
             e.type === estimation.type
+        )
+        console.log(
+          'checking [' +
+            testCase.case +
+            '] estimation : ' +
+            estimation.domain +
+            '_' +
+            estimation.item +
+            '_' +
+            estimation.type
         )
         expect(exp).not.toBeNull()
         expect(exp.estimated).toBeTruthy()
@@ -68,6 +76,16 @@ describe('Mobility Estimation', () => {
             e.domain === exp.domain &&
             e.item === exp.item &&
             e.type === exp.type
+        )
+        console.log(
+          'checking [' +
+            testCase.case +
+            '] existence : ' +
+            exp.domain +
+            '_' +
+            exp.item +
+            '_' +
+            exp.type
         )
         expect(Boolean(estimation)).toBe(exp.estimated)
       }
@@ -89,16 +107,36 @@ describe('Mobility Estimation', () => {
             b.type === exp.type
         )
         const result = estimation ? estimation : baseline
+        console.log(
+          'checking [' +
+            testCase.case +
+            '] result : ' +
+            result.domain +
+            '_' +
+            result.item +
+            '_' +
+            result.type
+        )
         expect(result.value).toBeCloseTo(exp.value)
       }
 
       // baselineが間違って書き換えられていないかを確認
-      for (const baseline of baselines.filter((b) => b.domain === 'mobility')) {
+      for (const baseline of baselines.filter((b) => b.domain === 'housing')) {
         const org = originalBaselines.find(
           (b) =>
             b.domain === baseline.domain &&
             b.item === baseline.item &&
             b.type === baseline.type
+        )
+        console.log(
+          'checking [' +
+            testCase.case +
+            '] baseline : ' +
+            org.domain +
+            '_' +
+            org.item +
+            '_' +
+            org.type
         )
         expect(baseline.value).toBeCloseTo(org.value)
       }

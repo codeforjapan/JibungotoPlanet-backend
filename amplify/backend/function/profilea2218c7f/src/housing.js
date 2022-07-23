@@ -39,17 +39,31 @@ exports.__esModule = true;
 exports.estimateHousing = void 0;
 var util_1 = require("./util");
 var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, findIntensity, pushOrUpdateEstimate, estimations, params, data, baselines, residentCount, estimationAmount, housingAmountByRegion, params_1, amountByRegion, re_1, housingSize, housingSizePerPeople, imputedRentValue, rentValue, electricityParam, electricityIntensity, electricitySeason, gasParam, gasSeason;
-    var _a, _b, _c, _d;
-    return __generator(this, function (_e) {
-        switch (_e.label) {
+    var getData, pushOrUpdateEstimate, estimations, params, data, baselines, findAmount, createAmount, createIntensity, residentCount, estimationAmount, housingAmountByRegion_1, params_1, amountByRegion, _loop_1, _i, _a, key, housingSize, housingSizePerResident, imputedRentValue, rentValue, electricityParam, electricityIntensity, electricitySeason, gasParam, gasSeason, gasFactor, keroseneData;
+    var _b, _c, _d, _e, _f, _g, _h, _j;
+    return __generator(this, function (_k) {
+        switch (_k.label) {
             case 0:
-                findAmount = function (baselines, item) {
-                    return (0, util_1.findBaseline)(baselines, 'housing', item, 'amount');
-                };
-                findIntensity = function (baselines, item) {
-                    return (0, util_1.findBaseline)(baselines, 'housing', item, 'intensity');
-                };
+                getData = function (category, key) { return __awaiter(void 0, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, dynamodb
+                                    .get({
+                                    TableName: parameterTableName,
+                                    Key: {
+                                        category: category,
+                                        key: key
+                                    }
+                                })
+                                    .promise()
+                                /* eslint-disable no-unused-vars */
+                            ];
+                            case 1: return [2 /*return*/, _a.sent()
+                                /* eslint-disable no-unused-vars */
+                            ];
+                        }
+                    });
+                }); };
                 pushOrUpdateEstimate = function (item, type, estimation) {
                     var estimate = estimations.find(function (estimation) { return estimation.item === item && estimation.type === type; });
                     if (estimate) {
@@ -71,27 +85,34 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                 };
                 return [4 /*yield*/, dynamodb.query(params).promise()];
             case 1:
-                data = _e.sent();
+                data = _k.sent();
                 baselines = data.Items.map(function (item) { return (0, util_1.toBaseline)(item); });
+                findAmount = function (item) {
+                    return (0, util_1.findBaseline)(baselines, 'housing', item, 'amount');
+                };
+                createAmount = function (item) {
+                    return (0, util_1.toEstimation)((0, util_1.findBaseline)(baselines, 'housing', item, 'amount'));
+                };
+                createIntensity = function (item) {
+                    return (0, util_1.toEstimation)((0, util_1.findBaseline)(baselines, 'housing', item, 'intensity'));
+                };
                 // 回答がない場合はベースラインのみ返す
                 if (!housingAnswer) {
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
                 residentCount = housingAnswer.residentCount;
                 estimationAmount = {
-                    'land-rent': findAmount(baselines, 'land-rent'),
-                    'other-energy': findAmount(baselines, 'other-energy'),
-                    water: findAmount(baselines, 'water'),
-                    'imputed-rent': findAmount(baselines, 'imputed-rent'),
-                    rent: findAmount(baselines, 'rent'),
-                    'housing-maintenance': findAmount(baselines, 'housing-maintenance'),
-                    electricity: findAmount(baselines, 'electricity'),
-                    'urban-gas': findAmount(baselines, 'urban-gas'),
-                    lpg: findAmount(baselines, 'lpg'),
-                    kerosene: findAmount(baselines, 'kerosene')
+                    'land-rent': createAmount('land-rent'),
+                    'imputed-rent': createAmount('imputed-rent'),
+                    rent: createAmount('rent'),
+                    'housing-maintenance': createAmount('housing-maintenance'),
+                    electricity: createAmount('electricity'),
+                    'urban-gas': createAmount('urban-gas'),
+                    lpg: createAmount('lpg'),
+                    kerosene: createAmount('kerosene')
                 };
                 if (!housingAnswer.housingAmountByRegionFirstKey) return [3 /*break*/, 3];
-                housingAmountByRegion = housingAnswer.housingAmountByRegionFirstKey;
+                housingAmountByRegion_1 = housingAnswer.housingAmountByRegionFirstKey + '_';
                 params_1 = {
                     TableName: parameterTableName,
                     KeyConditions: {
@@ -101,108 +122,95 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                         },
                         key: {
                             ComparisonOperator: 'BEGINS_WITH',
-                            AttributeValueList: [housingAmountByRegion]
+                            AttributeValueList: [housingAmountByRegion_1]
                         }
                     }
                 };
-                return [4 /*yield*/, dynamodb.query(params_1).promise()];
+                return [4 /*yield*/, dynamodb.query(params_1).promise()
+                    // estimationAmountに項目があるものだけ、amountByRegionの値を上書き
+                ];
             case 2:
-                amountByRegion = _e.sent();
-                re_1 = new RegExp("".concat(housingAmountByRegion, "_(.*)-amount"));
-                amountByRegion.Items.forEach(function (item) {
-                    var key = item.key.match(re_1)[1];
-                    estimations.push((0, util_1.toEstimation)(estimationAmount[key]));
-                });
-                _e.label = 3;
+                amountByRegion = _k.sent();
+                _loop_1 = function (key) {
+                    var rec = amountByRegion.Items.find(function (a) { return a.key === housingAmountByRegion_1 + key + '-amount'; });
+                    if (rec) {
+                        estimationAmount[key].value = rec.value;
+                    }
+                    estimations.push(estimationAmount[key]);
+                };
+                // estimationAmountに項目があるものだけ、amountByRegionの値を上書き
+                for (_i = 0, _a = Object.keys(estimationAmount); _i < _a.length; _i++) {
+                    key = _a[_i];
+                    _loop_1(key);
+                }
+                _k.label = 3;
             case 3:
                 if (!housingAnswer.housingSizeKey) return [3 /*break*/, 5];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'housing-size',
-                            key: housingAnswer.housingSizeKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('housing-size', housingAnswer.housingSizeKey)];
             case 4:
-                housingSize = _e.sent();
-                housingSizePerPeople = ((_a = housingSize.Item) === null || _a === void 0 ? void 0 : _a.value) / residentCount;
-                imputedRentValue = estimationAmount['imputed-rent'].value;
-                rentValue = estimationAmount.rent.value;
+                housingSize = _k.sent();
+                housingSizePerResident = housingAnswer.housingSizeKey === 'unknown'
+                    ? (_b = housingSize.Item) === null || _b === void 0 ? void 0 : _b.value
+                    : ((_c = housingSize.Item) === null || _c === void 0 ? void 0 : _c.value) / residentCount;
+                imputedRentValue = findAmount('imputed-rent').value;
+                rentValue = findAmount('rent').value;
                 estimationAmount['imputed-rent'].value =
-                    (housingSizePerPeople / (imputedRentValue + rentValue)) * imputedRentValue;
+                    (housingSizePerResident / (imputedRentValue + rentValue)) *
+                        imputedRentValue;
                 estimationAmount.rent.value =
-                    (housingSizePerPeople / (imputedRentValue + rentValue)) * rentValue;
+                    (housingSizePerResident / (imputedRentValue + rentValue)) * rentValue;
                 estimationAmount['housing-maintenance'].value =
-                    (estimationAmount['housing-maintenance'].value /
+                    (findAmount('housing-maintenance').value /
                         (imputedRentValue + rentValue)) *
                         (estimationAmount['imputed-rent'].value + estimationAmount.rent.value);
-                pushOrUpdateEstimate('imputed-rent', 'amount', (0, util_1.toEstimation)(estimationAmount['imputed-rent']));
-                pushOrUpdateEstimate('rent', 'amount', (0, util_1.toEstimation)(estimationAmount.rent));
-                pushOrUpdateEstimate('housing-maintenance', 'amount', (0, util_1.toEstimation)(estimationAmount['housing-maintenance']));
-                _e.label = 5;
+                pushOrUpdateEstimate('imputed-rent', 'amount', estimationAmount['imputed-rent']);
+                pushOrUpdateEstimate('rent', 'amount', estimationAmount.rent);
+                pushOrUpdateEstimate('housing-maintenance', 'amount', estimationAmount['housing-maintenance']);
+                _k.label = 5;
             case 5:
                 if (!housingAnswer.electricityIntensityKey) return [3 /*break*/, 7];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'electricity-intensity',
-                            key: housingAnswer.electricityIntensityKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('electricity-intensity', housingAnswer.electricityIntensityKey)];
             case 6:
-                electricityParam = _e.sent();
-                electricityIntensity = findIntensity(baselines, 'electricity');
-                electricityIntensity.value = (_b = electricityParam.Item) === null || _b === void 0 ? void 0 : _b.value;
-                estimations.push((0, util_1.toEstimation)(electricityIntensity));
-                _e.label = 7;
+                electricityParam = _k.sent();
+                electricityIntensity = createIntensity('electricity');
+                electricityIntensity.value = (_d = electricityParam.Item) === null || _d === void 0 ? void 0 : _d.value;
+                estimations.push(electricityIntensity);
+                _k.label = 7;
             case 7:
                 if (!(housingAnswer.electricityMonthlyConsumption &&
                     housingAnswer.electricitySeasonFactorKey)) return [3 /*break*/, 9];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'electricity-season-factor',
-                            key: housingAnswer.electricitySeasonFactorKey
-                        }
-                    })
-                        .promise()
-                    // todo 電気時自動車分をどうやって取ってくるか
+                return [4 /*yield*/, getData('electricity-season-factor', housingAnswer.electricitySeasonFactorKey)
+                    // =IF('2_CF推定質問'!F24='2_CF推定質問'!W25,'2_CF推定質問'!U90,'2_CF推定質問'!S38)
                 ];
             case 8:
-                electricitySeason = _e.sent();
+                electricitySeason = _k.sent();
+                // =IF('2_CF推定質問'!F24='2_CF推定質問'!W25,'2_CF推定質問'!U90,'2_CF推定質問'!S38)
+                console.log('electricitySeason.Item?.value = ' + ((_e = electricitySeason.Item) === null || _e === void 0 ? void 0 : _e.value));
                 // todo 電気時自動車分をどうやって取ってくるか
                 estimationAmount.electricity.value =
                     (housingAnswer.electricityMonthlyConsumption *
-                        ((_c = electricitySeason.Item) === null || _c === void 0 ? void 0 : _c.value)) /
+                        ((_f = electricitySeason.Item) === null || _f === void 0 ? void 0 : _f.value)) /
                         residentCount;
-                pushOrUpdateEstimate('electricity', 'amount', (0, util_1.toEstimation)(estimationAmount.electricity));
-                _e.label = 9;
+                pushOrUpdateEstimate('electricity', 'amount', estimationAmount.electricity);
+                _k.label = 9;
             case 9:
-                if (!housingAnswer.useGas) return [3 /*break*/, 12];
+                if (!housingAnswer.useGas) return [3 /*break*/, 13];
                 gasParam = null;
                 if (!(housingAnswer.gasMonthlyConsumption &&
-                    housingAnswer.gasSeasonFactorKey)) return [3 /*break*/, 11];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'gas-season-factor',
-                            key: housingAnswer.gasSeasonFactorKey
-                        }
-                    })
-                        .promise()];
+                    housingAnswer.gasSeasonFactorKey)) return [3 /*break*/, 12];
+                return [4 /*yield*/, getData('gas-season-factor', housingAnswer.gasSeasonFactorKey)];
             case 10:
-                gasSeason = _e.sent();
-                gasParam =
-                    (housingAnswer.gasMonthlyConsumption * ((_d = gasSeason.Item) === null || _d === void 0 ? void 0 : _d.value)) /
-                        residentCount;
-                _e.label = 11;
+                gasSeason = _k.sent();
+                return [4 /*yield*/, getData('energy-heat-intensity', housingAnswer.energyHeatIntensityKey)];
             case 11:
+                gasFactor = _k.sent();
+                gasParam =
+                    (housingAnswer.gasMonthlyConsumption *
+                        (((_g = gasSeason.Item) === null || _g === void 0 ? void 0 : _g.value) || 1) *
+                        (((_h = gasFactor.Item) === null || _h === void 0 ? void 0 : _h.value) || 1)) /
+                        residentCount;
+                _k.label = 12;
+            case 12:
                 if (housingAnswer.energyHeatIntensityKey === 'lpg') {
                     if (gasParam) {
                         estimationAmount.lpg.value = gasParam;
@@ -215,35 +223,40 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                     }
                     estimationAmount.lpg.value = 0;
                 }
-                pushOrUpdateEstimate('urban-gas', 'amount', (0, util_1.toEstimation)(estimationAmount['urban-gas']));
-                pushOrUpdateEstimate('lpg', 'amount', (0, util_1.toEstimation)(estimationAmount.lpg));
-                return [3 /*break*/, 13];
-            case 12:
+                pushOrUpdateEstimate('urban-gas', 'amount', estimationAmount['urban-gas']);
+                pushOrUpdateEstimate('lpg', 'amount', estimationAmount.lpg);
+                return [3 /*break*/, 14];
+            case 13:
                 if (housingAnswer.useGas === false) {
                     estimationAmount['urban-gas'].value = 0;
                     estimationAmount.lpg.value = 0;
-                    pushOrUpdateEstimate('urban-gas', 'amount', (0, util_1.toEstimation)(estimationAmount['urban-gas']));
-                    pushOrUpdateEstimate('lpg', 'amount', (0, util_1.toEstimation)(estimationAmount.lpg));
+                    pushOrUpdateEstimate('urban-gas', 'amount', estimationAmount['urban-gas']);
+                    pushOrUpdateEstimate('lpg', 'amount', estimationAmount.lpg);
                 }
-                _e.label = 13;
-            case 13:
-                // 灯油の使用の有無
-                if (housingAnswer.useKerosene) {
-                    if (housingAnswer.keroseneMonthlyConsumption &&
-                        housingAnswer.keroseneMonthCount) {
-                        estimationAmount.kerosene.value =
-                            (housingAnswer.keroseneMonthlyConsumption *
-                                housingAnswer.keroseneMonthCount) /
-                                residentCount;
-                    }
-                    pushOrUpdateEstimate('kerosene', 'amount', (0, util_1.toEstimation)(estimationAmount.kerosene));
-                }
-                else if (housingAnswer.useKerosene === false) {
+                _k.label = 14;
+            case 14:
+                if (!housingAnswer.useKerosene) return [3 /*break*/, 17];
+                if (!(housingAnswer.keroseneMonthlyConsumption &&
+                    housingAnswer.keroseneMonthCount)) return [3 /*break*/, 16];
+                return [4 /*yield*/, getData('energy-heat-intensity', 'kerosene')];
+            case 15:
+                keroseneData = _k.sent();
+                estimationAmount.kerosene.value =
+                    ((((_j = keroseneData === null || keroseneData === void 0 ? void 0 : keroseneData.Item) === null || _j === void 0 ? void 0 : _j.value) || 1) *
+                        (housingAnswer.keroseneMonthlyConsumption *
+                            housingAnswer.keroseneMonthCount)) /
+                        residentCount;
+                _k.label = 16;
+            case 16:
+                pushOrUpdateEstimate('kerosene', 'amount', estimationAmount.kerosene);
+                return [3 /*break*/, 18];
+            case 17:
+                if (housingAnswer.useKerosene === false) {
                     estimationAmount.kerosene.value = 0;
-                    pushOrUpdateEstimate('kerosene', 'amount', (0, util_1.toEstimation)(estimationAmount.kerosene));
+                    pushOrUpdateEstimate('kerosene', 'amount', estimationAmount.kerosene);
                 }
-                // console.log(JSON.stringify(estimations))
-                return [2 /*return*/, { baselines: baselines, estimations: estimations }];
+                _k.label = 18;
+            case 18: return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }
     });
 }); };

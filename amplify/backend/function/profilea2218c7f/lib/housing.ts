@@ -6,10 +6,16 @@ const estimateHousing = async (
   footprintTableName,
   parameterTableName
 ) => {
-  const findAmount = (baselines, item) =>
-    findBaseline(baselines, 'housing', item, 'amount')
-  const findIntensity = (baselines, item) =>
-    findBaseline(baselines, 'housing', item, 'intensity')
+  const getData = async (category, key) =>
+    await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: category,
+          key: key
+        }
+      })
+      .promise()
 
   /* eslint-disable no-unused-vars */
   const pushOrUpdateEstimate = (item, type, estimation) => {
@@ -42,6 +48,13 @@ const estimateHousing = async (
   const data = await dynamodb.query(params).promise()
   const baselines = data.Items.map((item) => toBaseline(item))
 
+  const findAmount = (item) =>
+    findBaseline(baselines, 'housing', item, 'amount')
+  const createAmount = (item) =>
+    toEstimation(findBaseline(baselines, 'housing', item, 'amount'))
+  const createIntensity = (item) =>
+    toEstimation(findBaseline(baselines, 'housing', item, 'intensity'))
+
   // 回答がない場合はベースラインのみ返す
   if (!housingAnswer) {
     return { baselines, estimations }
@@ -50,16 +63,14 @@ const estimateHousing = async (
 
   // 下記部分でパラメータ名から一致を取る必要があるため、ケバブのまま変数化
   const estimationAmount = {
-    'land-rent': findAmount(baselines, 'land-rent'),
-    'other-energy': findAmount(baselines, 'other-energy'),
-    water: findAmount(baselines, 'water'),
-    'imputed-rent': findAmount(baselines, 'imputed-rent'),
-    rent: findAmount(baselines, 'rent'),
-    'housing-maintenance': findAmount(baselines, 'housing-maintenance'),
-    electricity: findAmount(baselines, 'electricity'),
-    'urban-gas': findAmount(baselines, 'urban-gas'),
-    lpg: findAmount(baselines, 'lpg'),
-    kerosene: findAmount(baselines, 'kerosene')
+    'land-rent': createAmount('land-rent'),
+    'imputed-rent': createAmount('imputed-rent'),
+    rent: createAmount('rent'),
+    'housing-maintenance': createAmount('housing-maintenance'),
+    electricity: createAmount('electricity'),
+    'urban-gas': createAmount('urban-gas'),
+    lpg: createAmount('lpg'),
+    kerosene: createAmount('kerosene')
   }
 
   //
@@ -70,7 +81,8 @@ const estimateHousing = async (
   // housingAmountByRegion: String # northeast|middle|southwest|unknown
   //
   if (housingAnswer.housingAmountByRegionFirstKey) {
-    const housingAmountByRegion = housingAnswer.housingAmountByRegionFirstKey
+    const housingAmountByRegion =
+      housingAnswer.housingAmountByRegionFirstKey + '_'
     const params = {
       TableName: parameterTableName,
       KeyConditions: {
@@ -85,12 +97,17 @@ const estimateHousing = async (
       }
     }
     const amountByRegion = await dynamodb.query(params).promise()
-    const re = new RegExp(`${housingAmountByRegion}_(.*)-amount`)
 
-    amountByRegion.Items.forEach((item) => {
-      const key = item.key.match(re)[1]
-      estimations.push(toEstimation(estimationAmount[key]))
-    })
+    // estimationAmountに項目があるものだけ、amountByRegionの値を上書き
+    for (const key of Object.keys(estimationAmount)) {
+      const rec = amountByRegion.Items.find(
+        (a) => a.key === housingAmountByRegion + key + '-amount'
+      )
+      if (rec) {
+        estimationAmount[key].value = rec.value
+      }
+      estimations.push(estimationAmount[key])
+    }
   }
 
   //
@@ -102,53 +119,51 @@ const estimateHousing = async (
   // water
 
   if (housingAnswer.housingSizeKey) {
-    const housingSize = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: 'housing-size',
-          key: housingAnswer.housingSizeKey
-        }
-      })
-      .promise()
-    const housingSizePerPeople = housingSize.Item?.value / residentCount
-    const imputedRentValue = estimationAmount['imputed-rent'].value
-    const rentValue = estimationAmount.rent.value
+    const housingSize = await getData(
+      'housing-size',
+      housingAnswer.housingSizeKey
+    )
+    const housingSizePerResident =
+      housingAnswer.housingSizeKey === 'unknown'
+        ? housingSize.Item?.value
+        : housingSize.Item?.value / residentCount
+
+    const imputedRentValue = findAmount('imputed-rent').value
+    const rentValue = findAmount('rent').value
+
     estimationAmount['imputed-rent'].value =
-      (housingSizePerPeople / (imputedRentValue + rentValue)) * imputedRentValue
+      (housingSizePerResident / (imputedRentValue + rentValue)) *
+      imputedRentValue
+
     estimationAmount.rent.value =
-      (housingSizePerPeople / (imputedRentValue + rentValue)) * rentValue
+      (housingSizePerResident / (imputedRentValue + rentValue)) * rentValue
+
     estimationAmount['housing-maintenance'].value =
-      (estimationAmount['housing-maintenance'].value /
+      (findAmount('housing-maintenance').value /
         (imputedRentValue + rentValue)) *
       (estimationAmount['imputed-rent'].value + estimationAmount.rent.value)
     pushOrUpdateEstimate(
       'imputed-rent',
       'amount',
-      toEstimation(estimationAmount['imputed-rent'])
+      estimationAmount['imputed-rent']
     )
-    pushOrUpdateEstimate('rent', 'amount', toEstimation(estimationAmount.rent))
+    pushOrUpdateEstimate('rent', 'amount', estimationAmount.rent)
     pushOrUpdateEstimate(
       'housing-maintenance',
       'amount',
-      toEstimation(estimationAmount['housing-maintenance'])
+      estimationAmount['housing-maintenance']
     )
   }
 
   // 再生可能エネルギー
   if (housingAnswer.electricityIntensityKey) {
-    const electricityParam = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: 'electricity-intensity',
-          key: housingAnswer.electricityIntensityKey
-        }
-      })
-      .promise()
-    const electricityIntensity = findIntensity(baselines, 'electricity')
+    const electricityParam = await getData(
+      'electricity-intensity',
+      housingAnswer.electricityIntensityKey
+    )
+    const electricityIntensity = createIntensity('electricity')
     electricityIntensity.value = electricityParam.Item?.value
-    estimations.push(toEstimation(electricityIntensity))
+    estimations.push(electricityIntensity)
   }
 
   // 電力使用量
@@ -156,25 +171,20 @@ const estimateHousing = async (
     housingAnswer.electricityMonthlyConsumption &&
     housingAnswer.electricitySeasonFactorKey
   ) {
-    const electricitySeason = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: 'electricity-season-factor',
-          key: housingAnswer.electricitySeasonFactorKey
-        }
-      })
-      .promise()
+    const electricitySeason = await getData(
+      'electricity-season-factor',
+      housingAnswer.electricitySeasonFactorKey
+    )
+    // =IF('2_CF推定質問'!F24='2_CF推定質問'!W25,'2_CF推定質問'!U90,'2_CF推定質問'!S38)
+    console.log(
+      'electricitySeason.Item?.value = ' + electricitySeason.Item?.value
+    )
     // todo 電気時自動車分をどうやって取ってくるか
     estimationAmount.electricity.value =
       (housingAnswer.electricityMonthlyConsumption *
         electricitySeason.Item?.value) /
       residentCount
-    pushOrUpdateEstimate(
-      'electricity',
-      'amount',
-      toEstimation(estimationAmount.electricity)
-    )
+    pushOrUpdateEstimate('electricity', 'amount', estimationAmount.electricity)
   }
 
   // ガスの使用の有無
@@ -184,17 +194,19 @@ const estimateHousing = async (
       housingAnswer.gasMonthlyConsumption &&
       housingAnswer.gasSeasonFactorKey
     ) {
-      const gasSeason = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'gas-season-factor',
-            key: housingAnswer.gasSeasonFactorKey
-          }
-        })
-        .promise()
+      const gasSeason = await getData(
+        'gas-season-factor',
+        housingAnswer.gasSeasonFactorKey
+      )
+      const gasFactor = await getData(
+        'energy-heat-intensity',
+        housingAnswer.energyHeatIntensityKey
+      )
+
       gasParam =
-        (housingAnswer.gasMonthlyConsumption * gasSeason.Item?.value) /
+        (housingAnswer.gasMonthlyConsumption *
+          (gasSeason.Item?.value || 1) *
+          (gasFactor.Item?.value || 1)) /
         residentCount
     }
     if (housingAnswer.energyHeatIntensityKey === 'lpg') {
@@ -208,21 +220,13 @@ const estimateHousing = async (
       }
       estimationAmount.lpg.value = 0
     }
-    pushOrUpdateEstimate(
-      'urban-gas',
-      'amount',
-      toEstimation(estimationAmount['urban-gas'])
-    )
-    pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
+    pushOrUpdateEstimate('urban-gas', 'amount', estimationAmount['urban-gas'])
+    pushOrUpdateEstimate('lpg', 'amount', estimationAmount.lpg)
   } else if (housingAnswer.useGas === false) {
     estimationAmount['urban-gas'].value = 0
     estimationAmount.lpg.value = 0
-    pushOrUpdateEstimate(
-      'urban-gas',
-      'amount',
-      toEstimation(estimationAmount['urban-gas'])
-    )
-    pushOrUpdateEstimate('lpg', 'amount', toEstimation(estimationAmount.lpg))
+    pushOrUpdateEstimate('urban-gas', 'amount', estimationAmount['urban-gas'])
+    pushOrUpdateEstimate('lpg', 'amount', estimationAmount.lpg)
   }
 
   // 灯油の使用の有無
@@ -231,26 +235,19 @@ const estimateHousing = async (
       housingAnswer.keroseneMonthlyConsumption &&
       housingAnswer.keroseneMonthCount
     ) {
+      const keroseneData = await getData('energy-heat-intensity', 'kerosene')
       estimationAmount.kerosene.value =
-        (housingAnswer.keroseneMonthlyConsumption *
-          housingAnswer.keroseneMonthCount) /
+        ((keroseneData?.Item?.value || 1) *
+          (housingAnswer.keroseneMonthlyConsumption *
+            housingAnswer.keroseneMonthCount)) /
         residentCount
     }
-    pushOrUpdateEstimate(
-      'kerosene',
-      'amount',
-      toEstimation(estimationAmount.kerosene)
-    )
+    pushOrUpdateEstimate('kerosene', 'amount', estimationAmount.kerosene)
   } else if (housingAnswer.useKerosene === false) {
     estimationAmount.kerosene.value = 0
-    pushOrUpdateEstimate(
-      'kerosene',
-      'amount',
-      toEstimation(estimationAmount.kerosene)
-    )
+    pushOrUpdateEstimate('kerosene', 'amount', estimationAmount.kerosene)
   }
 
-  // console.log(JSON.stringify(estimations))
   return { baselines, estimations }
 }
 
