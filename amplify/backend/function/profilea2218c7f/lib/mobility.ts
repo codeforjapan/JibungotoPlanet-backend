@@ -2,15 +2,27 @@ import { toBaseline, findBaseline, toEstimation } from './util'
 
 const estimateMobility = async (
   dynamodb,
+  housingAnswer,
   mobilityAnswer,
   footprintTableName,
   parameterTableName
 ) => {
   // mobilityのベースラインの取得
-  const findAmount = (baselines, item) =>
-    findBaseline(baselines, 'mobility', item, 'amount')
-  const findIntensity = (baselines, item) =>
-    findBaseline(baselines, 'mobility', item, 'intensity')
+  const createAmount = (baselines, item) =>
+    toEstimation(findBaseline(baselines, 'mobility', item, 'amount'))
+  const createIntensity = (baselines, item) =>
+    toEstimation(findBaseline(baselines, 'mobility', item, 'intensity'))
+
+  const getData = async (category, key) =>
+    await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: category,
+          key: key
+        }
+      })
+      .promise()
 
   // mobilityAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -35,6 +47,27 @@ const estimateMobility = async (
     return { baselines, estimations }
   }
 
+  let electricityIntensityFactor = 0
+
+  // PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正
+  if (housingAnswer?.electricityIntensityKey) {
+    const electricityData = await getData(
+      'electricity-intensity-factor',
+      housingAnswer.electricityIntensityKey
+    )
+    if (electricityData?.Item) {
+      electricityIntensityFactor = electricityData.Item.value
+    }
+
+    const carChargingData = await getData(
+      'car-charging',
+      mobilityAnswer?.carChargingKey || 'unknown'
+    )
+    if (carChargingData?.Item) {
+      electricityIntensityFactor *= carChargingData.Item.value
+    }
+  }
+
   //
   // 答えに従ってestimationを計算
   //
@@ -42,60 +75,71 @@ const estimateMobility = async (
   // 自家用車をお持ちですか？がYesの場合
   if (mobilityAnswer.hasPrivateCar) {
     if (mobilityAnswer.carIntensityFactorKey) {
-      const intensity = findIntensity(baselines, 'private-car-driving')
+      const drivingIntensity = createIntensity(baselines, 'private-car-driving')
 
       // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
-      const params = {
-        TableName: parameterTableName,
-        Key: {
-          category: 'car-intensity-factor',
-          key: mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
-        }
-      }
-      let data = await dynamodb.get(params).promise()
+      let ghgIntensityRatio = 1
+      let data = await getData(
+        'car-intensity-factor',
+        mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
+      )
       if (data?.Item) {
-        intensity.value = data.Item.value
+        ghgIntensityRatio *= data.Item.value
+      }
+
+      // PHV, EVの補正
+      if (
+        mobilityAnswer?.carIntensityFactorKey?.startsWith('phv_') ||
+        mobilityAnswer?.carIntensityFactorKey?.startsWith('ev_')
+      ) {
+        const data = await getData(
+          'renewable-car-intensity-factor',
+          mobilityAnswer.carIntensityFactorKey
+        )
+        if (data?.Item) {
+          ghgIntensityRatio =
+            ghgIntensityRatio * (1 - electricityIntensityFactor) +
+            data.Item.value * electricityIntensityFactor
+        }
       }
 
       // 人数補正値
-      const carPassengersKey =
+      data = await getData(
+        'car-passengers',
         mobilityAnswer.carPassengersKey || 'unknown_private-car-factor'
-      params.Key = {
-        category: 'car-passengers',
-        key: carPassengersKey
+      )
+      let passengerIntensityRatio = data?.Item?.value || 1
+
+      const purchaseIntensity = createIntensity(
+        baselines,
+        'private-car-purchase'
+      )
+
+      // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
+      const purchaseData = await getData(
+        'car-intensity-factor',
+        mobilityAnswer.carIntensityFactorKey.replace(
+          '_driving-factor',
+          '_manufacturing-factor'
+        ) || 'unknown_manufacturing-factor'
+      )
+      if (purchaseData?.Item) {
+        purchaseIntensity.value *= purchaseData.Item.value
       }
-      data = await dynamodb.get(params).promise()
-      const ratio = data?.Item?.value || 1
+      estimations.push(purchaseIntensity)
 
-      console.log('private-car-driving-intensity = ' + intensity.value)
-      console.log(
-        'carPassengersKey = ' +
-          carPassengersKey +
-          ', private-car-factor = ' +
-          ratio
-      )
-
-      //
-      // TODO: PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正が必要。
-      //
-      intensity.value = intensity.value * ratio
-
-      console.log(
-        'private-car-driving-intensity after car passenger adjustment  = ' +
-          intensity.value
-      )
-
-      estimations.push(toEstimation(intensity))
+      drivingIntensity.value *= ghgIntensityRatio * passengerIntensityRatio
+      estimations.push(drivingIntensity)
 
       // 自家用車の移動距離を取得
-      const amount = findAmount(baselines, 'private-car-driving')
+      const amount = createAmount(baselines, 'private-car-driving')
       const baselineAmount = amount.value
       amount.value = mobilityAnswer.privateCarAnnualMileage || 0
-      estimations.push(toEstimation(amount))
+      estimations.push(amount)
       const mileageRatio = amount.value / baselineAmount
 
-      const privateCarPurchase = findAmount(baselines, 'private-car-purchase')
-      const privateCarMaintenance = findAmount(
+      const privateCarPurchase = createAmount(baselines, 'private-car-purchase')
+      const privateCarMaintenance = createAmount(
         baselines,
         'private-car-maintenance'
       )
@@ -103,12 +147,89 @@ const estimateMobility = async (
       // 自家用車の購入・メンテナンスを移動距離比で補正
       privateCarPurchase.value *= mileageRatio
       privateCarMaintenance.value *= mileageRatio
-      estimations.push(toEstimation(privateCarPurchase))
-      estimations.push(toEstimation(privateCarMaintenance))
+      estimations.push(privateCarPurchase)
+      estimations.push(privateCarMaintenance)
     }
+  } else {
+    const amount = createAmount(baselines, 'private-car-driving')
+    amount.value = 0
+    estimations.push(amount)
+    const privateCarPurchase = createAmount(baselines, 'private-car-purchase')
+    privateCarPurchase.value = 0
+    estimations.push(privateCarPurchase)
+    const privateCarMaintenance = createAmount(
+      baselines,
+      'private-car-maintenance'
+    )
+    privateCarMaintenance.value = 0
+    estimations.push(privateCarMaintenance)
   }
 
-  console.log('calculating weekly mileage')
+  // taxiのintensity補正。本来はtaxiの乗車人数を確認する必要があるがcarPassengersKeyのprivate_car_factorを代用
+  if (mobilityAnswer.carPassengersKey) {
+    const intensity = createIntensity(baselines, 'taxi')
+    // 人数補正値
+    const data = await getData(
+      'car-passengers',
+      mobilityAnswer.carPassengersKey.replace(
+        '_private-car-factor',
+        '_taxi-factor'
+      )
+    )
+    const ratio = data?.Item?.value || 1
+    intensity.value *= ratio
+    estimations.push(intensity)
+  }
+
+  // カーシェアの補正。本来はcar-sharingの乗車人数を確認する必要があるがcarPassengersKeyのprivate_car_factorを代用
+  if (mobilityAnswer.carPassengersKey && mobilityAnswer.carIntensityFactorKey) {
+    // car-sharing-drivingのintensity補正
+    // 人数補正値
+    const passengers = await getData(
+      'car-passengers',
+      mobilityAnswer.carPassengersKey
+    )
+    const passengerIntensityRatio = passengers?.Item?.value || 1
+
+    const driving = await getData(
+      'car-intensity-factor',
+      mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
+    )
+    let ghgIntensityRatio = driving?.Item?.value || 1
+    // PHV, EVの補正
+    if (
+      mobilityAnswer?.carIntensityFactorKey?.startsWith('phv_') ||
+      mobilityAnswer?.carIntensityFactorKey?.startsWith('ev_')
+    ) {
+      const data = await getData(
+        'renewable-car-intensity-factor',
+        mobilityAnswer.carIntensityFactorKey
+      )
+      if (data?.Item) {
+        ghgIntensityRatio =
+          ghgIntensityRatio * (1 - electricityIntensityFactor) +
+          data.Item.value * electricityIntensityFactor
+      }
+    }
+
+    const intensity = createIntensity(baselines, 'car-sharing-driving')
+    intensity.value *= ghgIntensityRatio * passengerIntensityRatio
+    estimations.push(intensity)
+
+    // car-sharing-rentalのintensity補正
+    const rental = await getData(
+      'car-intensity-factor',
+      mobilityAnswer.carIntensityFactorKey.replace(
+        '_driving-factor',
+        '_manufacturing-factor'
+      ) || 'unknown_manufacturing-factor'
+    )
+    if (rental?.Item) {
+      const intensity = createIntensity(baselines, 'car-sharing-rental')
+      intensity.value *= rental.Item.value
+      estimations.push(intensity)
+    }
+  }
 
   // <baselineを使用>
   // bicycle-driving
@@ -117,16 +238,16 @@ const estimateMobility = async (
 
   // mobilityのベースラインの取得
   const estimationAmount = {
-    airplane: findAmount(baselines, 'airplane'),
-    train: findAmount(baselines, 'train'),
-    bus: findAmount(baselines, 'bus'),
-    ferry: findAmount(baselines, 'ferry'),
-    taxi: findAmount(baselines, 'taxi'),
-    carSharing: findAmount(baselines, 'car-sharing-driving'),
-    motorbike: findAmount(baselines, 'motorbike-driving'),
-    motorbikePurchase: findAmount(baselines, 'motorbike-purchase'),
-    carSharingRental: findAmount(baselines, 'car-sharing-rental'),
-    motorbikeMaintenance: findAmount(baselines, 'motorbike-maintenance')
+    airplane: createAmount(baselines, 'airplane'),
+    train: createAmount(baselines, 'train'),
+    bus: createAmount(baselines, 'bus'),
+    ferry: createAmount(baselines, 'ferry'),
+    taxi: createAmount(baselines, 'taxi'),
+    carSharing: createAmount(baselines, 'car-sharing-driving'),
+    motorbike: createAmount(baselines, 'motorbike-driving'),
+    motorbikePurchase: createAmount(baselines, 'motorbike-purchase'),
+    carSharingRental: createAmount(baselines, 'car-sharing-rental'),
+    motorbikeMaintenance: createAmount(baselines, 'motorbike-maintenance')
   }
 
   const mileage = {
@@ -182,6 +303,8 @@ const estimateMobility = async (
       return a
     }, {})
 
+    //=IF('2_CF推定質問'!$F$166='2_CF推定質問'!$W$166,'2_CF推定質問'!U191,'2_CF推定質問'!S186)
+    mileage.airplane = milageByArea[mileageByAreaFirstKey + '_airplane']
     mileage.train = milageByArea[mileageByAreaFirstKey + '_train']
     mileage.bus = milageByArea[mileageByAreaFirstKey + '_bus']
     mileage.motorbike =
@@ -190,8 +313,6 @@ const estimateMobility = async (
     mileage.carSharing =
       milageByArea[mileageByAreaFirstKey + '_car-sharing-driving']
   }
-
-  console.log('calculating annual mileage')
 
   //
   // 昨年１年間で、旅行などで利用した移動手段を教えてください
@@ -205,23 +326,12 @@ const estimateMobility = async (
     ferry: mobilityAnswer.ferryAnnualTravelingTime || 0
   }
 
-  console.log('getting weeks-per-year-excluding-long-vacations')
-
   // 年間週数の取得
-  const paramsWeeks = {
-    TableName: parameterTableName,
-    Key: {
-      category: 'misc',
-      key: 'weeks-per-year-excluding-long-vacations'
-    }
-  }
-  data = await dynamodb.get(paramsWeeks).promise()
+  data = await getData('misc', 'weeks-per-year-excluding-long-vacations')
   let weekCount = 49
   if (data?.Item) {
     weekCount = data.Item.value
   }
-
-  console.log('getting transportation-speed')
 
   // 時速の取得
   const paramsTransportation = {
@@ -278,7 +388,7 @@ const estimateMobility = async (
   // ベースラインの値を書き換えてEstimationを生成
   for (let item of Object.keys(mileage)) {
     estimationAmount[item].value = mileage[item]
-    estimations.push(toEstimation(estimationAmount[item]))
+    estimations.push(estimationAmount[item])
   }
 
   // バイクの購入・メンテナンス、カーシェアの回数はベースラインとの比率で変更
@@ -291,11 +401,9 @@ const estimateMobility = async (
   estimationAmount.carSharingRental.value *= carSharingDrivingRatio
   estimationAmount.motorbikeMaintenance.value *= motorbikeDrivingRatio
 
-  estimations.push(toEstimation(estimationAmount.motorbikePurchase))
-  estimations.push(toEstimation(estimationAmount.carSharingRental))
-  estimations.push(toEstimation(estimationAmount.motorbikeMaintenance))
-
-  console.log(JSON.stringify(estimations))
+  estimations.push(estimationAmount.motorbikePurchase)
+  estimations.push(estimationAmount.carSharingRental)
+  estimations.push(estimationAmount.motorbikeMaintenance)
 
   return { baselines, estimations }
 }

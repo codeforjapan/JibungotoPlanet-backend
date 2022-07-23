@@ -242,7 +242,7 @@ var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, par
                     estimationAmount.kerosene.value = 0;
                     pushOrUpdateEstimate('kerosene', 'amount', (0, util_1.toEstimation)(estimationAmount.kerosene));
                 }
-                console.log(JSON.stringify(estimations));
+                // console.log(JSON.stringify(estimations))
                 return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }
     });

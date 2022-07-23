@@ -36,6 +36,14 @@ POST で返されるレスポンスの中に[shareId]も記載されています
 GET [REST API endpoint]/shares/[shareId]
 ```
 
+### ベースラインデータの取得
+
+各々の domain(housing|mobility|food|other) のベースライン情報を取得します。
+
+```bash
+GET [REST API endpoint]/footprints/baseline/[domain]
+```
+
 ### リクエストとレスポンスの内容
 
 [schema.graphql](amplify/backend/api/JibungotoPlanetGql/schema.graphql)の Profile の定義を確認下さい。2022 年 6 月現在、JSON 形式のみサポートされています。なお、シェア用には各種回答情報と[id]が削除されたレスポンスが返ります。
