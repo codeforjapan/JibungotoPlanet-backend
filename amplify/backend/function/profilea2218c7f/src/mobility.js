@@ -39,7 +39,7 @@ exports.__esModule = true;
 exports.estimateMobility = void 0;
 var util_1 = require("./util");
 var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var createAmount, createIntensity, getData, estimations, params, data, baselines, electricityIntensityFactor, data_1, drivingIntensity, ghgIntensityRatio, data_2, data_3, passengerIntensityRatio, purchaseIntensity, purchaseData, amount, baselineAmount, mileageRatio, privateCarPurchase, privateCarMaintenance, intensity, data_4, ratio, passengers, passengerIntensityRatio, driving, ghgIntensityRatio, data_5, intensity, rental, intensity_1, estimationAmount, mileage, weeklyTravelingTime, mileageByAreaFirstKey, params_1, data_6, milageByArea, annualTravelingTime, weekCount, paramsTransportation, speed, taxiRatio, otherCarMileage, baselineMotorbikeAmount, baselineCarSharingAmount, _i, _a, item, motorbikeDrivingRatio, carSharingDrivingRatio;
+    var createAmount, createIntensity, getData, estimations, params, data, baselines, electricityIntensityFactor, electricityData, carChargingData, drivingIntensity, ghgIntensityRatio, data_1, data_2, passengerIntensityRatio, purchaseIntensity, purchaseData, amount, baselineAmount, mileageRatio, privateCarPurchase, privateCarMaintenance, amount, privateCarPurchase, privateCarMaintenance, intensity, data_3, ratio, passengers, passengerIntensityRatio, driving, ghgIntensityRatio, data_4, intensity, rental, intensity_1, estimationAmount, mileage, weeklyTravelingTime, mileageByAreaFirstKey, params_1, data_5, milageByArea, annualTravelingTime, weekCount, paramsTransportation, speed, taxiRatio, otherCarMileage, baselineMotorbikeAmount, baselineCarSharingAmount, _i, _a, item, motorbikeDrivingRatio, carSharingDrivingRatio;
     var _b, _c, _d, _e, _f, _g, _h, _j;
     return __generator(this, function (_k) {
         switch (_k.label) {
@@ -91,44 +91,50 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
                 electricityIntensityFactor = 0;
-                if (!(housingAnswer === null || housingAnswer === void 0 ? void 0 : housingAnswer.electricityIntensityKey)) return [3 /*break*/, 3];
+                if (!(housingAnswer === null || housingAnswer === void 0 ? void 0 : housingAnswer.electricityIntensityKey)) return [3 /*break*/, 4];
                 return [4 /*yield*/, getData('electricity-intensity-factor', housingAnswer.electricityIntensityKey)];
             case 2:
-                data_1 = _k.sent();
-                if (data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) {
-                    electricityIntensityFactor = data_1.Item.value;
+                electricityData = _k.sent();
+                if (electricityData === null || electricityData === void 0 ? void 0 : electricityData.Item) {
+                    electricityIntensityFactor = electricityData.Item.value;
                 }
-                _k.label = 3;
+                return [4 /*yield*/, getData('car-charging', (mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carChargingKey) || 'unknown')];
             case 3:
-                if (!mobilityAnswer.hasPrivateCar) return [3 /*break*/, 9];
-                if (!mobilityAnswer.carIntensityFactorKey) return [3 /*break*/, 9];
+                carChargingData = _k.sent();
+                if (carChargingData === null || carChargingData === void 0 ? void 0 : carChargingData.Item) {
+                    electricityIntensityFactor *= carChargingData.Item.value;
+                }
+                _k.label = 4;
+            case 4:
+                if (!mobilityAnswer.hasPrivateCar) return [3 /*break*/, 11];
+                if (!mobilityAnswer.carIntensityFactorKey) return [3 /*break*/, 10];
                 drivingIntensity = createIntensity(baselines, 'private-car-driving');
                 ghgIntensityRatio = 1;
                 return [4 /*yield*/, getData('car-intensity-factor', mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor')];
-            case 4:
-                data_2 = _k.sent();
-                if (data_2 === null || data_2 === void 0 ? void 0 : data_2.Item) {
-                    ghgIntensityRatio *= data_2.Item.value;
+            case 5:
+                data_1 = _k.sent();
+                if (data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) {
+                    ghgIntensityRatio *= data_1.Item.value;
                 }
                 if (!(((_b = mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey) === null || _b === void 0 ? void 0 : _b.startsWith('phv_')) ||
-                    ((_c = mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey) === null || _c === void 0 ? void 0 : _c.startsWith('ev_')))) return [3 /*break*/, 6];
-                return [4 /*yield*/, getData('renewable-car-intensity-factor', mobilityAnswer.carIntensityFactorKey.replace('_driving-factor', '_driving-intensity'))];
-            case 5:
-                data_3 = _k.sent();
-                if (data_3 === null || data_3 === void 0 ? void 0 : data_3.Item) {
+                    ((_c = mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey) === null || _c === void 0 ? void 0 : _c.startsWith('ev_')))) return [3 /*break*/, 7];
+                return [4 /*yield*/, getData('renewable-car-intensity-factor', mobilityAnswer.carIntensityFactorKey)];
+            case 6:
+                data_2 = _k.sent();
+                if (data_2 === null || data_2 === void 0 ? void 0 : data_2.Item) {
                     ghgIntensityRatio =
                         ghgIntensityRatio * (1 - electricityIntensityFactor) +
-                            data_3.Item.value * electricityIntensityFactor;
+                            data_2.Item.value * electricityIntensityFactor;
                 }
-                _k.label = 6;
-            case 6: return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersKey || 'unknown_private-car-factor')];
-            case 7:
+                _k.label = 7;
+            case 7: return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersKey || 'unknown_private-car-factor')];
+            case 8:
                 // 人数補正値
-                data_2 = _k.sent();
-                passengerIntensityRatio = ((_d = data_2 === null || data_2 === void 0 ? void 0 : data_2.Item) === null || _d === void 0 ? void 0 : _d.value) || 1;
+                data_1 = _k.sent();
+                passengerIntensityRatio = ((_d = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _d === void 0 ? void 0 : _d.value) || 1;
                 purchaseIntensity = createIntensity(baselines, 'private-car-purchase');
                 return [4 /*yield*/, getData('car-intensity-factor', mobilityAnswer.carIntensityFactorKey.replace('_driving-factor', '_manufacturing-factor') || 'unknown_manufacturing-factor')];
-            case 8:
+            case 9:
                 purchaseData = _k.sent();
                 if (purchaseData === null || purchaseData === void 0 ? void 0 : purchaseData.Item) {
                     purchaseIntensity.value *= purchaseData.Item.value;
@@ -148,53 +154,64 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                 privateCarMaintenance.value *= mileageRatio;
                 estimations.push(privateCarPurchase);
                 estimations.push(privateCarMaintenance);
-                _k.label = 9;
-            case 9:
-                if (!mobilityAnswer.carPassengersKey) return [3 /*break*/, 11];
+                _k.label = 10;
+            case 10: return [3 /*break*/, 12];
+            case 11:
+                amount = createAmount(baselines, 'private-car-driving');
+                amount.value = 0;
+                estimations.push(amount);
+                privateCarPurchase = createAmount(baselines, 'private-car-purchase');
+                privateCarPurchase.value = 0;
+                estimations.push(privateCarPurchase);
+                privateCarMaintenance = createAmount(baselines, 'private-car-maintenance');
+                privateCarMaintenance.value = 0;
+                estimations.push(privateCarMaintenance);
+                _k.label = 12;
+            case 12:
+                if (!mobilityAnswer.carPassengersKey) return [3 /*break*/, 14];
                 intensity = createIntensity(baselines, 'taxi');
                 return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersKey.replace('_private-car-factor', '_taxi-factor'))];
-            case 10:
-                data_4 = _k.sent();
-                ratio = ((_e = data_4 === null || data_4 === void 0 ? void 0 : data_4.Item) === null || _e === void 0 ? void 0 : _e.value) || 1;
+            case 13:
+                data_3 = _k.sent();
+                ratio = ((_e = data_3 === null || data_3 === void 0 ? void 0 : data_3.Item) === null || _e === void 0 ? void 0 : _e.value) || 1;
                 intensity.value *= ratio;
                 estimations.push(intensity);
-                _k.label = 11;
-            case 11:
-                if (!(mobilityAnswer.carPassengersKey && mobilityAnswer.carIntensityFactorKey)) return [3 /*break*/, 17];
+                _k.label = 14;
+            case 14:
+                if (!(mobilityAnswer.carPassengersKey && mobilityAnswer.carIntensityFactorKey)) return [3 /*break*/, 20];
                 return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersKey)];
-            case 12:
+            case 15:
                 passengers = _k.sent();
                 passengerIntensityRatio = ((_f = passengers === null || passengers === void 0 ? void 0 : passengers.Item) === null || _f === void 0 ? void 0 : _f.value) || 1;
                 return [4 /*yield*/, getData('car-intensity-factor', mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor')];
-            case 13:
+            case 16:
                 driving = _k.sent();
                 ghgIntensityRatio = ((_g = driving === null || driving === void 0 ? void 0 : driving.Item) === null || _g === void 0 ? void 0 : _g.value) || 1;
                 if (!(((_h = mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey) === null || _h === void 0 ? void 0 : _h.startsWith('phv_')) ||
-                    ((_j = mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey) === null || _j === void 0 ? void 0 : _j.startsWith('ev_')))) return [3 /*break*/, 15];
-                return [4 /*yield*/, getData('renewable-car-intensity-factor', mobilityAnswer.carIntensityFactorKey.replace('_driving-factor', '_driving-intensity'))];
-            case 14:
-                data_5 = _k.sent();
-                if (data_5 === null || data_5 === void 0 ? void 0 : data_5.Item) {
+                    ((_j = mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey) === null || _j === void 0 ? void 0 : _j.startsWith('ev_')))) return [3 /*break*/, 18];
+                return [4 /*yield*/, getData('renewable-car-intensity-factor', mobilityAnswer.carIntensityFactorKey)];
+            case 17:
+                data_4 = _k.sent();
+                if (data_4 === null || data_4 === void 0 ? void 0 : data_4.Item) {
                     ghgIntensityRatio =
                         ghgIntensityRatio * (1 - electricityIntensityFactor) +
-                            data_5.Item.value * electricityIntensityFactor;
+                            data_4.Item.value * electricityIntensityFactor;
                 }
-                _k.label = 15;
-            case 15:
+                _k.label = 18;
+            case 18:
                 intensity = createIntensity(baselines, 'car-sharing-driving');
                 intensity.value *= ghgIntensityRatio * passengerIntensityRatio;
                 estimations.push(intensity);
                 return [4 /*yield*/, getData('car-intensity-factor', mobilityAnswer.carIntensityFactorKey.replace('_driving-factor', '_manufacturing-factor') || 'unknown_manufacturing-factor')];
-            case 16:
+            case 19:
                 rental = _k.sent();
                 if (rental === null || rental === void 0 ? void 0 : rental.Item) {
                     intensity_1 = createIntensity(baselines, 'car-sharing-rental');
                     intensity_1.value *= rental.Item.value;
                     estimations.push(intensity_1);
                 }
-                _k.label = 17;
-            case 17:
-                console.log('calculating weekly mileage');
+                _k.label = 20;
+            case 20:
                 estimationAmount = {
                     airplane: createAmount(baselines, 'airplane'),
                     train: createAmount(baselines, 'train'),
@@ -222,15 +239,15 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                     motorbike: 0,
                     otherCar: 0
                 };
-                if (!mobilityAnswer.hasWeeklyTravelingTime) return [3 /*break*/, 18];
+                if (!mobilityAnswer.hasWeeklyTravelingTime) return [3 /*break*/, 21];
                 weeklyTravelingTime.train = mobilityAnswer.trainWeeklyTravelingTime || 0;
                 weeklyTravelingTime.bus = mobilityAnswer.busWeeklyTravelingTime || 0;
                 weeklyTravelingTime.motorbike =
                     mobilityAnswer.motorbikeWeeklyTravelingTime || 0;
                 weeklyTravelingTime.otherCar =
                     mobilityAnswer.otherCarWeeklyTravelingTime || 0;
-                return [3 /*break*/, 20];
-            case 18:
+                return [3 /*break*/, 23];
+            case 21:
                 mileageByAreaFirstKey = mobilityAnswer.mileageByAreaFirstKey || 'unknown';
                 params_1 = {
                     TableName: parameterTableName,
@@ -246,12 +263,14 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                     }
                 };
                 return [4 /*yield*/, dynamodb.query(params_1).promise()];
-            case 19:
-                data_6 = _k.sent();
-                milageByArea = data_6.Items.reduce(function (a, x) {
+            case 22:
+                data_5 = _k.sent();
+                milageByArea = data_5.Items.reduce(function (a, x) {
                     a[x.key] = x.value;
                     return a;
                 }, {});
+                //=IF('2_CF推定質問'!$F$166='2_CF推定質問'!$W$166,'2_CF推定質問'!U191,'2_CF推定質問'!S186)
+                mileage.airplane = milageByArea[mileageByAreaFirstKey + '_airplane'];
                 mileage.train = milageByArea[mileageByAreaFirstKey + '_train'];
                 mileage.bus = milageByArea[mileageByAreaFirstKey + '_bus'];
                 mileage.motorbike =
@@ -259,9 +278,8 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                 mileage.taxi = milageByArea[mileageByAreaFirstKey + '_taxi'];
                 mileage.carSharing =
                     milageByArea[mileageByAreaFirstKey + '_car-sharing-driving'];
-                _k.label = 20;
-            case 20:
-                console.log('calculating annual mileage');
+                _k.label = 23;
+            case 23:
                 annualTravelingTime = {
                     otherCar: mobilityAnswer.otherCarAnnualTravelingTime || 0,
                     train: mobilityAnswer.trainAnnualTravelingTime || 0,
@@ -270,16 +288,14 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                     airplane: mobilityAnswer.airplaneAnnualTravelingTime || 0,
                     ferry: mobilityAnswer.ferryAnnualTravelingTime || 0
                 };
-                console.log('getting weeks-per-year-excluding-long-vacations');
                 return [4 /*yield*/, getData('misc', 'weeks-per-year-excluding-long-vacations')];
-            case 21:
+            case 24:
                 // 年間週数の取得
                 data = _k.sent();
                 weekCount = 49;
                 if (data === null || data === void 0 ? void 0 : data.Item) {
                     weekCount = data.Item.value;
                 }
-                console.log('getting transportation-speed');
                 paramsTransportation = {
                     TableName: parameterTableName,
                     KeyConditions: {
@@ -290,7 +306,7 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                     }
                 };
                 return [4 /*yield*/, dynamodb.query(paramsTransportation).promise()];
-            case 22:
+            case 25:
                 data = _k.sent();
                 speed = data.Items.reduce(function (a, x) {
                     a[x.key] = x.value;
@@ -334,7 +350,6 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                 estimations.push(estimationAmount.motorbikePurchase);
                 estimations.push(estimationAmount.carSharingRental);
                 estimations.push(estimationAmount.motorbikeMaintenance);
-                // console.log(JSON.stringify(estimations))
                 return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }
     });

@@ -51,12 +51,20 @@ const estimateMobility = async (
 
   // PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正
   if (housingAnswer?.electricityIntensityKey) {
-    const data = await getData(
+    const electricityData = await getData(
       'electricity-intensity-factor',
       housingAnswer.electricityIntensityKey
     )
-    if (data?.Item) {
-      electricityIntensityFactor = data.Item.value
+    if (electricityData?.Item) {
+      electricityIntensityFactor = electricityData.Item.value
+    }
+
+    const carChargingData = await getData(
+      'car-charging',
+      mobilityAnswer?.carChargingKey || 'unknown'
+    )
+    if (carChargingData?.Item) {
+      electricityIntensityFactor *= carChargingData.Item.value
     }
   }
 
@@ -86,10 +94,7 @@ const estimateMobility = async (
       ) {
         const data = await getData(
           'renewable-car-intensity-factor',
-          mobilityAnswer.carIntensityFactorKey.replace(
-            '_driving-factor',
-            '_driving-intensity'
-          )
+          mobilityAnswer.carIntensityFactorKey
         )
         if (data?.Item) {
           ghgIntensityRatio =
@@ -145,6 +150,19 @@ const estimateMobility = async (
       estimations.push(privateCarPurchase)
       estimations.push(privateCarMaintenance)
     }
+  } else {
+    const amount = createAmount(baselines, 'private-car-driving')
+    amount.value = 0
+    estimations.push(amount)
+    const privateCarPurchase = createAmount(baselines, 'private-car-purchase')
+    privateCarPurchase.value = 0
+    estimations.push(privateCarPurchase)
+    const privateCarMaintenance = createAmount(
+      baselines,
+      'private-car-maintenance'
+    )
+    privateCarMaintenance.value = 0
+    estimations.push(privateCarMaintenance)
   }
 
   // taxiのintensity補正。本来はtaxiの乗車人数を確認する必要があるがcarPassengersKeyのprivate_car_factorを代用
@@ -185,10 +203,7 @@ const estimateMobility = async (
     ) {
       const data = await getData(
         'renewable-car-intensity-factor',
-        mobilityAnswer.carIntensityFactorKey.replace(
-          '_driving-factor',
-          '_driving-intensity'
-        )
+        mobilityAnswer.carIntensityFactorKey
       )
       if (data?.Item) {
         ghgIntensityRatio =
@@ -215,8 +230,6 @@ const estimateMobility = async (
       estimations.push(intensity)
     }
   }
-
-  console.log('calculating weekly mileage')
 
   // <baselineを使用>
   // bicycle-driving
@@ -290,6 +303,8 @@ const estimateMobility = async (
       return a
     }, {})
 
+    //=IF('2_CF推定質問'!$F$166='2_CF推定質問'!$W$166,'2_CF推定質問'!U191,'2_CF推定質問'!S186)
+    mileage.airplane = milageByArea[mileageByAreaFirstKey + '_airplane']
     mileage.train = milageByArea[mileageByAreaFirstKey + '_train']
     mileage.bus = milageByArea[mileageByAreaFirstKey + '_bus']
     mileage.motorbike =
@@ -298,8 +313,6 @@ const estimateMobility = async (
     mileage.carSharing =
       milageByArea[mileageByAreaFirstKey + '_car-sharing-driving']
   }
-
-  console.log('calculating annual mileage')
 
   //
   // 昨年１年間で、旅行などで利用した移動手段を教えてください
@@ -313,16 +326,12 @@ const estimateMobility = async (
     ferry: mobilityAnswer.ferryAnnualTravelingTime || 0
   }
 
-  console.log('getting weeks-per-year-excluding-long-vacations')
-
   // 年間週数の取得
   data = await getData('misc', 'weeks-per-year-excluding-long-vacations')
   let weekCount = 49
   if (data?.Item) {
     weekCount = data.Item.value
   }
-
-  console.log('getting transportation-speed')
 
   // 時速の取得
   const paramsTransportation = {
@@ -395,8 +404,6 @@ const estimateMobility = async (
   estimations.push(estimationAmount.motorbikePurchase)
   estimations.push(estimationAmount.carSharingRental)
   estimations.push(estimationAmount.motorbikeMaintenance)
-
-  // console.log(JSON.stringify(estimations))
 
   return { baselines, estimations }
 }
