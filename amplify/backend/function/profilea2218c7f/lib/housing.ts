@@ -175,10 +175,6 @@ const estimateHousing = async (
       'electricity-season-factor',
       housingAnswer.electricitySeasonFactorKey
     )
-    // =IF('2_CF推定質問'!F24='2_CF推定質問'!W25,'2_CF推定質問'!U90,'2_CF推定質問'!S38)
-    console.log(
-      'electricitySeason.Item?.value = ' + electricitySeason.Item?.value
-    )
     // todo 電気時自動車分をどうやって取ってくるか
     estimationAmount.electricity.value =
       (housingAnswer.electricityMonthlyConsumption *

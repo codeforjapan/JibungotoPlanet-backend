@@ -32,6 +32,24 @@ describe('Housing Estimation', () => {
 
     const id = resPost.body.data.id
 
+    const logging = false
+    const log = (testCase, title, output) => {
+      if (logging) {
+        console.log(
+          'checking [' +
+            testCase.case +
+            '] ' +
+            title +
+            ' : ' +
+            output.domain +
+            '_' +
+            output.item +
+            '_' +
+            output.type
+        )
+      }
+    }
+
     // 生成したProfileに対してテストケースを順番に適用
     for (const testCase of testCases) {
       const resPut = await request(app)
@@ -54,16 +72,8 @@ describe('Housing Estimation', () => {
             e.item === estimation.item &&
             e.type === estimation.type
         )
-        console.log(
-          'checking [' +
-            testCase.case +
-            '] estimation : ' +
-            estimation.domain +
-            '_' +
-            estimation.item +
-            '_' +
-            estimation.type
-        )
+
+        log(testCase, 'estimation', estimation)
         expect(exp).not.toBeNull()
         expect(exp.estimated).toBeTruthy()
         expect(estimation.value).toBeCloseTo(exp.value)
@@ -77,16 +87,8 @@ describe('Housing Estimation', () => {
             e.item === exp.item &&
             e.type === exp.type
         )
-        console.log(
-          'checking [' +
-            testCase.case +
-            '] existence : ' +
-            exp.domain +
-            '_' +
-            exp.item +
-            '_' +
-            exp.type
-        )
+
+        log(testCase, 'existence', exp)
         expect(Boolean(estimation)).toBe(exp.estimated)
       }
 
@@ -107,16 +109,8 @@ describe('Housing Estimation', () => {
             b.type === exp.type
         )
         const result = estimation ? estimation : baseline
-        console.log(
-          'checking [' +
-            testCase.case +
-            '] result : ' +
-            result.domain +
-            '_' +
-            result.item +
-            '_' +
-            result.type
-        )
+
+        log(testCase, 'result', result)
         expect(result.value).toBeCloseTo(exp.value)
       }
 
@@ -128,16 +122,8 @@ describe('Housing Estimation', () => {
             b.item === baseline.item &&
             b.type === baseline.type
         )
-        console.log(
-          'checking [' +
-            testCase.case +
-            '] baseline : ' +
-            org.domain +
-            '_' +
-            org.item +
-            '_' +
-            org.type
-        )
+
+        log(testCase, 'baseline', org)
         expect(baseline.value).toBeCloseTo(org.value)
       }
     }
