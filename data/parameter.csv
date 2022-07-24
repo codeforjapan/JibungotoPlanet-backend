@@ -5,7 +5,7 @@ housing-size,3-room,40,m2,Assumption,2022-07-21T13:06:55.080Z,2022-07-21T13:06:5
 housing-size,4-room,60,m2,Assumption,2022-07-21T13:06:55.080Z,2022-07-21T13:06:55.080Z
 housing-size,5-6-room,80,m2,Assumption,2022-07-21T13:06:55.080Z,2022-07-21T13:06:55.080Z
 housing-size,7-more-room,120,m2,Assumption,2022-07-21T13:06:55.080Z,2022-07-21T13:06:55.080Z
-housing-size,unknown,90.86096384,m2,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-21T13:06:55.080Z,2022-07-21T13:06:55.080Z
+housing-size,unknown,38.99612182,m2-person,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-21T13:06:55.080Z,2022-07-21T13:06:55.080Z
 electricity-intensity,conventional,0.634319811,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-21T13:06:55.080Z,2022-07-21T13:06:55.080Z
 electricity-intensity,30-renewable,0.53349389,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-21T13:06:55.080Z,2022-07-21T13:06:55.080Z
 electricity-intensity,50-renewable,0.399059329,kgCO2e/kWh,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-21T13:06:55.080Z,2022-07-21T13:06:55.080Z
