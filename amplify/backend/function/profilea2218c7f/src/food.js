@@ -39,13 +39,13 @@ exports.__esModule = true;
 exports.estimateFood = void 0;
 var util_1 = require("./util");
 var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, estimations, params, data, baselines, foodIntakeFactor, estimationAmount, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio, dairyFoodFactor, dishBeefFactor, dishPorkFactor, dishChickenFactor, dishSeafoodFactor, alcoholFactor, alcoholFactor, softDrinkSnackFactor, eatOutFactor;
+    var createAmount, estimations, params, data, baselines, foodIntakeFactor, estimationAmount, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio, dairyFoodFactor, dishBeefFactor, dishPorkFactor, dishChickenFactor, dishSeafoodFactor, alcoholFactor, alcoholFactor, softDrinkSnackFactor, eatOutFactor;
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4;
     return __generator(this, function (_5) {
         switch (_5.label) {
             case 0:
-                findAmount = function (baselines, item) {
-                    return (0, util_1.findBaseline)(baselines, 'food', item, 'amount');
+                createAmount = function (baselines, item) {
+                    return (0, util_1.toEstimation)((0, util_1.findBaseline)(baselines, 'food', item, 'amount'));
                 };
                 estimations = [];
                 params = {
@@ -77,33 +77,33 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
             case 2:
                 foodIntakeFactor = _5.sent();
                 estimationAmount = {
-                    rice: findAmount(baselines, 'rice'),
-                    'bread-flour': findAmount(baselines, 'bread-flour'),
-                    noodle: findAmount(baselines, 'noodle'),
-                    potatoes: findAmount(baselines, 'potatoes'),
-                    vegetables: findAmount(baselines, 'vegetables'),
-                    'processed-vegetables': findAmount(baselines, 'processed-vegetables'),
-                    beans: findAmount(baselines, 'beans'),
-                    milk: findAmount(baselines, 'milk'),
-                    'other-dairy': findAmount(baselines, 'other-dairy'),
-                    eggs: findAmount(baselines, 'eggs'),
-                    beef: findAmount(baselines, 'beef'),
-                    pork: findAmount(baselines, 'pork'),
-                    chicken: findAmount(baselines, 'chicken'),
-                    'other-meat': findAmount(baselines, 'other-meat'),
-                    'processed-meat': findAmount(baselines, 'processed-meat'),
-                    fish: findAmount(baselines, 'fish'),
-                    'processed-fish': findAmount(baselines, 'processed-fish'),
-                    fruits: findAmount(baselines, 'fruits'),
-                    oil: findAmount(baselines, 'oil'),
-                    seasoning: findAmount(baselines, 'seasoning'),
-                    'sweets-snack': findAmount(baselines, 'sweets-snack'),
-                    'ready-meal': findAmount(baselines, 'ready-meal'),
-                    alcohol: findAmount(baselines, 'alcohol'),
-                    'coffee-tea': findAmount(baselines, 'coffee-tea'),
-                    'cold-drink': findAmount(baselines, 'cold-drink'),
-                    restaurant: findAmount(baselines, 'restaurant'),
-                    'bar-cafe': findAmount(baselines, 'bar-cafe')
+                    rice: createAmount(baselines, 'rice'),
+                    'bread-flour': createAmount(baselines, 'bread-flour'),
+                    noodle: createAmount(baselines, 'noodle'),
+                    potatoes: createAmount(baselines, 'potatoes'),
+                    vegetables: createAmount(baselines, 'vegetables'),
+                    'processed-vegetables': createAmount(baselines, 'processed-vegetables'),
+                    beans: createAmount(baselines, 'beans'),
+                    milk: createAmount(baselines, 'milk'),
+                    'other-dairy': createAmount(baselines, 'other-dairy'),
+                    eggs: createAmount(baselines, 'eggs'),
+                    beef: createAmount(baselines, 'beef'),
+                    pork: createAmount(baselines, 'pork'),
+                    chicken: createAmount(baselines, 'chicken'),
+                    'other-meat': createAmount(baselines, 'other-meat'),
+                    'processed-meat': createAmount(baselines, 'processed-meat'),
+                    fish: createAmount(baselines, 'fish'),
+                    'processed-fish': createAmount(baselines, 'processed-fish'),
+                    fruits: createAmount(baselines, 'fruits'),
+                    oil: createAmount(baselines, 'oil'),
+                    seasoning: createAmount(baselines, 'seasoning'),
+                    'sweets-snack': createAmount(baselines, 'sweets-snack'),
+                    'ready-meal': createAmount(baselines, 'ready-meal'),
+                    alcohol: createAmount(baselines, 'alcohol'),
+                    'coffee-tea': createAmount(baselines, 'coffee-tea'),
+                    'cold-drink': createAmount(baselines, 'cold-drink'),
+                    restaurant: createAmount(baselines, 'restaurant'),
+                    'bar-cafe': createAmount(baselines, 'bar-cafe')
                 };
                 if (!(foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey)) return [3 /*break*/, 21];
                 return [4 /*yield*/, dynamodb
@@ -304,9 +304,9 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                             (estimationAmount.beef.value +
                                 estimationAmount.pork.value +
                                 estimationAmount.chicken.value)) /
-                            (findAmount(baselines, 'beef').value +
-                                findAmount(baselines, 'pork').value +
-                                findAmount(baselines, 'chicken').value);
+                            (createAmount(baselines, 'beef').value +
+                                createAmount(baselines, 'pork').value +
+                                createAmount(baselines, 'chicken').value);
                     estimations.push((0, util_1.toEstimation)(estimationAmount['processed-meat']));
                 }
                 if (!foodAnswer.dishSeafoodFactorKey) return [3 /*break*/, 15];

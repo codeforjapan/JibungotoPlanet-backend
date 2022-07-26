@@ -7,8 +7,8 @@ const estimateFood = async (
   parameterTableName
 ) => {
   // foodのベースラインの取得
-  const findAmount = (baselines, item) =>
-    findBaseline(baselines, 'food', item, 'amount')
+  const createAmount = (baselines, item) =>
+    toEstimation(findBaseline(baselines, 'food', item, 'amount'))
 
   // const findIntensity = (baselines, item) => findBaseline(baselines, 'food', item, 'intensity')
 
@@ -46,33 +46,33 @@ const estimateFood = async (
     .promise()
 
   const estimationAmount = {
-    rice: findAmount(baselines, 'rice'),
-    'bread-flour': findAmount(baselines, 'bread-flour'),
-    noodle: findAmount(baselines, 'noodle'),
-    potatoes: findAmount(baselines, 'potatoes'),
-    vegetables: findAmount(baselines, 'vegetables'),
-    'processed-vegetables': findAmount(baselines, 'processed-vegetables'),
-    beans: findAmount(baselines, 'beans'),
-    milk: findAmount(baselines, 'milk'),
-    'other-dairy': findAmount(baselines, 'other-dairy'),
-    eggs: findAmount(baselines, 'eggs'),
-    beef: findAmount(baselines, 'beef'),
-    pork: findAmount(baselines, 'pork'),
-    chicken: findAmount(baselines, 'chicken'),
-    'other-meat': findAmount(baselines, 'other-meat'),
-    'processed-meat': findAmount(baselines, 'processed-meat'),
-    fish: findAmount(baselines, 'fish'),
-    'processed-fish': findAmount(baselines, 'processed-fish'),
-    fruits: findAmount(baselines, 'fruits'),
-    oil: findAmount(baselines, 'oil'),
-    seasoning: findAmount(baselines, 'seasoning'),
-    'sweets-snack': findAmount(baselines, 'sweets-snack'),
-    'ready-meal': findAmount(baselines, 'ready-meal'),
-    alcohol: findAmount(baselines, 'alcohol'),
-    'coffee-tea': findAmount(baselines, 'coffee-tea'),
-    'cold-drink': findAmount(baselines, 'cold-drink'),
-    restaurant: findAmount(baselines, 'restaurant'),
-    'bar-cafe': findAmount(baselines, 'bar-cafe')
+    rice: createAmount(baselines, 'rice'),
+    'bread-flour': createAmount(baselines, 'bread-flour'),
+    noodle: createAmount(baselines, 'noodle'),
+    potatoes: createAmount(baselines, 'potatoes'),
+    vegetables: createAmount(baselines, 'vegetables'),
+    'processed-vegetables': createAmount(baselines, 'processed-vegetables'),
+    beans: createAmount(baselines, 'beans'),
+    milk: createAmount(baselines, 'milk'),
+    'other-dairy': createAmount(baselines, 'other-dairy'),
+    eggs: createAmount(baselines, 'eggs'),
+    beef: createAmount(baselines, 'beef'),
+    pork: createAmount(baselines, 'pork'),
+    chicken: createAmount(baselines, 'chicken'),
+    'other-meat': createAmount(baselines, 'other-meat'),
+    'processed-meat': createAmount(baselines, 'processed-meat'),
+    fish: createAmount(baselines, 'fish'),
+    'processed-fish': createAmount(baselines, 'processed-fish'),
+    fruits: createAmount(baselines, 'fruits'),
+    oil: createAmount(baselines, 'oil'),
+    seasoning: createAmount(baselines, 'seasoning'),
+    'sweets-snack': createAmount(baselines, 'sweets-snack'),
+    'ready-meal': createAmount(baselines, 'ready-meal'),
+    alcohol: createAmount(baselines, 'alcohol'),
+    'coffee-tea': createAmount(baselines, 'coffee-tea'),
+    'cold-drink': createAmount(baselines, 'cold-drink'),
+    restaurant: createAmount(baselines, 'restaurant'),
+    'bar-cafe': createAmount(baselines, 'bar-cafe')
   }
 
   if (foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey) {
@@ -288,9 +288,9 @@ const estimateFood = async (
           (estimationAmount.beef.value +
             estimationAmount.pork.value +
             estimationAmount.chicken.value)) /
-        (findAmount(baselines, 'beef').value +
-          findAmount(baselines, 'pork').value +
-          findAmount(baselines, 'chicken').value)
+        (createAmount(baselines, 'beef').value +
+          createAmount(baselines, 'pork').value +
+          createAmount(baselines, 'chicken').value)
       estimations.push(toEstimation(estimationAmount['processed-meat']))
     }
 
