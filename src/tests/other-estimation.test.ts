@@ -45,7 +45,9 @@ describe('Other Estimation', () => {
       // 計算したestimationがexpectationとあっているを確認
       const estimations = resPut.body.data.estimations
 
-      for (const estimation of estimations) {
+      for (const estimation of estimations.filter(
+        (e) => e.domain === 'other'
+      )) {
         const exp = testCase.expectations.find(
           (e) =>
             e.domain === estimation.domain &&
@@ -90,7 +92,7 @@ describe('Other Estimation', () => {
       }
 
       // baselineが間違って書き換えられていないかを確認
-      for (const baseline of baselines) {
+      for (const baseline of baselines.filter((b) => b.domain === 'other')) {
         const org = originalBaselines.find(
           (b) =>
             b.domain === baseline.domain &&
