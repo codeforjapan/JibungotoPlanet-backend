@@ -236,7 +236,7 @@ const estimateFood = async (
       estimations.push(toEstimation(estimationAmount.beef))
     }
 
-    // 牛肉補正
+    // 豚肉補正
     let dishPorkFactor = null
     if (foodAnswer.dishPorkFactorKey) {
       dishPorkFactor = await dynamodb
@@ -287,9 +287,11 @@ const estimateFood = async (
         (estimationAmount['processed-meat'].value *
           (estimationAmount.beef.value +
             estimationAmount.pork.value +
+            estimationAmount['other-meat'].value +
             estimationAmount.chicken.value)) /
         (createAmount(baselines, 'beef').value +
           createAmount(baselines, 'pork').value +
+          createAmount(baselines, 'other-meat').value +
           createAmount(baselines, 'chicken').value)
       estimations.push(toEstimation(estimationAmount['processed-meat']))
     }
@@ -307,7 +309,7 @@ const estimateFood = async (
         .promise()
 
       estimationAmount.fish.value =
-        estimationAmount.pork.value *
+        estimationAmount.fish.value *
         dishSeafoodFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
       estimationAmount['processed-fish'].value =
@@ -316,25 +318,6 @@ const estimateFood = async (
         foodPurchaseAmountConsideringFoodLossRatio
       estimations.push(toEstimation(estimationAmount.fish))
       estimations.push(toEstimation(estimationAmount['processed-fish']))
-    }
-
-    // アルコール補正
-    if (foodAnswer.alcoholFactorKey) {
-      const alcoholFactor = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'alcohol-factor',
-            key: foodAnswer.alcoholFactorKey
-          }
-        })
-        .promise()
-
-      estimationAmount.alcohol.value =
-        estimationAmount.alcohol.value *
-        alcoholFactor.Item?.value *
-        foodPurchaseAmountConsideringFoodLossRatio
-      estimations.push(toEstimation(estimationAmount.alcohol))
     }
 
     // アルコール補正
