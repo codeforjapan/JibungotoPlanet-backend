@@ -147,7 +147,7 @@ type FoodAnswer {
   dishSeafoodFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
   dairyFoodFactorKey: String # 3-more-per-day|2-per-day|1-per-day|half-of-week|1-2-less-per-week|never|unknown
   # １週間にどのくらいの頻度でお酒を飲みますか？
-  alcoholFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-per-month|1-less-per-month|never|unknown
+  alcoholFactorKey: String # everyday|4-5-per-week|2-3-per-week|1-per-week|2-3-less-per-month|never|unknown
   # お酒以外の飲み物、お菓子類の1ヶ月の支出はどのくらいですか？
   softDrinkSnackFactorKey: String #3k-less|3k-5k|5k-10k|10k-15k|15k-more|unknown
   # 1ヶ月の外食費はどのくらいですか？
