@@ -300,11 +300,11 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 // 加工肉補正
                 if (dishBeefFactor && dishPorkFactor && dishChickenFactor) {
                     estimationAmount['processed-meat'].value =
-                        estimationAmount['processed-meat'].value *
+                        (estimationAmount['processed-meat'].value *
                             (estimationAmount.beef.value +
                                 estimationAmount.pork.value +
                                 estimationAmount['other-meat'].value +
-                                estimationAmount.chicken.value) /
+                                estimationAmount.chicken.value)) /
                             (createAmount(baselines, 'beef').value +
                                 createAmount(baselines, 'pork').value +
                                 createAmount(baselines, 'other-meat').value +
