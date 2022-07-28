@@ -39,11 +39,31 @@ exports.__esModule = true;
 exports.estimateFood = void 0;
 var util_1 = require("./util");
 var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var createAmount, estimations, params, data, baselines, foodIntakeFactor, estimationAmount, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio, dairyFoodFactor, dishBeefFactor, dishPorkFactor, dishChickenFactor, dishSeafoodFactor, alcoholFactor, softDrinkSnackFactor, eatOutFactor;
+    var getData, createAmount, estimations, params, data, baselines, foodIntakeFactor, estimationAmount, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio, dairyFoodFactor, dishBeefFactor, dishPorkFactor, dishChickenFactor, dishSeafoodFactor, alcoholFactor, softDrinkSnackFactor, eatOutFactor;
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3;
     return __generator(this, function (_4) {
         switch (_4.label) {
             case 0:
+                getData = function (category, key) { return __awaiter(void 0, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, dynamodb
+                                    .get({
+                                    TableName: parameterTableName,
+                                    Key: {
+                                        category: category,
+                                        key: key
+                                    }
+                                })
+                                    .promise()
+                                // foodのベースラインの取得
+                            ];
+                            case 1: return [2 /*return*/, _a.sent()
+                                // foodのベースラインの取得
+                            ];
+                        }
+                    });
+                }); };
                 createAmount = function (baselines, item) {
                     return (0, util_1.toEstimation)((0, util_1.findBaseline)(baselines, 'food', item, 'amount'));
                 };
@@ -65,15 +85,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 if (!foodAnswer) {
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'food-intake-factor',
-                            key: foodAnswer.foodIntakeFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('food-intake-factor', foodAnswer.foodIntakeFactorKey)];
             case 2:
                 foodIntakeFactor = _4.sent();
                 estimationAmount = {
@@ -106,26 +118,10 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     'bar-cafe': createAmount(baselines, 'bar-cafe')
                 };
                 if (!(foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey)) return [3 /*break*/, 19];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'food-direct-waste-factor',
-                            key: foodAnswer.foodDirectWasteFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('food-direct-waste-factor', foodAnswer.foodDirectWasteFactorKey)];
             case 3:
                 foodDirectWasteFactor = _4.sent();
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'food-leftover-factor',
-                            key: foodAnswer.foodLeftoverFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('food-leftover-factor', foodAnswer.foodLeftoverFactorKey)];
             case 4:
                 foodLeftoverFactor = _4.sent();
                 return [4 /*yield*/, dynamodb
@@ -204,15 +200,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 estimations.push(estimationAmount.seasoning);
                 estimations.push(estimationAmount['ready-meal']);
                 if (!foodAnswer.dairyFoodFactorKey) return [3 /*break*/, 7];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'dairy-food-factor',
-                            key: foodAnswer.dairyFoodFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('dairy-food-factor', foodAnswer.dairyFoodFactorKey)];
             case 6:
                 dairyFoodFactor = _4.sent();
                 estimationAmount.milk.value =
@@ -234,15 +222,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
             case 7:
                 dishBeefFactor = null;
                 if (!foodAnswer.dishBeefFactorKey) return [3 /*break*/, 9];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'dish-beef-factor',
-                            key: foodAnswer.dishBeefFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('dish-beef-factor', foodAnswer.dishBeefFactorKey)];
             case 8:
                 dishBeefFactor = _4.sent();
                 estimationAmount.beef.value =
@@ -254,15 +234,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
             case 9:
                 dishPorkFactor = null;
                 if (!foodAnswer.dishPorkFactorKey) return [3 /*break*/, 11];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'dish-pork-factor',
-                            key: foodAnswer.dishPorkFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('dish-pork-factor', foodAnswer.dishPorkFactorKey)];
             case 10:
                 dishPorkFactor = _4.sent();
                 estimationAmount.pork.value =
@@ -279,15 +251,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
             case 11:
                 dishChickenFactor = null;
                 if (!foodAnswer.dishChickenFactorKey) return [3 /*break*/, 13];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'dish-chicken-factor',
-                            key: foodAnswer.dishChickenFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('dish-chicken-factor', foodAnswer.dishChickenFactorKey)];
             case 12:
                 dishChickenFactor = _4.sent();
                 estimationAmount.chicken.value =
@@ -312,15 +276,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimations.push(estimationAmount['processed-meat']);
                 }
                 if (!foodAnswer.dishSeafoodFactorKey) return [3 /*break*/, 15];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'dish-seafood-factor',
-                            key: foodAnswer.dishSeafoodFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('dish-seafood-factor', foodAnswer.dishSeafoodFactorKey)];
             case 14:
                 dishSeafoodFactor = _4.sent();
                 estimationAmount.fish.value =
@@ -336,15 +292,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 _4.label = 15;
             case 15:
                 if (!foodAnswer.alcoholFactorKey) return [3 /*break*/, 17];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'alcohol-factor',
-                            key: foodAnswer.alcoholFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('alcohol-factor', foodAnswer.alcoholFactorKey)];
             case 16:
                 alcoholFactor = _4.sent();
                 estimationAmount.alcohol.value =
@@ -355,15 +303,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 _4.label = 17;
             case 17:
                 if (!foodAnswer.softDrinkSnackFactorKey) return [3 /*break*/, 19];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'soft-drink-snack-factor',
-                            key: foodAnswer.softDrinkSnackFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('soft-drink-snack-factor', foodAnswer.softDrinkSnackFactorKey)];
             case 18:
                 softDrinkSnackFactor = _4.sent();
                 estimationAmount['sweets-snack'].value =
@@ -384,15 +324,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 _4.label = 19;
             case 19:
                 if (!foodAnswer.eatOutFactorKey) return [3 /*break*/, 21];
-                return [4 /*yield*/, dynamodb
-                        .get({
-                        TableName: parameterTableName,
-                        Key: {
-                            category: 'eat-out-factor',
-                            key: foodAnswer.eatOutFactorKey
-                        }
-                    })
-                        .promise()];
+                return [4 /*yield*/, getData('eat-out-factor', foodAnswer.eatOutFactorKey)];
             case 20:
                 eatOutFactor = _4.sent();
                 estimationAmount.restaurant.value =

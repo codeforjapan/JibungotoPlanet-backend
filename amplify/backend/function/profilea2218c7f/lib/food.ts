@@ -6,11 +6,22 @@ const estimateFood = async (
   footprintTableName,
   parameterTableName
 ) => {
+  const getData = async (category, key) =>
+    await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: category,
+          key: key
+        }
+      })
+      .promise()
+
   // foodのベースラインの取得
   const createAmount = (baselines, item) =>
     toEstimation(findBaseline(baselines, 'food', item, 'amount'))
-
-  // const findIntensity = (baselines, item) => findBaseline(baselines, 'food', item, 'intensity')
+  // const createIntensity = (item) =>
+  //   toEstimation(findBaseline(baselines, 'housing', item, 'intensity'))
 
   // foodAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -35,15 +46,10 @@ const estimateFood = async (
     return { baselines, estimations }
   }
 
-  const foodIntakeFactor = await dynamodb
-    .get({
-      TableName: parameterTableName,
-      Key: {
-        category: 'food-intake-factor',
-        key: foodAnswer.foodIntakeFactorKey
-      }
-    })
-    .promise()
+  const foodIntakeFactor = await getData(
+    'food-intake-factor',
+    foodAnswer.foodIntakeFactorKey
+  )
 
   const estimationAmount = {
     rice: createAmount(baselines, 'rice'),
@@ -76,25 +82,15 @@ const estimateFood = async (
   }
 
   if (foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey) {
-    const foodDirectWasteFactor = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: 'food-direct-waste-factor',
-          key: foodAnswer.foodDirectWasteFactorKey
-        }
-      })
-      .promise()
+    const foodDirectWasteFactor = await getData(
+      'food-direct-waste-factor',
+      foodAnswer.foodDirectWasteFactorKey
+    )
 
-    const foodLeftoverFactor = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: 'food-leftover-factor',
-          key: foodAnswer.foodLeftoverFactorKey
-        }
-      })
-      .promise()
+    const foodLeftoverFactor = await getData(
+      'food-leftover-factor',
+      foodAnswer.foodLeftoverFactorKey
+    )
 
     const foodWastRatio = await dynamodb
       .query({
@@ -107,6 +103,7 @@ const estimateFood = async (
         }
       })
       .promise()
+
     const leftoverRatio = foodWastRatio.Items.find(
       (item) => item.key === 'leftover-per-food-waste'
     )
@@ -189,15 +186,10 @@ const estimateFood = async (
 
     // 乳製品補正
     if (foodAnswer.dairyFoodFactorKey) {
-      const dairyFoodFactor = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'dairy-food-factor',
-            key: foodAnswer.dairyFoodFactorKey
-          }
-        })
-        .promise()
+      const dairyFoodFactor = await getData(
+        'dairy-food-factor',
+        foodAnswer.dairyFoodFactorKey
+      )
 
       estimationAmount.milk.value =
         estimationAmount.milk.value *
@@ -219,15 +211,10 @@ const estimateFood = async (
     // 牛肉補正
     let dishBeefFactor = null
     if (foodAnswer.dishBeefFactorKey) {
-      dishBeefFactor = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'dish-beef-factor',
-            key: foodAnswer.dishBeefFactorKey
-          }
-        })
-        .promise()
+      dishBeefFactor = await getData(
+        'dish-beef-factor',
+        foodAnswer.dishBeefFactorKey
+      )
 
       estimationAmount.beef.value =
         estimationAmount.beef.value *
@@ -239,15 +226,10 @@ const estimateFood = async (
     // 豚肉補正
     let dishPorkFactor = null
     if (foodAnswer.dishPorkFactorKey) {
-      dishPorkFactor = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'dish-pork-factor',
-            key: foodAnswer.dishPorkFactorKey
-          }
-        })
-        .promise()
+      dishPorkFactor = await getData(
+        'dish-pork-factor',
+        foodAnswer.dishPorkFactorKey
+      )
 
       estimationAmount.pork.value =
         estimationAmount.pork.value *
@@ -264,15 +246,10 @@ const estimateFood = async (
     // 鶏肉補正
     let dishChickenFactor = null
     if (foodAnswer.dishChickenFactorKey) {
-      dishChickenFactor = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'dish-chicken-factor',
-            key: foodAnswer.dishChickenFactorKey
-          }
-        })
-        .promise()
+      dishChickenFactor = await getData(
+        'dish-chicken-factor',
+        foodAnswer.dishChickenFactorKey
+      )
 
       estimationAmount.chicken.value =
         estimationAmount.chicken.value *
@@ -298,15 +275,10 @@ const estimateFood = async (
 
     // 魚補正
     if (foodAnswer.dishSeafoodFactorKey) {
-      const dishSeafoodFactor = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'dish-seafood-factor',
-            key: foodAnswer.dishSeafoodFactorKey
-          }
-        })
-        .promise()
+      const dishSeafoodFactor = await getData(
+        'dish-seafood-factor',
+        foodAnswer.dishSeafoodFactorKey
+      )
 
       estimationAmount.fish.value =
         estimationAmount.fish.value *
@@ -322,15 +294,10 @@ const estimateFood = async (
 
     // アルコール補正
     if (foodAnswer.alcoholFactorKey) {
-      const alcoholFactor = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'alcohol-factor',
-            key: foodAnswer.alcoholFactorKey
-          }
-        })
-        .promise()
+      const alcoholFactor = await getData(
+        'alcohol-factor',
+        foodAnswer.alcoholFactorKey
+      )
 
       estimationAmount.alcohol.value =
         estimationAmount.alcohol.value *
@@ -341,15 +308,10 @@ const estimateFood = async (
 
     // 菓子など補正
     if (foodAnswer.softDrinkSnackFactorKey) {
-      const softDrinkSnackFactor = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: 'soft-drink-snack-factor',
-            key: foodAnswer.softDrinkSnackFactorKey
-          }
-        })
-        .promise()
+      const softDrinkSnackFactor = await getData(
+        'soft-drink-snack-factor',
+        foodAnswer.softDrinkSnackFactorKey
+      )
 
       estimationAmount['sweets-snack'].value =
         estimationAmount['sweets-snack'].value *
@@ -371,15 +333,10 @@ const estimateFood = async (
 
   // 外食部分の計算
   if (foodAnswer.eatOutFactorKey) {
-    const eatOutFactor = await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: 'eat-out-factor',
-          key: foodAnswer.eatOutFactorKey
-        }
-      })
-      .promise()
+    const eatOutFactor = await getData(
+      'eat-out-factor',
+      foodAnswer.eatOutFactorKey
+    )
     estimationAmount.restaurant.value =
       estimationAmount.restaurant.value * eatOutFactor.Item?.value
     estimationAmount['bar-cafe'].value =
