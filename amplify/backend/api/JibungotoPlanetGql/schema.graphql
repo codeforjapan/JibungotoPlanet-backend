@@ -136,7 +136,7 @@ type MobilityAnswer {
 # 食に関する質問の回答
 type FoodAnswer {
   # 1日の活動量（摂取カロリー量）はどのくらいですか？
-  foodIntakeFactorKey: String # very-little|somewhat-little|moderate|somewhat-much|very-much
+  foodIntakeFactorKey: String # very-little|somewhat-little|moderate|somewhat-much|very-much|unknown
   # 食材を捨てたり食べ残し（食品ロス）が生じる頻度はどのくらいですか？
   foodDirectWasteFactorKey: String # seldom|1-per-week|2-3-per-week|4-7-per-week|8-more-per-week|unknown
   foodLeftoverFactorKey: String # seldom|1-per-week|2-3-per-week|4-7-per-week|8-more-per-week|unknown
