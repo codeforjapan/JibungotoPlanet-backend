@@ -192,17 +192,17 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount['ready-meal'].value *
                         ((_o = foodIntakeFactor.Item) === null || _o === void 0 ? void 0 : _o.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
-                estimations.push((0, util_1.toEstimation)(estimationAmount.rice));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['bread-flour']));
-                estimations.push((0, util_1.toEstimation)(estimationAmount.noodle));
-                estimations.push((0, util_1.toEstimation)(estimationAmount.potatoes));
-                estimations.push((0, util_1.toEstimation)(estimationAmount.vegetables));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['processed-vegetables']));
-                estimations.push((0, util_1.toEstimation)(estimationAmount.beans));
-                estimations.push((0, util_1.toEstimation)(estimationAmount.fruits));
-                estimations.push((0, util_1.toEstimation)(estimationAmount.oil));
-                estimations.push((0, util_1.toEstimation)(estimationAmount.seasoning));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['ready-meal']));
+                estimations.push(estimationAmount.rice);
+                estimations.push(estimationAmount['bread-flour']);
+                estimations.push(estimationAmount.noodle);
+                estimations.push(estimationAmount.potatoes);
+                estimations.push(estimationAmount.vegetables);
+                estimations.push(estimationAmount['processed-vegetables']);
+                estimations.push(estimationAmount.beans);
+                estimations.push(estimationAmount.fruits);
+                estimations.push(estimationAmount.oil);
+                estimations.push(estimationAmount.seasoning);
+                estimations.push(estimationAmount['ready-meal']);
                 if (!foodAnswer.dairyFoodFactorKey) return [3 /*break*/, 7];
                 return [4 /*yield*/, dynamodb
                         .get({
@@ -227,9 +227,9 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount.eggs.value *
                         ((_r = dairyFoodFactor.Item) === null || _r === void 0 ? void 0 : _r.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
-                estimations.push((0, util_1.toEstimation)(estimationAmount.milk));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['other-dairy']));
-                estimations.push((0, util_1.toEstimation)(estimationAmount.eggs));
+                estimations.push(estimationAmount.milk);
+                estimations.push(estimationAmount['other-dairy']);
+                estimations.push(estimationAmount.eggs);
                 _4.label = 7;
             case 7:
                 dishBeefFactor = null;
@@ -249,7 +249,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount.beef.value *
                         ((_s = dishBeefFactor.Item) === null || _s === void 0 ? void 0 : _s.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
-                estimations.push((0, util_1.toEstimation)(estimationAmount.beef));
+                estimations.push(estimationAmount.beef);
                 _4.label = 9;
             case 9:
                 dishPorkFactor = null;
@@ -273,8 +273,8 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount['other-meat'].value *
                         ((_u = dishPorkFactor.Item) === null || _u === void 0 ? void 0 : _u.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
-                estimations.push((0, util_1.toEstimation)(estimationAmount.pork));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['other-meat']));
+                estimations.push(estimationAmount.pork);
+                estimations.push(estimationAmount['other-meat']);
                 _4.label = 11;
             case 11:
                 dishChickenFactor = null;
@@ -294,7 +294,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount.chicken.value *
                         ((_v = dishChickenFactor.Item) === null || _v === void 0 ? void 0 : _v.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
-                estimations.push((0, util_1.toEstimation)(estimationAmount.chicken));
+                estimations.push(estimationAmount.chicken);
                 _4.label = 13;
             case 13:
                 // 加工肉補正
@@ -309,7 +309,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                                 createAmount(baselines, 'pork').value +
                                 createAmount(baselines, 'other-meat').value +
                                 createAmount(baselines, 'chicken').value);
-                    estimations.push((0, util_1.toEstimation)(estimationAmount['processed-meat']));
+                    estimations.push(estimationAmount['processed-meat']);
                 }
                 if (!foodAnswer.dishSeafoodFactorKey) return [3 /*break*/, 15];
                 return [4 /*yield*/, dynamodb
@@ -331,8 +331,8 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount['processed-fish'].value *
                         ((_x = dishSeafoodFactor.Item) === null || _x === void 0 ? void 0 : _x.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
-                estimations.push((0, util_1.toEstimation)(estimationAmount.fish));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['processed-fish']));
+                estimations.push(estimationAmount.fish);
+                estimations.push(estimationAmount['processed-fish']);
                 _4.label = 15;
             case 15:
                 if (!foodAnswer.alcoholFactorKey) return [3 /*break*/, 17];
@@ -351,7 +351,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount.alcohol.value *
                         ((_y = alcoholFactor.Item) === null || _y === void 0 ? void 0 : _y.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
-                estimations.push((0, util_1.toEstimation)(estimationAmount.alcohol));
+                estimations.push(estimationAmount.alcohol);
                 _4.label = 17;
             case 17:
                 if (!foodAnswer.softDrinkSnackFactorKey) return [3 /*break*/, 19];
@@ -378,9 +378,9 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount['cold-drink'].value *
                         ((_1 = softDrinkSnackFactor.Item) === null || _1 === void 0 ? void 0 : _1.value) *
                         foodPurchaseAmountConsideringFoodLossRatio;
-                estimations.push((0, util_1.toEstimation)(estimationAmount['sweets-snack']));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['coffee-tea']));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['cold-drink']));
+                estimations.push(estimationAmount['sweets-snack']);
+                estimations.push(estimationAmount['coffee-tea']);
+                estimations.push(estimationAmount['cold-drink']);
                 _4.label = 19;
             case 19:
                 if (!foodAnswer.eatOutFactorKey) return [3 /*break*/, 21];
@@ -399,8 +399,8 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount.restaurant.value * ((_2 = eatOutFactor.Item) === null || _2 === void 0 ? void 0 : _2.value);
                 estimationAmount['bar-cafe'].value =
                     estimationAmount['bar-cafe'].value * ((_3 = eatOutFactor.Item) === null || _3 === void 0 ? void 0 : _3.value);
-                estimations.push((0, util_1.toEstimation)(estimationAmount.restaurant));
-                estimations.push((0, util_1.toEstimation)(estimationAmount['bar-cafe']));
+                estimations.push(estimationAmount.restaurant);
+                estimations.push(estimationAmount['bar-cafe']);
                 _4.label = 21;
             case 21:
                 console.log(JSON.stringify(estimations));

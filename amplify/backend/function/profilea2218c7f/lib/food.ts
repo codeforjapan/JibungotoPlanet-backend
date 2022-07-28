@@ -171,17 +171,17 @@ const estimateFood = async (
       estimationAmount['ready-meal'].value *
       foodIntakeFactor.Item?.value *
       foodPurchaseAmountConsideringFoodLossRatio
-    estimations.push(toEstimation(estimationAmount.rice))
-    estimations.push(toEstimation(estimationAmount['bread-flour']))
-    estimations.push(toEstimation(estimationAmount.noodle))
-    estimations.push(toEstimation(estimationAmount.potatoes))
-    estimations.push(toEstimation(estimationAmount.vegetables))
-    estimations.push(toEstimation(estimationAmount['processed-vegetables']))
-    estimations.push(toEstimation(estimationAmount.beans))
-    estimations.push(toEstimation(estimationAmount.fruits))
-    estimations.push(toEstimation(estimationAmount.oil))
-    estimations.push(toEstimation(estimationAmount.seasoning))
-    estimations.push(toEstimation(estimationAmount['ready-meal']))
+    estimations.push(estimationAmount.rice)
+    estimations.push(estimationAmount['bread-flour'])
+    estimations.push(estimationAmount.noodle)
+    estimations.push(estimationAmount.potatoes)
+    estimations.push(estimationAmount.vegetables)
+    estimations.push(estimationAmount['processed-vegetables'])
+    estimations.push(estimationAmount.beans)
+    estimations.push(estimationAmount.fruits)
+    estimations.push(estimationAmount.oil)
+    estimations.push(estimationAmount.seasoning)
+    estimations.push(estimationAmount['ready-meal'])
 
     //
     // 答えに従ってestimationを計算
@@ -211,9 +211,9 @@ const estimateFood = async (
         estimationAmount.eggs.value *
         dairyFoodFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
-      estimations.push(toEstimation(estimationAmount.milk))
-      estimations.push(toEstimation(estimationAmount['other-dairy']))
-      estimations.push(toEstimation(estimationAmount.eggs))
+      estimations.push(estimationAmount.milk)
+      estimations.push(estimationAmount['other-dairy'])
+      estimations.push(estimationAmount.eggs)
     }
 
     // 牛肉補正
@@ -233,7 +233,7 @@ const estimateFood = async (
         estimationAmount.beef.value *
         dishBeefFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
-      estimations.push(toEstimation(estimationAmount.beef))
+      estimations.push(estimationAmount.beef)
     }
 
     // 豚肉補正
@@ -257,8 +257,8 @@ const estimateFood = async (
         estimationAmount['other-meat'].value *
         dishPorkFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
-      estimations.push(toEstimation(estimationAmount.pork))
-      estimations.push(toEstimation(estimationAmount['other-meat']))
+      estimations.push(estimationAmount.pork)
+      estimations.push(estimationAmount['other-meat'])
     }
 
     // 鶏肉補正
@@ -278,7 +278,7 @@ const estimateFood = async (
         estimationAmount.chicken.value *
         dishChickenFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
-      estimations.push(toEstimation(estimationAmount.chicken))
+      estimations.push(estimationAmount.chicken)
     }
 
     // 加工肉補正
@@ -293,7 +293,7 @@ const estimateFood = async (
           createAmount(baselines, 'pork').value +
           createAmount(baselines, 'other-meat').value +
           createAmount(baselines, 'chicken').value)
-      estimations.push(toEstimation(estimationAmount['processed-meat']))
+      estimations.push(estimationAmount['processed-meat'])
     }
 
     // 魚補正
@@ -316,8 +316,8 @@ const estimateFood = async (
         estimationAmount['processed-fish'].value *
         dishSeafoodFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
-      estimations.push(toEstimation(estimationAmount.fish))
-      estimations.push(toEstimation(estimationAmount['processed-fish']))
+      estimations.push(estimationAmount.fish)
+      estimations.push(estimationAmount['processed-fish'])
     }
 
     // アルコール補正
@@ -336,7 +336,7 @@ const estimateFood = async (
         estimationAmount.alcohol.value *
         alcoholFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
-      estimations.push(toEstimation(estimationAmount.alcohol))
+      estimations.push(estimationAmount.alcohol)
     }
 
     // 菓子など補正
@@ -363,9 +363,9 @@ const estimateFood = async (
         estimationAmount['cold-drink'].value *
         softDrinkSnackFactor.Item?.value *
         foodPurchaseAmountConsideringFoodLossRatio
-      estimations.push(toEstimation(estimationAmount['sweets-snack']))
-      estimations.push(toEstimation(estimationAmount['coffee-tea']))
-      estimations.push(toEstimation(estimationAmount['cold-drink']))
+      estimations.push(estimationAmount['sweets-snack'])
+      estimations.push(estimationAmount['coffee-tea'])
+      estimations.push(estimationAmount['cold-drink'])
     }
   }
 
@@ -384,8 +384,8 @@ const estimateFood = async (
       estimationAmount.restaurant.value * eatOutFactor.Item?.value
     estimationAmount['bar-cafe'].value =
       estimationAmount['bar-cafe'].value * eatOutFactor.Item?.value
-    estimations.push(toEstimation(estimationAmount.restaurant))
-    estimations.push(toEstimation(estimationAmount['bar-cafe']))
+    estimations.push(estimationAmount.restaurant)
+    estimations.push(estimationAmount['bar-cafe'])
   }
 
   console.log(JSON.stringify(estimations))
