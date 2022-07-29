@@ -74,7 +74,7 @@ const estimateMobility = async (
 
   // 自家用車をお持ちですか？がYesの場合
   if (mobilityAnswer.hasPrivateCar) {
-    if (mobilityAnswer.carIntensityFactorKey) {
+    if (mobilityAnswer?.carIntensityFactorKey) {
       const drivingIntensity = createIntensity(baselines, 'private-car-driving')
 
       // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
@@ -89,8 +89,8 @@ const estimateMobility = async (
 
       // PHV, EVの補正
       if (
-        mobilityAnswer?.carIntensityFactorKey?.startsWith('phv_') ||
-        mobilityAnswer?.carIntensityFactorKey?.startsWith('ev_')
+        mobilityAnswer.carIntensityFactorKey?.startsWith('phv_') ||
+        mobilityAnswer.carIntensityFactorKey?.startsWith('ev_')
       ) {
         const data = await getData(
           'renewable-car-intensity-factor',

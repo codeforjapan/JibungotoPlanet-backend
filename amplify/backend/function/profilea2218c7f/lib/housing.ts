@@ -176,11 +176,42 @@ const estimateHousing = async (
       'electricity-season-factor',
       housingAnswer.electricitySeasonFactorKey
     )
-    // todo 電気時自動車分をどうやって取ってくるか
+
+    let mobilityElectricityAmount = 0
+    // PHV, EVの補正
+    if (
+      mobilityAnswer?.hasPrivateCar &&
+      (mobilityAnswer?.carIntensityFactorKey?.startsWith('phv_') ||
+        mobilityAnswer?.carIntensityFactorKey?.startsWith('ev_')) &&
+      mobilityAnswer?.privateCarAnnualMileage &&
+      mobilityAnswer?.carChargingKey
+    ) {
+      const electricityData = await getData(
+        'car-intensity-factor',
+        mobilityAnswer.carIntensityFactorKey.replace(
+          '_driving-factor',
+          '_electricity-intensity'
+        )
+      )
+      const mobilityElectricity = electricityData?.Item?.value || 1
+
+      const chargingData = await getData(
+        'car-charging',
+        mobilityAnswer.carChargingKey
+      )
+
+      const mobilityCharging = chargingData?.Item?.value || 1
+      mobilityElectricityAmount =
+        mobilityAnswer.privateCarAnnualMileage *
+        mobilityElectricity *
+        mobilityCharging
+    }
+
     estimationAmount.electricity.value =
       (housingAnswer.electricityMonthlyConsumption *
         electricitySeason.Item?.value) /
-      residentCount
+        residentCount -
+      mobilityElectricityAmount
     pushOrUpdateEstimate('electricity', 'amount', estimationAmount.electricity)
   }
 

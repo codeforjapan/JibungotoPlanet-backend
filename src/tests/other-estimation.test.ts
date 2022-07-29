@@ -32,7 +32,7 @@ describe('Other Estimation', () => {
 
     const id = resPost.body.data.id
 
-    const logging = true
+    const logging = false
     const log = (testCase, title, output) => {
       if (logging) {
         console.log(

@@ -107,7 +107,7 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                 _k.label = 4;
             case 4:
                 if (!mobilityAnswer.hasPrivateCar) return [3 /*break*/, 11];
-                if (!mobilityAnswer.carIntensityFactorKey) return [3 /*break*/, 10];
+                if (!(mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey)) return [3 /*break*/, 10];
                 drivingIntensity = createIntensity(baselines, 'private-car-driving');
                 ghgIntensityRatio = 1;
                 return [4 /*yield*/, getData('car-intensity-factor', mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor')];
@@ -116,8 +116,8 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                 if (data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) {
                     ghgIntensityRatio *= data_1.Item.value;
                 }
-                if (!(((_b = mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey) === null || _b === void 0 ? void 0 : _b.startsWith('phv_')) ||
-                    ((_c = mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorKey) === null || _c === void 0 ? void 0 : _c.startsWith('ev_')))) return [3 /*break*/, 7];
+                if (!(((_b = mobilityAnswer.carIntensityFactorKey) === null || _b === void 0 ? void 0 : _b.startsWith('phv_')) ||
+                    ((_c = mobilityAnswer.carIntensityFactorKey) === null || _c === void 0 ? void 0 : _c.startsWith('ev_')))) return [3 /*break*/, 7];
                 return [4 /*yield*/, getData('renewable-car-intensity-factor', mobilityAnswer.carIntensityFactorKey)];
             case 6:
                 data_2 = _k.sent();
