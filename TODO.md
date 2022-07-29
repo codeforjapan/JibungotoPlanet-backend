@@ -25,3 +25,5 @@
 - option の args に複数の値を設定する場合は、AND 区切りではなく、スペース区切りでお願いします。また、各々の項目の前に"mobility+\_"等、domain+"\_"を加えて下さい。
 - 参考）question-answer-to-target, question-answer-to-target-inverse, question-reduction-rate はこれから実装でもしかすると args の内容の変更をお願いするかもしれません。
 - parameter の renewable-car-intensity-factor の phv-driving-intensity を phv_driving-intensity に変更する。
+- footprint シートの A1=dirAndDomain->dir_domain, B1=itemAndType->item_type へ変更。
+- parameter, footprint, option, optionIntensityRate の createdAt, updatedAt を定数に変更。
