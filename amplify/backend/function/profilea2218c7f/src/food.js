@@ -39,7 +39,7 @@ exports.__esModule = true;
 exports.estimateFood = void 0;
 var util_1 = require("./util");
 var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var getData, createAmount, estimations, params, data, baselines, foodIntakeFactor, estimationAmount, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio, dairyFoodFactor, dishBeefFactor, dishPorkFactor, dishChickenFactor, dishSeafoodFactor, alcoholFactor, softDrinkSnackFactor, eatOutFactor;
+    var getData, createAmount, createIntensity, getCategoryBaseTotal, getCategoryCustomTotal, estimations, params, data, baselines, foodIntakeFactor, estimationAmount, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio, dairyFoodFactor, dishBeefFactor, dishPorkFactor, dishChickenFactor, dishSeafoodFactor, alcoholFactor, softDrinkSnackFactor, beforeReadyMealKeyArray, readyMealIntensity_1, currentTotalAmount, baseTotalAmount, eatOutFactor, EatOutArray, eatOutIntensityResult, restaurantIntensity, barCafeIntensity;
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3;
     return __generator(this, function (_4) {
         switch (_4.label) {
@@ -66,6 +66,16 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 }); };
                 createAmount = function (baselines, item) {
                     return (0, util_1.toEstimation)((0, util_1.findBaseline)(baselines, 'food', item, 'amount'));
+                };
+                createIntensity = function (item) {
+                    return (0, util_1.toEstimation)((0, util_1.findBaseline)(baselines, 'food', item, 'intensity'));
+                };
+                getCategoryBaseTotal = function (item) {
+                    return (0, util_1.findBaseline)(baselines, 'food', item, 'amount').value *
+                        (0, util_1.findBaseline)(baselines, 'food', item, 'intensity').value;
+                };
+                getCategoryCustomTotal = function (item, value) {
+                    return value * (0, util_1.findBaseline)(baselines, 'food', item, 'intensity').value;
                 };
                 estimations = [];
                 params = {
@@ -117,7 +127,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     restaurant: createAmount(baselines, 'restaurant'),
                     'bar-cafe': createAmount(baselines, 'bar-cafe')
                 };
-                if (!(foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey)) return [3 /*break*/, 19];
+                if (!(foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey)) return [3 /*break*/, 21];
                 return [4 /*yield*/, getData('food-direct-waste-factor', foodAnswer.foodDirectWasteFactorKey)];
             case 3:
                 foodDirectWasteFactor = _4.sent();
@@ -323,6 +333,41 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 estimations.push(estimationAmount['cold-drink']);
                 _4.label = 19;
             case 19:
+                beforeReadyMealKeyArray = [
+                    'rice',
+                    'bread-flour',
+                    'noodle',
+                    'potatoes',
+                    'vegetables',
+                    'processed-vegetables',
+                    'beans',
+                    'milk',
+                    'other-dairy',
+                    'eggs',
+                    'beef',
+                    'pork',
+                    'chicken',
+                    'other-meat',
+                    'processed-meat',
+                    'fish',
+                    'processed-fish',
+                    'fruits',
+                    'oil',
+                    'seasoning',
+                    'sweets-snack'
+                ];
+                readyMealIntensity_1 = createIntensity('ready-meal');
+                currentTotalAmount = beforeReadyMealKeyArray.reduce(function (res, key) { return res + estimationAmount[key].value; }, 0);
+                baseTotalAmount = beforeReadyMealKeyArray.reduce(function (res, key) { return res + (0, util_1.findBaseline)(baselines, 'food', key, 'amount').value; }, 0);
+                readyMealIntensity_1.value =
+                    (readyMealIntensity_1.value *
+                        (beforeReadyMealKeyArray.reduce(function (res, key) {
+                            return res + getCategoryCustomTotal(key, estimationAmount[key].value);
+                        }, 0) /
+                            currentTotalAmount)) /
+                        (beforeReadyMealKeyArray.reduce(function (res, key) { return res + getCategoryBaseTotal(key); }, 0) /
+                            baseTotalAmount);
+                estimations.push(readyMealIntensity_1);
                 if (!foodAnswer.eatOutFactorKey) return [3 /*break*/, 21];
                 return [4 /*yield*/, getData('eat-out-factor', foodAnswer.eatOutFactorKey)];
             case 20:
@@ -333,6 +378,55 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     estimationAmount['bar-cafe'].value * ((_3 = eatOutFactor.Item) === null || _3 === void 0 ? void 0 : _3.value);
                 estimations.push(estimationAmount.restaurant);
                 estimations.push(estimationAmount['bar-cafe']);
+                EatOutArray = [
+                    'rice',
+                    'bread-flour',
+                    'noodle',
+                    'potatoes',
+                    'vegetables',
+                    'processed-vegetables',
+                    'beans',
+                    'milk',
+                    'other-dairy',
+                    'eggs',
+                    'beef',
+                    'pork',
+                    'chicken',
+                    'other-meat',
+                    'processed-meat',
+                    'fish',
+                    'processed-fish',
+                    'fruits',
+                    'oil',
+                    'seasoning',
+                    'sweets-snack',
+                    'ready-meal',
+                    'alcohol',
+                    'coffee-tea',
+                    'cold-drink'
+                ];
+                currentTotalAmount = EatOutArray.reduce(function (res, key) { return res + estimationAmount[key].value; }, 0);
+                baseTotalAmount = EatOutArray.reduce(function (res, key) {
+                    return res + (0, util_1.findBaseline)(baselines, 'food', key, 'amount').value;
+                }, 0);
+                eatOutIntensityResult = EatOutArray.reduce(function (res, key) {
+                    if (key !== 'ready-meal') {
+                        return (res + getCategoryCustomTotal(key, estimationAmount[key].value));
+                    }
+                    else {
+                        return res + estimationAmount[key].value * readyMealIntensity_1.value;
+                    }
+                }, 0) /
+                    currentTotalAmount /
+                    (EatOutArray.reduce(function (res, key) { return res + getCategoryBaseTotal(key); }, 0) /
+                        baseTotalAmount);
+                restaurantIntensity = createIntensity('restaurant');
+                barCafeIntensity = createIntensity('bar-cafe');
+                restaurantIntensity.value =
+                    restaurantIntensity.value * eatOutIntensityResult;
+                barCafeIntensity.value = barCafeIntensity.value * eatOutIntensityResult;
+                estimations.push(restaurantIntensity);
+                estimations.push(barCafeIntensity);
                 _4.label = 21;
             case 21:
                 console.log(JSON.stringify(estimations));
