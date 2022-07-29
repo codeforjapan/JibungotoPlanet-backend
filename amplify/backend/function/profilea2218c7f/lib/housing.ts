@@ -3,6 +3,7 @@ import { toBaseline, findBaseline, toEstimation } from './util'
 const estimateHousing = async (
   dynamodb,
   housingAnswer,
+  mobilityAnswer,
   footprintTableName,
   parameterTableName
 ) => {

@@ -122,6 +122,7 @@ const updateProfile = async (dynamodb, profile) => {
     const { baselines, estimations } = await estimateHousing(
       dynamodb,
       profile.housingAnswer,
+      profile.mobilityAnswer,
       footprintTableName,
       parameterTableName
     )

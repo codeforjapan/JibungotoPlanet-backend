@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.estimateHousing = void 0;
 var util_1 = require("./util");
-var estimateHousing = function (dynamodb, housingAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+var estimateHousing = function (dynamodb, housingAnswer, mobilityAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
     var getData, pushOrUpdateEstimate, estimations, params, data, baselines, findAmount, createAmount, createIntensity, residentCount, estimationAmount, housingAmountByRegion_1, params_1, amountByRegion, _loop_1, _i, _a, key, housingSize, housingSizePerResident, imputedRentValue, rentValue, electricityParam, electricityIntensity, electricitySeason, gasParam, gasSeason, gasFactor, keroseneData;
     var _b, _c, _d, _e, _f, _g, _h;
     return __generator(this, function (_j) {

@@ -388,7 +388,7 @@ const estimateFood = async (
     estimations.push(estimationAmount['bar-cafe'])
   }
 
-  console.log(JSON.stringify(estimations))
+  // console.log(JSON.stringify(estimations))
   return { baselines, estimations }
 }
 
