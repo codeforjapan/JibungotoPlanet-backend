@@ -206,7 +206,7 @@ export const createProfile = /* GraphQL */ `
         hasPrivateCar
         carIntensityFactorKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
@@ -312,7 +312,7 @@ export const updateProfile = /* GraphQL */ `
         hasPrivateCar
         carIntensityFactorKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
@@ -418,7 +418,7 @@ export const deleteProfile = /* GraphQL */ `
         hasPrivateCar
         carIntensityFactorKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime

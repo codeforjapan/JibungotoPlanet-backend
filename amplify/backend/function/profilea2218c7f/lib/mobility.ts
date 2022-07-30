@@ -106,7 +106,9 @@ const estimateMobility = async (
       // 人数補正値
       data = await getData(
         'car-passengers',
-        mobilityAnswer.carPassengersKey || 'unknown_private-car-factor'
+        mobilityAnswer.carPassengersFirstKey
+          ? mobilityAnswer.carPassengersFirstKey + '_private-car-factor'
+          : 'unknown_private-car-factor'
       )
       let passengerIntensityRatio = data?.Item?.value || 1
 
@@ -165,29 +167,29 @@ const estimateMobility = async (
     estimations.push(privateCarMaintenance)
   }
 
-  // taxiのintensity補正。本来はtaxiの乗車人数を確認する必要があるがcarPassengersKeyのprivate_car_factorを代用
-  if (mobilityAnswer.carPassengersKey) {
+  // taxiのintensity補正。本来はtaxiの乗車人数を確認する必要があるがcarPassengersFirstKeyを代用
+  if (mobilityAnswer.carPassengersFirstKey) {
     const intensity = createIntensity(baselines, 'taxi')
     // 人数補正値
     const data = await getData(
       'car-passengers',
-      mobilityAnswer.carPassengersKey.replace(
-        '_private-car-factor',
-        '_taxi-factor'
-      )
+      mobilityAnswer.carPassengersFirstKey + '_taxi-factor'
     )
     const ratio = data?.Item?.value || 1
     intensity.value *= ratio
     estimations.push(intensity)
   }
 
-  // カーシェアの補正。本来はcar-sharingの乗車人数を確認する必要があるがcarPassengersKeyのprivate_car_factorを代用
-  if (mobilityAnswer.carPassengersKey && mobilityAnswer.carIntensityFactorKey) {
+  // カーシェアの補正。本来はcar-sharingの乗車人数を確認する必要があるがcarPassengersFirstKeyを代用
+  if (
+    mobilityAnswer.carPassengersFirstKey &&
+    mobilityAnswer.carIntensityFactorKey
+  ) {
     // car-sharing-drivingのintensity補正
     // 人数補正値
     const passengers = await getData(
       'car-passengers',
-      mobilityAnswer.carPassengersKey
+      mobilityAnswer.carPassengersFirstKey + '_private-car-factor'
     )
     const passengerIntensityRatio = passengers?.Item?.value || 1
 

@@ -181,7 +181,7 @@ export const getProfile = /* GraphQL */ `
         hasPrivateCar
         carIntensityFactorKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
@@ -297,7 +297,7 @@ export const listProfiles = /* GraphQL */ `
           hasPrivateCar
           carIntensityFactorKey
           carChargingKey
-          carPassengersKey
+          carPassengersFirstKey
           privateCarAnnualMileage
           trainWeeklyTravelingTime
           busWeeklyTravelingTime
@@ -415,7 +415,7 @@ export const profilesByShareId = /* GraphQL */ `
           hasPrivateCar
           carIntensityFactorKey
           carChargingKey
-          carPassengersKey
+          carPassengersFirstKey
           privateCarAnnualMileage
           trainWeeklyTravelingTime
           busWeeklyTravelingTime

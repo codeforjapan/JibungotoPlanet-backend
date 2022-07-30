@@ -127,7 +127,9 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                             data_2.Item.value * electricityIntensityFactor;
                 }
                 _k.label = 7;
-            case 7: return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersKey || 'unknown_private-car-factor')];
+            case 7: return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersFirstKey
+                    ? mobilityAnswer.carPassengersFirstKey + '_private-car-factor'
+                    : 'unknown_private-car-factor')];
             case 8:
                 // 人数補正値
                 data_1 = _k.sent();
@@ -168,9 +170,9 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                 estimations.push(privateCarMaintenance);
                 _k.label = 12;
             case 12:
-                if (!mobilityAnswer.carPassengersKey) return [3 /*break*/, 14];
+                if (!mobilityAnswer.carPassengersFirstKey) return [3 /*break*/, 14];
                 intensity = createIntensity(baselines, 'taxi');
-                return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersKey.replace('_private-car-factor', '_taxi-factor'))];
+                return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersFirstKey + '_taxi-factor')];
             case 13:
                 data_3 = _k.sent();
                 ratio = ((_e = data_3 === null || data_3 === void 0 ? void 0 : data_3.Item) === null || _e === void 0 ? void 0 : _e.value) || 1;
@@ -178,8 +180,9 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                 estimations.push(intensity);
                 _k.label = 14;
             case 14:
-                if (!(mobilityAnswer.carPassengersKey && mobilityAnswer.carIntensityFactorKey)) return [3 /*break*/, 20];
-                return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersKey)];
+                if (!(mobilityAnswer.carPassengersFirstKey &&
+                    mobilityAnswer.carIntensityFactorKey)) return [3 /*break*/, 20];
+                return [4 /*yield*/, getData('car-passengers', mobilityAnswer.carPassengersFirstKey + '_private-car-factor')];
             case 15:
                 passengers = _k.sent();
                 passengerIntensityRatio = ((_f = passengers === null || passengers === void 0 ? void 0 : passengers.Item) === null || _f === void 0 ? void 0 : _f.value) || 1;
