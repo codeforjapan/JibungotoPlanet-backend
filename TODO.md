@@ -33,6 +33,8 @@
 - food_readymeal_intensity, food_restaurant_intensity, food_barcafe_intensity も同様。
 - vegan の domain_item_type も kebab ケースになっていない。修正要。
 - white-meat-fish の food_readymeal_intensity,food_restaurant_intensity,food_barcafe_intensity が二行ある → おそらく二行目は white-meat-fish ではなく guide-meal
+- clothes-accessary -> clothes-accessory
+- consumables -> other_kitchengoods_amount, other_paper-stationaries_amount を kitchen-goods, paper-stationery
 
 ## Option
 

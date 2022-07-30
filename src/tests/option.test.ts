@@ -25,7 +25,11 @@ describe('Test all options', () => {
     'seasonal',
     'local',
     'clothes-accessory',
-    'electronics-furniture'
+    'electronics-furniture',
+    'hobby',
+    'consumables',
+    'books',
+    'eco-tourism'
   ]
 
   for (const option of options) {
