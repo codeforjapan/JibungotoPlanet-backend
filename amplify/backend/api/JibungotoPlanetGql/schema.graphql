@@ -97,7 +97,7 @@ type MobilityAnswer {
   #
   # 最も使用する自動車の種類を教えてください
   #
-  carIntensityFactorKey: String # 自家用車の種類; gasoline_driving-factor|light_driving-factor|hv_driving-factor|phv_driving-factor|ev_driving-factor|unknown_driving-factor
+  carIntensityFactorFirstKey: String # 自家用車の種類; gasoline|light|hv|phv|ev|unknown
   #
   # 電気自動車・プラグインハイブリッド車を自宅で充電しますか？
   #
@@ -186,14 +186,14 @@ type HousingAnswer {
   electricityIntensityKey: String # 電力の種類; conventional|30-renewable|50-renewable|100-renewable|solar-panel|unknown
   # 1ヶ月の電力使用量はどのくらいですか？
   electricityMonthlyConsumption: Float # 1ヶ月の電力使用量 kWh
-  electricitySeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|december
+  electricitySeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|november|december
   # 暖房、温水供給、調理にガスを使用していますか？
   useGas: Boolean # ガスの使用の有無
   # 使用しているガスの種類を教えてください
   energyHeatIntensityKey: String # ガスの種類　urban-gas|lpg|kerosene
   # 1ヶ月のガス使用量はどのくらいですか？
   gasMonthlyConsumption: Float # 1ヶ月のガス使用量 m3
-  gasSeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|december
+  gasSeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|november|december
   # 暖房などに灯油を使用していますか？
   useKerosene: Boolean # 灯油の使用の有無
   # 昨シーズンの灯油の使用量はどのくらいですか？
@@ -203,7 +203,7 @@ type HousingAnswer {
   housingAmountByRegionFirstKey: String # northeast|middle|southwest|unknown
 }
 
-# カーボンフットプリントの計算結果（念の為、AppSync経由でのアクセス不可に設定）
+# カーボンフットプリントの計算結果（AppSync経由でのアクセス不可に設定）
 type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
   # uuid
   id: ID! @primaryKey
@@ -211,6 +211,12 @@ type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
   shareId: String!
     @index(name: "profilesByShareId", queryField: "profilesByShareId")
 
+  # 性別
+  gender: String # male|female|unknown
+  # 年齢
+  age: String # 10s|20s|30s|40s|50s|60s|70s-
+  # お住まいの地域
+  region: String # hokkaido|tohoku|kanto|tokai|kinki|chugoku|sikoku|kyusyu|okinawa
   # 移動に関する回答
   mobilityAnswer: MobilityAnswer
   # 住居に関する回答

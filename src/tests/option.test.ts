@@ -29,7 +29,7 @@ describe('Test all options', () => {
 
       const originalBaselines = resGet.body
 
-      const logging = true
+      const logging = false
       const log = (testCase, title, output) => {
         if (logging) {
           console.log(

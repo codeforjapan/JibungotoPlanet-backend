@@ -202,9 +202,12 @@ export const createProfile = /* GraphQL */ `
     createProfile(input: $input, condition: $condition) {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
         carPassengersFirstKey
         privateCarAnnualMileage
@@ -308,9 +311,12 @@ export const updateProfile = /* GraphQL */ `
     updateProfile(input: $input, condition: $condition) {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
         carPassengersFirstKey
         privateCarAnnualMileage
@@ -414,9 +420,12 @@ export const deleteProfile = /* GraphQL */ `
     deleteProfile(input: $input, condition: $condition) {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
         carPassengersFirstKey
         privateCarAnnualMileage

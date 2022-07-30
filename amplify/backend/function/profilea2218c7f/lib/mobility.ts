@@ -74,14 +74,14 @@ const estimateMobility = async (
 
   // 自家用車をお持ちですか？がYesの場合
   if (mobilityAnswer.hasPrivateCar) {
-    if (mobilityAnswer?.carIntensityFactorKey) {
+    if (mobilityAnswer?.carIntensityFactorFirstKey) {
       const drivingIntensity = createIntensity(baselines, 'private-car-driving')
 
       // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
       let ghgIntensityRatio = 1
       let data = await getData(
         'car-intensity-factor',
-        mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
+        mobilityAnswer.carIntensityFactorFirstKey + '_driving-factor'
       )
       if (data?.Item) {
         ghgIntensityRatio *= data.Item.value
@@ -89,12 +89,12 @@ const estimateMobility = async (
 
       // PHV, EVの補正
       if (
-        mobilityAnswer.carIntensityFactorKey?.startsWith('phv_') ||
-        mobilityAnswer.carIntensityFactorKey?.startsWith('ev_')
+        mobilityAnswer.carIntensityFactorFirstKey === 'phv' ||
+        mobilityAnswer.carIntensityFactorFirstKey === 'ev'
       ) {
         const data = await getData(
           'renewable-car-intensity-factor',
-          mobilityAnswer.carIntensityFactorKey
+          mobilityAnswer.carIntensityFactorFirstKey + '_driving-factor'
         )
         if (data?.Item) {
           ghgIntensityRatio =
@@ -106,9 +106,8 @@ const estimateMobility = async (
       // 人数補正値
       data = await getData(
         'car-passengers',
-        mobilityAnswer.carPassengersFirstKey
-          ? mobilityAnswer.carPassengersFirstKey + '_private-car-factor'
-          : 'unknown_private-car-factor'
+        (mobilityAnswer.carPassengersFirstKey || 'unknown') +
+          '_private-car-factor'
       )
       let passengerIntensityRatio = data?.Item?.value || 1
 
@@ -120,10 +119,8 @@ const estimateMobility = async (
       // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
       const purchaseData = await getData(
         'car-intensity-factor',
-        mobilityAnswer.carIntensityFactorKey.replace(
-          '_driving-factor',
+        (mobilityAnswer.carIntensityFactorFirstKey || 'unknown') +
           '_manufacturing-factor'
-        ) || 'unknown_manufacturing-factor'
       )
       if (purchaseData?.Item) {
         purchaseIntensity.value *= purchaseData.Item.value
@@ -183,7 +180,7 @@ const estimateMobility = async (
   // カーシェアの補正。本来はcar-sharingの乗車人数を確認する必要があるがcarPassengersFirstKeyを代用
   if (
     mobilityAnswer.carPassengersFirstKey &&
-    mobilityAnswer.carIntensityFactorKey
+    mobilityAnswer.carIntensityFactorFirstKey
   ) {
     // car-sharing-drivingのintensity補正
     // 人数補正値
@@ -195,17 +192,18 @@ const estimateMobility = async (
 
     const driving = await getData(
       'car-intensity-factor',
-      mobilityAnswer.carIntensityFactorKey || 'unknown_driving-factor'
+      (mobilityAnswer.carIntensityFactorFirstKey || 'unknown') +
+        '_driving-factor'
     )
     let ghgIntensityRatio = driving?.Item?.value || 1
     // PHV, EVの補正
     if (
-      mobilityAnswer?.carIntensityFactorKey?.startsWith('phv_') ||
-      mobilityAnswer?.carIntensityFactorKey?.startsWith('ev_')
+      mobilityAnswer?.carIntensityFactorFirstKey === 'phv' ||
+      mobilityAnswer?.carIntensityFactorFirstKey === 'ev'
     ) {
       const data = await getData(
         'renewable-car-intensity-factor',
-        mobilityAnswer.carIntensityFactorKey
+        mobilityAnswer.carIntensityFactorFirstKey + '_driving-factor'
       )
       if (data?.Item) {
         ghgIntensityRatio =
@@ -221,10 +219,8 @@ const estimateMobility = async (
     // car-sharing-rentalのintensity補正
     const rental = await getData(
       'car-intensity-factor',
-      mobilityAnswer.carIntensityFactorKey.replace(
-        '_driving-factor',
+      (mobilityAnswer.carIntensityFactorFirstKey || 'unknown') +
         '_manufacturing-factor'
-      ) || 'unknown_manufacturing-factor'
     )
     if (rental?.Item) {
       const intensity = createIntensity(baselines, 'car-sharing-rental')

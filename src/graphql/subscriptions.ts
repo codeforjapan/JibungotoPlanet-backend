@@ -163,9 +163,12 @@ export const onCreateProfile = /* GraphQL */ `
     onCreateProfile {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
         carPassengersFirstKey
         privateCarAnnualMileage
@@ -266,9 +269,12 @@ export const onUpdateProfile = /* GraphQL */ `
     onUpdateProfile {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
         carPassengersFirstKey
         privateCarAnnualMileage
@@ -369,9 +375,12 @@ export const onDeleteProfile = /* GraphQL */ `
     onDeleteProfile {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
         carPassengersFirstKey
         privateCarAnnualMileage

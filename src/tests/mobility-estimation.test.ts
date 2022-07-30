@@ -34,6 +34,24 @@ describe('Mobility Estimation', () => {
 
     const id = resPost.body.data.id
 
+    const logging = false
+    const log = (testCase, title, output) => {
+      if (logging) {
+        console.log(
+          'checking [' +
+            testCase.case +
+            '] ' +
+            title +
+            ' : ' +
+            output.domain +
+            '_' +
+            output.item +
+            '_' +
+            output.type
+        )
+      }
+    }
+
     // 生成したProfileに対してテストケースを順番に適用
     for (const testCase of testCases) {
       const resPut = await request(app)
@@ -56,6 +74,8 @@ describe('Mobility Estimation', () => {
             e.item === estimation.item &&
             e.type === estimation.type
         )
+
+        log(testCase, 'estimation', estimation)
         expect(exp).not.toBeNull()
         expect(exp.estimated).toBeTruthy()
         expect(estimation.value).toBeCloseTo(exp.value)

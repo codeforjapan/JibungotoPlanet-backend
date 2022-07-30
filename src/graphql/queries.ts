@@ -177,9 +177,12 @@ export const getProfile = /* GraphQL */ `
     getProfile(id: $id) {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
         carPassengersFirstKey
         privateCarAnnualMileage
@@ -293,9 +296,12 @@ export const listProfiles = /* GraphQL */ `
       items {
         id
         shareId
+        gender
+        age
+        region
         mobilityAnswer {
           hasPrivateCar
-          carIntensityFactorKey
+          carIntensityFactorFirstKey
           carChargingKey
           carPassengersFirstKey
           privateCarAnnualMileage
@@ -411,9 +417,12 @@ export const profilesByShareId = /* GraphQL */ `
       items {
         id
         shareId
+        gender
+        age
+        region
         mobilityAnswer {
           hasPrivateCar
-          carIntensityFactorKey
+          carIntensityFactorFirstKey
           carChargingKey
           carPassengersFirstKey
           privateCarAnnualMileage

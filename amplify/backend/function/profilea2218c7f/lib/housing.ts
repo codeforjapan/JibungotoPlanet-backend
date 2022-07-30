@@ -181,17 +181,14 @@ const estimateHousing = async (
     // PHV, EVの補正
     if (
       mobilityAnswer?.hasPrivateCar &&
-      (mobilityAnswer?.carIntensityFactorKey?.startsWith('phv_') ||
-        mobilityAnswer?.carIntensityFactorKey?.startsWith('ev_')) &&
+      (mobilityAnswer?.carIntensityFactorFirstKey === 'phv' ||
+        mobilityAnswer?.carIntensityFactorFirstKey === 'ev') &&
       mobilityAnswer?.privateCarAnnualMileage &&
       mobilityAnswer?.carChargingKey
     ) {
       const electricityData = await getData(
         'car-intensity-factor',
-        mobilityAnswer.carIntensityFactorKey.replace(
-          '_driving-factor',
-          '_electricity-intensity'
-        )
+        mobilityAnswer.carIntensityFactorFirstKey + '_electricity-intensity'
       )
       const mobilityElectricity = electricityData?.Item?.value || 1
 
