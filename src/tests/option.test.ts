@@ -23,7 +23,9 @@ describe('Test all options', () => {
     'guide-meal',
     'guide-snack-drink',
     'seasonal',
-    'local'
+    'local',
+    'clothes-accessory',
+    'electronics-furniture'
   ]
 
   for (const option of options) {

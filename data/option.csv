@@ -188,8 +188,8 @@ seasonal,food_vegetables_intensity,0.956544981,,absolute-target,Koide et al. 202
 seasonal,food_fruits_intensity,1.065918232,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 local,food_potatoes_intensity,1.457994,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 local,food_vegetables_intensity,1.201479752,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-clothes-accessary,other_clothes-goods_amount,22.66259076,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-clothes-accessary,other_bags-jewelries-goods_amount,3.899884319,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+clothes-accessory,other_clothes-goods_amount,22.66259076,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+clothes-accessory,other_bags-jewelries-goods_amount,3.899884319,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 electronics-furniture,other_electronics_amount,6.412981837,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 electronics-furniture,other_furniture_amount,1.359545846,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 electronics-furniture,other_covering_amount,1.856600611,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
