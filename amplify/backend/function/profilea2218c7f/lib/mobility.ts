@@ -271,7 +271,7 @@ const estimateMobility = async (
   //
   // 自家用車以外の普通の移動手段を教えて下さい
   //
-  if (mobilityAnswer.hasWeeklyTravelingTime) {
+  if (mobilityAnswer.hasTravelingTime) {
     weeklyTravelingTime.train = mobilityAnswer.trainWeeklyTravelingTime || 0
     weeklyTravelingTime.bus = mobilityAnswer.busWeeklyTravelingTime || 0
     weeklyTravelingTime.motorbike =

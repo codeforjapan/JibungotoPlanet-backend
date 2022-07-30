@@ -239,7 +239,7 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                     motorbike: 0,
                     otherCar: 0
                 };
-                if (!mobilityAnswer.hasWeeklyTravelingTime) return [3 /*break*/, 21];
+                if (!mobilityAnswer.hasTravelingTime) return [3 /*break*/, 21];
                 weeklyTravelingTime.train = mobilityAnswer.trainWeeklyTravelingTime || 0;
                 weeklyTravelingTime.bus = mobilityAnswer.busWeeklyTravelingTime || 0;
                 weeklyTravelingTime.motorbike =

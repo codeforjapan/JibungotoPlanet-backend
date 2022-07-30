@@ -117,7 +117,7 @@ type MobilityAnswer {
   busWeeklyTravelingTime: Float # バスの移動時間 時間/週
   motorbikeWeeklyTravelingTime: Float # バイクの移動時間 時間/週
   otherCarWeeklyTravelingTime: Float # タクシー、レンタカー、カーシェアの移動時間 時間/週
-  hasWeeklyTravelingTime: Boolean # 自家用車以外の普通の移動手段をスキップした場合はfalse
+  hasTravelingTime: Boolean # 移動量を時間で入力している場合はtrue
   #
   # お住いの地域（地方）の規模はどのくらいですか？
   #

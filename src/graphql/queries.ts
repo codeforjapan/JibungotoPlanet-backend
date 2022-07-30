@@ -187,7 +187,7 @@ export const getProfile = /* GraphQL */ `
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        hasWeeklyTravelingTime
+        hasTravelingTime
         mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
@@ -303,7 +303,7 @@ export const listProfiles = /* GraphQL */ `
           busWeeklyTravelingTime
           motorbikeWeeklyTravelingTime
           otherCarWeeklyTravelingTime
-          hasWeeklyTravelingTime
+          hasTravelingTime
           mileageByAreaFirstKey
           otherCarAnnualTravelingTime
           trainAnnualTravelingTime
@@ -421,7 +421,7 @@ export const profilesByShareId = /* GraphQL */ `
           busWeeklyTravelingTime
           motorbikeWeeklyTravelingTime
           otherCarWeeklyTravelingTime
-          hasWeeklyTravelingTime
+          hasTravelingTime
           mileageByAreaFirstKey
           otherCarAnnualTravelingTime
           trainAnnualTravelingTime

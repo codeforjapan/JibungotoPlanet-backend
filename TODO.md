@@ -16,6 +16,7 @@
 
 - november の parameter を追加した後で、テストケース housing11 を追加。
 - november の parameter を追加した後で、テストケース housing12 の検証データを修正（今は 11 月のデータになっている）。
+- mobility の移動時間がわからない場合、週間＋年間で移動距離を設定。
 
 ## Excel
 
