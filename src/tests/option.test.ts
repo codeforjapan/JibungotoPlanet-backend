@@ -19,7 +19,11 @@ describe('Test all options', () => {
     'carshare',
     'vegan',
     'vegetarian',
-    'white-meat-fish'
+    'white-meat-fish',
+    'guide-meal',
+    'guide-snack-drink',
+    'seasonal',
+    'local'
   ]
 
   for (const option of options) {
@@ -40,7 +44,7 @@ describe('Test all options', () => {
 
       const originalBaselines = resGet.body
 
-      const logging = true
+      const logging = false
       const log = (testCase, title, output) => {
         if (logging) {
           console.log(

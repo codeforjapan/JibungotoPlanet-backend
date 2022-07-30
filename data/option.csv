@@ -136,24 +136,27 @@ guide-meal,food_bread-flour_amount,-0.293670587,,reduction-rate,Koide et al. 202
 guide-meal,food_noodle_amount,-0.293670587,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_potatoes_amount,0.903789971,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_vegetables_amount,0.112482714,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-guide-meal,food_processedvegetables_amount,0.112482714,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-meal,food_processed-vegetables_amount,0.112482714,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_beans_amount,0.273319143,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_milk_amount,0.992166427,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-guide-meal,food_otherdairy_amount,0.992166427,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-meal,food_other-dairy_amount,0.992166427,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_eggs_amount,0.383733338,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_beef_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_pork_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_chicken_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-guide-meal,food_othermeat_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-guide-meal,food_processedmeat_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-meal,food_other-meat_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-meal,food_processed-meat_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_fish_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-guide-meal,food_processedfish_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-meal,food_processed-fish_amount,-0.275049188,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_fruits_amount,0.824468431,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_oil_amount,-0.778043146,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-meal,food_seasoning_amount,-0.778043146,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-meal,food_ready-meal_intensity,1,food_rice food_bread-flour food_noodle food_potatoes food_vegetables food_processed-vegetables food_beans food_milk food_other-dairy food_eggs food_beef food_pork food_chicken food_other-meat food_processed-meat food_fish food_processed-fish food_fruits food_oil food_seasoning,proportional-to-other-footprints,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-meal,food_restaurant_intensity,0.7157,food_rice food_bread-flour food_noodle food_potatoes food_vegetables food_processed-vegetables food_beans food_milk food_other-dairy food_eggs food_beef food_pork food_chicken food_other-meat food_processed-meat food_fish food_processed-fish food_fruits food_oil food_seasoning,proportional-to-other-footprints,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-meal,food_bar-cafe_intensity,0.7157,food_rice food_bread-flour food_noodle food_potatoes food_vegetables food_processed-vegetables food_beans food_milk food_other-dairy food_eggs food_beef food_pork food_chicken food_other-meat food_processed-meat food_fish food_processed-fish food_fruits food_oil food_seasoning,proportional-to-other-footprints,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-snack-drink,food_sweets-snack_amount,-0.778043146,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 guide-snack-drink,food_alcohol_amount,-0.778043146,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-guide-snack-drink,food_colddrink_amount,-0.110780984,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+guide-snack-drink,food_cold-drink_amount,-0.110780984,,reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 loss,food_rice_amount,0.964320154,food_food-amount-to-average,question-answer-to-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 loss,food_bread-flour_amount,0.964320154,food_food-amount-to-average,question-answer-to-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 loss,food_noodle_amount,0.964320154,food_food-amount-to-average,question-answer-to-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
