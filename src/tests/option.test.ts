@@ -17,7 +17,9 @@ describe('Test all options', () => {
     'dailyshift',
     'longshift',
     'carshare',
-    'vegan'
+    'vegan',
+    'vegetarian',
+    'white-meat-fish'
   ]
 
   for (const option of options) {
@@ -38,7 +40,7 @@ describe('Test all options', () => {
 
       const originalBaselines = resGet.body
 
-      const logging = false
+      const logging = true
       const log = (testCase, title, output) => {
         if (logging) {
           console.log(

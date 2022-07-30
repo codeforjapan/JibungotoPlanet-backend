@@ -32,6 +32,7 @@
 - vegan->food_beans_amount の args の単語の区切りを kebab ケースに変更： food_milk_amount food_other-dairy_amount food_eggs_amount food_beef_amount food_pork_amount food_chicken_amount food_other-meat_amount food_processed-meat_amount food_fish_amount food_processed-fish_amount,shift-from-other-items
 - food_readymeal_intensity, food_restaurant_intensity, food_barcafe_intensity も同様。
 - vegan の domain_item_type も kebab ケースになっていない。修正要。
+- white-meat-fish の food_readymeal_intensity,food_restaurant_intensity,food_barcafe_intensity が二行ある。
 
 ## Option
 

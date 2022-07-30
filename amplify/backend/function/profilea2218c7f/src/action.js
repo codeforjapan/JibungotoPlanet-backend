@@ -283,7 +283,10 @@ var proportionalToOtherFootprints = function (action, results) {
             ia = ib;
         }
         /*
-        if (action.option === 'vegan' && action.key === 'food_bar-cafe_intensity') {
+        if (
+          action.option === 'white-meat-fish' &&
+          action.key === 'food_restaurant_intensity'
+        ) {
           console.log(
             key +
               ' : ' +

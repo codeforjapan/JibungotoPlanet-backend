@@ -10,6 +10,11 @@ import { createTestCases } from './util'
 
 describe('Test all estimations', () => {
   const domains = ['housing', 'mobility', 'food', 'other']
+  /*
+  //test('Dummy:', () => {
+    expect(true).toBe(true)
+  })
+  */
 
   for (const domain of domains) {
     console.log('now testing : ' + domain)
