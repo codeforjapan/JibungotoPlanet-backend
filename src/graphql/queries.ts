@@ -202,7 +202,6 @@ export const getProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
-        housingInsulationKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
@@ -321,7 +320,6 @@ export const listProfiles = /* GraphQL */ `
         housingAnswer {
           residentCount
           housingSizeKey
-          housingInsulationKey
           electricityIntensityKey
           electricityMonthlyConsumption
           electricitySeasonFactorKey
@@ -442,7 +440,6 @@ export const profilesByShareId = /* GraphQL */ `
         housingAnswer {
           residentCount
           housingSizeKey
-          housingInsulationKey
           electricityIntensityKey
           electricityMonthlyConsumption
           electricitySeasonFactorKey

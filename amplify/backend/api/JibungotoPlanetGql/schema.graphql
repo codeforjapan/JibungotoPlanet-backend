@@ -180,8 +180,6 @@ type HousingAnswer {
   residentCount: Int # 人数
   #　あなたの家の部屋はいくつありますか？
   housingSizeKey: String # 1-room|2-room|3-room|4-room|5-6-room|7-more-room|unknown
-  # 現在住んでいる住居の建築年はいつ頃ですか？
-  housingInsulationKey: String # 建築された年代; no-insulation|2-level|3-level|4-level|unknown
   # 自宅の電力は何を使用していますか？
   electricityIntensityKey: String # 電力の種類; conventional|30-renewable|50-renewable|100-renewable|solar-panel|unknown
   # 1ヶ月の電力使用量はどのくらいですか？
