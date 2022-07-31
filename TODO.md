@@ -3,12 +3,11 @@
 ## parameter
 
 - housing-size の unknown の表に計算式が埋め込まれている。unknown は m2-person として、38.99612182 の固定値にする。
+- housing の平均居住人数を db か r 取得するように変更（現状は定数）。
 
 ## schema.graphql
 
 ## test case
-
-- mobility の移動時間がわからない場合、週間＋年間で移動距離を設定。
 
 ## Excel
 

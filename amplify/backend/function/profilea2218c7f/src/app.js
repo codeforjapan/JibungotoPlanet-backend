@@ -122,7 +122,7 @@ app.get(path + '/:id', async (req, res) => {
   }
 })
 
-const updateProfile = async (dynamodb, profile) => {
+const updateProfile = async (dynamodb, actionIntensityRates, profile) => {
   profile.baselines = []
   profile.estimations = []
 
@@ -184,6 +184,22 @@ const updateProfile = async (dynamodb, profile) => {
     optionTableName
   )
   profile.actions = actions
+
+  const optionIntensityRateData = await dynamodb
+    .scan({
+      TableName: optionIntensityRateTableName
+    })
+    .promise()
+
+  // actionIntensityRatesの展開
+  profile.actionIntensityRates = optionIntensityRateData.Items.map((item) => ({
+    option: item.option,
+    value:
+      actionIntensityRates?.find((air) => air.option === item.option)?.value ||
+      item.defaultValue,
+    defaultValue: item.defaultValue,
+    range: item.range
+  }))
 }
 
 /************************************
@@ -216,7 +232,17 @@ app.put(path + '/:id', async (req, res) => {
     if (otherAnswer) {
       profile.otherAnswer = otherAnswer
     }
-    await updateProfile(dynamodb, profile)
+    if (req.body.gender) {
+      profile.gender = req.body.gender
+    }
+    if (req.body.age) {
+      profile.age = req.body.age
+    }
+    if (req.body.region) {
+      profile.region = req.body.region
+    }
+
+    await updateProfile(dynamodb, req.body.actionIntensityRates, profile)
     profile.updatedAt = new Date().toISOString()
 
     params = {
@@ -244,13 +270,19 @@ app.post(path, async (req, res) => {
       housingAnswer: req.body.housingAnswer,
       foodAnswer: req.body.foodAnswer,
       otherAnswer: req.body.otherAnswer,
+      gender: req.body.gender,
+      age: req.body.age,
+      region: req.body.region,
+
       baselines: [],
       estimations: [],
+      actionIntensityRates: [],
+
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     }
 
-    await updateProfile(dynamodb, profile)
+    await updateProfile(dynamodb, req.body.actionIntensityRates, profile)
 
     const params = {
       TableName: profileTableName,

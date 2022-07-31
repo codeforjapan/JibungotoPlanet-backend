@@ -77,12 +77,15 @@ app.get(path + '/:id', async (req, res) => {
 
   try {
     const data = await dynamodb.query(params).promise()
-    const profile = data.Items[0]
-    if (profile) {
-      profile.id = undefined // idを削除
-      profile.mobilityAnswer = undefined // 回答を削除
-      profile.foodAnswer = undefined // 回答を削除
-      profile.otherAnswer = undefined // 回答を削除
+    const res = data.Items[0]
+    if (res) {
+      const profile = {
+        shareId: res.shareId,
+        actionIntensityRates: res.actionIntensityRates,
+        baselines: res.baselines,
+        estimations: res.estimations,
+        actions: res.actions
+      }
       res.json(profile)
     } else {
       res.json({})
