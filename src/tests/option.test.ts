@@ -16,7 +16,11 @@ describe('Test all options', () => {
     'closeservice',
     'dailyshift',
     'longshift',
+    'rideshare',
     'carshare',
+    'car-ev-phv',
+    'car-ev-phv-re',
+
     'vegan',
     'vegetarian',
     'white-meat-fish',
@@ -24,17 +28,21 @@ describe('Test all options', () => {
     'guide-snack-drink',
     'seasonal',
     'local',
+    'loss',
+
     'clothes-accessory',
     'electronics-furniture',
     'hobby',
     'consumables',
     'books',
     'eco-tourism',
+
     // 'zeh'
     'self-re',
     'grid-re',
     'com-house',
-    //'clothes-home',
+    'insrenov',
+    'clothes-home',
     //'ec'
     'ac',
     'led',

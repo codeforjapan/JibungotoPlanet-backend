@@ -169,6 +169,10 @@ const updateProfile = async (dynamodb, profile) => {
     dynamodb,
     profile.baselines,
     profile.estimations,
+    profile.housingAnswer,
+    profile.mobilityAnswer,
+    profile.foodAnswer,
+    parameterTableName,
     optionTableName
   )
   profile.actions = actions

@@ -41,7 +41,8 @@
 - clothes-home も housing_urban-gas 等を kebab に変更。
 - ec のパラメータは正しいか？例：housing_kerosene_amount -0.939197668 になっているが、22.8%では？
 - led:housing_electricity_amount=0.0660406 → は-0.0660406。
+- car-ev-phv, car-ev-phv-re:amount->intensity へ変更。
 
 ## Option
 
-- SKIP: RideShare, CarEVPHV, CarEVPHVRE, Loss, zeh(housing_electricity_amount が二つあるのは辛い), insrenov, clothes-home, ec(option.value が正しくない？)、
+- 要確認: zeh(housing_electricity_amount が二つあるのは辛い), ec(option.value が正しくない？)、

@@ -188,6 +188,7 @@ export const onCreateProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
@@ -293,6 +294,7 @@ export const onUpdateProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
@@ -398,6 +400,7 @@ export const onDeleteProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
