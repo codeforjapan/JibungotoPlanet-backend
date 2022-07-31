@@ -46,7 +46,7 @@ describe('Test all options', () => {
 
     // テストケースを記載したExcel
     const workbook = xlsx.readFile(
-      'src/tests/' + option + '-option.test-cases.xlsx'
+      'src/tests/option-' + option + '.test-cases.xlsx'
     )
     const testCases = createTestCases(workbook)
 

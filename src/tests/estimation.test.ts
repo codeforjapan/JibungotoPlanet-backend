@@ -21,7 +21,7 @@ describe('Test all estimations', () => {
 
     // テストケースを記載したExcel
     const workbook = xlsx.readFile(
-      'src/tests/' + domain + '-estimation.test-cases.xlsx'
+      'src/tests/estimation-' + domain + '.test-cases.xlsx'
     )
     const testCases = createTestCases(workbook)
 
