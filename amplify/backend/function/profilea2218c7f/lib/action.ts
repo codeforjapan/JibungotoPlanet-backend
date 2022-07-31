@@ -134,19 +134,14 @@ const calculateActions = async (
     phase3.has(action.operation)
   )) {
     switch (action.operation) {
-      /*
-      case 'shift-from-other-items':
-        shiftFromOtherItems(action, results)
-        break
-      case 'proportional-to-other-items':
-        proportionalToOtherItems(action, results)
-        break*/
       case 'proportional-to-other-footprints':
         proportionalToOtherFootprints(action, results)
         break
       case 'further-reduction-from-other-footprints':
-      case 'rebound-from-other-footprints':
         furtherReductionFromOtherFootprints(action, results)
+        break
+      case 'rebound-from-other-footprints':
+        reboundFromOtherFootprints(action, results)
         break
       case 'question-answer-to-target':
       case 'question-answer-to-target-inverse':
@@ -195,8 +190,8 @@ const shiftFromOtherItems = (action, results) => {
       }
       /*
       if (
-        action.option === 'vegan' &&
-        action.key === 'food_bar-cafe_intensity'
+        action.option === 'ec' &&
+        action.key === 'housing_electricity_amount'
       ) {
         console.log(
           key +
@@ -211,16 +206,25 @@ const shiftFromOtherItems = (action, results) => {
             ' : value = ' +
             value
         )
-      }
-      */
+      }*/
     }
     return sum + value
   }, 0)
   /*
-  console.log(
-    action.key + ':' + sum + ',' + action.optionValue + ' <- ' + action.value
-  )
-  */
+  if (action.option === 'ec') {
+    console.log(
+      action.option +
+        ':' +
+        action.key +
+        ':' +
+        sum +
+        ',' +
+        action.optionValue +
+        ' <- ' +
+        action.value
+    )
+  }
+    */
   action.value -= sum * action.optionValue
 }
 
@@ -299,19 +303,97 @@ const proportionalToOtherFootprints = (action, results) => {
   }
 }
 
-// [削減後] = [削減前] + (Σ[valueで指定したフットプリントの削減後] - Σ[valueで指定したフットプリントの削減前]-) x [value2で指定したリバウンド割合]
-const furtherReductionFromOtherFootprints = (action, results) => {
+const reboundFromOtherFootprints = (action, results) => {
+  furtherReductionFromOtherFootprints(action, results, 1)
+}
+
+// [削減後] = [削減前] + (Σ[valueで指定したフットプリントの削減後] - Σ[valueで指定したフットプリントの削減前]) x [value2で指定したリバウンド割合]
+const furtherReductionFromOtherFootprints = (action, results, sign = -1) => {
   let sumBefore = 0
   let sumAfter = 0
   for (const key of action.args) {
-    sumBefore +=
-      (results.get(key + '_amount')?.estimation?.value || 0) *
-      (results.get(key + '_intensity')?.estimation?.value || 0)
-    sumAfter +=
-      (results.get(key + '_amount')?.actions.get(action.option)?.value || 0) *
-      (results.get(key + '_intensity')?.actions.get(action.option)?.value || 0)
+    const ab = results.get(key + '_amount')?.estimation?.value || 0
+    let aa = results.get(key + '_amount')?.actions.get(action.option)?.value
+    const ib = results.get(key + '_intensity')?.estimation?.value || 0
+    let ia = results.get(key + '_intensity')?.actions.get(action.option)?.value
+
+    if (aa === null || aa === undefined) {
+      aa = ab
+    }
+    if (ia === null || ia === undefined) {
+      ia = ib
+    }
+
+    /*
+    if (
+      action.option === 'ac' &&
+      action.key === 'housing_housing-maintenance_amount'
+    ) {
+      console.log(
+        key +
+          ' : ' +
+          action.option +
+          ':' +
+          action.key +
+          ', amountBefore = ' +
+          ab +
+          ' : amountAfter =' +
+          aa +
+          ', intensityBefore = ' +
+          ib +
+          ' : intensityAfter =' +
+          ia
+      )
+    }
+    */
+
+    sumBefore += ab * ib
+    sumAfter += aa * ia
   }
-  action.value += (sumAfter - sumBefore) * action.optionValue
+
+  let amount = 0
+  let intensity = 0
+  let denominator = 1
+
+  if (action.type === 'amount') {
+    amount = action.value
+    intensity = results.get(action.key.replace('_amount', '_intensity'))
+      .estimation.value
+    denominator = intensity
+  } else {
+    intensity = action.value
+    amount = results.get(action.key.replace('_intensity', '_amount')).estimation
+      .value
+    denominator = amount
+  }
+
+  action.value =
+    (amount * intensity + sign * (sumAfter - sumBefore) * action.optionValue) /
+    denominator
+
+  /*
+  if (action.option === 'ac') {
+    console.log(
+      action.key +
+        ' -> ' +
+        action.item +
+        ':' +
+        action.type +
+        ':' +
+        action.value +
+        ', amount = ' +
+        amount +
+        ', intensity = ' +
+        intensity +
+        'sumAfter = ' +
+        sumAfter +
+        'sumBefore = ' +
+        sumBefore +
+        'optionValue = ' +
+        action.optionValue
+    )
+  }
+  */
 }
 
 export { calculateActions }

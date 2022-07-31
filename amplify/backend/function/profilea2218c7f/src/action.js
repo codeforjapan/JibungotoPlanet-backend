@@ -156,19 +156,14 @@ var calculateActions = function (dynamodb, baselines, estimations, optionTableNa
                 }); _f < _g.length; _f++) {
                     action = _g[_f];
                     switch (action.operation) {
-                        /*
-                        case 'shift-from-other-items':
-                          shiftFromOtherItems(action, results)
-                          break
-                        case 'proportional-to-other-items':
-                          proportionalToOtherItems(action, results)
-                          break*/
                         case 'proportional-to-other-footprints':
                             proportionalToOtherFootprints(action, results);
                             break;
                         case 'further-reduction-from-other-footprints':
-                        case 'rebound-from-other-footprints':
                             furtherReductionFromOtherFootprints(action, results);
+                            break;
+                        case 'rebound-from-other-footprints':
+                            reboundFromOtherFootprints(action, results);
                             break;
                         case 'question-answer-to-target':
                         case 'question-answer-to-target-inverse':
@@ -214,8 +209,8 @@ var shiftFromOtherItems = function (action, results) {
             }
             /*
             if (
-              action.option === 'vegan' &&
-              action.key === 'food_bar-cafe_intensity'
+              action.option === 'ec' &&
+              action.key === 'housing_electricity_amount'
             ) {
               console.log(
                 key +
@@ -230,16 +225,25 @@ var shiftFromOtherItems = function (action, results) {
                   ' : value = ' +
                   value
               )
-            }
-            */
+            }*/
         }
         return sum + value;
     }, 0);
     /*
-    console.log(
-      action.key + ':' + sum + ',' + action.optionValue + ' <- ' + action.value
-    )
-    */
+    if (action.option === 'ec') {
+      console.log(
+        action.option +
+          ':' +
+          action.key +
+          ':' +
+          sum +
+          ',' +
+          action.optionValue +
+          ' <- ' +
+          action.value
+      )
+    }
+      */
     action.value -= sum * action.optionValue;
 };
 // [削減後] = [削減前] x (1-[value2で指定した影響割合])
@@ -313,19 +317,91 @@ var proportionalToOtherFootprints = function (action, results) {
                 action.value * action.optionValue * (sumAfter / sumBefore);
     }
 };
-// [削減後] = [削減前] + (Σ[valueで指定したフットプリントの削減後] - Σ[valueで指定したフットプリントの削減前]-) x [value2で指定したリバウンド割合]
-var furtherReductionFromOtherFootprints = function (action, results) {
+var reboundFromOtherFootprints = function (action, results) {
+    furtherReductionFromOtherFootprints(action, results, 1);
+};
+// [削減後] = [削減前] + (Σ[valueで指定したフットプリントの削減後] - Σ[valueで指定したフットプリントの削減前]) x [value2で指定したリバウンド割合]
+var furtherReductionFromOtherFootprints = function (action, results, sign) {
     var _a, _b, _c, _d, _e, _f, _g, _h;
+    if (sign === void 0) { sign = -1; }
     var sumBefore = 0;
     var sumAfter = 0;
     for (var _i = 0, _j = action.args; _i < _j.length; _i++) {
         var key = _j[_i];
-        sumBefore +=
-            (((_b = (_a = results.get(key + '_amount')) === null || _a === void 0 ? void 0 : _a.estimation) === null || _b === void 0 ? void 0 : _b.value) || 0) *
-                (((_d = (_c = results.get(key + '_intensity')) === null || _c === void 0 ? void 0 : _c.estimation) === null || _d === void 0 ? void 0 : _d.value) || 0);
-        sumAfter +=
-            (((_f = (_e = results.get(key + '_amount')) === null || _e === void 0 ? void 0 : _e.actions.get(action.option)) === null || _f === void 0 ? void 0 : _f.value) || 0) *
-                (((_h = (_g = results.get(key + '_intensity')) === null || _g === void 0 ? void 0 : _g.actions.get(action.option)) === null || _h === void 0 ? void 0 : _h.value) || 0);
+        var ab = ((_b = (_a = results.get(key + '_amount')) === null || _a === void 0 ? void 0 : _a.estimation) === null || _b === void 0 ? void 0 : _b.value) || 0;
+        var aa = (_d = (_c = results.get(key + '_amount')) === null || _c === void 0 ? void 0 : _c.actions.get(action.option)) === null || _d === void 0 ? void 0 : _d.value;
+        var ib = ((_f = (_e = results.get(key + '_intensity')) === null || _e === void 0 ? void 0 : _e.estimation) === null || _f === void 0 ? void 0 : _f.value) || 0;
+        var ia = (_h = (_g = results.get(key + '_intensity')) === null || _g === void 0 ? void 0 : _g.actions.get(action.option)) === null || _h === void 0 ? void 0 : _h.value;
+        if (aa === null || aa === undefined) {
+            aa = ab;
+        }
+        if (ia === null || ia === undefined) {
+            ia = ib;
+        }
+        /*
+        if (
+          action.option === 'ac' &&
+          action.key === 'housing_housing-maintenance_amount'
+        ) {
+          console.log(
+            key +
+              ' : ' +
+              action.option +
+              ':' +
+              action.key +
+              ', amountBefore = ' +
+              ab +
+              ' : amountAfter =' +
+              aa +
+              ', intensityBefore = ' +
+              ib +
+              ' : intensityAfter =' +
+              ia
+          )
+        }
+        */
+        sumBefore += ab * ib;
+        sumAfter += aa * ia;
     }
-    action.value += (sumAfter - sumBefore) * action.optionValue;
+    var amount = 0;
+    var intensity = 0;
+    var denominator = 1;
+    if (action.type === 'amount') {
+        amount = action.value;
+        intensity = results.get(action.key.replace('_amount', '_intensity'))
+            .estimation.value;
+        denominator = intensity;
+    }
+    else {
+        intensity = action.value;
+        amount = results.get(action.key.replace('_intensity', '_amount')).estimation
+            .value;
+        denominator = amount;
+    }
+    action.value =
+        (amount * intensity + sign * (sumAfter - sumBefore) * action.optionValue) /
+            denominator;
+    /*
+    if (action.option === 'ac') {
+      console.log(
+        action.key +
+          ' -> ' +
+          action.item +
+          ':' +
+          action.type +
+          ':' +
+          action.value +
+          ', amount = ' +
+          amount +
+          ', intensity = ' +
+          intensity +
+          'sumAfter = ' +
+          sumAfter +
+          'sumBefore = ' +
+          sumBefore +
+          'optionValue = ' +
+          action.optionValue
+      )
+    }
+    */
 };

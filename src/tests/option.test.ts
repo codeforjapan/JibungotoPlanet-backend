@@ -29,7 +29,16 @@ describe('Test all options', () => {
     'hobby',
     'consumables',
     'books',
-    'eco-tourism'
+    'eco-tourism',
+    // 'zeh'
+    'self-re',
+    'grid-re',
+    'com-house',
+    //'clothes-home',
+    //'ec'
+    'ac',
+    'led',
+    'enenudge'
   ]
 
   for (const option of options) {
