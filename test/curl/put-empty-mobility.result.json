@@ -1,15 +1,322 @@
 {
   "success": "put call succeed!",
-  "url": "/profiles/89f5361d-3b10-4991-b750-d42b9bd1ad81",
+  "url": "/profiles/b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
   "data": {
-    "updatedAt": "2022-07-12T13:38:40.405Z",
-    "createdAt": "2022-07-12T13:37:54.027Z",
+    "actionIntensityRates": [
+      { "option": "zeh", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "self-re", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "grid-re", "value": 1, "defaultValue": 1, "range": [] },
+      { "option": "com-house", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "insrenov", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      {
+        "option": "clothes-home",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      { "option": "ec", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "ac", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "led", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "enenudge", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "telework", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "closework", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      {
+        "option": "mictourism",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "closeservice",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      {
+        "option": "dailyshift",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "longshift",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "rideshare",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "carshare",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "car-ev-phv",
+        "value": 1,
+        "defaultValue": 1,
+        "range": [0, 1]
+      },
+      {
+        "option": "car-ev-phv-re",
+        "value": 1,
+        "defaultValue": 1,
+        "range": [0, 1]
+      },
+      { "option": "vegan", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "vegetarian",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "white-meat-fish",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "guide-meal",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      {
+        "option": "guide-snack-drink",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "loss", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "seasonal",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "local", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "clothes-accessory",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "electronics-furniture",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "hobby", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "consumables",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "books", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "eco-tourism",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      }
+    ],
+    "mobilityAnswer": {},
+    "updatedAt": "2022-07-31T22:02:54.092Z",
+    "createdAt": "2022-07-31T21:55:47.828Z",
     "baselines": [
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 2156.268842,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.634319811,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.18305217,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "intensity",
+        "value": 1.378245204,
+        "subdomain": "maintenance",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179314,
+        "subdomain": "imputedrent",
+        "unit": "m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "intensity",
+        "value": 0.930699,
+        "subdomain": "imputedrent",
+        "unit": "kgCO2e/m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 650.7599302,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "intensity",
+        "value": 0.280081108,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.96142204,
+        "subdomain": "landrent",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "intensity",
+        "value": 0.542386441,
+        "subdomain": "landrent",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 438.7575348,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "intensity",
+        "value": 0.327564907,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "amount",
+        "value": 54.81742592,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "intensity",
+        "value": 0.037319212,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328682,
+        "subdomain": "rent",
+        "unit": "m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "intensity",
+        "value": 3.418080692,
+        "subdomain": "rent",
+        "unit": "kgCO2e/m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 886.8038344,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "intensity",
+        "value": 0.310544763,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "amount",
+        "value": 103.5505,
+        "subdomain": "water",
+        "unit": "m3",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "intensity",
+        "value": 0.584462203,
+        "subdomain": "water",
+        "unit": "kgCO2e/m3",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
       {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
-        "value": 0,
+        "value": 1161.463556,
         "subdomain": "airplane",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -28,7 +335,7 @@
         "item": "bicycle-driving",
         "type": "amount",
         "value": 264.0133354,
-        "subdomain": "bicycle",
+        "subdomain": "purchase",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -37,7 +344,7 @@
         "item": "bicycle-driving",
         "type": "intensity",
         "value": 0.013134541,
-        "subdomain": "bicycle",
+        "subdomain": "purchase",
         "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -46,7 +353,7 @@
         "item": "bicycle-maintenance",
         "type": "amount",
         "value": 0.406667749,
-        "subdomain": "bicycle",
+        "subdomain": "maintenance",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -55,7 +362,7 @@
         "item": "bicycle-maintenance",
         "type": "intensity",
         "value": 2.324385029,
-        "subdomain": "bicycle",
+        "subdomain": "maintenance",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -117,7 +424,7 @@
         "domain": "mobility",
         "item": "ferry",
         "type": "amount",
-        "value": 0,
+        "value": 20.10019321,
         "subdomain": "ferry",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -136,7 +443,7 @@
         "item": "motorbike-driving",
         "type": "amount",
         "value": 254.458252,
-        "subdomain": "motorbike",
+        "subdomain": "driving",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -145,7 +452,7 @@
         "item": "motorbike-driving",
         "type": "intensity",
         "value": 0.057043135,
-        "subdomain": "motorbike",
+        "subdomain": "driving",
         "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -154,7 +461,7 @@
         "item": "motorbike-maintenance",
         "type": "amount",
         "value": 0.446120353,
-        "subdomain": "motorbike",
+        "subdomain": "maintenance",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -163,7 +470,7 @@
         "item": "motorbike-maintenance",
         "type": "intensity",
         "value": 1.965801837,
-        "subdomain": "motorbike",
+        "subdomain": "maintenance",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -172,7 +479,7 @@
         "item": "motorbike-purchase",
         "type": "amount",
         "value": 0.002635317,
-        "subdomain": "motorbike",
+        "subdomain": "purchase",
         "unit": "vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -181,7 +488,7 @@
         "item": "motorbike-purchase",
         "type": "intensity",
         "value": 979.6575783,
-        "subdomain": "motorbike",
+        "subdomain": "purchase",
         "unit": "kgCO2e/vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -294,16 +601,448 @@
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       }
     ],
-    "shareId": "GHF5rkpKX",
-    "id": "89f5361d-3b10-4991-b750-d42b9bd1ad81",
-    "estimations": [
+    "shareId": "qmTSim8Uf",
+    "id": "b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
+    "housingAnswer": {
+      "keroseneMonthCount": 4,
+      "useKerosene": true,
+      "gasSeasonFactorKey": "january",
+      "housingSizeKey": "unknown",
+      "housingAmountByRegionFirstKey": "northeast",
+      "electricityMonthlyConsumption": 1000,
+      "electricitySeasonFactorKey": "january",
+      "keroseneMonthlyConsumption": 100,
+      "useGas": true,
+      "gasMonthlyConsumption": 1000,
+      "electricityIntensityKey": "100-renewable",
+      "energyHeatIntensityKey": "urban-gas",
+      "residentCount": 2
+    },
+    "actions": [
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4162.643090956748,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.270333566,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 29.36471639707364,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "com-house",
+        "optionValue": 1,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 21.3087466,
+        "subdomain": "imputedrent",
+        "unit": "m2",
+        "option": "com-house",
+        "optionValue": 21.3087466,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1511.1375805862237,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.771779141,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.3035903839534044,
+        "subdomain": "landrent",
+        "unit": "000JPY",
+        "option": "com-house",
+        "optionValue": 1,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.082599119,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 4.608658415,
+        "subdomain": "rent",
+        "unit": "m2",
+        "option": "com-house",
+        "optionValue": 4.608658415,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 35177.85744986391,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.234432234,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.10652533649719569,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv",
+        "optionValue": 0.083547694,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "intensity",
+        "value": 16.807142130126277,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/use",
+        "option": "car-ev-phv",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "intensity",
+        "value": 0.10632063403411916,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv",
+        "optionValue": 0.083547694,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "intensity",
+        "value": 9878.351773995313,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/vehicle",
+        "option": "car-ev-phv",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "airplane",
+        "type": "amount",
+        "value": 561.9457101042126,
+        "subdomain": "airplane",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.516174479,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 247.98851982931956,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.060696993,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.38198423948562127,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 323.33352561280634,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.249140296,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 34.84840873020246,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.426661831,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.09246381230116954,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "ferry",
+        "type": "amount",
+        "value": 11.181928916963132,
+        "subdomain": "ferry",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.443690476,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 211.79783265764937,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.167651939,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0.37132741079218556,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0.002193500995070337,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.216339849,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 55.72777896,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 37.8819626066999,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.213498498,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 2516.407517149056,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.127200104,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4343.739263450846,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.127762934,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1409.4612503525425,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.771779141,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.082599119,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 34599.51743838144,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.234432234,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
       {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
         "value": 0,
         "subdomain": "airplane",
-        "unit": "km-passenger"
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 1051.790434805,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0.5,
+        "args": [
+          "mobility_airplane_amount",
+          "mobility_ferry_amount",
+          "mobility_private-car-driving_amount",
+          "mobility_car-sharing-driving_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": -1,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
       },
       {
         "domain": "mobility",
@@ -311,6 +1050,1164 @@
         "type": "amount",
         "value": 0,
         "subdomain": "ferry",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": -0.295098039,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 55.72777896,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 3504.316367405,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0.5,
+        "args": [
+          "mobility_airplane_amount",
+          "mobility_ferry_amount",
+          "mobility_private-car-driving_amount",
+          "mobility_car-sharing-driving_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 6814.061310488612,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": 0.2125,
+        "args": [
+          "housing_urban-gas_amount",
+          "housing_lpg_amount",
+          "housing_kerosene_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 78.46886017865081,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "ac",
+        "optionValue": -0.015345044,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 465.3173458813567,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.771779141,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.082599119,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 29229.180061943596,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.234432234,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4297.798995561279,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.127762934,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 317.7863752472795,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "insrenov",
+        "optionValue": -0.241929499,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1285.8579917715374,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.771779141,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.082599119,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 33896.45597045947,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.234432234,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.032708954638681474,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv-re",
+        "optionValue": 0.025653594,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "intensity",
+        "value": 16.807142130126277,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/use",
+        "option": "car-ev-phv-re",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "intensity",
+        "value": 0.03264610007469357,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv-re",
+        "optionValue": 0.025653594,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "intensity",
+        "value": 9878.351773995313,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/vehicle",
+        "option": "car-ev-phv-re",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "grid-re",
+        "optionValue": 0.062972926,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.0552561920175,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_private-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "intensity",
+        "value": 0.055150009967500004,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_private-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "intensity",
+        "value": 0.1771728886125,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_taxi-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 8239.8285423,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0.8,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.042861845,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "zeh",
+        "optionValue": 0.042861845,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 85.37615262773397,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "zeh",
+        "optionValue": 41.19310046,
+        "args": [],
+        "operation": "add-amount"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 186.06673340361615,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.295237367,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.28660423354142317,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 382.10144914452906,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.112666772,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 153.62260869343044,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.396275784,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0.2693336603565683,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0.001591004689736472,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.213660031,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 55.72777896,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 45.26443990403365,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.060224246,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 1531.3679604578072,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.468854791,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 11666.178041392403,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": 0.271666667,
+        "args": [
+          "housing_urban-gas_amount",
+          "housing_lpg_amount",
+          "housing_kerosene_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 472.37397852536225,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "ec",
+        "optionValue": -0.077669903,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 123.96929830869256,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.939197668,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.228220859,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 14002.042071459211,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.633259912,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4440.352047795,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "enenudge",
+        "optionValue": -0.03,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 60.7815956,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.161272731,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "carshare",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 55.72777896,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 229.3655841387413,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.131234853,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.3532987667401441,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 410.43463768561674,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.046870163,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 236.8670069718312,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.069132146,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0.41527909562283244,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0.002453131880399718,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.11914264,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 55.72777896,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 38.14715115505602,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.20799268,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 2733.309035218381,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.051969196,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4275.369623038546,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "led",
+        "optionValue": -0.0660406,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.467903943523126,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "led",
+        "optionValue": 0.020622194,
+        "args": ["housing_electricity"],
+        "operation": "further-reduction-from-other-footprints"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 280.06838529394497,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.43139782935961996,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 446.67281229394496,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.161272731,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": -0.704901961,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 55.72777896,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": -1,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 2899.1987448939453,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.042861845,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "self-re",
+        "optionValue": 0.042861845,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 211.06470115515074,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.200552878,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.3251093615482684,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 404.64187237928644,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.060322384,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 212.3431519591805,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.165508879,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0.37228347347588575,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0.002199148637520357,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.085664689,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 55.72777896,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 46.26097675561705,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.039534248,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 2222.242193861309,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.22922947,
+        "args": [],
+        "operation": "reduction-rate"
+      }
+    ],
+    "estimations": [
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.96142204,
+        "subdomain": "landrent",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179313835564,
+        "subdomain": "imputedrent",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328681644358,
+        "subdomain": "rent",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.183052167733976,
+        "subdomain": "maintenance",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4577.6825235,
+        "subdomain": "electricity",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 38179.74235600666,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 2038.89052,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 55.72777896,
+        "subdomain": "private-car",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "mobility",
+        "item": "airplane",
+        "type": "amount",
+        "value": 1161.463556,
+        "subdomain": "airplane",
         "unit": "km-passenger"
       },
       {
@@ -331,10 +2228,10 @@
       },
       {
         "domain": "mobility",
-        "item": "motorbike-driving",
+        "item": "ferry",
         "type": "amount",
-        "value": 254.458252,
-        "subdomain": "motorbike",
+        "value": 20.10019321,
+        "subdomain": "ferry",
         "unit": "km-passenger"
       },
       {
@@ -355,10 +2252,18 @@
       },
       {
         "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 254.458252,
+        "subdomain": "driving",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
         "item": "motorbike-purchase",
         "type": "amount",
         "value": 0.002635317,
-        "subdomain": "motorbike",
+        "subdomain": "purchase",
         "unit": "vehicle"
       },
       {
@@ -374,10 +2279,33 @@
         "item": "motorbike-maintenance",
         "type": "amount",
         "value": 0.446120353,
-        "subdomain": "motorbike",
+        "subdomain": "maintenance",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 264.0133354,
+        "subdomain": "purchase",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "walking",
+        "type": "amount",
+        "value": 168.9344406,
+        "subdomain": "walking",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.406667749,
+        "subdomain": "maintenance",
         "unit": "000JPY"
       }
-    ],
-    "mobilityAnswer": {}
+    ]
   }
 }

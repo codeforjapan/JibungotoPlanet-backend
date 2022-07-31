@@ -151,24 +151,6 @@
             "Arn",
             "StreamArn"
           ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "OptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidev",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "OptionIntensityRateepwhhio5abgdthpzpwfkaox4bastg",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
         }
       ]
     },

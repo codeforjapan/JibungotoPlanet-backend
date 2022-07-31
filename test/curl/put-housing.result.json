@@ -1,7 +1,133 @@
 {
   "success": "put call succeed!",
-  "url": "/profiles/89f5361d-3b10-4991-b750-d42b9bd1ad81",
+  "url": "/profiles/b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
   "data": {
+    "actionIntensityRates": [
+      { "option": "zeh", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "self-re", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "grid-re", "value": 1, "defaultValue": 1, "range": [] },
+      { "option": "com-house", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "insrenov", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      {
+        "option": "clothes-home",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      { "option": "ec", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "ac", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "led", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "enenudge", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "telework", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "closework", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      {
+        "option": "mictourism",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "closeservice",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      {
+        "option": "dailyshift",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "longshift",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "rideshare",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "carshare",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "car-ev-phv",
+        "value": 1,
+        "defaultValue": 1,
+        "range": [0, 1]
+      },
+      {
+        "option": "car-ev-phv-re",
+        "value": 1,
+        "defaultValue": 1,
+        "range": [0, 1]
+      },
+      { "option": "vegan", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "vegetarian",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "white-meat-fish",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "guide-meal",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      {
+        "option": "guide-snack-drink",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "loss", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "seasonal",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "local", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "clothes-accessory",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "electronics-furniture",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "hobby", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "consumables",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "books", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "eco-tourism",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      }
+    ],
     "mobilityAnswer": {
       "busWeeklyTravelingTime": 7,
       "motorbikeAnnualTravelingTime": 0,
@@ -9,337 +135,22 @@
       "ferryAnnualTravelingTime": 0,
       "trainWeeklyTravelingTime": 7,
       "otherCarAnnualTravelingTime": 10,
-      "carChargingKey": "unknown",
-      "hasPrivateCar": true,
-      "carPassengersKey": "1-2_private-car-factor",
+      "hasTravelingTime": true,
+      "hasPrivateCar": false,
       "otherCarWeeklyTravelingTime": 0,
       "airplaneAnnualTravelingTime": 100,
       "trainAnnualTravelingTime": 100,
       "motorbikeWeeklyTravelingTime": 0,
-      "privateCarAnnualMileage": 5000,
-      "busAnnualTravelingTime": 100,
-      "carIntensityFactorKey": "gasoline_driving-factor",
-      "hasWeeklyTravelingTime": true
+      "busAnnualTravelingTime": 100
     },
-    "updatedAt": "2022-07-12T13:44:31.384Z",
-    "otherAnswer": {
-      "communicationAmountKey": "5k-less",
-      "dailyGoodsAmountKey": "5k-less",
-      "hobbyGoodsFactorKey": "5k-less",
-      "travelFactorKey": "10k-less",
-      "serviceFactorKey": "5k-less",
-      "applianceFurnitureAmountKey": "50k-less",
-      "leisureSportsFactorKey": "5k-less",
-      "clothesBeautyFactorKey": "5k-less"
-    },
-    "createdAt": "2022-07-12T13:37:54.027Z",
-    "foodAnswer": {
-      "dishChickenFactorKey": "everyday",
-      "dairyFoodFactorKey": "3-more-per-day",
-      "foodIntakeFactorKey": "very-much",
-      "foodDirectWasteFactorKey": "seldom",
-      "foodLeftoverFactorKey": "seldom",
-      "eatOutFactorKey": "5k-less",
-      "dishBeefFactorKey": "everyday",
-      "alcoholFactorKey": "everyday",
-      "dishPorkFactorKey": "everyday",
-      "dishSeafoodFactorKey": "everyday",
-      "softDrinkSnackFactorKey": "3k-less"
-    },
+    "updatedAt": "2022-07-31T22:00:24.555Z",
+    "createdAt": "2022-07-31T21:55:47.828Z",
     "baselines": [
-      {
-        "domain": "mobility",
-        "item": "airplane",
-        "type": "amount",
-        "value": 60000,
-        "subdomain": "airplane",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "airplane",
-        "type": "intensity",
-        "value": 0.124064635,
-        "subdomain": "airplane",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "bicycle-driving",
-        "type": "amount",
-        "value": 264.0133354,
-        "subdomain": "bicycle",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "bicycle-driving",
-        "type": "intensity",
-        "value": 0.013134541,
-        "subdomain": "bicycle",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "bicycle-maintenance",
-        "type": "amount",
-        "value": 0.406667749,
-        "subdomain": "bicycle",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "bicycle-maintenance",
-        "type": "intensity",
-        "value": 2.324385029,
-        "subdomain": "bicycle",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "bus",
-        "type": "amount",
-        "value": 8430,
-        "subdomain": "bus",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "bus",
-        "type": "intensity",
-        "value": 0.082993045,
-        "subdomain": "bus",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "car-sharing-driving",
-        "type": "amount",
-        "value": 334.741136594172,
-        "subdomain": "car-sharing-taxi",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "car-sharing-driving",
-        "type": "intensity",
-        "value": 0.168721197,
-        "subdomain": "car-sharing-taxi",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "car-sharing-rental",
-        "type": "amount",
-        "value": 0.8881737431155255,
-        "subdomain": "car-sharing-taxi",
-        "unit": "use",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "car-sharing-rental",
-        "type": "intensity",
-        "value": 8.698477742,
-        "subdomain": "car-sharing-taxi",
-        "unit": "kgCO2e/use",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "ferry",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "ferry",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "ferry",
-        "type": "intensity",
-        "value": 0.424691332,
-        "subdomain": "ferry",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-driving",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "motorbike",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-driving",
-        "type": "intensity",
-        "value": 0.057043135,
-        "subdomain": "motorbike",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-maintenance",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "motorbike",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-maintenance",
-        "type": "intensity",
-        "value": 1.965801837,
-        "subdomain": "motorbike",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-purchase",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "motorbike",
-        "unit": "vehicle",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-purchase",
-        "type": "intensity",
-        "value": 979.6575783,
-        "subdomain": "motorbike",
-        "unit": "kgCO2e/vehicle",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-driving",
-        "type": "amount",
-        "value": 5000,
-        "subdomain": "private-car",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-driving",
-        "type": "intensity",
-        "value": 0.9964640249663369,
-        "subdomain": "private-car",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-maintenance",
-        "type": "amount",
-        "value": 64.17671713804691,
-        "subdomain": "private-car",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-maintenance",
-        "type": "intensity",
-        "value": 1.648088312,
-        "subdomain": "private-car",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-purchase",
-        "type": "amount",
-        "value": 0.05010685124909581,
-        "subdomain": "private-car",
-        "unit": "vehicle",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-purchase",
-        "type": "intensity",
-        "value": 5112.506479,
-        "subdomain": "private-car",
-        "unit": "kgCO2e/vehicle",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "taxi",
-        "type": "amount",
-        "value": 265.25886340582804,
-        "subdomain": "car-sharing-taxi",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "taxi",
-        "type": "intensity",
-        "value": 0.429510033,
-        "subdomain": "car-sharing-taxi",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "train",
-        "type": "amount",
-        "value": 30580,
-        "subdomain": "train",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "train",
-        "type": "intensity",
-        "value": 0.031326557,
-        "subdomain": "train",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "walking",
-        "type": "amount",
-        "value": 168.9344406,
-        "subdomain": "walking",
-        "unit": "km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "mobility",
-        "item": "walking",
-        "type": "intensity",
-        "value": 0,
-        "subdomain": "walking",
-        "unit": "kgCO2e/km-passenger",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
       {
         "domain": "housing",
         "item": "electricity",
         "type": "amount",
-        "value": 4577.6825235,
+        "value": 2156.268842,
         "subdomain": "electricity",
         "unit": "kWh",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -348,7 +159,7 @@
         "domain": "housing",
         "item": "electricity",
         "type": "intensity",
-        "value": 0.062972926,
+        "value": 0.634319811,
         "subdomain": "electricity",
         "unit": "kgCO2e/kWh",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -357,8 +168,8 @@
         "domain": "housing",
         "item": "housing-maintenance",
         "type": "amount",
-        "value": 44.183052167733976,
-        "subdomain": "construction-maintenance",
+        "value": 44.18305217,
+        "subdomain": "maintenance",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -367,7 +178,7 @@
         "item": "housing-maintenance",
         "type": "intensity",
         "value": 1.378245204,
-        "subdomain": "construction-maintenance",
+        "subdomain": "maintenance",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -375,8 +186,8 @@
         "domain": "housing",
         "item": "imputed-rent",
         "type": "amount",
-        "value": 32.06179313835564,
-        "subdomain": "construction-maintenance",
+        "value": 32.06179314,
+        "subdomain": "imputedrent",
         "unit": "m2",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -385,7 +196,7 @@
         "item": "imputed-rent",
         "type": "intensity",
         "value": 0.930699,
-        "subdomain": "construction-maintenance",
+        "subdomain": "imputedrent",
         "unit": "kgCO2e/m2",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -393,7 +204,7 @@
         "domain": "housing",
         "item": "kerosene",
         "type": "amount",
-        "value": 200,
+        "value": 650.7599302,
         "subdomain": "other-energy",
         "unit": "kWh",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -412,7 +223,7 @@
         "item": "land-rent",
         "type": "amount",
         "value": 1.96142204,
-        "subdomain": "construction-maintenance",
+        "subdomain": "landrent",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -421,7 +232,7 @@
         "item": "land-rent",
         "type": "intensity",
         "value": 0.542386441,
-        "subdomain": "construction-maintenance",
+        "subdomain": "landrent",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -429,7 +240,7 @@
         "domain": "housing",
         "item": "lpg",
         "type": "amount",
-        "value": 0,
+        "value": 438.7575348,
         "subdomain": "other-energy",
         "unit": "kWh",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -465,8 +276,8 @@
         "domain": "housing",
         "item": "rent",
         "type": "amount",
-        "value": 6.934328681644358,
-        "subdomain": "construction-maintenance",
+        "value": 6.934328682,
+        "subdomain": "rent",
         "unit": "m2",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -475,7 +286,7 @@
         "item": "rent",
         "type": "intensity",
         "value": 3.418080692,
-        "subdomain": "construction-maintenance",
+        "subdomain": "rent",
         "unit": "kgCO2e/m2",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -483,7 +294,7 @@
         "domain": "housing",
         "item": "urban-gas",
         "type": "amount",
-        "value": 3458.3333335,
+        "value": 886.8038344,
         "subdomain": "other-energy",
         "unit": "kWh",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -516,1354 +327,1861 @@
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "alcohol",
+        "domain": "mobility",
+        "item": "airplane",
         "type": "amount",
-        "value": 165.74835878353653,
-        "subdomain": "beverages",
-        "unit": "kg",
+        "value": 1161.463556,
+        "subdomain": "airplane",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "alcohol",
+        "domain": "mobility",
+        "item": "airplane",
         "type": "intensity",
-        "value": 0.944414337,
-        "subdomain": "beverages",
-        "unit": "kgCO2e/kg",
+        "value": 0.124064635,
+        "subdomain": "airplane",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "bar-cafe",
+        "domain": "mobility",
+        "item": "bicycle-driving",
         "type": "amount",
-        "value": 8.918191926413641,
-        "subdomain": "restaurant",
+        "value": 264.0133354,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "intensity",
+        "value": 0.013134541,
+        "subdomain": "purchase",
+        "unit": "kgCO2e/km-passenger",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.406667749,
+        "subdomain": "maintenance",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "bar-cafe",
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
         "type": "intensity",
-        "value": 2.991595476,
-        "subdomain": "restaurant",
+        "value": 2.324385029,
+        "subdomain": "maintenance",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "beans",
+        "domain": "mobility",
+        "item": "bus",
         "type": "amount",
-        "value": 32.517170183660326,
-        "subdomain": "beans-nuts",
-        "unit": "kg",
+        "value": 430.6177624,
+        "subdomain": "bus",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "beans",
+        "domain": "mobility",
+        "item": "bus",
         "type": "intensity",
-        "value": 1.058728707,
-        "subdomain": "beans-nuts",
-        "unit": "kgCO2e/kg",
+        "value": 0.082993045,
+        "subdomain": "bus",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "beef",
+        "domain": "mobility",
+        "item": "car-sharing-driving",
         "type": "amount",
-        "value": 7.440199866365461,
-        "subdomain": "meat",
-        "unit": "kg",
+        "value": 60.7815956,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "beef",
+        "domain": "mobility",
+        "item": "car-sharing-driving",
         "type": "intensity",
-        "value": 18.34219895,
-        "subdomain": "meat",
-        "unit": "kgCO2e/kg",
+        "value": 0.168721197,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "bread-flour",
+        "domain": "mobility",
+        "item": "car-sharing-rental",
         "type": "amount",
-        "value": 39.28456185566255,
-        "subdomain": "cereals",
-        "unit": "kg",
+        "value": 0.161272731,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "bread-flour",
+        "domain": "mobility",
+        "item": "car-sharing-rental",
         "type": "intensity",
-        "value": 2.655219688,
-        "subdomain": "cereals",
-        "unit": "kgCO2e/kg",
+        "value": 8.698477742,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/use",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "chicken",
+        "domain": "mobility",
+        "item": "ferry",
         "type": "amount",
-        "value": 13.671950246025148,
-        "subdomain": "meat",
-        "unit": "kg",
+        "value": 20.10019321,
+        "subdomain": "ferry",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "chicken",
+        "domain": "mobility",
+        "item": "ferry",
         "type": "intensity",
-        "value": 5.250241141,
-        "subdomain": "meat",
-        "unit": "kgCO2e/kg",
+        "value": 0.424691332,
+        "subdomain": "ferry",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "coffee-tea",
+        "domain": "mobility",
+        "item": "motorbike-driving",
         "type": "amount",
-        "value": 43.29127591177226,
-        "subdomain": "beverages",
-        "unit": "kg",
+        "value": 254.458252,
+        "subdomain": "driving",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "coffee-tea",
+        "domain": "mobility",
+        "item": "motorbike-driving",
         "type": "intensity",
-        "value": 0.465905509,
-        "subdomain": "beverages",
-        "unit": "kgCO2e/kg",
+        "value": 0.057043135,
+        "subdomain": "driving",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "cold-drink",
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
         "type": "amount",
-        "value": 41.2311777492847,
-        "subdomain": "beverages",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "cold-drink",
-        "type": "intensity",
-        "value": 0.482549688,
-        "subdomain": "beverages",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "eggs",
-        "type": "amount",
-        "value": 17.97475464772416,
-        "subdomain": "eggs",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "eggs",
-        "type": "intensity",
-        "value": 1.450456835,
-        "subdomain": "eggs",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "fish",
-        "type": "amount",
-        "value": 44.569874489813664,
-        "subdomain": "fish",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "fish",
-        "type": "intensity",
-        "value": 5.528206567,
-        "subdomain": "fish",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "fruits",
-        "type": "amount",
-        "value": 54.72630654001349,
-        "subdomain": "fruits",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "fruits",
-        "type": "intensity",
-        "value": 1.305111781,
-        "subdomain": "fruits",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "milk",
-        "type": "amount",
-        "value": 49.28508345240875,
-        "subdomain": "dairy",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "milk",
-        "type": "intensity",
-        "value": 0.876594709,
-        "subdomain": "dairy",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "noodle",
-        "type": "amount",
-        "value": 26.3867167611374,
-        "subdomain": "cereals",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "noodle",
-        "type": "intensity",
-        "value": 2.03794552,
-        "subdomain": "cereals",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "oil",
-        "type": "amount",
-        "value": 6.543684793273234,
-        "subdomain": "other-food",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "oil",
-        "type": "intensity",
-        "value": 2.404909632,
-        "subdomain": "other-food",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "other-dairy",
-        "type": "amount",
-        "value": 24.149951912143216,
-        "subdomain": "dairy",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "other-dairy",
-        "type": "intensity",
-        "value": 2.204505819,
-        "subdomain": "dairy",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "other-meat",
-        "type": "amount",
-        "value": 2.823419261605222,
-        "subdomain": "meat",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "other-meat",
-        "type": "intensity",
-        "value": 7.689625825,
-        "subdomain": "meat",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "pork",
-        "type": "amount",
-        "value": 16.45824952016458,
-        "subdomain": "meat",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "pork",
-        "type": "intensity",
-        "value": 8.051661719,
-        "subdomain": "meat",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "potatoes",
-        "type": "amount",
-        "value": 16.441491856739923,
-        "subdomain": "vegetables",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "potatoes",
-        "type": "intensity",
-        "value": 1.567735484,
-        "subdomain": "vegetables",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "processed-fish",
-        "type": "amount",
-        "value": 17.52083204506875,
-        "subdomain": "fish",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "processed-fish",
-        "type": "intensity",
-        "value": 4.080158747,
-        "subdomain": "fish",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "processed-meat",
-        "type": "amount",
-        "value": 4.140424111,
-        "subdomain": "meat",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "processed-meat",
-        "type": "intensity",
-        "value": 5.336739155,
-        "subdomain": "meat",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "processed-vegetables",
-        "type": "amount",
-        "value": 14.452255443216869,
-        "subdomain": "vegetables",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "processed-vegetables",
-        "type": "intensity",
-        "value": 3.390013568,
-        "subdomain": "vegetables",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "ready-meal",
-        "type": "amount",
-        "value": 61.981958092152354,
-        "subdomain": "other-food",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "ready-meal",
-        "type": "intensity",
-        "value": 3.940265729,
-        "subdomain": "other-food",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "restaurant",
-        "type": "amount",
-        "value": 31.632816251792775,
-        "subdomain": "restaurant",
+        "value": 0.446120353,
+        "subdomain": "maintenance",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "restaurant",
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
         "type": "intensity",
-        "value": 2.972239521,
-        "subdomain": "restaurant",
+        "value": 1.965801837,
+        "subdomain": "maintenance",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "rice",
+        "domain": "mobility",
+        "item": "motorbike-purchase",
         "type": "amount",
-        "value": 56.12454941776991,
-        "subdomain": "cereals",
-        "unit": "kg",
+        "value": 0.002635317,
+        "subdomain": "purchase",
+        "unit": "vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "rice",
+        "domain": "mobility",
+        "item": "motorbike-purchase",
         "type": "intensity",
-        "value": 2.852329875,
-        "subdomain": "cereals",
-        "unit": "kgCO2e/kg",
+        "value": 979.6575783,
+        "subdomain": "purchase",
+        "unit": "kgCO2e/vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "seasoning",
+        "domain": "mobility",
+        "item": "private-car-driving",
         "type": "amount",
-        "value": 37.14793232149165,
-        "subdomain": "other-food",
-        "unit": "kg",
+        "value": 4341.744284,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "seasoning",
+        "domain": "mobility",
+        "item": "private-car-driving",
         "type": "intensity",
-        "value": 1.897020567,
-        "subdomain": "other-food",
-        "unit": "kgCO2e/kg",
+        "value": 0.168396977,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "food",
-        "item": "sweets-snack",
+        "domain": "mobility",
+        "item": "private-car-maintenance",
         "type": "amount",
-        "value": 6.570425321358666,
-        "subdomain": "other-food",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "sweets-snack",
-        "type": "intensity",
-        "value": 4.939585725,
-        "subdomain": "other-food",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "vegetables",
-        "type": "amount",
-        "value": 130.35685455373627,
-        "subdomain": "vegetables",
-        "unit": "kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "food",
-        "item": "vegetables",
-        "type": "intensity",
-        "value": 1.281591651,
-        "subdomain": "vegetables",
-        "unit": "kgCO2e/kg",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "bags-jewelries-goods",
-        "type": "amount",
-        "value": 4.2406257401545515,
-        "subdomain": "clothes",
+        "value": 55.72777896,
+        "subdomain": "private-car",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "bags-jewelries-goods",
+        "domain": "mobility",
+        "item": "private-car-maintenance",
         "type": "intensity",
-        "value": 2.558629508,
-        "subdomain": "clothes",
+        "value": 1.648088312,
+        "subdomain": "private-car",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "bags-jewelries-repair-rental",
+        "domain": "mobility",
+        "item": "private-car-purchase",
         "type": "amount",
-        "value": 0.11285758944215084,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY",
+        "value": 0.043510227,
+        "subdomain": "private-car",
+        "unit": "vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "bags-jewelries-repair-rental",
+        "domain": "mobility",
+        "item": "private-car-purchase",
         "type": "intensity",
-        "value": 1.106075818,
-        "subdomain": "waste-repair-rental",
-        "unit": "kgCO2e/000JPY",
+        "value": 5112.506479,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "bath-spa",
+        "domain": "mobility",
+        "item": "taxi",
         "type": "amount",
-        "value": 3.5280372237660456,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY",
+        "value": 48.16514973,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "bath-spa",
+        "domain": "mobility",
+        "item": "taxi",
         "type": "intensity",
-        "value": 5.754233873,
-        "subdomain": "personal-care-other-services",
-        "unit": "kgCO2e/000JPY",
+        "value": 0.429510033,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "books-magazines",
+        "domain": "mobility",
+        "item": "train",
         "type": "amount",
-        "value": 8.516147294319948,
-        "subdomain": "hobby-books",
-        "unit": "000JPY",
+        "value": 2883.143695,
+        "subdomain": "train",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "books-magazines",
+        "domain": "mobility",
+        "item": "train",
         "type": "intensity",
-        "value": 2.52738082,
-        "subdomain": "hobby-books",
-        "unit": "kgCO2e/000JPY",
+        "value": 0.031326557,
+        "subdomain": "train",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "broadcasting",
+        "domain": "mobility",
+        "item": "walking",
         "type": "amount",
-        "value": 4.2623743586298035,
-        "subdomain": "communication-delivery",
-        "unit": "000JPY",
+        "value": 168.9344406,
+        "subdomain": "walking",
+        "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
       {
-        "domain": "other",
-        "item": "broadcasting",
+        "domain": "mobility",
+        "item": "walking",
         "type": "intensity",
-        "value": 1.141584281,
-        "subdomain": "communication-delivery",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "caring",
-        "type": "amount",
-        "value": 1.1413648888828338,
-        "subdomain": "welfare-education",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "caring",
-        "type": "intensity",
-        "value": 1.283734545,
-        "subdomain": "welfare-education",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "ceremony",
-        "type": "amount",
-        "value": 32.64805709,
-        "subdomain": "ceremony",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "ceremony",
-        "type": "intensity",
-        "value": 2.31786394,
-        "subdomain": "ceremony",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "clothes-goods",
-        "type": "amount",
-        "value": 24.642670871359822,
-        "subdomain": "clothes",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "clothes-goods",
-        "type": "intensity",
-        "value": 2.670916765,
-        "subdomain": "clothes",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "clothes-repair-rental",
-        "type": "amount",
-        "value": 0.3541234274476882,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "clothes-repair-rental",
-        "type": "intensity",
-        "value": 1.021369922,
-        "subdomain": "waste-repair-rental",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "communication",
-        "type": "amount",
-        "value": 31.737625648667542,
-        "subdomain": "communication-delivery",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "communication",
-        "type": "intensity",
-        "value": 1.02634832,
-        "subdomain": "communication-delivery",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "cooking-appliances",
-        "type": "amount",
-        "value": 3.3789272274325746,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "cooking-appliances",
-        "type": "intensity",
-        "value": 2.852827088,
-        "subdomain": "appliance-furniture",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "cosmetics",
-        "type": "amount",
-        "value": 3.6387981974170507,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "cosmetics",
-        "type": "intensity",
-        "value": 2.276312315,
-        "subdomain": "daily-goods-medicine",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "covering",
-        "type": "amount",
-        "value": 2.77700643771883,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "covering",
-        "type": "intensity",
-        "value": 2.512668069,
-        "subdomain": "appliance-furniture",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "culture-goods",
-        "type": "amount",
-        "value": 5.2123971318506355,
-        "subdomain": "hobby-books",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "culture-goods",
-        "type": "intensity",
-        "value": 2.39985402,
-        "subdomain": "hobby-books",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "culture-leisure",
-        "type": "amount",
-        "value": 7.476429265566569,
-        "subdomain": "leisure-sports",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "culture-leisure",
-        "type": "intensity",
-        "value": 2.189658709,
-        "subdomain": "leisure-sports",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "electrical-appliances-repair-rental",
-        "type": "amount",
-        "value": 0.2730755112035403,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "electrical-appliances-repair-rental",
-        "type": "intensity",
-        "value": 1.953281338,
-        "subdomain": "waste-repair-rental",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "electronics",
-        "type": "amount",
-        "value": 8.140149492310526,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "electronics",
-        "type": "intensity",
-        "value": 2.274573158,
-        "subdomain": "appliance-furniture",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "entertainment-goods",
-        "type": "amount",
-        "value": 0.7064336492454941,
-        "subdomain": "hobby-books",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "entertainment-goods",
-        "type": "intensity",
-        "value": 1.570433632,
-        "subdomain": "hobby-books",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "entertainment-leisure",
-        "type": "amount",
-        "value": 6.598602991898161,
-        "subdomain": "leisure-sports",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "entertainment-leisure",
-        "type": "intensity",
-        "value": 1.973982363,
-        "subdomain": "leisure-sports",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "finance-insurance",
-        "type": "amount",
-        "value": 111.1827326,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "finance-insurance",
-        "type": "intensity",
-        "value": 0.707292151,
-        "subdomain": "personal-care-other-services",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "formal-education",
-        "type": "amount",
-        "value": 8.602369833182541,
-        "subdomain": "welfare-education",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "formal-education",
-        "type": "intensity",
-        "value": 1.074215614,
-        "subdomain": "welfare-education",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "furniture-daily-goods-repair-rental",
-        "type": "amount",
-        "value": 0.8796362514491911,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "furniture-daily-goods-repair-rental",
-        "type": "intensity",
-        "value": 1.799958663,
-        "subdomain": "waste-repair-rental",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "furniture",
-        "type": "amount",
-        "value": 2.0335378243066082,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "furniture",
-        "type": "intensity",
-        "value": 2.207048567,
-        "subdomain": "appliance-furniture",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "gardening-flower",
-        "type": "amount",
-        "value": 5.720752416498694,
-        "subdomain": "hobby-books",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "gardening-flower",
-        "type": "intensity",
-        "value": 4.85232258,
-        "subdomain": "hobby-books",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "haircare",
-        "type": "amount",
-        "value": 2.2594757930579776,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "haircare",
-        "type": "intensity",
-        "value": 1.712161189,
-        "subdomain": "personal-care-other-services",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "heating-cooling-appliances",
-        "type": "amount",
-        "value": 3.873104142760553,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "heating-cooling-appliances",
-        "type": "intensity",
-        "value": 7.449174796,
-        "subdomain": "appliance-furniture",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "hotel",
-        "type": "amount",
-        "value": 4.206479358475427,
-        "subdomain": "travel-hotel",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "hotel",
-        "type": "intensity",
-        "value": 3.770333888,
-        "subdomain": "travel-hotel",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "housework",
-        "type": "amount",
-        "value": 0.19458920387735204,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "housework",
-        "type": "intensity",
-        "value": 1.215004276,
-        "subdomain": "personal-care-other-services",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "informal-education",
-        "type": "amount",
-        "value": 3.9611761240006116,
-        "subdomain": "welfare-education",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "informal-education",
-        "type": "intensity",
-        "value": 1.21314144,
-        "subdomain": "welfare-education",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "kitchen-goods",
-        "type": "amount",
-        "value": 7.208680981734736,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "kitchen-goods",
-        "type": "intensity",
-        "value": 3.23125458,
-        "subdomain": "daily-goods-medicine",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "medical-care",
-        "type": "amount",
-        "value": 20.798688802167522,
-        "subdomain": "welfare-education",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "medical-care",
-        "type": "intensity",
-        "value": 1.169394129,
-        "subdomain": "welfare-education",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "medicine",
-        "type": "amount",
-        "value": 5.343035666689799,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "medicine",
-        "type": "intensity",
-        "value": 2.132542476,
-        "subdomain": "daily-goods-medicine",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "nursing",
-        "type": "amount",
-        "value": 1.1963971850633226,
-        "subdomain": "welfare-education",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "nursing",
-        "type": "intensity",
-        "value": 1.209159482,
-        "subdomain": "welfare-education",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "other-appliances",
-        "type": "amount",
-        "value": 3.644563112505564,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "other-appliances",
-        "type": "intensity",
-        "value": 2.750735655,
-        "subdomain": "appliance-furniture",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "other-services",
-        "type": "amount",
-        "value": 20.40058961,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "other-services",
-        "type": "intensity",
-        "value": 0.949580643,
-        "subdomain": "personal-care-other-services",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "paper-stationery",
-        "type": "amount",
-        "value": 2.187704451022679,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "paper-stationery",
-        "type": "intensity",
-        "value": 3.056810847,
-        "subdomain": "daily-goods-medicine",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "pet",
-        "type": "amount",
-        "value": 5.620057102706165,
-        "subdomain": "hobby-books",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "pet",
-        "type": "intensity",
-        "value": 2.103916343,
-        "subdomain": "hobby-books",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "postal-delivery",
-        "type": "amount",
-        "value": 5.98733909,
-        "subdomain": "communication-delivery",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "postal-delivery",
-        "type": "intensity",
-        "value": 3.81741193,
-        "subdomain": "communication-delivery",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sanitation",
-        "type": "amount",
-        "value": 26.60361456557371,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sanitation",
-        "type": "intensity",
-        "value": 3.129136419,
-        "subdomain": "daily-goods-medicine",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sports-culture-repair-rental",
-        "type": "amount",
-        "value": 0.04705253318835729,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sports-culture-repair-rental",
-        "type": "intensity",
-        "value": 1.953281338,
-        "subdomain": "waste-repair-rental",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sports-entertainment-repair-rental",
-        "type": "amount",
-        "value": 0.4387716110396857,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sports-entertainment-repair-rental",
-        "type": "intensity",
-        "value": 0.82229875,
-        "subdomain": "waste-repair-rental",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sports-goods",
-        "type": "amount",
-        "value": 4.41204459278814,
-        "subdomain": "hobby-books",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sports-goods",
-        "type": "intensity",
-        "value": 2.497630942,
-        "subdomain": "hobby-books",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sports-leisure",
-        "type": "amount",
-        "value": 12.396930558535834,
-        "subdomain": "leisure-sports",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "sports-leisure",
-        "type": "intensity",
-        "value": 1.703889647,
-        "subdomain": "leisure-sports",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "tobacco",
-        "type": "amount",
-        "value": 5.326343705948848,
-        "subdomain": "hobby-books",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "tobacco",
-        "type": "intensity",
-        "value": 0.996872147,
-        "subdomain": "hobby-books",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "travel",
-        "type": "amount",
-        "value": 0.7935206469513141,
-        "subdomain": "travel-hotel",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "travel",
-        "type": "intensity",
-        "value": 0.653433284,
-        "subdomain": "travel-hotel",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "washing",
-        "type": "amount",
-        "value": 0.7623783086148708,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "washing",
-        "type": "intensity",
-        "value": 2.437149813,
-        "subdomain": "personal-care-other-services",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "waste",
-        "type": "amount",
-        "value": 3.123482434,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "other",
-        "item": "waste",
-        "type": "intensity",
-        "value": 8.586030351,
-        "subdomain": "waste-repair-rental",
-        "unit": "kgCO2e/000JPY",
+        "value": 0,
+        "subdomain": "walking",
+        "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       }
     ],
-    "shareId": "GHF5rkpKX",
-    "id": "89f5361d-3b10-4991-b750-d42b9bd1ad81",
-    "estimations": [
+    "shareId": "qmTSim8Uf",
+    "id": "b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
+    "actions": [
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4162.643090956748,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.270333566,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 29.36471639707364,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "com-house",
+        "optionValue": 1,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 21.3087466,
+        "subdomain": "imputedrent",
+        "unit": "m2",
+        "option": "com-house",
+        "optionValue": 21.3087466,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1511.1375805862237,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.771779141,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.3035903839534044,
+        "subdomain": "landrent",
+        "unit": "000JPY",
+        "option": "com-house",
+        "optionValue": 1,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.082599119,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 4.608658415,
+        "subdomain": "rent",
+        "unit": "m2",
+        "option": "com-house",
+        "optionValue": 4.608658415,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 35177.85744986391,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.234432234,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.10652533649719569,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv",
+        "optionValue": 0.083547694,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "intensity",
+        "value": 16.807142130126277,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/use",
+        "option": "car-ev-phv",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
       {
         "domain": "mobility",
         "item": "private-car-driving",
         "type": "intensity",
-        "value": 0.9964640249663369,
+        "value": 0.10632063403411916,
         "subdomain": "private-car",
-        "unit": "kgCO2e/km-passenger"
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv",
+        "optionValue": 0.083547694,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "intensity",
+        "value": 9878.351773995313,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/vehicle",
+        "option": "car-ev-phv",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "airplane",
+        "type": "amount",
+        "value": 29029.53126,
+        "subdomain": "airplane",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.516174479,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 247.98851982931956,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.060696993,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.38198423948562127,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 6329.74730472,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.249140296,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 191.91987034388148,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.426661831,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.5092239076317318,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "ferry",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "ferry",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.443690476,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.167651939,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
       },
       {
         "domain": "mobility",
         "item": "private-car-driving",
         "type": "amount",
-        "value": 5000,
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.216339849,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 208.6264944874966,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.213498498,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 26690.22081968,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.127200104,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4343.739263450846,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.127762934,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1409.4612503525425,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.771779141,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.082599119,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 34599.51743838144,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.234432234,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "airplane",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "airplane",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 38597.37056829709,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0.5,
+        "args": [
+          "mobility_airplane_amount",
+          "mobility_ferry_amount",
+          "mobility_private-car-driving_amount",
+          "mobility_car-sharing-driving_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": -1,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "ferry",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "ferry",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": -0.295098039,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 60747.37056829709,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0.5,
+        "args": [
+          "mobility_airplane_amount",
+          "mobility_ferry_amount",
+          "mobility_private-car-driving_amount",
+          "mobility_car-sharing-driving_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 6814.061310488612,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": 0.2125,
+        "args": [
+          "housing_urban-gas_amount",
+          "housing_lpg_amount",
+          "housing_kerosene_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 78.46886017865081,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "ac",
+        "optionValue": -0.015345044,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 465.3173458813567,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.771779141,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.082599119,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 29229.180061943596,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.234432234,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4297.798995561279,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.127762934,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 317.7863752472795,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "insrenov",
+        "optionValue": -0.241929499,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1285.8579917715374,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.771779141,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.082599119,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 33896.45597045947,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.234432234,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.032708954638681474,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv-re",
+        "optionValue": 0.025653594,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "intensity",
+        "value": 16.807142130126277,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/use",
+        "option": "car-ev-phv-re",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "intensity",
+        "value": 0.03264610007469357,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv-re",
+        "optionValue": 0.025653594,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "intensity",
+        "value": 9878.351773995313,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/vehicle",
+        "option": "car-ev-phv-re",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "grid-re",
+        "optionValue": 0.062972926,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.0552561920175,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_private-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "intensity",
+        "value": 0.055150009967500004,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_private-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "intensity",
+        "value": 0.1771728886125,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_taxi-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 8239.8285423,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0.8,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.042861845,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "zeh",
+        "optionValue": 0.042861845,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 85.37615262773397,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "zeh",
+        "optionValue": 41.19310046,
+        "args": [],
+        "operation": "add-amount"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 186.06673340361615,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.295237367,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.28660423354142317,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 7480.21911204,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.112666772,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.396275784,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.213660031,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 249.28384836239505,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.060224246,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 16242.420491219998,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.468854791,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 11666.178041392403,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": 0.271666667,
+        "args": [
+          "housing_urban-gas_amount",
+          "housing_lpg_amount",
+          "housing_kerosene_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 472.37397852536225,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "ec",
+        "optionValue": -0.077669903,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 123.96929830869256,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.939197668,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.228220859,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 14002.042071459211,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.633259912,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4440.352047795,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "enenudge",
+        "optionValue": -0.03,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 334.741136594172,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.8881737431155255,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "carshare",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 229.3655841387413,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.131234853,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.3532987667401441,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 8034.88452591,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.046870163,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.069132146,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.11914264,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 210.08696151229591,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.20799268,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 28990.78198632,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.051969196,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4275.369623038546,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "led",
+        "optionValue": -0.0660406,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.467903943523126,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "led",
+        "optionValue": 0.020622194,
+        "args": ["housing_electricity"],
+        "operation": "further-reduction-from-other-footprints"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 352.4329564468564,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.5428631733867263,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 8518.419621046856,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.8881737431155255,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": -0.704901961,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": -1,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 30668.419621046858,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.042861845,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "self-re",
+        "optionValue": 0.042861845,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 211.06470115515074,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.200552878,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.3251093615482684,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 7921.48230288,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.060322384,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.165508879,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.085664689,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 254.7720537157439,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.039534248,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 23570.162807400004,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.22922947,
+        "args": [],
+        "operation": "reduction-rate"
+      }
+    ],
+    "estimations": [
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.96142204,
+        "subdomain": "landrent",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179313835564,
+        "subdomain": "imputedrent",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328681644358,
+        "subdomain": "rent",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.183052167733976,
+        "subdomain": "maintenance",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4577.6825235,
+        "subdomain": "electricity",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 38179.74235600666,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 2038.89052,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
         "subdomain": "private-car",
         "unit": "km-passenger"
       },
@@ -1871,7 +2189,7 @@
         "domain": "mobility",
         "item": "private-car-purchase",
         "type": "amount",
-        "value": 0.05010685124909581,
+        "value": 0,
         "subdomain": "private-car",
         "unit": "vehicle"
       },
@@ -1879,7 +2197,7 @@
         "domain": "mobility",
         "item": "private-car-maintenance",
         "type": "amount",
-        "value": 64.17671713804691,
+        "value": 0,
         "subdomain": "private-car",
         "unit": "000JPY"
       },
@@ -1889,14 +2207,6 @@
         "type": "amount",
         "value": 60000,
         "subdomain": "airplane",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "ferry",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "ferry",
         "unit": "km-passenger"
       },
       {
@@ -1917,10 +2227,10 @@
       },
       {
         "domain": "mobility",
-        "item": "motorbike-driving",
+        "item": "ferry",
         "type": "amount",
         "value": 0,
-        "subdomain": "motorbike",
+        "subdomain": "ferry",
         "unit": "km-passenger"
       },
       {
@@ -1941,10 +2251,18 @@
       },
       {
         "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
         "item": "motorbike-purchase",
         "type": "amount",
         "value": 0,
-        "subdomain": "motorbike",
+        "subdomain": "purchase",
         "unit": "vehicle"
       },
       {
@@ -1960,655 +2278,7 @@
         "item": "motorbike-maintenance",
         "type": "amount",
         "value": 0,
-        "subdomain": "motorbike",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 4577.6825235,
-        "subdomain": "electricity",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 44.183052167733976,
-        "subdomain": "construction-maintenance",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "housing",
-        "item": "imputed-rent",
-        "type": "amount",
-        "value": 32.06179313835564,
-        "subdomain": "construction-maintenance",
-        "unit": "m2"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 200,
-        "subdomain": "other-energy",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "land-rent",
-        "type": "amount",
-        "value": 1.96142204,
-        "subdomain": "construction-maintenance",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "other-energy",
-        "type": "amount",
-        "value": 54.81742592,
-        "subdomain": "other-energy",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "rent",
-        "type": "amount",
-        "value": 6.934328681644358,
-        "subdomain": "construction-maintenance",
-        "unit": "m2"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 3458.3333335,
-        "subdomain": "other-energy",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "water",
-        "type": "amount",
-        "value": 103.5505,
-        "subdomain": "water",
-        "unit": "m3"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "intensity",
-        "value": 0.062972926,
-        "subdomain": "electricity",
-        "unit": "kgCO2e/kWh"
-      },
-      {
-        "domain": "food",
-        "item": "rice",
-        "type": "amount",
-        "value": 56.12454941776991,
-        "subdomain": "cereals",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "bread-flour",
-        "type": "amount",
-        "value": 39.28456185566255,
-        "subdomain": "cereals",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "noodle",
-        "type": "amount",
-        "value": 26.3867167611374,
-        "subdomain": "cereals",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "potatoes",
-        "type": "amount",
-        "value": 16.441491856739923,
-        "subdomain": "vegetables",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "vegetables",
-        "type": "amount",
-        "value": 130.35685455373627,
-        "subdomain": "vegetables",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "processed-vegetables",
-        "type": "amount",
-        "value": 14.452255443216869,
-        "subdomain": "vegetables",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "beans",
-        "type": "amount",
-        "value": 32.517170183660326,
-        "subdomain": "beans-nuts",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "fruits",
-        "type": "amount",
-        "value": 54.72630654001349,
-        "subdomain": "fruits",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "oil",
-        "type": "amount",
-        "value": 6.543684793273234,
-        "subdomain": "other-food",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "seasoning",
-        "type": "amount",
-        "value": 37.14793232149165,
-        "subdomain": "other-food",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "ready-meal",
-        "type": "amount",
-        "value": 61.981958092152354,
-        "subdomain": "other-food",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "milk",
-        "type": "amount",
-        "value": 49.28508345240875,
-        "subdomain": "dairy",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "other-dairy",
-        "type": "amount",
-        "value": 24.149951912143216,
-        "subdomain": "dairy",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "eggs",
-        "type": "amount",
-        "value": 17.97475464772416,
-        "subdomain": "eggs",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "beef",
-        "type": "amount",
-        "value": 7.440199866365461,
-        "subdomain": "meat",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "pork",
-        "type": "amount",
-        "value": 16.45824952016458,
-        "subdomain": "meat",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "other-meat",
-        "type": "amount",
-        "value": 2.823419261605222,
-        "subdomain": "meat",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "chicken",
-        "type": "amount",
-        "value": 13.671950246025148,
-        "subdomain": "meat",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "processed-meat",
-        "type": "amount",
-        "value": 4.140424111,
-        "subdomain": "meat",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "fish",
-        "type": "amount",
-        "value": 44.569874489813664,
-        "subdomain": "fish",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "processed-fish",
-        "type": "amount",
-        "value": 17.52083204506875,
-        "subdomain": "fish",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "alcohol",
-        "type": "amount",
-        "value": 94.4634433509294,
-        "subdomain": "beverages",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "alcohol",
-        "type": "amount",
-        "value": 165.74835878353653,
-        "subdomain": "beverages",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "sweets-snack",
-        "type": "amount",
-        "value": 6.570425321358666,
-        "subdomain": "other-food",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "coffee-tea",
-        "type": "amount",
-        "value": 43.29127591177226,
-        "subdomain": "beverages",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "cold-drink",
-        "type": "amount",
-        "value": 41.2311777492847,
-        "subdomain": "beverages",
-        "unit": "kg"
-      },
-      {
-        "domain": "food",
-        "item": "restaurant",
-        "type": "amount",
-        "value": 31.632816251792775,
-        "subdomain": "restaurant",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "food",
-        "item": "bar-cafe",
-        "type": "amount",
-        "value": 8.918191926413641,
-        "subdomain": "restaurant",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "sanitation",
-        "type": "amount",
-        "value": 26.60361456557371,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "kitchen-goods",
-        "type": "amount",
-        "value": 7.208680981734736,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "paper-stationery",
-        "type": "amount",
-        "value": 2.187704451022679,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "communication",
-        "type": "amount",
-        "value": 31.737625648667542,
-        "subdomain": "communication-delivery",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "broadcasting",
-        "type": "amount",
-        "value": 4.2623743586298035,
-        "subdomain": "communication-delivery",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "electrical-appliances-repair-rental",
-        "type": "amount",
-        "value": 0.2730755112035403,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "furniture-daily-goods-repair-rental",
-        "type": "amount",
-        "value": 0.8796362514491911,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "cooking-appliances",
-        "type": "amount",
-        "value": 3.3789272274325746,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "heating-cooling-appliances",
-        "type": "amount",
-        "value": 3.873104142760553,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "other-appliances",
-        "type": "amount",
-        "value": 3.644563112505564,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "electronics",
-        "type": "amount",
-        "value": 8.140149492310526,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "furniture",
-        "type": "amount",
-        "value": 2.0335378243066082,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "covering",
-        "type": "amount",
-        "value": 2.77700643771883,
-        "subdomain": "appliance-furniture",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "medicine",
-        "type": "amount",
-        "value": 5.343035666689799,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "housework",
-        "type": "amount",
-        "value": 0.19458920387735204,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "washing",
-        "type": "amount",
-        "value": 0.7623783086148708,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "medical-care",
-        "type": "amount",
-        "value": 20.798688802167522,
-        "subdomain": "welfare-education",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "nursing",
-        "type": "amount",
-        "value": 1.1963971850633226,
-        "subdomain": "welfare-education",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "caring",
-        "type": "amount",
-        "value": 1.1413648888828338,
-        "subdomain": "welfare-education",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "formal-education",
-        "type": "amount",
-        "value": 8.602369833182541,
-        "subdomain": "welfare-education",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "informal-education",
-        "type": "amount",
-        "value": 3.9611761240006116,
-        "subdomain": "welfare-education",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "culture-goods",
-        "type": "amount",
-        "value": 5.2123971318506355,
-        "subdomain": "hobby-books",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "entertainment-goods",
-        "type": "amount",
-        "value": 0.7064336492454941,
-        "subdomain": "hobby-books",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "sports-goods",
-        "type": "amount",
-        "value": 4.41204459278814,
-        "subdomain": "hobby-books",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "gardening-flower",
-        "type": "amount",
-        "value": 5.720752416498694,
-        "subdomain": "hobby-books",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "pet",
-        "type": "amount",
-        "value": 5.620057102706165,
-        "subdomain": "hobby-books",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "tobacco",
-        "type": "amount",
-        "value": 5.326343705948848,
-        "subdomain": "hobby-books",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "books-magazines",
-        "type": "amount",
-        "value": 8.516147294319948,
-        "subdomain": "hobby-books",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "sports-culture-repair-rental",
-        "type": "amount",
-        "value": 0.04705253318835729,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "sports-entertainment-repair-rental",
-        "type": "amount",
-        "value": 0.4387716110396857,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "haircare",
-        "type": "amount",
-        "value": 2.2594757930579776,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "cosmetics",
-        "type": "amount",
-        "value": 3.6387981974170507,
-        "subdomain": "daily-goods-medicine",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "clothes-goods",
-        "type": "amount",
-        "value": 24.642670871359822,
-        "subdomain": "clothes",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "bags-jewelries-goods",
-        "type": "amount",
-        "value": 4.2406257401545515,
-        "subdomain": "clothes",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "clothes-repair-rental",
-        "type": "amount",
-        "value": 0.3541234274476882,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "bags-jewelries-repair-rental",
-        "type": "amount",
-        "value": 0.11285758944215084,
-        "subdomain": "waste-repair-rental",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "culture-leisure",
-        "type": "amount",
-        "value": 7.476429265566569,
-        "subdomain": "leisure-sports",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "entertainment-leisure",
-        "type": "amount",
-        "value": 6.598602991898161,
-        "subdomain": "leisure-sports",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "sports-leisure",
-        "type": "amount",
-        "value": 12.396930558535834,
-        "subdomain": "leisure-sports",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "bath-spa",
-        "type": "amount",
-        "value": 3.5280372237660456,
-        "subdomain": "personal-care-other-services",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "hotel",
-        "type": "amount",
-        "value": 4.206479358475427,
-        "subdomain": "travel-hotel",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "other",
-        "item": "travel",
-        "type": "amount",
-        "value": 0.7935206469513141,
-        "subdomain": "travel-hotel",
+        "subdomain": "maintenance",
         "unit": "000JPY"
       }
     ],

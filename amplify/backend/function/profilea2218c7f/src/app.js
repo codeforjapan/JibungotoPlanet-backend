@@ -20,12 +20,6 @@ See the License for the specific language governing permissions and limitations 
 	STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN
 	STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME
 	STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN
-	STORAGE_OPTIONINTENSITYRATE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN
-	STORAGE_OPTIONINTENSITYRATE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME
-	STORAGE_OPTIONINTENSITYRATE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN
-	STORAGE_OPTIONINTENSITYRATEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN
-	STORAGE_OPTIONINTENSITYRATEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME
-	STORAGE_OPTIONINTENSITYRATEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN
 	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN
 	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME
 	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN
@@ -45,6 +39,7 @@ const { estimateFood } = require('./food')
 const { estimateOther } = require('./other')
 const { estimateHousing } = require('./housing')
 const { calculateActions } = require('./action')
+const { optionIntensityRates } = require('./data')
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -67,7 +62,7 @@ let footprintTableName = 'Footprint-' + suffix
 let parameterTableName = 'Parameter-' + suffix
 let profileTableName = 'Profile-' + suffix
 let optionTableName = 'Option-' + suffix
-let optionIntensityRateTableName = 'OptionIntensityRate-' + suffix
+// let optionIntensityRateTableName = 'OptionIntensityRate-' + suffix
 
 if (
   'AWS_EXECUTION_ENV' in process.env &&
@@ -84,7 +79,7 @@ if (
   parameterTableName = 'ParameterTable'
   profileTableName = 'ProfileTable'
   optionTableName = 'OptionTable'
-  optionIntensityRateTableName = 'OptionIntensityRateTable'
+  // optionIntensityRateTableName = 'OptionIntensityRateTable'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -185,14 +180,15 @@ const updateProfile = async (dynamodb, actionIntensityRates, profile) => {
   )
   profile.actions = actions
 
+  /*
   const optionIntensityRateData = await dynamodb
     .scan({
       TableName: optionIntensityRateTableName
     })
-    .promise()
+    .promise()*/
 
   // actionIntensityRatesの展開
-  profile.actionIntensityRates = optionIntensityRateData.Items.map((item) => ({
+  profile.actionIntensityRates = optionIntensityRates.map((item) => ({
     option: item.option,
     value:
       actionIntensityRates?.find((air) => air.option === item.option)?.value ||

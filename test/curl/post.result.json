@@ -2,11 +2,138 @@
   "success": "post call succeed!",
   "url": "/profiles",
   "data": {
-    "id": "89f5361d-3b10-4991-b750-d42b9bd1ad81",
-    "shareId": "GHF5rkpKX",
+    "id": "b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
+    "shareId": "qmTSim8Uf",
     "baselines": [],
     "estimations": [],
-    "createdAt": "2022-07-12T13:37:54.027Z",
-    "updatedAt": "2022-07-12T13:37:54.027Z"
+    "actionIntensityRates": [
+      { "option": "zeh", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "self-re", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "grid-re", "value": 1, "defaultValue": 1, "range": [] },
+      { "option": "com-house", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "insrenov", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      {
+        "option": "clothes-home",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      { "option": "ec", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "ac", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "led", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "enenudge", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "telework", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "closework", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      {
+        "option": "mictourism",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "closeservice",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      {
+        "option": "dailyshift",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "longshift",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "rideshare",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "carshare",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "car-ev-phv",
+        "value": 1,
+        "defaultValue": 1,
+        "range": [0, 1]
+      },
+      {
+        "option": "car-ev-phv-re",
+        "value": 1,
+        "defaultValue": 1,
+        "range": [0, 1]
+      },
+      { "option": "vegan", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "vegetarian",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "white-meat-fish",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "guide-meal",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      {
+        "option": "guide-snack-drink",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "loss", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "seasonal",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "local", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "clothes-accessory",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "electronics-furniture",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "hobby", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "consumables",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "books", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "eco-tourism",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      }
+    ],
+    "createdAt": "2022-07-31T21:55:47.828Z",
+    "updatedAt": "2022-07-31T21:55:47.828Z",
+    "actions": []
   }
 }

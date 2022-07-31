@@ -111,30 +111,6 @@
     "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
       "Type": "String",
       "Default": "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn"
-    },
-    "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevName": {
-      "Type": "String",
-      "Default": "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevName"
-    },
-    "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevArn": {
-      "Type": "String",
-      "Default": "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevArn"
-    },
-    "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevStreamArn": {
-      "Type": "String",
-      "Default": "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
-    },
-    "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgName": {
-      "Type": "String",
-      "Default": "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgName"
-    },
-    "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgArn": {
-      "Type": "String",
-      "Default": "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgArn"
-    },
-    "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
-      "Type": "String",
-      "Default": "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgStreamArn"
     }
   },
   "Conditions": {
@@ -261,24 +237,6 @@
             },
             "STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
               "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn"
-            },
-            "STORAGE_OPTIONINTENSITYRATE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME": {
-              "Ref": "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevName"
-            },
-            "STORAGE_OPTIONINTENSITYRATE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN": {
-              "Ref": "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevArn"
-            },
-            "STORAGE_OPTIONINTENSITYRATE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN": {
-              "Ref": "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
-            },
-            "STORAGE_OPTIONINTENSITYRATEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME": {
-              "Ref": "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgName"
-            },
-            "STORAGE_OPTIONINTENSITYRATEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN": {
-              "Ref": "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgArn"
-            },
-            "STORAGE_OPTIONINTENSITYRATEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
-              "Ref": "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgStreamArn"
             }
           }
         },
@@ -639,60 +597,6 @@
                     [
                       {
                         "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageOptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidevArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageOptionIntensityRateepwhhio5abgdthpzpwfkaox4bastgArn"
                       },
                       "index/*"
                     ]
