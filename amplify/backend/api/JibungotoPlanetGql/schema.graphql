@@ -121,7 +121,7 @@ type MobilityAnswer {
   #
   # お住いの地域（地方）の規模はどのくらいですか？
   #
-  mileageByAreaFirstKey: String # 住んでいる地域の規模 city-50k-150k|major-city-or-metropolitan-area|city-150k-more|area-less-than-50k|unknown
+  mileageByAreaFirstKey: String # 住んでいる地域の規模 major-city-or-metropolitan-area|city-150k-more|city-50k-150k|area-less-than-50k|unknown
   #
   # 昨年１年間で、旅行などで利用した移動手段を教えてください
   #
@@ -190,7 +190,7 @@ type HousingAnswer {
   # 暖房、温水供給、調理にガスを使用していますか？
   useGas: Boolean # ガスの使用の有無
   # 使用しているガスの種類を教えてください
-  energyHeatIntensityKey: String # ガスの種類　urban-gas|lpg|kerosene
+  energyHeatIntensityKey: String # ガスの種類　urban-gas|lpg
   # 1ヶ月のガス使用量はどのくらいですか？
   gasMonthlyConsumption: Float # 1ヶ月のガス使用量 m3
   gasSeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|november|december

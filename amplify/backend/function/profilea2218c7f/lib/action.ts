@@ -215,43 +215,9 @@ const shiftFromOtherItems = (action, results) => {
       ) {
         value = after - before
       }
-      /*
-      if (
-        action.option === 'ec' &&
-        action.key === 'housing_electricity_amount'
-      ) {
-        console.log(
-          key +
-            ' : ' +
-            action.option +
-            ':' +
-            action.key +
-            ' : after =' +
-            after +
-            ', before = ' +
-            before +
-            ' : value = ' +
-            value
-        )
-      }*/
     }
     return sum + value
   }, 0)
-  /*
-  if (action.option === 'ec') {
-    console.log(
-      action.option +
-        ':' +
-        action.key +
-        ':' +
-        sum +
-        ',' +
-        action.optionValue +
-        ' <- ' +
-        action.value
-    )
-  }
-    */
   action.value -= sum * action.optionValue
 }
 
@@ -284,44 +250,26 @@ const proportionalToOtherFootprints = (action, results) => {
   let sumBefore = 0
   let sumAfter = 0
   for (const key of action.args) {
-    const ab = results.get(key + '_amount')?.estimation?.value || 0
-    let aa = results.get(key + '_amount')?.actions.get(action.option)?.value
+    const amountBefore = results.get(key + '_amount')?.estimation?.value || 0
+    let amountAfter = results
+      .get(key + '_amount')
+      ?.actions.get(action.option)?.value
 
-    const ib = results.get(key + '_intensity')?.estimation?.value || 0
-    let ia = results.get(key + '_intensity')?.actions.get(action.option)?.value
+    const intensityBefore =
+      results.get(key + '_intensity')?.estimation?.value || 0
+    let intensityAfter = results
+      .get(key + '_intensity')
+      ?.actions.get(action.option)?.value
 
-    if (aa === null || aa === undefined) {
-      aa = ab
+    if (amountAfter === null || amountAfter === undefined) {
+      amountAfter = amountBefore
     }
-    if (ia === null || ia === undefined) {
-      ia = ib
+    if (intensityAfter === null || intensityAfter === undefined) {
+      intensityAfter = intensityBefore
     }
 
-    /*
-    if (
-      action.option === 'white-meat-fish' &&
-      action.key === 'food_restaurant_intensity'
-    ) {
-      console.log(
-        key +
-          ' : ' +
-          action.option +
-          ':' +
-          action.key +
-          ', amountBefore = ' +
-          ab +
-          ' : amountAfter =' +
-          aa +
-          ', intensityBefore = ' +
-          ib +
-          ' : intensityAfter =' +
-          ia
-      )
-    }
-    */
-
-    sumBefore += ab * ib
-    sumAfter += aa * ia
+    sumBefore += amountBefore * intensityBefore
+    sumAfter += amountAfter * intensityAfter
   }
   if (sumBefore !== 0) {
     action.value =
@@ -339,43 +287,25 @@ const furtherReductionFromOtherFootprints = (action, results, sign = -1) => {
   let sumBefore = 0
   let sumAfter = 0
   for (const key of action.args) {
-    const ab = results.get(key + '_amount')?.estimation?.value || 0
-    let aa = results.get(key + '_amount')?.actions.get(action.option)?.value
-    const ib = results.get(key + '_intensity')?.estimation?.value || 0
-    let ia = results.get(key + '_intensity')?.actions.get(action.option)?.value
+    const amountBefore = results.get(key + '_amount')?.estimation?.value || 0
+    let amountAfter = results
+      .get(key + '_amount')
+      ?.actions.get(action.option)?.value
+    const intensityBefore =
+      results.get(key + '_intensity')?.estimation?.value || 0
+    let intensityAfter = results
+      .get(key + '_intensity')
+      ?.actions.get(action.option)?.value
 
-    if (aa === null || aa === undefined) {
-      aa = ab
+    if (amountAfter === null || amountAfter === undefined) {
+      amountAfter = amountBefore
     }
-    if (ia === null || ia === undefined) {
-      ia = ib
+    if (intensityAfter === null || intensityAfter === undefined) {
+      intensityAfter = intensityBefore
     }
 
-    /*
-    if (
-      action.option === 'ac' &&
-      action.key === 'housing_housing-maintenance_amount'
-    ) {
-      console.log(
-        key +
-          ' : ' +
-          action.option +
-          ':' +
-          action.key +
-          ', amountBefore = ' +
-          ab +
-          ' : amountAfter =' +
-          aa +
-          ', intensityBefore = ' +
-          ib +
-          ' : intensityAfter =' +
-          ia
-      )
-    }
-    */
-
-    sumBefore += ab * ib
-    sumAfter += aa * ia
+    sumBefore += amountBefore * intensityBefore
+    sumAfter += amountAfter * intensityAfter
   }
 
   let amount = 0
@@ -397,30 +327,6 @@ const furtherReductionFromOtherFootprints = (action, results, sign = -1) => {
   action.value =
     (amount * intensity + sign * (sumAfter - sumBefore) * action.optionValue) /
     denominator
-
-  /*
-  if (action.option === 'ac') {
-    console.log(
-      action.key +
-        ' -> ' +
-        action.item +
-        ':' +
-        action.type +
-        ':' +
-        action.value +
-        ', amount = ' +
-        amount +
-        ', intensity = ' +
-        intensity +
-        'sumAfter = ' +
-        sumAfter +
-        'sumBefore = ' +
-        sumBefore +
-        'optionValue = ' +
-        action.optionValue
-    )
-  }
-  */
 }
 
 const getData = async (dynamodb, parameterTableName, category, key) =>
@@ -538,19 +444,6 @@ const questionAnswerToTarget = async (
       }
     }
 
-    /*
-    console.log(
-      action.key +
-        ' : ' +
-        'action.optionValue  = ' +
-        action.optionValue +
-        ', ghgIntensityRatio = ' +
-        ghgIntensity +
-        ', electricityIntensityFactor = ' +
-        electricityIntensityFactor
-    )
-    */
-
     action.value *= action.optionValue / ghgIntensity
   } else if (action.args[0] === 'mobility_manufacturing-intensity') {
     // 製造次元単位補正
@@ -562,17 +455,6 @@ const questionAnswerToTarget = async (
         '_manufacturing-intensity'
     )
     if (data?.Item) {
-      /*
-      console.log(
-        action.key +
-          ' : ' +
-          'action.optionValue  = ' +
-          action.optionValue +
-          ', data.Item.value = ' +
-          data.Item.value
-      )
-      */
-
       action.value *= action.optionValue / data.Item.value
     }
   } else if (action.args[0] === 'food_food-amount-to-average') {

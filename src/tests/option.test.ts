@@ -49,8 +49,14 @@ describe('Test all options', () => {
     'enenudge'
   ]
 
+  /*
+  //test('Dummy:', () => {
+    expect(true).toBe(true)
+  })
+  */
+
   for (const option of options) {
-    console.log('now testing : ' + option)
+    // console.log('now testing : ' + option)
 
     // テストケースを記載したExcel
     const workbook = xlsx.readFile(

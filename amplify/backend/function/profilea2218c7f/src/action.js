@@ -232,43 +232,9 @@ var shiftFromOtherItems = function (action, results) {
                 after !== undefined) {
                 value = after - before;
             }
-            /*
-            if (
-              action.option === 'ec' &&
-              action.key === 'housing_electricity_amount'
-            ) {
-              console.log(
-                key +
-                  ' : ' +
-                  action.option +
-                  ':' +
-                  action.key +
-                  ' : after =' +
-                  after +
-                  ', before = ' +
-                  before +
-                  ' : value = ' +
-                  value
-              )
-            }*/
         }
         return sum + value;
     }, 0);
-    /*
-    if (action.option === 'ec') {
-      console.log(
-        action.option +
-          ':' +
-          action.key +
-          ':' +
-          sum +
-          ',' +
-          action.optionValue +
-          ' <- ' +
-          action.value
-      )
-    }
-      */
     action.value -= sum * action.optionValue;
 };
 // [削減後] = [削減前] x (1-[value2で指定した影響割合])
@@ -301,40 +267,20 @@ var proportionalToOtherFootprints = function (action, results) {
     var sumAfter = 0;
     for (var _i = 0, _j = action.args; _i < _j.length; _i++) {
         var key = _j[_i];
-        var ab = ((_b = (_a = results.get(key + '_amount')) === null || _a === void 0 ? void 0 : _a.estimation) === null || _b === void 0 ? void 0 : _b.value) || 0;
-        var aa = (_d = (_c = results.get(key + '_amount')) === null || _c === void 0 ? void 0 : _c.actions.get(action.option)) === null || _d === void 0 ? void 0 : _d.value;
-        var ib = ((_f = (_e = results.get(key + '_intensity')) === null || _e === void 0 ? void 0 : _e.estimation) === null || _f === void 0 ? void 0 : _f.value) || 0;
-        var ia = (_h = (_g = results.get(key + '_intensity')) === null || _g === void 0 ? void 0 : _g.actions.get(action.option)) === null || _h === void 0 ? void 0 : _h.value;
-        if (aa === null || aa === undefined) {
-            aa = ab;
+        var amountBefore = ((_b = (_a = results.get(key + '_amount')) === null || _a === void 0 ? void 0 : _a.estimation) === null || _b === void 0 ? void 0 : _b.value) || 0;
+        var amountAfter = (_d = (_c = results
+            .get(key + '_amount')) === null || _c === void 0 ? void 0 : _c.actions.get(action.option)) === null || _d === void 0 ? void 0 : _d.value;
+        var intensityBefore = ((_f = (_e = results.get(key + '_intensity')) === null || _e === void 0 ? void 0 : _e.estimation) === null || _f === void 0 ? void 0 : _f.value) || 0;
+        var intensityAfter = (_h = (_g = results
+            .get(key + '_intensity')) === null || _g === void 0 ? void 0 : _g.actions.get(action.option)) === null || _h === void 0 ? void 0 : _h.value;
+        if (amountAfter === null || amountAfter === undefined) {
+            amountAfter = amountBefore;
         }
-        if (ia === null || ia === undefined) {
-            ia = ib;
+        if (intensityAfter === null || intensityAfter === undefined) {
+            intensityAfter = intensityBefore;
         }
-        /*
-        if (
-          action.option === 'white-meat-fish' &&
-          action.key === 'food_restaurant_intensity'
-        ) {
-          console.log(
-            key +
-              ' : ' +
-              action.option +
-              ':' +
-              action.key +
-              ', amountBefore = ' +
-              ab +
-              ' : amountAfter =' +
-              aa +
-              ', intensityBefore = ' +
-              ib +
-              ' : intensityAfter =' +
-              ia
-          )
-        }
-        */
-        sumBefore += ab * ib;
-        sumAfter += aa * ia;
+        sumBefore += amountBefore * intensityBefore;
+        sumAfter += amountAfter * intensityAfter;
     }
     if (sumBefore !== 0) {
         action.value =
@@ -353,40 +299,20 @@ var furtherReductionFromOtherFootprints = function (action, results, sign) {
     var sumAfter = 0;
     for (var _i = 0, _j = action.args; _i < _j.length; _i++) {
         var key = _j[_i];
-        var ab = ((_b = (_a = results.get(key + '_amount')) === null || _a === void 0 ? void 0 : _a.estimation) === null || _b === void 0 ? void 0 : _b.value) || 0;
-        var aa = (_d = (_c = results.get(key + '_amount')) === null || _c === void 0 ? void 0 : _c.actions.get(action.option)) === null || _d === void 0 ? void 0 : _d.value;
-        var ib = ((_f = (_e = results.get(key + '_intensity')) === null || _e === void 0 ? void 0 : _e.estimation) === null || _f === void 0 ? void 0 : _f.value) || 0;
-        var ia = (_h = (_g = results.get(key + '_intensity')) === null || _g === void 0 ? void 0 : _g.actions.get(action.option)) === null || _h === void 0 ? void 0 : _h.value;
-        if (aa === null || aa === undefined) {
-            aa = ab;
+        var amountBefore = ((_b = (_a = results.get(key + '_amount')) === null || _a === void 0 ? void 0 : _a.estimation) === null || _b === void 0 ? void 0 : _b.value) || 0;
+        var amountAfter = (_d = (_c = results
+            .get(key + '_amount')) === null || _c === void 0 ? void 0 : _c.actions.get(action.option)) === null || _d === void 0 ? void 0 : _d.value;
+        var intensityBefore = ((_f = (_e = results.get(key + '_intensity')) === null || _e === void 0 ? void 0 : _e.estimation) === null || _f === void 0 ? void 0 : _f.value) || 0;
+        var intensityAfter = (_h = (_g = results
+            .get(key + '_intensity')) === null || _g === void 0 ? void 0 : _g.actions.get(action.option)) === null || _h === void 0 ? void 0 : _h.value;
+        if (amountAfter === null || amountAfter === undefined) {
+            amountAfter = amountBefore;
         }
-        if (ia === null || ia === undefined) {
-            ia = ib;
+        if (intensityAfter === null || intensityAfter === undefined) {
+            intensityAfter = intensityBefore;
         }
-        /*
-        if (
-          action.option === 'ac' &&
-          action.key === 'housing_housing-maintenance_amount'
-        ) {
-          console.log(
-            key +
-              ' : ' +
-              action.option +
-              ':' +
-              action.key +
-              ', amountBefore = ' +
-              ab +
-              ' : amountAfter =' +
-              aa +
-              ', intensityBefore = ' +
-              ib +
-              ' : intensityAfter =' +
-              ia
-          )
-        }
-        */
-        sumBefore += ab * ib;
-        sumAfter += aa * ia;
+        sumBefore += amountBefore * intensityBefore;
+        sumAfter += amountAfter * intensityAfter;
     }
     var amount = 0;
     var intensity = 0;
@@ -406,29 +332,6 @@ var furtherReductionFromOtherFootprints = function (action, results, sign) {
     action.value =
         (amount * intensity + sign * (sumAfter - sumBefore) * action.optionValue) /
             denominator;
-    /*
-    if (action.option === 'ac') {
-      console.log(
-        action.key +
-          ' -> ' +
-          action.item +
-          ':' +
-          action.type +
-          ':' +
-          action.value +
-          ', amount = ' +
-          amount +
-          ', intensity = ' +
-          intensity +
-          'sumAfter = ' +
-          sumAfter +
-          'sumBefore = ' +
-          sumBefore +
-          'optionValue = ' +
-          action.optionValue
-      )
-    }
-    */
 };
 var getData = function (dynamodb, parameterTableName, category, key) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
@@ -523,18 +426,6 @@ var questionAnswerToTarget = function (action, dynamodb, housingAnswer, mobility
                 }
                 _c.label = 6;
             case 6:
-                /*
-                console.log(
-                  action.key +
-                    ' : ' +
-                    'action.optionValue  = ' +
-                    action.optionValue +
-                    ', ghgIntensityRatio = ' +
-                    ghgIntensity +
-                    ', electricityIntensityFactor = ' +
-                    electricityIntensityFactor
-                )
-                */
                 action.value *= action.optionValue / ghgIntensity;
                 return [3 /*break*/, 13];
             case 7:
@@ -544,16 +435,6 @@ var questionAnswerToTarget = function (action, dynamodb, housingAnswer, mobility
             case 8:
                 data = _c.sent();
                 if (data === null || data === void 0 ? void 0 : data.Item) {
-                    /*
-                    console.log(
-                      action.key +
-                        ' : ' +
-                        'action.optionValue  = ' +
-                        action.optionValue +
-                        ', data.Item.value = ' +
-                        data.Item.value
-                    )
-                    */
                     action.value *= action.optionValue / data.Item.value;
                 }
                 return [3 /*break*/, 13];

@@ -17,7 +17,7 @@ describe('Test all estimations', () => {
   */
 
   for (const domain of domains) {
-    console.log('now testing : ' + domain)
+    // console.log('now testing : ' + domain)
 
     // テストケースを記載したExcel
     const workbook = xlsx.readFile(
@@ -89,6 +89,17 @@ describe('Test all estimations', () => {
           expect(exp).not.toBeNull()
           expect(exp.estimated).toBeTruthy()
           expect(estimation.value).toBeCloseTo(exp.value)
+        }
+
+        // estimationに重複がないことを確認
+        for (let i = 0; i < estimations.length; ++i) {
+          for (let j = i + 1; j < estimations.length; ++j) {
+            expect(
+              estimations[i].domain + estimations[i].item + estimations[i].type
+            ).not.toBe(
+              estimations[j].domain + estimations[j].item + estimations[j].type
+            )
+          }
         }
 
         // expectationがestimatedになっている場合、estimationに値があるかを確認
