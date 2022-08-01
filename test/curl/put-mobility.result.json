@@ -1,30 +1,141 @@
 {
   "success": "put call succeed!",
-  "url": "/profiles/89f5361d-3b10-4991-b750-d42b9bd1ad81",
+  "url": "/profiles/b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
   "data": {
-    "mobilityAnswer": {
-      "hasPrivateCar": false,
-      "trainWeeklyTravelingTime": 7,
-      "busWeeklyTravelingTime": 7,
-      "motorbikeWeeklyTravelingTime": 0,
-      "otherCarWeeklyTravelingTime": 0,
-      "hasWeeklyTravelingTime": true,
-      "mileageByAreaFirstKey": "unknown",
-      "otherCarAnnualTravelingTime": 10,
-      "trainAnnualTravelingTime": 100,
-      "busAnnualTravelingTime": 100,
-      "motorbikeAnnualTravelingTime": 0,
-      "airplaneAnnualTravelingTime": 100,
-      "ferryAnnualTravelingTime": 0
-    },
-    "updatedAt": "2022-07-12T13:41:50.249Z",
-    "createdAt": "2022-07-12T13:37:54.027Z",
+    "actionIntensityRates": [
+      { "option": "zeh", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "self-re", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "grid-re", "value": 1, "defaultValue": 1, "range": [] },
+      { "option": "com-house", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "insrenov", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      {
+        "option": "clothes-home",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      { "option": "ec", "value": 1, "defaultValue": 1, "range": [0, 1] },
+      { "option": "ac", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "led", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "enenudge", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "telework", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      { "option": "closework", "value": 0.5, "defaultValue": 0.5, "range": [] },
+      {
+        "option": "mictourism",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "closeservice",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      {
+        "option": "dailyshift",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "longshift",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "rideshare",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "carshare",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "car-ev-phv",
+        "value": 1,
+        "defaultValue": 1,
+        "range": [0, 1]
+      },
+      {
+        "option": "car-ev-phv-re",
+        "value": 1,
+        "defaultValue": 1,
+        "range": [0, 1]
+      },
+      { "option": "vegan", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "vegetarian",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "white-meat-fish",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "guide-meal",
+        "value": 0.5,
+        "defaultValue": 0.5,
+        "range": []
+      },
+      {
+        "option": "guide-snack-drink",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "loss", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "seasonal",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "local", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "clothes-accessory",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      {
+        "option": "electronics-furniture",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "hobby", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "consumables",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      },
+      { "option": "books", "value": 0.25, "defaultValue": 0.25, "range": [] },
+      {
+        "option": "eco-tourism",
+        "value": 0.25,
+        "defaultValue": 0.25,
+        "range": []
+      }
+    ],
+    "updatedAt": "2022-07-31T21:57:56.389Z",
+    "createdAt": "2022-07-31T21:55:47.828Z",
     "baselines": [
       {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
-        "value": 60000,
+        "value": 1161.463556,
         "subdomain": "airplane",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -43,7 +154,7 @@
         "item": "bicycle-driving",
         "type": "amount",
         "value": 264.0133354,
-        "subdomain": "bicycle",
+        "subdomain": "purchase",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -52,7 +163,7 @@
         "item": "bicycle-driving",
         "type": "intensity",
         "value": 0.013134541,
-        "subdomain": "bicycle",
+        "subdomain": "purchase",
         "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -61,7 +172,7 @@
         "item": "bicycle-maintenance",
         "type": "amount",
         "value": 0.406667749,
-        "subdomain": "bicycle",
+        "subdomain": "maintenance",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -70,7 +181,7 @@
         "item": "bicycle-maintenance",
         "type": "intensity",
         "value": 2.324385029,
-        "subdomain": "bicycle",
+        "subdomain": "maintenance",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -78,7 +189,7 @@
         "domain": "mobility",
         "item": "bus",
         "type": "amount",
-        "value": 8430,
+        "value": 430.6177624,
         "subdomain": "bus",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -96,7 +207,7 @@
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "amount",
-        "value": 334.741136594172,
+        "value": 60.7815956,
         "subdomain": "car-sharing-taxi",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -114,7 +225,7 @@
         "domain": "mobility",
         "item": "car-sharing-rental",
         "type": "amount",
-        "value": 0.8881737431155255,
+        "value": 0.161272731,
         "subdomain": "car-sharing-taxi",
         "unit": "use",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -132,7 +243,7 @@
         "domain": "mobility",
         "item": "ferry",
         "type": "amount",
-        "value": 0,
+        "value": 20.10019321,
         "subdomain": "ferry",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -150,8 +261,8 @@
         "domain": "mobility",
         "item": "motorbike-driving",
         "type": "amount",
-        "value": 0,
-        "subdomain": "motorbike",
+        "value": 254.458252,
+        "subdomain": "driving",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -160,7 +271,7 @@
         "item": "motorbike-driving",
         "type": "intensity",
         "value": 0.057043135,
-        "subdomain": "motorbike",
+        "subdomain": "driving",
         "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -168,8 +279,8 @@
         "domain": "mobility",
         "item": "motorbike-maintenance",
         "type": "amount",
-        "value": 0,
-        "subdomain": "motorbike",
+        "value": 0.446120353,
+        "subdomain": "maintenance",
         "unit": "000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -178,7 +289,7 @@
         "item": "motorbike-maintenance",
         "type": "intensity",
         "value": 1.965801837,
-        "subdomain": "motorbike",
+        "subdomain": "maintenance",
         "unit": "kgCO2e/000JPY",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -186,8 +297,8 @@
         "domain": "mobility",
         "item": "motorbike-purchase",
         "type": "amount",
-        "value": 0,
-        "subdomain": "motorbike",
+        "value": 0.002635317,
+        "subdomain": "purchase",
         "unit": "vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -196,7 +307,7 @@
         "item": "motorbike-purchase",
         "type": "intensity",
         "value": 979.6575783,
-        "subdomain": "motorbike",
+        "subdomain": "purchase",
         "unit": "kgCO2e/vehicle",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       },
@@ -258,7 +369,7 @@
         "domain": "mobility",
         "item": "taxi",
         "type": "amount",
-        "value": 265.25886340582804,
+        "value": 48.16514973,
         "subdomain": "car-sharing-taxi",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -276,7 +387,7 @@
         "domain": "mobility",
         "item": "train",
         "type": "amount",
-        "value": 30580,
+        "value": 2883.143695,
         "subdomain": "train",
         "unit": "km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
@@ -309,16 +420,128 @@
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       }
     ],
-    "shareId": "GHF5rkpKX",
-    "id": "89f5361d-3b10-4991-b750-d42b9bd1ad81",
-    "estimations": [
+    "shareId": "qmTSim8Uf",
+    "id": "b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
+    "actions": [
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.10652533649719569,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv",
+        "optionValue": 0.083547694,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "intensity",
+        "value": 16.807142130126277,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/use",
+        "option": "car-ev-phv",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "intensity",
+        "value": 0.10632063403411916,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv",
+        "optionValue": 0.083547694,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "intensity",
+        "value": 9878.351773995313,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/vehicle",
+        "option": "car-ev-phv",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
       {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
-        "value": 60000,
+        "value": 29029.53126,
         "subdomain": "airplane",
-        "unit": "km-passenger"
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.516174479,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 247.98851982931956,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.060696993,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.38198423948562127,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 6329.74730472,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.249140296,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 191.91987034388148,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.426661831,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.5092239076317318,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
       },
       {
         "domain": "mobility",
@@ -326,6 +549,906 @@
         "type": "amount",
         "value": 0,
         "subdomain": "ferry",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.443690476,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.167651939,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.216339849,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "mictourism",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 208.6264944874966,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.213498498,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 26690.22081968,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "mictourism",
+        "optionValue": -0.127200104,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "airplane",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "airplane",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 38597.37056829709,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0.5,
+        "args": [
+          "mobility_airplane_amount",
+          "mobility_ferry_amount",
+          "mobility_private-car-driving_amount",
+          "mobility_car-sharing-driving_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": -1,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "ferry",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "ferry",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": -0.295098039,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "longshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 60747.37056829709,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "longshift",
+        "optionValue": 0.5,
+        "args": [
+          "mobility_airplane_amount",
+          "mobility_ferry_amount",
+          "mobility_private-car-driving_amount",
+          "mobility_car-sharing-driving_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.032708954638681474,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv-re",
+        "optionValue": 0.025653594,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "intensity",
+        "value": 16.807142130126277,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/use",
+        "option": "car-ev-phv-re",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "intensity",
+        "value": 0.03264610007469357,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
+        "option": "car-ev-phv-re",
+        "optionValue": 0.025653594,
+        "args": ["mobility_driving-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "intensity",
+        "value": 9878.351773995313,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/vehicle",
+        "option": "car-ev-phv-re",
+        "optionValue": 8027.5,
+        "args": ["mobility_manufacturing-intensity"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "intensity",
+        "value": 0.0552561920175,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_private-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "intensity",
+        "value": 0.055150009967500004,
+        "subdomain": "private-car",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_private-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "intensity",
+        "value": 0.1771728886125,
+        "subdomain": "car-sharing-taxi",
+        "unit": "kgCO2e/km-passenger",
+        "option": "rideshare",
+        "optionValue": 4,
+        "args": ["mobility_taxi-car-passengers"],
+        "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 186.06673340361615,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.295237367,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.28660423354142317,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 7480.21911204,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.112666772,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.396275784,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.213660031,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "telework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 249.28384836239505,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.060224246,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 16242.420491219998,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "telework",
+        "optionValue": -0.468854791,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 334.741136594172,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.8881737431155255,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "carshare",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "carshare",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 229.3655841387413,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.131234853,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.3532987667401441,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 8034.88452591,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.046870163,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.069132146,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.11914264,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "closeservice",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 210.08696151229591,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.20799268,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 28990.78198632,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "closeservice",
+        "optionValue": -0.051969196,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 352.4329564468564,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.5428631733867263,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 8518.419621046856,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.8881737431155255,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_car-sharing-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": -0.704901961,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "dailyshift",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": -1,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 30668.419621046858,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "dailyshift",
+        "optionValue": 0.333333333,
+        "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-driving",
+        "type": "amount",
+        "value": 211.06470115515074,
+        "subdomain": "purchase",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.200552878,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "bicycle-maintenance",
+        "type": "amount",
+        "value": 0.3251093615482684,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_bicycle-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 7921.48230288,
+        "subdomain": "bus",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.060322384,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.165508879,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_motorbike-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.085664689,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle",
+        "option": "closework",
+        "optionValue": 1,
+        "args": ["mobility_private-car-driving_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 254.7720537157439,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.039534248,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 23570.162807400004,
+        "subdomain": "train",
+        "unit": "km-passenger",
+        "option": "closework",
+        "optionValue": -0.22922947,
+        "args": [],
+        "operation": "reduction-rate"
+      }
+    ],
+    "estimations": [
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "mobility",
+        "item": "airplane",
+        "type": "amount",
+        "value": 60000,
+        "subdomain": "airplane",
         "unit": "km-passenger"
       },
       {
@@ -346,10 +1469,10 @@
       },
       {
         "domain": "mobility",
-        "item": "motorbike-driving",
+        "item": "ferry",
         "type": "amount",
         "value": 0,
-        "subdomain": "motorbike",
+        "subdomain": "ferry",
         "unit": "km-passenger"
       },
       {
@@ -370,10 +1493,18 @@
       },
       {
         "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
         "item": "motorbike-purchase",
         "type": "amount",
         "value": 0,
-        "subdomain": "motorbike",
+        "subdomain": "purchase",
         "unit": "vehicle"
       },
       {
@@ -389,9 +1520,24 @@
         "item": "motorbike-maintenance",
         "type": "amount",
         "value": 0,
-        "subdomain": "motorbike",
+        "subdomain": "maintenance",
         "unit": "000JPY"
       }
-    ]
+    ],
+    "mobilityAnswer": {
+      "hasPrivateCar": false,
+      "trainWeeklyTravelingTime": 7,
+      "busWeeklyTravelingTime": 7,
+      "motorbikeWeeklyTravelingTime": 0,
+      "otherCarWeeklyTravelingTime": 0,
+      "hasTravelingTime": true,
+      "mileageByAreaFirstKey": "unknown",
+      "otherCarAnnualTravelingTime": 10,
+      "trainAnnualTravelingTime": 100,
+      "busAnnualTravelingTime": 100,
+      "motorbikeAnnualTravelingTime": 0,
+      "airplaneAnnualTravelingTime": 100,
+      "ferryAnnualTravelingTime": 0
+    }
   }
 }

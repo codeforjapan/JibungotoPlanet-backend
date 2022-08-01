@@ -97,7 +97,7 @@ type MobilityAnswer {
   #
   # 最も使用する自動車の種類を教えてください
   #
-  carIntensityFactorKey: String # 自家用車の種類; gasoline_driving-factor|light_driving-factor|hv_driving-factor|phv_driving-factor|ev_driving-factor|unknown_driving-factor
+  carIntensityFactorFirstKey: String # 自家用車の種類; gasoline|light|hv|phv|ev|unknown
   #
   # 電気自動車・プラグインハイブリッド車を自宅で充電しますか？
   #
@@ -105,7 +105,7 @@ type MobilityAnswer {
   #
   # 自動車に乗るとき、平均で何人が同じ車に乗リますか？
   #
-  carPassengersKey: String # 平均乗車人数; 1_private-car-factor|1-2_private-car-factor|2_private-car-factor|2-3_private-car-factor|3_private-car-factor|3-4_private-car-factor|4-more_private-car-factor|unknown_private-car-factor
+  carPassengersFirstKey: String # 平均乗車人数; 1|1-2|2|2-3|3|3-4|4-more|unknown
   #
   # 年間の走行距離を教えてください
   #
@@ -117,11 +117,11 @@ type MobilityAnswer {
   busWeeklyTravelingTime: Float # バスの移動時間 時間/週
   motorbikeWeeklyTravelingTime: Float # バイクの移動時間 時間/週
   otherCarWeeklyTravelingTime: Float # タクシー、レンタカー、カーシェアの移動時間 時間/週
-  hasWeeklyTravelingTime: Boolean # 自家用車以外の普通の移動手段をスキップした場合はfalse
+  hasTravelingTime: Boolean # 移動量を時間で入力している場合はtrue
   #
   # お住いの地域（地方）の規模はどのくらいですか？
   #
-  mileageByAreaFirstKey: String # 住んでいる地域の規模 city-50k-150k|major-city-or-metropolitan-area|city-150k-more|area-less-than-50k|unknown
+  mileageByAreaFirstKey: String # 住んでいる地域の規模 major-city-or-metropolitan-area|city-150k-more|city-50k-150k|area-less-than-50k|unknown
   #
   # 昨年１年間で、旅行などで利用した移動手段を教えてください
   #
@@ -171,7 +171,7 @@ type OtherAnswer {
   # レジャー、スポーツへの支出はどのくらいですか？
   leisureSportsFactorKey: String # 5k-less|5k-10k|10k-20k|20k-50k|50k-more|unknown
   # 過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？
-  travelFactorKey: String # 10k-less|20k-30k|30k-50k|50k-100k|100k-200k|200k-more|unknown
+  travelFactorKey: String # 10k-less|10k-30k|30k-50k|50k-100k|100k-200k|200k-more|unknown
 }
 
 # 移動に関する質問の回答
@@ -181,19 +181,19 @@ type HousingAnswer {
   #　あなたの家の部屋はいくつありますか？
   housingSizeKey: String # 1-room|2-room|3-room|4-room|5-6-room|7-more-room|unknown
   # 現在住んでいる住居の建築年はいつ頃ですか？
-  housingInsulationKey: String # 建築された年代; no-insulation|2-level|3-level|4-level|unknown
+  housingInsulationFirstKey: String # 建築された年代; no-insulation|2-level|3-level|4-level|unknown
   # 自宅の電力は何を使用していますか？
   electricityIntensityKey: String # 電力の種類; conventional|30-renewable|50-renewable|100-renewable|solar-panel|unknown
   # 1ヶ月の電力使用量はどのくらいですか？
   electricityMonthlyConsumption: Float # 1ヶ月の電力使用量 kWh
-  electricitySeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|december
+  electricitySeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|november|december
   # 暖房、温水供給、調理にガスを使用していますか？
   useGas: Boolean # ガスの使用の有無
   # 使用しているガスの種類を教えてください
-  energyHeatIntensityKey: String # ガスの種類　urban-gas|lpg|kerosene
+  energyHeatIntensityKey: String # ガスの種類　urban-gas|lpg
   # 1ヶ月のガス使用量はどのくらいですか？
   gasMonthlyConsumption: Float # 1ヶ月のガス使用量 m3
-  gasSeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|december
+  gasSeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|november|december
   # 暖房などに灯油を使用していますか？
   useKerosene: Boolean # 灯油の使用の有無
   # 昨シーズンの灯油の使用量はどのくらいですか？
@@ -203,7 +203,7 @@ type HousingAnswer {
   housingAmountByRegionFirstKey: String # northeast|middle|southwest|unknown
 }
 
-# カーボンフットプリントの計算結果（念の為、AppSync経由でのアクセス不可に設定）
+# カーボンフットプリントの計算結果（AppSync経由でのアクセス不可に設定）
 type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
   # uuid
   id: ID! @primaryKey
@@ -211,6 +211,12 @@ type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
   shareId: String!
     @index(name: "profilesByShareId", queryField: "profilesByShareId")
 
+  # 性別
+  gender: String # male|female|unknown
+  # 年齢
+  age: String # 10s|20s|30s|40s|50s|60s|70s-
+  # お住まいの地域
+  region: String # hokkaido|tohoku|kanto|tokai|kinki|chugoku|sikoku|kyusyu|okinawa
   # 移動に関する回答
   mobilityAnswer: MobilityAnswer
   # 住居に関する回答

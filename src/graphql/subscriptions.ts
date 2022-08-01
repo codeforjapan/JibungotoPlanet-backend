@@ -163,17 +163,20 @@ export const onCreateProfile = /* GraphQL */ `
     onCreateProfile {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        hasWeeklyTravelingTime
+        hasTravelingTime
         mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
@@ -185,7 +188,7 @@ export const onCreateProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
-        housingInsulationKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
@@ -266,17 +269,20 @@ export const onUpdateProfile = /* GraphQL */ `
     onUpdateProfile {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        hasWeeklyTravelingTime
+        hasTravelingTime
         mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
@@ -288,7 +294,7 @@ export const onUpdateProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
-        housingInsulationKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
@@ -369,17 +375,20 @@ export const onDeleteProfile = /* GraphQL */ `
     onDeleteProfile {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        hasWeeklyTravelingTime
+        hasTravelingTime
         mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
@@ -391,7 +400,7 @@ export const onDeleteProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
-        housingInsulationKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey

@@ -428,9 +428,9 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 estimations.push(restaurantIntensity);
                 estimations.push(barCafeIntensity);
                 _4.label = 21;
-            case 21:
-                console.log(JSON.stringify(estimations));
-                return [2 /*return*/, { baselines: baselines, estimations: estimations }];
+            case 21: 
+            // console.log(JSON.stringify(estimations))
+            return [2 /*return*/, { baselines: baselines, estimations: estimations }];
         }
     });
 }); };

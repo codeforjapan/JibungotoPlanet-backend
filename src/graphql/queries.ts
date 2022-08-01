@@ -177,17 +177,20 @@ export const getProfile = /* GraphQL */ `
     getProfile(id: $id) {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        hasWeeklyTravelingTime
+        hasTravelingTime
         mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
@@ -199,7 +202,7 @@ export const getProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
-        housingInsulationKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
@@ -293,17 +296,20 @@ export const listProfiles = /* GraphQL */ `
       items {
         id
         shareId
+        gender
+        age
+        region
         mobilityAnswer {
           hasPrivateCar
-          carIntensityFactorKey
+          carIntensityFactorFirstKey
           carChargingKey
-          carPassengersKey
+          carPassengersFirstKey
           privateCarAnnualMileage
           trainWeeklyTravelingTime
           busWeeklyTravelingTime
           motorbikeWeeklyTravelingTime
           otherCarWeeklyTravelingTime
-          hasWeeklyTravelingTime
+          hasTravelingTime
           mileageByAreaFirstKey
           otherCarAnnualTravelingTime
           trainAnnualTravelingTime
@@ -315,7 +321,7 @@ export const listProfiles = /* GraphQL */ `
         housingAnswer {
           residentCount
           housingSizeKey
-          housingInsulationKey
+          housingInsulationFirstKey
           electricityIntensityKey
           electricityMonthlyConsumption
           electricitySeasonFactorKey
@@ -411,17 +417,20 @@ export const profilesByShareId = /* GraphQL */ `
       items {
         id
         shareId
+        gender
+        age
+        region
         mobilityAnswer {
           hasPrivateCar
-          carIntensityFactorKey
+          carIntensityFactorFirstKey
           carChargingKey
-          carPassengersKey
+          carPassengersFirstKey
           privateCarAnnualMileage
           trainWeeklyTravelingTime
           busWeeklyTravelingTime
           motorbikeWeeklyTravelingTime
           otherCarWeeklyTravelingTime
-          hasWeeklyTravelingTime
+          hasTravelingTime
           mileageByAreaFirstKey
           otherCarAnnualTravelingTime
           trainAnnualTravelingTime
@@ -433,7 +442,7 @@ export const profilesByShareId = /* GraphQL */ `
         housingAnswer {
           residentCount
           housingSizeKey
-          housingInsulationKey
+          housingInsulationFirstKey
           electricityIntensityKey
           electricityMonthlyConsumption
           electricitySeasonFactorKey

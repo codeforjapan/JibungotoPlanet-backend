@@ -5,7 +5,7 @@
     "busWeeklyTravelingTime": 7,
     "motorbikeWeeklyTravelingTime": 0,
     "otherCarWeeklyTravelingTime": 0,
-    "hasWeeklyTravelingTime": true,
+    "hasTravelingTime": true,
     "mileageByAreaFirstKey": "unknown",
     "otherCarAnnualTravelingTime": 10,
     "trainAnnualTravelingTime": 100,

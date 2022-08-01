@@ -1,15 +1,15 @@
 {
   "mobilityAnswer": {
     "hasPrivateCar": true,
-    "carIntensityFactorKey": "gasoline_driving-factor",
+    "carIntensityFactorFirstKey": "gasoline",
     "carChargingKey": "unknown",
-    "carPassengersKey": "1-2_private-car-factor",
+    "carPassengersFirstKey": "1-2",
     "privateCarAnnualMileage": 5000,
     "trainWeeklyTravelingTime": 7,
     "busWeeklyTravelingTime": 7,
     "motorbikeWeeklyTravelingTime": 0,
     "otherCarWeeklyTravelingTime": 0,
-    "hasWeeklyTravelingTime": true,
+    "hasTravelingTime": true,
     "mileageByAreaFirstKey": "unknown",
     "otherCarAnnualTravelingTime": 10,
     "trainAnnualTravelingTime": 100,

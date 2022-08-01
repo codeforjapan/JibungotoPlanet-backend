@@ -39,6 +39,7 @@ const { estimateFood } = require('./food')
 const { estimateOther } = require('./other')
 const { estimateHousing } = require('./housing')
 const { calculateActions } = require('./action')
+const { optionIntensityRates } = require('./data')
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -61,6 +62,7 @@ let footprintTableName = 'Footprint-' + suffix
 let parameterTableName = 'Parameter-' + suffix
 let profileTableName = 'Profile-' + suffix
 let optionTableName = 'Option-' + suffix
+// let optionIntensityRateTableName = 'OptionIntensityRate-' + suffix
 
 if (
   'AWS_EXECUTION_ENV' in process.env &&
@@ -77,6 +79,7 @@ if (
   parameterTableName = 'ParameterTable'
   profileTableName = 'ProfileTable'
   optionTableName = 'OptionTable'
+  // optionIntensityRateTableName = 'OptionIntensityRateTable'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -114,7 +117,7 @@ app.get(path + '/:id', async (req, res) => {
   }
 })
 
-const updateProfile = async (dynamodb, profile) => {
+const updateProfile = async (dynamodb, actionIntensityRates, profile) => {
   profile.baselines = []
   profile.estimations = []
 
@@ -122,6 +125,7 @@ const updateProfile = async (dynamodb, profile) => {
     const { baselines, estimations } = await estimateHousing(
       dynamodb,
       profile.housingAnswer,
+      profile.mobilityAnswer,
       footprintTableName,
       parameterTableName
     )
@@ -168,9 +172,30 @@ const updateProfile = async (dynamodb, profile) => {
     dynamodb,
     profile.baselines,
     profile.estimations,
+    profile.housingAnswer,
+    profile.mobilityAnswer,
+    profile.foodAnswer,
+    parameterTableName,
     optionTableName
   )
   profile.actions = actions
+
+  /*
+  const optionIntensityRateData = await dynamodb
+    .scan({
+      TableName: optionIntensityRateTableName
+    })
+    .promise()*/
+
+  // actionIntensityRatesの展開
+  profile.actionIntensityRates = optionIntensityRates.map((item) => ({
+    option: item.option,
+    value:
+      actionIntensityRates?.find((air) => air.option === item.option)?.value ||
+      item.defaultValue,
+    defaultValue: item.defaultValue,
+    range: item.range
+  }))
 }
 
 /************************************
@@ -203,7 +228,17 @@ app.put(path + '/:id', async (req, res) => {
     if (otherAnswer) {
       profile.otherAnswer = otherAnswer
     }
-    await updateProfile(dynamodb, profile)
+    if (req.body.gender) {
+      profile.gender = req.body.gender
+    }
+    if (req.body.age) {
+      profile.age = req.body.age
+    }
+    if (req.body.region) {
+      profile.region = req.body.region
+    }
+
+    await updateProfile(dynamodb, req.body.actionIntensityRates, profile)
     profile.updatedAt = new Date().toISOString()
 
     params = {
@@ -231,13 +266,19 @@ app.post(path, async (req, res) => {
       housingAnswer: req.body.housingAnswer,
       foodAnswer: req.body.foodAnswer,
       otherAnswer: req.body.otherAnswer,
+      gender: req.body.gender,
+      age: req.body.age,
+      region: req.body.region,
+
       baselines: [],
       estimations: [],
+      actionIntensityRates: [],
+
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     }
 
-    await updateProfile(dynamodb, profile)
+    await updateProfile(dynamodb, req.body.actionIntensityRates, profile)
 
     const params = {
       TableName: profileTableName,

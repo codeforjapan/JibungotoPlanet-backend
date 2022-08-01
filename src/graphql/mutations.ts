@@ -202,17 +202,20 @@ export const createProfile = /* GraphQL */ `
     createProfile(input: $input, condition: $condition) {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        hasWeeklyTravelingTime
+        hasTravelingTime
         mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
@@ -224,7 +227,7 @@ export const createProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
-        housingInsulationKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
@@ -308,17 +311,20 @@ export const updateProfile = /* GraphQL */ `
     updateProfile(input: $input, condition: $condition) {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        hasWeeklyTravelingTime
+        hasTravelingTime
         mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
@@ -330,7 +336,7 @@ export const updateProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
-        housingInsulationKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
@@ -414,17 +420,20 @@ export const deleteProfile = /* GraphQL */ `
     deleteProfile(input: $input, condition: $condition) {
       id
       shareId
+      gender
+      age
+      region
       mobilityAnswer {
         hasPrivateCar
-        carIntensityFactorKey
+        carIntensityFactorFirstKey
         carChargingKey
-        carPassengersKey
+        carPassengersFirstKey
         privateCarAnnualMileage
         trainWeeklyTravelingTime
         busWeeklyTravelingTime
         motorbikeWeeklyTravelingTime
         otherCarWeeklyTravelingTime
-        hasWeeklyTravelingTime
+        hasTravelingTime
         mileageByAreaFirstKey
         otherCarAnnualTravelingTime
         trainAnnualTravelingTime
@@ -436,7 +445,7 @@ export const deleteProfile = /* GraphQL */ `
       housingAnswer {
         residentCount
         housingSizeKey
-        housingInsulationKey
+        housingInsulationFirstKey
         electricityIntensityKey
         electricityMonthlyConsumption
         electricitySeasonFactorKey
