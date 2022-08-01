@@ -77,14 +77,14 @@ app.get(path + '/:id', async (req, res) => {
 
   try {
     const data = await dynamodb.query(params).promise()
-    const res = data.Items[0]
-    if (res) {
+    const item = data.Items[0]
+    if (item) {
       const profile = {
-        shareId: res.shareId,
-        actionIntensityRates: res.actionIntensityRates,
-        baselines: res.baselines,
-        estimations: res.estimations,
-        actions: res.actions
+        shareId: item.shareId,
+        actionIntensityRates: item.actionIntensityRates,
+        baselines: item.baselines,
+        estimations: item.estimations,
+        actions: item.actions
       }
       res.json(profile)
     } else {

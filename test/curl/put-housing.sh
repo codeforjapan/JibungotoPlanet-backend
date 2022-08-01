@@ -1,1 +1,1 @@
-curl -X PUT -H "Content-Type: application/json" -d '@put-housing.json' ${JIBUNGOTO_PLANET_REST}/profiles/b6560904-0b0d-4b40-850e-6a61e3e8ce5a > put-housing.result.json
+curl -X PUT -H "Content-Type: application/json" -d '@put-housing.json' ${JIBUNGOTO_PLANET_REST}/profiles/35f9a461-4d01-4974-8a5b-5e9072c363a1 > put-housing.result.json
