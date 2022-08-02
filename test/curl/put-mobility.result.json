@@ -1,7 +1,784 @@
 {
   "success": "put call succeed!",
-  "url": "/profiles/b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
+  "url": "/profiles/35f9a461-4d01-4974-8a5b-5e9072c363a1",
   "data": {
+    "createdAt": "2022-08-01T12:05:00.500Z",
+    "foodAnswer": {
+      "dishChickenFactorKey": "everyday",
+      "dairyFoodFactorKey": "3-more-per-day",
+      "foodIntakeFactorKey": "very-much",
+      "foodDirectWasteFactorKey": "seldom",
+      "foodLeftoverFactorKey": "seldom",
+      "eatOutFactorKey": "5k-less",
+      "dishBeefFactorKey": "everyday",
+      "alcoholFactorKey": "everyday",
+      "dishPorkFactorKey": "everyday",
+      "dishSeafoodFactorKey": "everyday",
+      "softDrinkSnackFactorKey": "3k-less"
+    },
+    "shareId": "tuofWVWJY",
+    "estimations": [
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.96142204,
+        "subdomain": "landrent",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179313835564,
+        "subdomain": "imputedrent",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328681644358,
+        "subdomain": "rent",
+        "unit": "m2"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.183052167733976,
+        "subdomain": "maintenance",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4577.6825235,
+        "subdomain": "electricity",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 38179.74235600666,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 2038.89052,
+        "subdomain": "other-energy",
+        "unit": "kWh"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "vehicle"
+      },
+      {
+        "domain": "mobility",
+        "item": "private-car-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "private-car",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "mobility",
+        "item": "airplane",
+        "type": "amount",
+        "value": 60000,
+        "subdomain": "airplane",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "train",
+        "type": "amount",
+        "value": 30580,
+        "subdomain": "train",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "bus",
+        "type": "amount",
+        "value": 8430,
+        "subdomain": "bus",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "ferry",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "ferry",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "taxi",
+        "type": "amount",
+        "value": 265.25886340582804,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-driving",
+        "type": "amount",
+        "value": 334.741136594172,
+        "subdomain": "car-sharing-taxi",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-driving",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "driving",
+        "unit": "km-passenger"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-purchase",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "purchase",
+        "unit": "vehicle"
+      },
+      {
+        "domain": "mobility",
+        "item": "car-sharing-rental",
+        "type": "amount",
+        "value": 0.8881737431155255,
+        "subdomain": "car-sharing-taxi",
+        "unit": "use"
+      },
+      {
+        "domain": "mobility",
+        "item": "motorbike-maintenance",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "maintenance",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "amount",
+        "value": 56.12454941776991,
+        "subdomain": "rice",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "amount",
+        "value": 39.28456185566255,
+        "subdomain": "bread-flour",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "amount",
+        "value": 26.3867167611374,
+        "subdomain": "noodle",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "amount",
+        "value": 16.441491856739923,
+        "subdomain": "potatoes",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "amount",
+        "value": 130.35685455373627,
+        "subdomain": "vegetables",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "amount",
+        "value": 14.452255443216869,
+        "subdomain": "processedvegetables",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "amount",
+        "value": 32.517170183660326,
+        "subdomain": "beans",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "amount",
+        "value": 54.72630654001349,
+        "subdomain": "fruits",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "oil",
+        "type": "amount",
+        "value": 6.543684793273234,
+        "subdomain": "other-food",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "seasoning",
+        "type": "amount",
+        "value": 37.14793232149165,
+        "subdomain": "other-food",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "amount",
+        "value": 61.981958092152354,
+        "subdomain": "other-food",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "amount",
+        "value": 49.28508345240875,
+        "subdomain": "milk",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "amount",
+        "value": 24.149951912143216,
+        "subdomain": "otherdairy",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "amount",
+        "value": 17.97475464772416,
+        "subdomain": "eggs",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 7.440199866365461,
+        "subdomain": "beef",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 16.45824952016458,
+        "subdomain": "pork",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 2.823419261605222,
+        "subdomain": "othermeat",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 13.671950246025148,
+        "subdomain": "chicken",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 11.46859484134974,
+        "subdomain": "processedmeat",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 46.928949775629384,
+        "subdomain": "fish",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 17.52083204506875,
+        "subdomain": "processedfish",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "amount",
+        "value": 94.4634433509294,
+        "subdomain": "alcohol",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "sweets-snack",
+        "type": "amount",
+        "value": 6.570425321358666,
+        "subdomain": "other-food",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "coffee-tea",
+        "type": "amount",
+        "value": 43.29127591177226,
+        "subdomain": "coffee-tea",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "cold-drink",
+        "type": "amount",
+        "value": 41.2311777492847,
+        "subdomain": "colddrink",
+        "unit": "kg"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "intensity",
+        "value": 4.307267587553321,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "amount",
+        "value": 23.40224157322934,
+        "subdomain": "restaurant",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "amount",
+        "value": 6.597758485905513,
+        "subdomain": "barcafe",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "intensity",
+        "value": 4.145259590957775,
+        "subdomain": "restaurant",
+        "unit": "kgCO2e/000JPY"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "intensity",
+        "value": 4.172254541243243,
+        "subdomain": "barcafe",
+        "unit": "kgCO2e/000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "sanitation",
+        "type": "amount",
+        "value": 13.301807282786855,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "kitchen-goods",
+        "type": "amount",
+        "value": 3.604340490867368,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "paper-stationery",
+        "type": "amount",
+        "value": 1.0938522255113394,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "communication",
+        "type": "amount",
+        "value": 15.868812824333771,
+        "subdomain": "communication",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "broadcasting",
+        "type": "amount",
+        "value": 2.1311871793149018,
+        "subdomain": "broadcasting",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "electrical-appliances-repair-rental",
+        "type": "amount",
+        "value": 0.13653775560177014,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "furniture-daily-goods-repair-rental",
+        "type": "amount",
+        "value": 0.43981812572459555,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "cooking-appliances",
+        "type": "amount",
+        "value": 1.6894636137162873,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "heating-cooling-appliances",
+        "type": "amount",
+        "value": 1.9365520713802764,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "other-appliances",
+        "type": "amount",
+        "value": 1.822281556252782,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "electronics",
+        "type": "amount",
+        "value": 4.070074746155263,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "furniture",
+        "type": "amount",
+        "value": 1.0167689121533041,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "covering",
+        "type": "amount",
+        "value": 1.388503218859415,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "medicine",
+        "type": "amount",
+        "value": 5.343035666689799,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "housework",
+        "type": "amount",
+        "value": 0.19458920387735204,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "washing",
+        "type": "amount",
+        "value": 0.7623783086148708,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "medical-care",
+        "type": "amount",
+        "value": 20.798688802167522,
+        "subdomain": "welfare-education",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "nursing",
+        "type": "amount",
+        "value": 1.1963971850633226,
+        "subdomain": "welfare-education",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "caring",
+        "type": "amount",
+        "value": 1.1413648888828338,
+        "subdomain": "welfare-education",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "formal-education",
+        "type": "amount",
+        "value": 8.602369833182541,
+        "subdomain": "welfare-education",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "informal-education",
+        "type": "amount",
+        "value": 3.9611761240006116,
+        "subdomain": "welfare-education",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "culture-goods",
+        "type": "amount",
+        "value": 5.2123971318506355,
+        "subdomain": "hobby-books",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "entertainment-goods",
+        "type": "amount",
+        "value": 0.7064336492454941,
+        "subdomain": "hobby-books",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "sports-goods",
+        "type": "amount",
+        "value": 4.41204459278814,
+        "subdomain": "hobby-books",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "gardening-flower",
+        "type": "amount",
+        "value": 5.720752416498694,
+        "subdomain": "hobby-books",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "pet",
+        "type": "amount",
+        "value": 5.620057102706165,
+        "subdomain": "hobby-books",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "tobacco",
+        "type": "amount",
+        "value": 5.326343705948848,
+        "subdomain": "hobby-books",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "books-magazines",
+        "type": "amount",
+        "value": 8.516147294319948,
+        "subdomain": "hobby-books",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "sports-culture-repair-rental",
+        "type": "amount",
+        "value": 0.04705253318835729,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "sports-entertainment-repair-rental",
+        "type": "amount",
+        "value": 0.4387716110396857,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "haircare",
+        "type": "amount",
+        "value": 2.2594757930579776,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "cosmetics",
+        "type": "amount",
+        "value": 3.6387981974170507,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "clothes-goods",
+        "type": "amount",
+        "value": 24.642670871359822,
+        "subdomain": "clothes",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "bags-jewelries-goods",
+        "type": "amount",
+        "value": 4.2406257401545515,
+        "subdomain": "bags-jewelries",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "clothes-repair-rental",
+        "type": "amount",
+        "value": 0.3541234274476882,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "bags-jewelries-repair-rental",
+        "type": "amount",
+        "value": 0.11285758944215084,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "culture-leisure",
+        "type": "amount",
+        "value": 7.476429265566569,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "entertainment-leisure",
+        "type": "amount",
+        "value": 6.598602991898161,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "sports-leisure",
+        "type": "amount",
+        "value": 12.396930558535834,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "bath-spa",
+        "type": "amount",
+        "value": 3.5280372237660456,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "hotel",
+        "type": "amount",
+        "value": 4.206479358475427,
+        "subdomain": "hotel",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "travel",
+        "type": "amount",
+        "value": 0.7935206469513141,
+        "subdomain": "travel",
+        "unit": "000JPY"
+      },
+      {
+        "domain": "other",
+        "item": "waste",
+        "type": "amount",
+        "value": 0.9431076205946667,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY"
+      }
+    ],
     "actionIntensityRates": [
       { "option": "zeh", "value": 1, "defaultValue": 1, "range": [0, 1] },
       { "option": "self-re", "value": 1, "defaultValue": 1, "range": [0, 1] },
@@ -128,9 +905,213 @@
         "range": []
       }
     ],
-    "updatedAt": "2022-07-31T21:57:56.389Z",
-    "createdAt": "2022-07-31T21:55:47.828Z",
+    "mobilityAnswer": {
+      "hasPrivateCar": false,
+      "trainWeeklyTravelingTime": 7,
+      "busWeeklyTravelingTime": 7,
+      "motorbikeWeeklyTravelingTime": 0,
+      "otherCarWeeklyTravelingTime": 0,
+      "hasTravelingTime": true,
+      "mileageByAreaFirstKey": "unknown",
+      "otherCarAnnualTravelingTime": 10,
+      "trainAnnualTravelingTime": 100,
+      "busAnnualTravelingTime": 100,
+      "motorbikeAnnualTravelingTime": 0,
+      "airplaneAnnualTravelingTime": 100,
+      "ferryAnnualTravelingTime": 0
+    },
+    "updatedAt": "2022-08-01T12:08:14.660Z",
+    "otherAnswer": {
+      "communicationAmountKey": "5k-less",
+      "dailyGoodsAmountKey": "5k-less",
+      "hobbyGoodsFactorKey": "5k-less",
+      "travelFactorKey": "10k-less",
+      "serviceFactorKey": "5k-less",
+      "applianceFurnitureAmountKey": "50k-less",
+      "leisureSportsFactorKey": "5k-less",
+      "clothesBeautyFactorKey": "5k-less"
+    },
     "baselines": [
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 2156.268842,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.634319811,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.18305217,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "intensity",
+        "value": 1.378245204,
+        "subdomain": "maintenance",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 32.06179314,
+        "subdomain": "imputedrent",
+        "unit": "m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "intensity",
+        "value": 0.930699,
+        "subdomain": "imputedrent",
+        "unit": "kgCO2e/m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 650.7599302,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "intensity",
+        "value": 0.280081108,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.96142204,
+        "subdomain": "landrent",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "intensity",
+        "value": 0.542386441,
+        "subdomain": "landrent",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 438.7575348,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "intensity",
+        "value": 0.327564907,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "amount",
+        "value": 54.81742592,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "intensity",
+        "value": 0.037319212,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 6.934328682,
+        "subdomain": "rent",
+        "unit": "m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "intensity",
+        "value": 3.418080692,
+        "subdomain": "rent",
+        "unit": "kgCO2e/m2",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 886.8038344,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "intensity",
+        "value": 0.310544763,
+        "subdomain": "other-energy",
+        "unit": "kgCO2e/kWh",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "amount",
+        "value": 103.5505,
+        "subdomain": "water",
+        "unit": "m3",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "housing",
+        "item": "water",
+        "type": "intensity",
+        "value": 0.584462203,
+        "subdomain": "water",
+        "unit": "kgCO2e/m3",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
       {
         "domain": "mobility",
         "item": "airplane",
@@ -418,11 +1399,1813 @@
         "subdomain": "walking",
         "unit": "kgCO2e/km-passenger",
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "amount",
+        "value": 53.83668469,
+        "subdomain": "alcohol",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "intensity",
+        "value": 0.944414337,
+        "subdomain": "alcohol",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "amount",
+        "value": 34.44703713,
+        "subdomain": "barcafe",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "intensity",
+        "value": 2.991595476,
+        "subdomain": "barcafe",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "amount",
+        "value": 21.04303905,
+        "subdomain": "beans",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "intensity",
+        "value": 1.058728707,
+        "subdomain": "beans",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 2.047383013,
+        "subdomain": "beef",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "intensity",
+        "value": 18.34219895,
+        "subdomain": "beef",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "amount",
+        "value": 25.42246341,
+        "subdomain": "bread-flour",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "intensity",
+        "value": 2.655219688,
+        "subdomain": "bread-flour",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 5.066184282,
+        "subdomain": "chicken",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "intensity",
+        "value": 5.250241141,
+        "subdomain": "chicken",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "coffee-tea",
+        "type": "amount",
+        "value": 136.4468369,
+        "subdomain": "coffee-tea",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "coffee-tea",
+        "type": "intensity",
+        "value": 0.465905509,
+        "subdomain": "coffee-tea",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "cold-drink",
+        "type": "amount",
+        "value": 129.9537532,
+        "subdomain": "colddrink",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "cold-drink",
+        "type": "intensity",
+        "value": 0.482549688,
+        "subdomain": "colddrink",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "amount",
+        "value": 10.20832311,
+        "subdomain": "eggs",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "intensity",
+        "value": 1.450456835,
+        "subdomain": "eggs",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 17.32938165,
+        "subdomain": "fish",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "intensity",
+        "value": 5.528206567,
+        "subdomain": "fish",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "amount",
+        "value": 35.41537591,
+        "subdomain": "fruits",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "intensity",
+        "value": 1.305111781,
+        "subdomain": "fruits",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "amount",
+        "value": 27.99026002,
+        "subdomain": "milk",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "intensity",
+        "value": 0.876594709,
+        "subdomain": "milk",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "amount",
+        "value": 17.07580051,
+        "subdomain": "noodle",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "intensity",
+        "value": 2.03794552,
+        "subdomain": "noodle",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "oil",
+        "type": "amount",
+        "value": 4.234655533,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "oil",
+        "type": "intensity",
+        "value": 2.404909632,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "amount",
+        "value": 13.71537565,
+        "subdomain": "otherdairy",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "intensity",
+        "value": 2.204505819,
+        "subdomain": "otherdairy",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 1.093763838,
+        "subdomain": "othermeat",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "intensity",
+        "value": 7.689625825,
+        "subdomain": "othermeat",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 6.375758077,
+        "subdomain": "pork",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "intensity",
+        "value": 8.051661719,
+        "subdomain": "pork",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "amount",
+        "value": 10.63988512,
+        "subdomain": "potatoes",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "intensity",
+        "value": 1.567735484,
+        "subdomain": "potatoes",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 6.469890905,
+        "subdomain": "processedfish",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "intensity",
+        "value": 4.080158747,
+        "subdomain": "processedfish",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 4.140424111,
+        "subdomain": "processedmeat",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "intensity",
+        "value": 5.336739155,
+        "subdomain": "processedmeat",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "amount",
+        "value": 9.352578159,
+        "subdomain": "processedvegetables",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "intensity",
+        "value": 3.390013568,
+        "subdomain": "processedvegetables",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "amount",
+        "value": 40.11077093,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "intensity",
+        "value": 3.940265729,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "amount",
+        "value": 122.1836001,
+        "subdomain": "restaurant",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "intensity",
+        "value": 2.972239521,
+        "subdomain": "restaurant",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "amount",
+        "value": 36.32022954,
+        "subdomain": "rice",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "intensity",
+        "value": 2.852329875,
+        "subdomain": "rice",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "seasoning",
+        "type": "amount",
+        "value": 24.03977302,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "seasoning",
+        "type": "intensity",
+        "value": 1.897020567,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "sweets-snack",
+        "type": "amount",
+        "value": 20.70887802,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "sweets-snack",
+        "type": "intensity",
+        "value": 4.939585725,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "amount",
+        "value": 84.35864392,
+        "subdomain": "vegetables",
+        "unit": "kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "intensity",
+        "value": 1.281591651,
+        "subdomain": "vegetables",
+        "unit": "kgCO2e/kg",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "bags-jewelries-goods",
+        "type": "amount",
+        "value": 16.37966457,
+        "subdomain": "bags-jewelries",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "bags-jewelries-goods",
+        "type": "intensity",
+        "value": 2.558629508,
+        "subdomain": "bags-jewelries",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "bags-jewelries-repair-rental",
+        "type": "amount",
+        "value": 0.43591903,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "bags-jewelries-repair-rental",
+        "type": "intensity",
+        "value": 1.106075818,
+        "subdomain": "waste-repair-rental",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "bath-spa",
+        "type": "amount",
+        "value": 12.35496157,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "bath-spa",
+        "type": "intensity",
+        "value": 5.754233873,
+        "subdomain": "personal-care-other-services",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "books-magazines",
+        "type": "amount",
+        "value": 18.40240876,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "books-magazines",
+        "type": "intensity",
+        "value": 2.52738082,
+        "subdomain": "hobby-books",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "broadcasting",
+        "type": "amount",
+        "value": 17.52298123,
+        "subdomain": "broadcasting",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "broadcasting",
+        "type": "intensity",
+        "value": 1.141584281,
+        "subdomain": "broadcasting",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "caring",
+        "type": "amount",
+        "value": 4.345384515,
+        "subdomain": "welfare-education",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "caring",
+        "type": "intensity",
+        "value": 1.283734545,
+        "subdomain": "welfare-education",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "ceremony",
+        "type": "amount",
+        "value": 32.64805709,
+        "subdomain": "ceremony",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "ceremony",
+        "type": "intensity",
+        "value": 2.31786394,
+        "subdomain": "ceremony",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "clothes-goods",
+        "type": "amount",
+        "value": 95.18375535,
+        "subdomain": "clothes",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "clothes-goods",
+        "type": "intensity",
+        "value": 2.670916765,
+        "subdomain": "clothes",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "clothes-repair-rental",
+        "type": "amount",
+        "value": 1.367822419,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "clothes-repair-rental",
+        "type": "intensity",
+        "value": 1.021369922,
+        "subdomain": "waste-repair-rental",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "communication",
+        "type": "amount",
+        "value": 130.4760614,
+        "subdomain": "communication",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "communication",
+        "type": "intensity",
+        "value": 1.02634832,
+        "subdomain": "communication",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "cooking-appliances",
+        "type": "amount",
+        "value": 10.80871722,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "cooking-appliances",
+        "type": "intensity",
+        "value": 2.852827088,
+        "subdomain": "appliance-furniture",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "cosmetics",
+        "type": "amount",
+        "value": 14.05507054,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "cosmetics",
+        "type": "intensity",
+        "value": 2.276312315,
+        "subdomain": "daily-goods-medicine",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "covering",
+        "type": "amount",
+        "value": 8.883256514,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "covering",
+        "type": "intensity",
+        "value": 2.512668069,
+        "subdomain": "appliance-furniture",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "culture-goods",
+        "type": "amount",
+        "value": 11.26338699,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "culture-goods",
+        "type": "intensity",
+        "value": 2.39985402,
+        "subdomain": "hobby-books",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "culture-leisure",
+        "type": "amount",
+        "value": 26.18197893,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "culture-leisure",
+        "type": "intensity",
+        "value": 2.189658709,
+        "subdomain": "leisure-sports",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "electrical-appliances-repair-rental",
+        "type": "amount",
+        "value": 0.873530497,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "electrical-appliances-repair-rental",
+        "type": "intensity",
+        "value": 1.953281338,
+        "subdomain": "waste-repair-rental",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "electronics",
+        "type": "amount",
+        "value": 26.03920359,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "electronics",
+        "type": "intensity",
+        "value": 2.274573158,
+        "subdomain": "appliance-furniture",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "entertainment-goods",
+        "type": "amount",
+        "value": 1.526521363,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "entertainment-goods",
+        "type": "intensity",
+        "value": 1.570433632,
+        "subdomain": "hobby-books",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "entertainment-leisure",
+        "type": "amount",
+        "value": 23.10788725,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "entertainment-leisure",
+        "type": "intensity",
+        "value": 1.973982363,
+        "subdomain": "leisure-sports",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "finance-insurance",
+        "type": "amount",
+        "value": 111.1827326,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "finance-insurance",
+        "type": "intensity",
+        "value": 0.707292151,
+        "subdomain": "personal-care-other-services",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "formal-education",
+        "type": "amount",
+        "value": 32.75079252,
+        "subdomain": "welfare-education",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "formal-education",
+        "type": "intensity",
+        "value": 1.074215614,
+        "subdomain": "welfare-education",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "furniture-daily-goods-repair-rental",
+        "type": "amount",
+        "value": 2.813833758,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "furniture-daily-goods-repair-rental",
+        "type": "intensity",
+        "value": 1.799958663,
+        "subdomain": "waste-repair-rental",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "furniture",
+        "type": "amount",
+        "value": 6.50500405,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "furniture",
+        "type": "intensity",
+        "value": 2.207048567,
+        "subdomain": "appliance-furniture",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "gardening-flower",
+        "type": "amount",
+        "value": 12.36188393,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "gardening-flower",
+        "type": "intensity",
+        "value": 4.85232258,
+        "subdomain": "hobby-books",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "haircare",
+        "type": "amount",
+        "value": 8.727357202,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "haircare",
+        "type": "intensity",
+        "value": 1.712161189,
+        "subdomain": "personal-care-other-services",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "heating-cooling-appliances",
+        "type": "amount",
+        "value": 12.38952029,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "heating-cooling-appliances",
+        "type": "intensity",
+        "value": 7.449174796,
+        "subdomain": "appliance-furniture",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "hotel",
+        "type": "amount",
+        "value": 23.67949431,
+        "subdomain": "hotel",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "hotel",
+        "type": "intensity",
+        "value": 3.770333888,
+        "subdomain": "hotel",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "housework",
+        "type": "amount",
+        "value": 0.740836626,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "housework",
+        "type": "intensity",
+        "value": 1.215004276,
+        "subdomain": "personal-care-other-services",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "informal-education",
+        "type": "amount",
+        "value": 15.08092071,
+        "subdomain": "welfare-education",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "informal-education",
+        "type": "intensity",
+        "value": 1.21314144,
+        "subdomain": "welfare-education",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "kitchen-goods",
+        "type": "amount",
+        "value": 8.638990484,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "kitchen-goods",
+        "type": "intensity",
+        "value": 3.23125458,
+        "subdomain": "daily-goods-medicine",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "medical-care",
+        "type": "amount",
+        "value": 79.18440556,
+        "subdomain": "welfare-education",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "medical-care",
+        "type": "intensity",
+        "value": 1.169394129,
+        "subdomain": "welfare-education",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "medicine",
+        "type": "amount",
+        "value": 20.34191228,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "medicine",
+        "type": "intensity",
+        "value": 2.132542476,
+        "subdomain": "daily-goods-medicine",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "nursing",
+        "type": "amount",
+        "value": 4.554902514,
+        "subdomain": "welfare-education",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "nursing",
+        "type": "intensity",
+        "value": 1.209159482,
+        "subdomain": "welfare-education",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "other-appliances",
+        "type": "amount",
+        "value": 11.65844939,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "other-appliances",
+        "type": "intensity",
+        "value": 2.750735655,
+        "subdomain": "appliance-furniture",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "other-services",
+        "type": "amount",
+        "value": 20.40058961,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "other-services",
+        "type": "intensity",
+        "value": 0.949580643,
+        "subdomain": "personal-care-other-services",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "paper-stationery",
+        "type": "amount",
+        "value": 2.621777546,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "paper-stationery",
+        "type": "intensity",
+        "value": 3.056810847,
+        "subdomain": "daily-goods-medicine",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "pet",
+        "type": "amount",
+        "value": 12.14429301,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "pet",
+        "type": "intensity",
+        "value": 2.103916343,
+        "subdomain": "hobby-books",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "postal-delivery",
+        "type": "amount",
+        "value": 5.98733909,
+        "subdomain": "postal-delivery",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "postal-delivery",
+        "type": "intensity",
+        "value": 3.81741193,
+        "subdomain": "postal-delivery",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sanitation",
+        "type": "amount",
+        "value": 31.8821673,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sanitation",
+        "type": "intensity",
+        "value": 3.129136419,
+        "subdomain": "daily-goods-medicine",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sports-culture-repair-rental",
+        "type": "amount",
+        "value": 0.101675079,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sports-culture-repair-rental",
+        "type": "intensity",
+        "value": 1.953281338,
+        "subdomain": "waste-repair-rental",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sports-entertainment-repair-rental",
+        "type": "amount",
+        "value": 0.948134674,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sports-entertainment-repair-rental",
+        "type": "intensity",
+        "value": 0.82229875,
+        "subdomain": "waste-repair-rental",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sports-goods",
+        "type": "amount",
+        "value": 9.533917775,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sports-goods",
+        "type": "intensity",
+        "value": 2.497630942,
+        "subdomain": "hobby-books",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sports-leisure",
+        "type": "amount",
+        "value": 43.41326095,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "sports-leisure",
+        "type": "intensity",
+        "value": 1.703889647,
+        "subdomain": "leisure-sports",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "tobacco",
+        "type": "amount",
+        "value": 11.50961235,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "tobacco",
+        "type": "intensity",
+        "value": 0.996872147,
+        "subdomain": "hobby-books",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "travel",
+        "type": "amount",
+        "value": 4.466958243,
+        "subdomain": "travel",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "travel",
+        "type": "intensity",
+        "value": 0.653433284,
+        "subdomain": "travel",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "washing",
+        "type": "amount",
+        "value": 2.902513411,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "washing",
+        "type": "intensity",
+        "value": 2.437149813,
+        "subdomain": "personal-care-other-services",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "waste",
+        "type": "amount",
+        "value": 3.123482434,
+        "subdomain": "waste-repair-rental",
+        "unit": "000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
+      },
+      {
+        "domain": "other",
+        "item": "waste",
+        "type": "intensity",
+        "value": 8.586030351,
+        "subdomain": "waste-repair-rental",
+        "unit": "kgCO2e/000JPY",
+        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       }
     ],
-    "shareId": "qmTSim8Uf",
-    "id": "b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
+    "id": "35f9a461-4d01-4974-8a5b-5e9072c363a1",
+    "housingAnswer": {
+      "keroseneMonthCount": 4,
+      "useKerosene": true,
+      "gasSeasonFactorKey": "january",
+      "housingSizeKey": "unknown",
+      "housingAmountByRegionFirstKey": "northeast",
+      "electricityMonthlyConsumption": 1000,
+      "electricitySeasonFactorKey": "january",
+      "keroseneMonthlyConsumption": 100,
+      "useGas": true,
+      "gasMonthlyConsumption": 1000,
+      "electricityIntensityKey": "100-renewable",
+      "energyHeatIntensityKey": "urban-gas",
+      "residentCount": 2
+    },
     "actions": [
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "amount",
+        "value": 93.62030027166924,
+        "subdomain": "alcohol",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "amount",
+        "value": 6.026182092943844,
+        "subdomain": "barcafe",
+        "unit": "000JPY",
+        "option": "loss",
+        "optionValue": -0.086631906,
+        "args": ["food_food-amount-to-average"],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "amount",
+        "value": 32.22693487119532,
+        "subdomain": "beans",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 7.373791605104714,
+        "subdomain": "beef",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "amount",
+        "value": 38.933923499962134,
+        "subdomain": "bread-flour",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 13.549919862407846,
+        "subdomain": "chicken",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "coffee-tea",
+        "type": "amount",
+        "value": 42.904875221912235,
+        "subdomain": "coffee-tea",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "cold-drink",
+        "type": "amount",
+        "value": 40.863164675275655,
+        "subdomain": "colddrink",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "amount",
+        "value": 17.814319145428037,
+        "subdomain": "eggs",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 46.51008065741107,
+        "subdomain": "fish",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "amount",
+        "value": 54.23784132028542,
+        "subdomain": "fruits",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "amount",
+        "value": 48.84518442322257,
+        "subdomain": "milk",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "amount",
+        "value": 26.15119943472679,
+        "subdomain": "noodle",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "oil",
+        "type": "amount",
+        "value": 6.4852784685555145,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "amount",
+        "value": 23.934399058077275,
+        "subdomain": "otherdairy",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 2.798218545584014,
+        "subdomain": "othermeat",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 16.311349738752714,
+        "subdomain": "pork",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "amount",
+        "value": 16.29474164755875,
+        "subdomain": "potatoes",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 17.364448075168358,
+        "subdomain": "processedfish",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 11.366230730681021,
+        "subdomain": "processedmeat",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "amount",
+        "value": 14.323260366133134,
+        "subdomain": "processedvegetables",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "amount",
+        "value": 61.42873181592772,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "amount",
+        "value": 22.866274075822613,
+        "subdomain": "restaurant",
+        "unit": "000JPY",
+        "option": "loss",
+        "optionValue": -0.0229024,
+        "args": ["food_food-amount-to-average"],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "amount",
+        "value": 55.62360403890636,
+        "subdomain": "rice",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "seasoning",
+        "type": "amount",
+        "value": 36.81636467019047,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "sweets-snack",
+        "type": "amount",
+        "value": 6.5117803213355465,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "amount",
+        "value": 129.19334117912007,
+        "subdomain": "vegetables",
+        "unit": "kg",
+        "option": "loss",
+        "optionValue": 0.964320154,
+        "args": ["food_food-amount-to-average"],
+        "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4162.643090956748,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.270333566,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 29.36471639707364,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "com-house",
+        "optionValue": 1,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "imputed-rent",
+        "type": "amount",
+        "value": 21.3087466,
+        "subdomain": "imputedrent",
+        "unit": "m2",
+        "option": "com-house",
+        "optionValue": 21.3087466,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1511.1375805862237,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.771779141,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "land-rent",
+        "type": "amount",
+        "value": 1.3035903839534044,
+        "subdomain": "landrent",
+        "unit": "000JPY",
+        "option": "com-house",
+        "optionValue": 1,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.082599119,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "rent",
+        "type": "amount",
+        "value": 4.608658415,
+        "subdomain": "rent",
+        "unit": "m2",
+        "option": "com-house",
+        "optionValue": 4.608658415,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 35177.85744986391,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "com-house",
+        "optionValue": 0.234432234,
+        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
+        "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "alcohol",
+        "type": "amount",
+        "value": 20.966808704179506,
+        "subdomain": "alcohol",
+        "unit": "kg",
+        "option": "guide-snack-drink",
+        "optionValue": -0.778043146,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "cold-drink",
+        "type": "amount",
+        "value": 36.663547306740035,
+        "subdomain": "colddrink",
+        "unit": "kg",
+        "option": "guide-snack-drink",
+        "optionValue": -0.110780984,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "sweets-snack",
+        "type": "amount",
+        "value": 1.4583509337707083,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "option": "guide-snack-drink",
+        "optionValue": -0.778043146,
+        "args": [],
+        "operation": "reduction-rate"
+      },
       {
         "domain": "mobility",
         "item": "car-sharing-driving",
@@ -470,6 +3253,54 @@
         "optionValue": 8027.5,
         "args": ["mobility_manufacturing-intensity"],
         "operation": "question-answer-to-target"
+      },
+      {
+        "domain": "other",
+        "item": "cosmetics",
+        "type": "amount",
+        "value": 6.50546099,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "option": "consumables",
+        "optionValue": 6.50546099,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "kitchen-goods",
+        "type": "amount",
+        "value": 3.998600749,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "option": "consumables",
+        "optionValue": 3.998600749,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "paper-stationery",
+        "type": "amount",
+        "value": 1.213503091,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "option": "consumables",
+        "optionValue": 1.213503091,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "sanitation",
+        "type": "amount",
+        "value": 14.75682353,
+        "subdomain": "daily-goods-medicine",
+        "unit": "000JPY",
+        "option": "consumables",
+        "optionValue": 14.75682353,
+        "args": [],
+        "operation": "absolute-target"
       },
       {
         "domain": "mobility",
@@ -652,6 +3483,54 @@
         "operation": "reduction-rate"
       },
       {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4343.739263450846,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.127762934,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1409.4612503525425,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.771779141,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.082599119,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 34599.51743838144,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "clothes-home",
+        "optionValue": 0.234432234,
+        "args": ["housing_housing-insulation-clothing"],
+        "operation": "question-reduction-rate"
+      },
+      {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
@@ -770,6 +3649,140 @@
         "operation": "shift-from-other-items"
       },
       {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 6814.061310488612,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": 0.2125,
+        "args": [
+          "housing_urban-gas_amount",
+          "housing_lpg_amount",
+          "housing_kerosene_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 78.46886017865081,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "ac",
+        "optionValue": -0.015345044,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 465.3173458813567,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.771779141,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.082599119,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 29229.180061943596,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ac",
+        "optionValue": -0.234432234,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4297.798995561279,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.127762934,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 317.7863752472795,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "insrenov",
+        "optionValue": -0.241929499,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 1285.8579917715374,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.771779141,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.082599119,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 33896.45597045947,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "insrenov",
+        "optionValue": 0.234432234,
+        "args": ["housing_housing-insulation-renovation"],
+        "operation": "question-reduction-rate"
+      },
+      {
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "intensity",
@@ -818,6 +3831,90 @@
         "operation": "question-answer-to-target"
       },
       {
+        "domain": "other",
+        "item": "culture-goods",
+        "type": "amount",
+        "value": 2.773967183,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "option": "hobby",
+        "optionValue": 2.773967183,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "entertainment-goods",
+        "type": "amount",
+        "value": 0.375954424,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "option": "hobby",
+        "optionValue": 0.375954424,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "gardening-flower",
+        "type": "amount",
+        "value": 3.044506981,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "option": "hobby",
+        "optionValue": 3.044506981,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "pet",
+        "type": "amount",
+        "value": 2.990918299,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "option": "hobby",
+        "optionValue": 2.990918299,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "sports-goods",
+        "type": "amount",
+        "value": 2.348030397,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "option": "hobby",
+        "optionValue": 2.348030397,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "tobacco",
+        "type": "amount",
+        "value": 2.834608006,
+        "subdomain": "hobby-books",
+        "unit": "000JPY",
+        "option": "hobby",
+        "optionValue": 2.834608006,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.062972926,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "grid-re",
+        "optionValue": 0.062972926,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "intensity",
@@ -852,6 +3949,90 @@
         "optionValue": 4,
         "args": ["mobility_taxi-car-passengers"],
         "operation": "question-answer-to-target-inverse"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 8239.8285423,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0.8,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.042861845,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "zeh",
+        "optionValue": 0.042861845,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 85.37615262773397,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "zeh",
+        "optionValue": 41.19310046,
+        "args": [],
+        "operation": "add-amount"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "other-energy",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "zeh",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
       },
       {
         "domain": "mobility",
@@ -986,6 +4167,557 @@
         "operation": "reduction-rate"
       },
       {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "intensity",
+        "value": 1.457994,
+        "subdomain": "potatoes",
+        "unit": "kgCO2e/kg",
+        "option": "local",
+        "optionValue": 1.457994,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "intensity",
+        "value": 1.201479752,
+        "subdomain": "vegetables",
+        "unit": "kgCO2e/kg",
+        "option": "local",
+        "optionValue": 1.201479752,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "bath-spa",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "personal-care-other-services",
+        "unit": "000JPY",
+        "option": "eco-tourism",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "culture-leisure",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY",
+        "option": "eco-tourism",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "entertainment-leisure",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY",
+        "option": "eco-tourism",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "hotel",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "hotel",
+        "unit": "000JPY",
+        "option": "eco-tourism",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "sports-leisure",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "leisure-sports",
+        "unit": "000JPY",
+        "option": "eco-tourism",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "travel",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "travel",
+        "unit": "000JPY",
+        "option": "eco-tourism",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "books-magazines",
+        "type": "intensity",
+        "value": 1.49788786,
+        "subdomain": "hobby-books",
+        "unit": "kgCO2e/000JPY",
+        "option": "books",
+        "optionValue": 1.49788786,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 11666.178041392403,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": 0.271666667,
+        "args": [
+          "housing_urban-gas_amount",
+          "housing_lpg_amount",
+          "housing_kerosene_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 472.37397852536225,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "ec",
+        "optionValue": -0.077669903,
+        "args": [
+          "housing_electricity",
+          "housing_urban-gas",
+          "housing_lpg",
+          "housing_kerosene"
+        ],
+        "operation": "rebound-from-other-footprints"
+      },
+      {
+        "domain": "housing",
+        "item": "kerosene",
+        "type": "amount",
+        "value": 123.96929830869256,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.939197668,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "lpg",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.228220859,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "urban-gas",
+        "type": "amount",
+        "value": 14002.042071459211,
+        "subdomain": "other-energy",
+        "unit": "kWh",
+        "option": "ec",
+        "optionValue": -0.633259912,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "intensity",
+        "value": 1.065918232,
+        "subdomain": "fruits",
+        "unit": "kgCO2e/kg",
+        "option": "seasonal",
+        "optionValue": 1.065918232,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "intensity",
+        "value": 0.956544981,
+        "subdomain": "vegetables",
+        "unit": "kgCO2e/kg",
+        "option": "seasonal",
+        "optionValue": 0.956544981,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4440.352047795,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "enenudge",
+        "optionValue": -0.03,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "intensity",
+        "value": 3.0228479966182586,
+        "subdomain": "barcafe",
+        "unit": "kgCO2e/000JPY",
+        "option": "vegan",
+        "optionValue": 0.7157,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "amount",
+        "value": 240.2391557521447,
+        "subdomain": "beans",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 1,
+        "args": [
+          "food_milk_amount",
+          "food_other-dairy_amount",
+          "food_eggs_amount",
+          "food_beef_amount",
+          "food_pork_amount",
+          "food_chicken_amount",
+          "food_other-meat_amount",
+          "food_processed-meat_amount",
+          "food_fish_amount",
+          "food_processed-fish_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "beef",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "amount",
+        "value": 32.141914238399444,
+        "subdomain": "bread-flour",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": -0.181818182,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "chicken",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "eggs",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "fish",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "milk",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "amount",
+        "value": 21.58913189067847,
+        "subdomain": "noodle",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": -0.181818182,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "otherdairy",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "othermeat",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "pork",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "amount",
+        "value": 22.420216174260435,
+        "subdomain": "potatoes",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0.363636364,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "processedfish",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "processedmeat",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "amount",
+        "value": 19.70762106418746,
+        "subdomain": "processedvegetables",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0.363636364,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "intensity",
+        "value": 2.6493088975439973,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "option": "vegan",
+        "optionValue": 1,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "intensity",
+        "value": 3.003289834338706,
+        "subdomain": "restaurant",
+        "unit": "kgCO2e/000JPY",
+        "option": "vegan",
+        "optionValue": 0.7157,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "amount",
+        "value": 45.92008587706183,
+        "subdomain": "rice",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": -0.181818182,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "amount",
+        "value": 177.75934716613378,
+        "subdomain": "vegetables",
+        "unit": "kg",
+        "option": "vegan",
+        "optionValue": 0.363636364,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "other",
+        "item": "bags-jewelries-goods",
+        "type": "amount",
+        "value": 3.899884319,
+        "subdomain": "bags-jewelries",
+        "unit": "000JPY",
+        "option": "clothes-accessory",
+        "optionValue": 3.899884319,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "clothes-goods",
+        "type": "amount",
+        "value": 22.66259076,
+        "subdomain": "clothes",
+        "unit": "000JPY",
+        "option": "clothes-accessory",
+        "optionValue": 22.66259076,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "amount",
@@ -1044,6 +4776,345 @@
         "optionValue": 1,
         "args": ["mobility_private-car-driving_amount"],
         "operation": "proportional-to-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "intensity",
+        "value": 3.903779706747958,
+        "subdomain": "barcafe",
+        "unit": "kgCO2e/000JPY",
+        "option": "guide-meal",
+        "optionValue": 0.7157,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "amount",
+        "value": 41.40473527104351,
+        "subdomain": "beans",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": 0.273319143,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 5.393778934563932,
+        "subdomain": "beef",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.275049188,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "amount",
+        "value": 27.74784151547232,
+        "subdomain": "bread-flour",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.293670587,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 9.911491432479531,
+        "subdomain": "chicken",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.275049188,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "amount",
+        "value": 24.872267248426365,
+        "subdomain": "eggs",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": 0.383733338,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 34.02118024614974,
+        "subdomain": "fish",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.275049188,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "fruits",
+        "type": "amount",
+        "value": 99.84641862748346,
+        "subdomain": "fruits",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": 0.824468431,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "amount",
+        "value": 98.18408860578195,
+        "subdomain": "milk",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": 0.992166427,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "amount",
+        "value": 18.63771416089144,
+        "subdomain": "noodle",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.293670587,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "oil",
+        "type": "amount",
+        "value": 1.4524156902825671,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.778043146,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "amount",
+        "value": 48.11072341303617,
+        "subdomain": "otherdairy",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": 0.992166427,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 2.046840086317146,
+        "subdomain": "othermeat",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.275049188,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 11.931421353741921,
+        "subdomain": "pork",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.275049188,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "amount",
+        "value": 31.301147305139637,
+        "subdomain": "potatoes",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": 0.903789971,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 12.701741417988211,
+        "subdomain": "processedfish",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.275049188,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 8.314167142735505,
+        "subdomain": "processedmeat",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.275049188,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "amount",
+        "value": 16.077884358891176,
+        "subdomain": "processedvegetables",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": 0.112482714,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "intensity",
+        "value": 3.9200067119459865,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "option": "guide-meal",
+        "optionValue": 1,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "intensity",
+        "value": 3.8785218184606163,
+        "subdomain": "restaurant",
+        "unit": "kgCO2e/000JPY",
+        "option": "guide-meal",
+        "optionValue": 0.7157,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "amount",
+        "value": 39.64242004514291,
+        "subdomain": "rice",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.293670587,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "seasoning",
+        "type": "amount",
+        "value": 8.245238190683203,
+        "subdomain": "other-food",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": -0.778043146,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "amount",
+        "value": 145.0197473424438,
+        "subdomain": "vegetables",
+        "unit": "kg",
+        "option": "guide-meal",
+        "optionValue": 0.112482714,
+        "args": [],
+        "operation": "increase-rate"
       },
       {
         "domain": "mobility",
@@ -1178,6 +5249,30 @@
         "operation": "reduction-rate"
       },
       {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "amount",
+        "value": 4275.369623038546,
+        "subdomain": "electricity",
+        "unit": "kWh",
+        "option": "led",
+        "optionValue": -0.0660406,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "housing",
+        "item": "housing-maintenance",
+        "type": "amount",
+        "value": 44.467903943523126,
+        "subdomain": "maintenance",
+        "unit": "000JPY",
+        "option": "led",
+        "optionValue": 0.020622194,
+        "args": ["housing_electricity"],
+        "operation": "further-reduction-from-other-footprints"
+      },
+      {
         "domain": "mobility",
         "item": "bicycle-driving",
         "type": "amount",
@@ -1284,6 +5379,551 @@
         "optionValue": 0.333333333,
         "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
         "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "housing",
+        "item": "electricity",
+        "type": "intensity",
+        "value": 0.042861845,
+        "subdomain": "electricity",
+        "unit": "kgCO2e/kWh",
+        "option": "self-re",
+        "optionValue": 0.042861845,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "intensity",
+        "value": 3.469826971546233,
+        "subdomain": "barcafe",
+        "unit": "kgCO2e/000JPY",
+        "option": "vegetarian",
+        "optionValue": 0.7157,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "beans",
+        "type": "amount",
+        "value": 74.08055257821478,
+        "subdomain": "beans",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0.357343288,
+        "args": [
+          "food_beef_amount",
+          "food_pork_amount",
+          "food_chicken_amount",
+          "food_other-meat_amount",
+          "food_processed-meat_amount",
+          "food_fish_amount",
+          "food_processed-fish_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "beef",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "bread-flour",
+        "type": "amount",
+        "value": 32.141914238399444,
+        "subdomain": "bread-flour",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": -0.181818182,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "chicken",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "eggs",
+        "type": "amount",
+        "value": 43.60063082086299,
+        "subdomain": "eggs",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0.22031977,
+        "args": [
+          "food_beef_amount",
+          "food_pork_amount",
+          "food_chicken_amount",
+          "food_other-meat_amount",
+          "food_processed-meat_amount",
+          "food_fish_amount",
+          "food_processed-fish_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "fish",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "milk",
+        "type": "amount",
+        "value": 182.20611212204153,
+        "subdomain": "milk",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 1.142795285,
+        "args": [
+          "food_beef_amount",
+          "food_pork_amount",
+          "food_chicken_amount",
+          "food_other-meat_amount",
+          "food_processed-meat_amount",
+          "food_fish_amount",
+          "food_processed-fish_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "noodle",
+        "type": "amount",
+        "value": 21.58913189067847,
+        "subdomain": "noodle",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": -0.181818182,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "other-dairy",
+        "type": "amount",
+        "value": 89.28195992238005,
+        "subdomain": "otherdairy",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0.559975742,
+        "args": [
+          "food_beef_amount",
+          "food_pork_amount",
+          "food_chicken_amount",
+          "food_other-meat_amount",
+          "food_processed-meat_amount",
+          "food_fish_amount",
+          "food_processed-fish_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "othermeat",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "pork",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "potatoes",
+        "type": "amount",
+        "value": 22.420216174260435,
+        "subdomain": "potatoes",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0.363636364,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "processedfish",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "processedmeat",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "processed-vegetables",
+        "type": "amount",
+        "value": 19.70762106418746,
+        "subdomain": "processedvegetables",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0.363636364,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "intensity",
+        "value": 3.294052638737053,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "option": "vegetarian",
+        "optionValue": 1,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "intensity",
+        "value": 3.4473768056538727,
+        "subdomain": "restaurant",
+        "unit": "kgCO2e/000JPY",
+        "option": "vegetarian",
+        "optionValue": 0.7157,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "rice",
+        "type": "amount",
+        "value": 45.92008587706183,
+        "subdomain": "rice",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": -0.181818182,
+        "args": [],
+        "operation": "reduction-rate"
+      },
+      {
+        "domain": "food",
+        "item": "vegetables",
+        "type": "amount",
+        "value": 177.75934716613378,
+        "subdomain": "vegetables",
+        "unit": "kg",
+        "option": "vegetarian",
+        "optionValue": 0.363636364,
+        "args": [],
+        "operation": "increase-rate"
+      },
+      {
+        "domain": "food",
+        "item": "bar-cafe",
+        "type": "intensity",
+        "value": 3.8791587482064704,
+        "subdomain": "barcafe",
+        "unit": "kgCO2e/000JPY",
+        "option": "white-meat-fish",
+        "optionValue": 0.7157,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "beef",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "beef",
+        "unit": "kg",
+        "option": "white-meat-fish",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "chicken",
+        "type": "amount",
+        "value": 32.76718199076765,
+        "subdomain": "chicken",
+        "unit": "kg",
+        "option": "white-meat-fish",
+        "optionValue": 0.5,
+        "args": [
+          "food_beef_amount",
+          "food_pork_amount",
+          "food_other-meat_amount",
+          "food_processed-meat_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "fish",
+        "type": "amount",
+        "value": 56.47656564800063,
+        "subdomain": "fish",
+        "unit": "kg",
+        "option": "white-meat-fish",
+        "optionValue": 0.25,
+        "args": [
+          "food_beef_amount",
+          "food_pork_amount",
+          "food_other-meat_amount",
+          "food_processed-meat_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "other-meat",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "othermeat",
+        "unit": "kg",
+        "option": "white-meat-fish",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "pork",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "pork",
+        "unit": "kg",
+        "option": "white-meat-fish",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "processed-fish",
+        "type": "amount",
+        "value": 27.06844791744,
+        "subdomain": "processedfish",
+        "unit": "kg",
+        "option": "white-meat-fish",
+        "optionValue": 0.25,
+        "args": [
+          "food_beef_amount",
+          "food_pork_amount",
+          "food_other-meat_amount",
+          "food_processed-meat_amount"
+        ],
+        "operation": "shift-from-other-items"
+      },
+      {
+        "domain": "food",
+        "item": "processed-meat",
+        "type": "amount",
+        "value": 0,
+        "subdomain": "processedmeat",
+        "unit": "kg",
+        "option": "white-meat-fish",
+        "optionValue": 0,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "food",
+        "item": "ready-meal",
+        "type": "intensity",
+        "value": 3.8844922698531428,
+        "subdomain": "other-food",
+        "unit": "kgCO2e/kg",
+        "option": "white-meat-fish",
+        "optionValue": 1,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
+      },
+      {
+        "domain": "food",
+        "item": "restaurant",
+        "type": "intensity",
+        "value": 3.85406016025549,
+        "subdomain": "restaurant",
+        "unit": "kgCO2e/000JPY",
+        "option": "white-meat-fish",
+        "optionValue": 0.7157,
+        "args": [
+          "food_rice",
+          "food_bread-flour",
+          "food_noodle",
+          "food_potatoes",
+          "food_vegetables",
+          "food_processed-vegetables",
+          "food_beans",
+          "food_milk",
+          "food_other-dairy",
+          "food_eggs",
+          "food_beef",
+          "food_pork",
+          "food_chicken",
+          "food_other-meat",
+          "food_processed-meat",
+          "food_fish",
+          "food_processed-fish",
+          "food_fruits",
+          "food_oil",
+          "food_seasoning"
+        ],
+        "operation": "proportional-to-other-footprints"
       },
       {
         "domain": "mobility",
@@ -1416,128 +6056,43 @@
         "optionValue": -0.22922947,
         "args": [],
         "operation": "reduction-rate"
+      },
+      {
+        "domain": "other",
+        "item": "covering",
+        "type": "amount",
+        "value": 1.856600611,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "option": "electronics-furniture",
+        "optionValue": 1.856600611,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "electronics",
+        "type": "amount",
+        "value": 6.412981837,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "option": "electronics-furniture",
+        "optionValue": 6.412981837,
+        "args": [],
+        "operation": "absolute-target"
+      },
+      {
+        "domain": "other",
+        "item": "furniture",
+        "type": "amount",
+        "value": 1.359545846,
+        "subdomain": "appliance-furniture",
+        "unit": "000JPY",
+        "option": "electronics-furniture",
+        "optionValue": 1.359545846,
+        "args": [],
+        "operation": "absolute-target"
       }
-    ],
-    "estimations": [
-      {
-        "domain": "mobility",
-        "item": "private-car-driving",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "private-car",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-purchase",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "private-car",
-        "unit": "vehicle"
-      },
-      {
-        "domain": "mobility",
-        "item": "private-car-maintenance",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "private-car",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "mobility",
-        "item": "airplane",
-        "type": "amount",
-        "value": 60000,
-        "subdomain": "airplane",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "train",
-        "type": "amount",
-        "value": 30580,
-        "subdomain": "train",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "bus",
-        "type": "amount",
-        "value": 8430,
-        "subdomain": "bus",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "ferry",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "ferry",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "taxi",
-        "type": "amount",
-        "value": 265.25886340582804,
-        "subdomain": "car-sharing-taxi",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "car-sharing-driving",
-        "type": "amount",
-        "value": 334.741136594172,
-        "subdomain": "car-sharing-taxi",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-driving",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "driving",
-        "unit": "km-passenger"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-purchase",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "purchase",
-        "unit": "vehicle"
-      },
-      {
-        "domain": "mobility",
-        "item": "car-sharing-rental",
-        "type": "amount",
-        "value": 0.8881737431155255,
-        "subdomain": "car-sharing-taxi",
-        "unit": "use"
-      },
-      {
-        "domain": "mobility",
-        "item": "motorbike-maintenance",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "maintenance",
-        "unit": "000JPY"
-      }
-    ],
-    "mobilityAnswer": {
-      "hasPrivateCar": false,
-      "trainWeeklyTravelingTime": 7,
-      "busWeeklyTravelingTime": 7,
-      "motorbikeWeeklyTravelingTime": 0,
-      "otherCarWeeklyTravelingTime": 0,
-      "hasTravelingTime": true,
-      "mileageByAreaFirstKey": "unknown",
-      "otherCarAnnualTravelingTime": 10,
-      "trainAnnualTravelingTime": 100,
-      "busAnnualTravelingTime": 100,
-      "motorbikeAnnualTravelingTime": 0,
-      "airplaneAnnualTravelingTime": 100,
-      "ferryAnnualTravelingTime": 0
-    }
+    ]
   }
 }

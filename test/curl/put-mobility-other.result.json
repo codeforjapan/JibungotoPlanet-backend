@@ -1,6 +1,6 @@
 {
   "success": "put call succeed!",
-  "url": "/profiles/b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
+  "url": "/profiles/35f9a461-4d01-4974-8a5b-5e9072c363a1",
   "data": {
     "actionIntensityRates": [
       { "option": "zeh", "value": 1, "defaultValue": 1, "range": [0, 1] },
@@ -128,27 +128,8 @@
         "range": []
       }
     ],
-    "mobilityAnswer": {
-      "hasPrivateCar": true,
-      "carIntensityFactorFirstKey": "gasoline",
-      "carChargingKey": "unknown",
-      "carPassengersFirstKey": "1-2",
-      "privateCarAnnualMileage": 5000,
-      "trainWeeklyTravelingTime": 7,
-      "busWeeklyTravelingTime": 7,
-      "motorbikeWeeklyTravelingTime": 0,
-      "otherCarWeeklyTravelingTime": 0,
-      "hasTravelingTime": true,
-      "mileageByAreaFirstKey": "unknown",
-      "otherCarAnnualTravelingTime": 10,
-      "trainAnnualTravelingTime": 100,
-      "busAnnualTravelingTime": 100,
-      "motorbikeAnnualTravelingTime": 0,
-      "airplaneAnnualTravelingTime": 100,
-      "ferryAnnualTravelingTime": 0
-    },
-    "updatedAt": "2022-07-31T22:07:40.853Z",
-    "createdAt": "2022-07-31T21:55:47.828Z",
+    "updatedAt": "2022-08-01T12:07:28.387Z",
+    "createdAt": "2022-08-01T12:05:00.500Z",
     "foodAnswer": {
       "dishChickenFactorKey": "everyday",
       "dairyFoodFactorKey": "3-more-per-day",
@@ -163,186 +144,6 @@
       "softDrinkSnackFactorKey": "3k-less"
     },
     "baselines": [
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 2156.268842,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "intensity",
-        "value": 0.634319811,
-        "subdomain": "electricity",
-        "unit": "kgCO2e/kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 44.18305217,
-        "subdomain": "maintenance",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "intensity",
-        "value": 1.378245204,
-        "subdomain": "maintenance",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "imputed-rent",
-        "type": "amount",
-        "value": 32.06179314,
-        "subdomain": "imputedrent",
-        "unit": "m2",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "imputed-rent",
-        "type": "intensity",
-        "value": 0.930699,
-        "subdomain": "imputedrent",
-        "unit": "kgCO2e/m2",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 650.7599302,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "intensity",
-        "value": 0.280081108,
-        "subdomain": "other-energy",
-        "unit": "kgCO2e/kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "land-rent",
-        "type": "amount",
-        "value": 1.96142204,
-        "subdomain": "landrent",
-        "unit": "000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "land-rent",
-        "type": "intensity",
-        "value": 0.542386441,
-        "subdomain": "landrent",
-        "unit": "kgCO2e/000JPY",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 438.7575348,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "intensity",
-        "value": 0.327564907,
-        "subdomain": "other-energy",
-        "unit": "kgCO2e/kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "other-energy",
-        "type": "amount",
-        "value": 54.81742592,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "other-energy",
-        "type": "intensity",
-        "value": 0.037319212,
-        "subdomain": "other-energy",
-        "unit": "kgCO2e/kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "rent",
-        "type": "amount",
-        "value": 6.934328682,
-        "subdomain": "rent",
-        "unit": "m2",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "rent",
-        "type": "intensity",
-        "value": 3.418080692,
-        "subdomain": "rent",
-        "unit": "kgCO2e/m2",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 886.8038344,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "intensity",
-        "value": 0.310544763,
-        "subdomain": "other-energy",
-        "unit": "kgCO2e/kWh",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "water",
-        "type": "amount",
-        "value": 103.5505,
-        "subdomain": "water",
-        "unit": "m3",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
-      {
-        "domain": "housing",
-        "item": "water",
-        "type": "intensity",
-        "value": 0.584462203,
-        "subdomain": "water",
-        "unit": "kgCO2e/m3",
-        "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
-      },
       {
         "domain": "mobility",
         "item": "airplane",
@@ -1964,23 +1765,8 @@
         "citation": "Koide et al. 2021. Environmental Research Letters 16 084001"
       }
     ],
-    "shareId": "qmTSim8Uf",
-    "id": "b6560904-0b0d-4b40-850e-6a61e3e8ce5a",
-    "housingAnswer": {
-      "keroseneMonthCount": 4,
-      "useKerosene": true,
-      "gasSeasonFactorKey": "january",
-      "housingSizeKey": "unknown",
-      "housingAmountByRegionFirstKey": "northeast",
-      "electricityMonthlyConsumption": 1000,
-      "electricitySeasonFactorKey": "january",
-      "keroseneMonthlyConsumption": 100,
-      "useGas": true,
-      "gasMonthlyConsumption": 1000,
-      "electricityIntensityKey": "100-renewable",
-      "energyHeatIntensityKey": "urban-gas",
-      "residentCount": 2
-    },
+    "shareId": "tuofWVWJY",
+    "id": "35f9a461-4d01-4974-8a5b-5e9072c363a1",
     "actions": [
       {
         "domain": "food",
@@ -2307,102 +2093,6 @@
         "operation": "question-answer-to-target"
       },
       {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 4162.643090956748,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "option": "com-house",
-        "optionValue": 0.270333566,
-        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
-        "operation": "proportional-to-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 29.36471639707364,
-        "subdomain": "maintenance",
-        "unit": "000JPY",
-        "option": "com-house",
-        "optionValue": 1,
-        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
-        "operation": "proportional-to-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "imputed-rent",
-        "type": "amount",
-        "value": 21.3087466,
-        "subdomain": "imputedrent",
-        "unit": "m2",
-        "option": "com-house",
-        "optionValue": 21.3087466,
-        "args": [],
-        "operation": "absolute-target"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 1511.1375805862237,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "com-house",
-        "optionValue": 0.771779141,
-        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
-        "operation": "proportional-to-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "land-rent",
-        "type": "amount",
-        "value": 1.3035903839534044,
-        "subdomain": "landrent",
-        "unit": "000JPY",
-        "option": "com-house",
-        "optionValue": 1,
-        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
-        "operation": "proportional-to-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "com-house",
-        "optionValue": 0.082599119,
-        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
-        "operation": "proportional-to-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "rent",
-        "type": "amount",
-        "value": 4.608658415,
-        "subdomain": "rent",
-        "unit": "m2",
-        "option": "com-house",
-        "optionValue": 4.608658415,
-        "args": [],
-        "operation": "absolute-target"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 35177.85744986391,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "com-house",
-        "optionValue": 0.234432234,
-        "args": ["housing_imputed-rent_amount", "housing_rent_amount"],
-        "operation": "proportional-to-other-items"
-      },
-      {
         "domain": "food",
         "item": "alcohol",
         "type": "amount",
@@ -2715,54 +2405,6 @@
         "operation": "reduction-rate"
       },
       {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 4343.739263450846,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "option": "clothes-home",
-        "optionValue": 0.127762934,
-        "args": ["housing_housing-insulation-clothing"],
-        "operation": "question-reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 1409.4612503525425,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "clothes-home",
-        "optionValue": 0.771779141,
-        "args": ["housing_housing-insulation-clothing"],
-        "operation": "question-reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "clothes-home",
-        "optionValue": 0.082599119,
-        "args": ["housing_housing-insulation-clothing"],
-        "operation": "question-reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 34599.51743838144,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "clothes-home",
-        "optionValue": 0.234432234,
-        "args": ["housing_housing-insulation-clothing"],
-        "operation": "question-reduction-rate"
-      },
-      {
         "domain": "mobility",
         "item": "airplane",
         "type": "amount",
@@ -2879,140 +2521,6 @@
           "mobility_car-sharing-driving_amount"
         ],
         "operation": "shift-from-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 6814.061310488612,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "option": "ac",
-        "optionValue": 0.2125,
-        "args": [
-          "housing_urban-gas_amount",
-          "housing_lpg_amount",
-          "housing_kerosene_amount"
-        ],
-        "operation": "shift-from-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 78.46886017865081,
-        "subdomain": "maintenance",
-        "unit": "000JPY",
-        "option": "ac",
-        "optionValue": -0.015345044,
-        "args": [
-          "housing_electricity",
-          "housing_urban-gas",
-          "housing_lpg",
-          "housing_kerosene"
-        ],
-        "operation": "rebound-from-other-footprints"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 465.3173458813567,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "ac",
-        "optionValue": -0.771779141,
-        "args": [],
-        "operation": "reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "ac",
-        "optionValue": -0.082599119,
-        "args": [],
-        "operation": "reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 29229.180061943596,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "ac",
-        "optionValue": -0.234432234,
-        "args": [],
-        "operation": "reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 4297.798995561279,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "option": "insrenov",
-        "optionValue": 0.127762934,
-        "args": ["housing_housing-insulation-renovation"],
-        "operation": "question-reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 317.7863752472795,
-        "subdomain": "maintenance",
-        "unit": "000JPY",
-        "option": "insrenov",
-        "optionValue": -0.241929499,
-        "args": [
-          "housing_electricity",
-          "housing_urban-gas",
-          "housing_lpg",
-          "housing_kerosene"
-        ],
-        "operation": "rebound-from-other-footprints"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 1285.8579917715374,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "insrenov",
-        "optionValue": 0.771779141,
-        "args": ["housing_housing-insulation-renovation"],
-        "operation": "question-reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "insrenov",
-        "optionValue": 0.082599119,
-        "args": ["housing_housing-insulation-renovation"],
-        "operation": "question-reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 33896.45597045947,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "insrenov",
-        "optionValue": 0.234432234,
-        "args": ["housing_housing-insulation-renovation"],
-        "operation": "question-reduction-rate"
       },
       {
         "domain": "mobility",
@@ -3135,18 +2643,6 @@
         "operation": "absolute-target"
       },
       {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "intensity",
-        "value": 0.062972926,
-        "subdomain": "electricity",
-        "unit": "kgCO2e/kWh",
-        "option": "grid-re",
-        "optionValue": 0.062972926,
-        "args": [],
-        "operation": "absolute-target"
-      },
-      {
         "domain": "mobility",
         "item": "car-sharing-driving",
         "type": "intensity",
@@ -3181,90 +2677,6 @@
         "optionValue": 4,
         "args": ["mobility_taxi-car-passengers"],
         "operation": "question-answer-to-target-inverse"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 8239.8285423,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "option": "zeh",
-        "optionValue": 0.8,
-        "args": [],
-        "operation": "reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "intensity",
-        "value": 0.042861845,
-        "subdomain": "electricity",
-        "unit": "kgCO2e/kWh",
-        "option": "zeh",
-        "optionValue": 0.042861845,
-        "args": [],
-        "operation": "absolute-target"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 85.37615262773397,
-        "subdomain": "maintenance",
-        "unit": "000JPY",
-        "option": "zeh",
-        "optionValue": 41.19310046,
-        "args": [],
-        "operation": "add-amount"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "zeh",
-        "optionValue": 0,
-        "args": [],
-        "operation": "absolute-target"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "zeh",
-        "optionValue": 0,
-        "args": [],
-        "operation": "absolute-target"
-      },
-      {
-        "domain": "housing",
-        "item": "other-energy",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "zeh",
-        "optionValue": 0,
-        "args": [],
-        "operation": "absolute-target"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "zeh",
-        "optionValue": 0,
-        "args": [],
-        "operation": "absolute-target"
       },
       {
         "domain": "mobility",
@@ -3507,75 +2919,6 @@
         "operation": "absolute-target"
       },
       {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 11666.178041392403,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "option": "ec",
-        "optionValue": 0.271666667,
-        "args": [
-          "housing_urban-gas_amount",
-          "housing_lpg_amount",
-          "housing_kerosene_amount"
-        ],
-        "operation": "shift-from-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 472.37397852536225,
-        "subdomain": "maintenance",
-        "unit": "000JPY",
-        "option": "ec",
-        "optionValue": -0.077669903,
-        "args": [
-          "housing_electricity",
-          "housing_urban-gas",
-          "housing_lpg",
-          "housing_kerosene"
-        ],
-        "operation": "rebound-from-other-footprints"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 123.96929830869256,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "ec",
-        "optionValue": -0.939197668,
-        "args": [],
-        "operation": "reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "ec",
-        "optionValue": -0.228220859,
-        "args": [],
-        "operation": "reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 14002.042071459211,
-        "subdomain": "other-energy",
-        "unit": "kWh",
-        "option": "ec",
-        "optionValue": -0.633259912,
-        "args": [],
-        "operation": "reduction-rate"
-      },
-      {
         "domain": "food",
         "item": "fruits",
         "type": "intensity",
@@ -3598,18 +2941,6 @@
         "optionValue": 0.956544981,
         "args": [],
         "operation": "absolute-target"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 4440.352047795,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "option": "enenudge",
-        "optionValue": -0.03,
-        "args": [],
-        "operation": "reduction-rate"
       },
       {
         "domain": "food",
@@ -4481,30 +3812,6 @@
         "operation": "reduction-rate"
       },
       {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 4275.369623038546,
-        "subdomain": "electricity",
-        "unit": "kWh",
-        "option": "led",
-        "optionValue": -0.0660406,
-        "args": [],
-        "operation": "reduction-rate"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 44.467903943523126,
-        "subdomain": "maintenance",
-        "unit": "000JPY",
-        "option": "led",
-        "optionValue": 0.020622194,
-        "args": ["housing_electricity"],
-        "operation": "further-reduction-from-other-footprints"
-      },
-      {
         "domain": "mobility",
         "item": "bicycle-driving",
         "type": "amount",
@@ -4611,18 +3918,6 @@
         "optionValue": 0.333333333,
         "args": ["mobility_private-car-driving_amount", "mobility_taxi_amount"],
         "operation": "shift-from-other-items"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "intensity",
-        "value": 0.042861845,
-        "subdomain": "electricity",
-        "unit": "kgCO2e/kWh",
-        "option": "self-re",
-        "optionValue": 0.042861845,
-        "args": [],
-        "operation": "absolute-target"
       },
       {
         "domain": "food",
@@ -5328,78 +4623,6 @@
     ],
     "estimations": [
       {
-        "domain": "housing",
-        "item": "land-rent",
-        "type": "amount",
-        "value": 1.96142204,
-        "subdomain": "landrent",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "housing",
-        "item": "imputed-rent",
-        "type": "amount",
-        "value": 32.06179313835564,
-        "subdomain": "imputedrent",
-        "unit": "m2"
-      },
-      {
-        "domain": "housing",
-        "item": "rent",
-        "type": "amount",
-        "value": 6.934328681644358,
-        "subdomain": "rent",
-        "unit": "m2"
-      },
-      {
-        "domain": "housing",
-        "item": "housing-maintenance",
-        "type": "amount",
-        "value": 44.183052167733976,
-        "subdomain": "maintenance",
-        "unit": "000JPY"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "amount",
-        "value": 4577.6825235,
-        "subdomain": "electricity",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "urban-gas",
-        "type": "amount",
-        "value": 38179.74235600666,
-        "subdomain": "other-energy",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "lpg",
-        "type": "amount",
-        "value": 0,
-        "subdomain": "other-energy",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "kerosene",
-        "type": "amount",
-        "value": 2038.89052,
-        "subdomain": "other-energy",
-        "unit": "kWh"
-      },
-      {
-        "domain": "housing",
-        "item": "electricity",
-        "type": "intensity",
-        "value": 0.062972926,
-        "subdomain": "electricity",
-        "unit": "kgCO2e/kWh"
-      },
-      {
         "domain": "mobility",
         "item": "private-car-purchase",
         "type": "intensity",
@@ -5787,7 +5010,7 @@
         "domain": "other",
         "item": "sanitation",
         "type": "amount",
-        "value": 13.301807282786855,
+        "value": 11.41786032857241,
         "subdomain": "daily-goods-medicine",
         "unit": "000JPY"
       },
@@ -5795,7 +5018,7 @@
         "domain": "other",
         "item": "kitchen-goods",
         "type": "amount",
-        "value": 3.604340490867368,
+        "value": 3.0938544985985996,
         "subdomain": "daily-goods-medicine",
         "unit": "000JPY"
       },
@@ -5803,7 +5026,7 @@
         "domain": "other",
         "item": "paper-stationery",
         "type": "amount",
-        "value": 1.0938522255113394,
+        "value": 0.9389289489367721,
         "subdomain": "daily-goods-medicine",
         "unit": "000JPY"
       },
@@ -5811,7 +5034,7 @@
         "domain": "other",
         "item": "communication",
         "type": "amount",
-        "value": 15.868812824333771,
+        "value": 13.62129856165989,
         "subdomain": "communication",
         "unit": "000JPY"
       },
@@ -5819,7 +5042,7 @@
         "domain": "other",
         "item": "broadcasting",
         "type": "amount",
-        "value": 2.1311871793149018,
+        "value": 1.8293452182960532,
         "subdomain": "broadcasting",
         "unit": "000JPY"
       },
@@ -5827,7 +5050,7 @@
         "domain": "other",
         "item": "electrical-appliances-repair-rental",
         "type": "amount",
-        "value": 0.13653775560177014,
+        "value": 0.11719979021611171,
         "subdomain": "waste-repair-rental",
         "unit": "000JPY"
       },
@@ -5835,7 +5058,7 @@
         "domain": "other",
         "item": "furniture-daily-goods-repair-rental",
         "type": "amount",
-        "value": 0.43981812572459555,
+        "value": 0.3775262881756185,
         "subdomain": "waste-repair-rental",
         "unit": "000JPY"
       },
@@ -5843,7 +5066,7 @@
         "domain": "other",
         "item": "cooking-appliances",
         "type": "amount",
-        "value": 1.6894636137162873,
+        "value": 1.4501833594131222,
         "subdomain": "appliance-furniture",
         "unit": "000JPY"
       },
@@ -5851,7 +5074,7 @@
         "domain": "other",
         "item": "heating-cooling-appliances",
         "type": "amount",
-        "value": 1.9365520713802764,
+        "value": 1.662276456120409,
         "subdomain": "appliance-furniture",
         "unit": "000JPY"
       },
@@ -5859,7 +5082,7 @@
         "domain": "other",
         "item": "other-appliances",
         "type": "amount",
-        "value": 1.822281556252782,
+        "value": 1.5641901770410147,
         "subdomain": "appliance-furniture",
         "unit": "000JPY"
       },
@@ -5867,7 +5090,7 @@
         "domain": "other",
         "item": "electronics",
         "type": "amount",
-        "value": 4.070074746155263,
+        "value": 3.493626391549582,
         "subdomain": "appliance-furniture",
         "unit": "000JPY"
       },
@@ -5875,7 +5098,7 @@
         "domain": "other",
         "item": "furniture",
         "type": "amount",
-        "value": 1.0167689121533041,
+        "value": 0.8727630147238661,
         "subdomain": "appliance-furniture",
         "unit": "000JPY"
       },
@@ -5883,7 +5106,7 @@
         "domain": "other",
         "item": "covering",
         "type": "amount",
-        "value": 1.388503218859415,
+        "value": 1.1918482565316868,
         "subdomain": "appliance-furniture",
         "unit": "000JPY"
       },
@@ -6123,11 +5346,30 @@
         "domain": "other",
         "item": "waste",
         "type": "amount",
-        "value": 0.9431076205946667,
+        "value": 0.9044156340399757,
         "subdomain": "waste-repair-rental",
         "unit": "000JPY"
       }
     ],
+    "mobilityAnswer": {
+      "hasPrivateCar": true,
+      "carIntensityFactorFirstKey": "gasoline",
+      "carChargingKey": "unknown",
+      "carPassengersFirstKey": "1-2",
+      "privateCarAnnualMileage": 5000,
+      "trainWeeklyTravelingTime": 7,
+      "busWeeklyTravelingTime": 7,
+      "motorbikeWeeklyTravelingTime": 0,
+      "otherCarWeeklyTravelingTime": 0,
+      "hasTravelingTime": true,
+      "mileageByAreaFirstKey": "unknown",
+      "otherCarAnnualTravelingTime": 10,
+      "trainAnnualTravelingTime": 100,
+      "busAnnualTravelingTime": 100,
+      "motorbikeAnnualTravelingTime": 0,
+      "airplaneAnnualTravelingTime": 100,
+      "ferryAnnualTravelingTime": 0
+    },
     "otherAnswer": {
       "dailyGoodsAmountKey": "5k-less",
       "communicationAmountKey": "5k-less",
