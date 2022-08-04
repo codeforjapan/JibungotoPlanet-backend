@@ -233,7 +233,7 @@ var estimateHousing = function (dynamodb, housingAnswer, mobilityAnswer, footpri
                     }
                     estimationAmount['urban-gas'].value = 0;
                 }
-                else {
+                else if (housingAnswer.energyHeatIntensityKey === 'urban-gas') {
                     if (gasParam) {
                         estimationAmount['urban-gas'].value = gasParam;
                     }
