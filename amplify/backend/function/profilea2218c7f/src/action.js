@@ -158,7 +158,8 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
             case 14:
                 phase2 = new Set([
                     'proportional-to-other-items',
-                    'shift-from-other-items'
+                    'shift-from-other-items',
+                    'shift-from-other-items-then-reduction-rate'
                 ]);
                 for (_e = 0, _f = actions.filter(function (action) {
                     return phase2.has(action.operation);
@@ -170,6 +171,9 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
                             break;
                         case 'proportional-to-other-items':
                             proportionalToOtherItems(action, results);
+                            break;
+                        case 'shift-from-other-items-then-reduction-rate':
+                            shiftFromOtherItemsThenReductionRate(action, results);
                             break;
                     }
                     results.get(action.key).actions.set(action.option, action); // actionを登録
@@ -502,3 +506,28 @@ var questionReductionRate = function (action, dynamodb, housingAnswer, parameter
         }
     });
 }); };
+// zeh用の計算
+var shiftFromOtherItemsThenReductionRate = function (action, results) {
+    var value2 = Number.parseFloat(action.args[0]);
+    var args = action.args.slice(1);
+    var sum = args.reduce(function (sum, key) {
+        var _a, _b;
+        var result = results.get(key);
+        var value = 0;
+        if (result) {
+            var before = (_a = result.estimation) === null || _a === void 0 ? void 0 : _a.value;
+            var after = (_b = result.actions.get(action.option)) === null || _b === void 0 ? void 0 : _b.value;
+            if (before !== null &&
+                before !== undefined &&
+                after !== null &&
+                after !== undefined) {
+                value = after - before;
+            }
+        }
+        return sum + value;
+    }, 0);
+    action.value =
+        (action.value / action.optionValue - sum) *
+            (1 + value2) *
+            action.optionValue;
+};

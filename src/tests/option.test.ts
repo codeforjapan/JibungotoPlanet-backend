@@ -37,7 +37,7 @@ describe('Test all options', () => {
     'books',
     'eco-tourism',
 
-    // 'zeh'
+    'zeh',
     'self-re',
     'grid-re',
     'com-house',
@@ -133,6 +133,23 @@ describe('Test all options', () => {
             expect(exp).not.toBeNull()
             expect(exp.estimated).toBeTruthy()
             expect(action.value).toBeCloseTo(exp.value)
+          }
+
+          // actionに重複がないことを確認
+          for (let i = 0; i < actions.length; ++i) {
+            for (let j = i + 1; j < actions.length; ++j) {
+              expect(
+                actions[i].option +
+                  actions[i].domain +
+                  actions[i].item +
+                  actions[i].type
+              ).not.toBe(
+                actions[j].option +
+                  actions[j].domain +
+                  actions[j].item +
+                  actions[j].type
+              )
+            }
           }
 
           // expectationがestimatedになっている場合、actionに値があるかを確認
