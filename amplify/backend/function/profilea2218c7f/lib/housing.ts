@@ -239,7 +239,7 @@ const estimateHousing = async (
         estimationAmount.lpg.value = gasParam
       }
       estimationAmount['urban-gas'].value = 0
-    } else {
+    } else if (housingAnswer.energyHeatIntensityKey === 'urban-gas') {
       if (gasParam) {
         estimationAmount['urban-gas'].value = gasParam
       }
