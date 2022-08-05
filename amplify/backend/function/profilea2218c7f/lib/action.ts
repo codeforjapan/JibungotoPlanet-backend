@@ -134,7 +134,8 @@ const calculateActions = async (
   //
   const phase2 = new Set([
     'proportional-to-other-items',
-    'shift-from-other-items'
+    'shift-from-other-items',
+    'shift-from-other-items-then-reduction-rate'
   ])
 
   for (const action of actions.filter((action) =>
@@ -146,6 +147,9 @@ const calculateActions = async (
         break
       case 'proportional-to-other-items':
         proportionalToOtherItems(action, results)
+        break
+      case 'shift-from-other-items-then-reduction-rate':
+        shiftFromOtherItemsThenReductionRate(action, results)
         break
     }
     results.get(action.key).actions.set(action.option, action) // actionを登録
@@ -542,6 +546,35 @@ const questionReductionRate = async (
       action.value *= 1 + action.optionValue * data.Item.value
     }
   }
+}
+
+// zeh用の計算
+const shiftFromOtherItemsThenReductionRate = (action, results) => {
+  const value2 = Number.parseFloat(action.args[0])
+  const args = action.args.slice(1)
+
+  const sum = args.reduce((sum, key) => {
+    const result = results.get(key)
+    let value = 0
+    if (result) {
+      const before = result.estimation?.value
+      const after = result.actions.get(action.option)?.value
+      if (
+        before !== null &&
+        before !== undefined &&
+        after !== null &&
+        after !== undefined
+      ) {
+        value = after - before
+      }
+    }
+    return sum + value
+  }, 0)
+
+  action.value =
+    (action.value / action.optionValue - sum) *
+    (1 + value2) *
+    action.optionValue
 }
 
 export { calculateActions }
