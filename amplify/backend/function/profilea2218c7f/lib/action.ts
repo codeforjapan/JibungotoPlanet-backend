@@ -85,10 +85,21 @@ const calculateActions = async (
     'question-answer-to-target-inverse'
   ])
 
-  let questionAnswerToTargetParamsCalculated = false
-  let carDrivingIntensity = null
-  let carManufacturingIntensity = null
-  let foodPurchaseAmountConsideringFoodLossRatio = null
+  let questionAnswerToTargetParams: {
+    carDrivingIntensity: number | null
+    carManufacturingIntensity: number | null
+    foodPurchaseAmountConsideringFoodLossRatio: number | null
+  } = null
+
+  let questionReductionRateParams: {
+    renovationHousingInsulation: number | null
+    clothingHousingInsulation: number | null
+  } = null
+
+  let questionAnswerToTargetInverseParams: {
+    taxiPassengers: number | null
+    privateCarPassengers: number | null
+  } = null
 
   for (const action of actions.filter((action) =>
     phase1.has(action.operation)
@@ -105,48 +116,76 @@ const calculateActions = async (
         increaseRate(action)
         break
       case 'question-answer-to-target-inverse':
+        if (questionAnswerToTargetInverseParams === null) {
+          questionAnswerToTargetInverseParams = {
+            taxiPassengers: await calcTaxiPassengers(
+              dynamodb,
+              mobilityAnswer,
+              parameterTableName
+            ),
+            privateCarPassengers: await calcPrivateCarPassengers(
+              dynamodb,
+              mobilityAnswer,
+              parameterTableName
+            )
+          }
+        }
         await questionAnswerToTargetInverse(
           action,
-          dynamodb,
-          mobilityAnswer,
-          parameterTableName
+          questionAnswerToTargetInverseParams.taxiPassengers,
+          questionAnswerToTargetInverseParams.privateCarPassengers
         )
         break
       case 'question-answer-to-target':
-        if (questionAnswerToTargetParamsCalculated === false) {
-          questionAnswerToTargetParamsCalculated = true
-          carDrivingIntensity = await calcCarDrivingIntensity(
-            dynamodb,
-            housingAnswer,
-            mobilityAnswer,
-            parameterTableName
-          )
-          carManufacturingIntensity = await calcCarManufacturingIntensity(
-            dynamodb,
-            mobilityAnswer,
-            parameterTableName
-          )
-          foodPurchaseAmountConsideringFoodLossRatio =
-            await calcFoodPurchaseAmountConsideringFoodLossRatio(
+        if (questionAnswerToTargetParams === null) {
+          questionAnswerToTargetParams = {
+            carDrivingIntensity: await calcCarDrivingIntensity(
               dynamodb,
-              foodAnswer,
+              housingAnswer,
+              mobilityAnswer,
               parameterTableName
-            )
+            ),
+            carManufacturingIntensity: await calcCarManufacturingIntensity(
+              dynamodb,
+              mobilityAnswer,
+              parameterTableName
+            ),
+            foodPurchaseAmountConsideringFoodLossRatio:
+              await calcFoodPurchaseAmountConsideringFoodLossRatio(
+                dynamodb,
+                foodAnswer,
+                parameterTableName
+              )
+          }
         }
 
         await questionAnswerToTarget(
           action,
-          carDrivingIntensity,
-          carManufacturingIntensity,
-          foodPurchaseAmountConsideringFoodLossRatio
+          questionAnswerToTargetParams.carDrivingIntensity,
+          questionAnswerToTargetParams.carManufacturingIntensity,
+          questionAnswerToTargetParams.foodPurchaseAmountConsideringFoodLossRatio
         )
         break
       case 'question-reduction-rate':
+        if (questionReductionRateParams === null) {
+          questionReductionRateParams = {
+            renovationHousingInsulation:
+              await await calcRenovationHousingInsulation(
+                dynamodb,
+                housingAnswer,
+                parameterTableName
+              ),
+            clothingHousingInsulation: await calcClothingHousingInsulation(
+              dynamodb,
+              housingAnswer,
+              parameterTableName
+            )
+          }
+        }
         await questionReductionRate(
           action,
-          dynamodb,
-          housingAnswer,
-          parameterTableName
+          questionReductionRateParams.renovationHousingInsulation,
+          questionReductionRateParams.clothingHousingInsulation
         )
         break
     }
@@ -368,35 +407,49 @@ const getData = async (dynamodb, parameterTableName, category, key) =>
     })
     .promise()
 
-// rideshareだけなのでrideshareに特化した実装
-const questionAnswerToTargetInverse = async (
-  action,
+const calcTaxiPassengers = async (
   dynamodb,
   mobilityAnswer,
   parameterTableName
 ) => {
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'car-passengers',
+    (mobilityAnswer?.carPassengersFirstKey || 'unknown') + '_taxi-passengers'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+const calcPrivateCarPassengers = async (
+  dynamodb,
+  mobilityAnswer,
+  parameterTableName
+) => {
+  // 乗車人数補正
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'car-passengers',
+    (mobilityAnswer.carPassengersFirstKey || 'unknown') +
+      '_private-car-passengers'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+// rideshareだけなのでrideshareに特化した実装
+const questionAnswerToTargetInverse = async (
+  action,
+  taxiPassengers,
+  privateCarPassengers
+) => {
   if (action.args[0] === 'mobility_taxi-car-passengers') {
-    // 乗車人数補正
-    const data = await getData(
-      dynamodb,
-      parameterTableName,
-      'car-passengers',
-      (mobilityAnswer?.carPassengersFirstKey || 'unknown') + '_taxi-passengers'
-    )
-    if (data?.Item?.value) {
-      action.value *= data?.Item?.value / action.optionValue
+    if (taxiPassengers != null) {
+      action.value *= taxiPassengers / action.optionValue
     }
   } else {
-    // 乗車人数補正
-    const data = await getData(
-      dynamodb,
-      parameterTableName,
-      'car-passengers',
-      (mobilityAnswer.carPassengersFirstKey || 'unknown') +
-        '_private-car-passengers'
-    )
-    if (data?.Item) {
-      action.value *= data.Item.value / action.optionValue
+    if (privateCarPassengers != null) {
+      action.value *= privateCarPassengers / action.optionValue
     }
   }
 }
@@ -482,11 +535,7 @@ const calcCarManufacturingIntensity = async (
     (mobilityAnswer?.carIntensityFactorFirstKey || 'unknown') +
       '_manufacturing-intensity'
   )
-  if (data?.Item) {
-    return data.Item.value
-  } else {
-    return null
-  }
+  return data?.Item ? data.Item.value : null
 }
 
 const calcFoodPurchaseAmountConsideringFoodLossRatio = async (
@@ -557,45 +606,62 @@ const questionAnswerToTarget = async (
   foodPurchaseAmountConsideringFoodLossRatio
 ) => {
   if (action.args[0] === 'mobility_driving-intensity') {
-    if (carDrivingIntensity) {
+    if (carDrivingIntensity != null) {
       action.value *= action.optionValue / carDrivingIntensity
     }
   } else if (action.args[0] === 'mobility_manufacturing-intensity') {
-    action.value *= action.optionValue / carManufacturingIntensity
+    if (carManufacturingIntensity != null) {
+      action.value *= action.optionValue / carManufacturingIntensity
+    }
   } else if (action.args[0] === 'food_food-amount-to-average') {
-    if (foodPurchaseAmountConsideringFoodLossRatio) {
+    if (foodPurchaseAmountConsideringFoodLossRatio != null) {
       action.value *=
         action.optionValue / foodPurchaseAmountConsideringFoodLossRatio
     }
   }
 }
 
-// insrenov, clothes-homeのみ
-const questionReductionRate = async (
-  action,
+const calcRenovationHousingInsulation = async (
   dynamodb,
   housingAnswer,
   parameterTableName
 ) => {
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'housing-insulation',
+    (housingAnswer?.housingInsulationFirstKey || 'unknown') + '_renovation'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+const calcClothingHousingInsulation = async (
+  dynamodb,
+  housingAnswer,
+  parameterTableName
+) => {
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'housing-insulation',
+    (housingAnswer?.housingInsulationFirstKey || 'unknown') + '_clothing'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+// insrenov, clothes-homeのみ
+const questionReductionRate = async (
+  action,
+  renovationHousingInsulation,
+  clothingHousingInsulation
+) => {
   if (action.args[0] === 'housing_housing-insulation-renovation') {
-    const data = await getData(
-      dynamodb,
-      parameterTableName,
-      'housing-insulation',
-      (housingAnswer.housingInsulationFirstKey || 'unknown') + '_renovation'
-    )
-    if (data?.Item) {
-      action.value *= 1 + action.optionValue * data.Item.value
+    if (renovationHousingInsulation != null) {
+      action.value *= 1 + action.optionValue * renovationHousingInsulation
     }
   } else if (action.args[0] === 'housing_housing-insulation-clothing') {
-    const data = await getData(
-      dynamodb,
-      parameterTableName,
-      'housing-insulation',
-      (housingAnswer.housingInsulationFirstKey || 'unknown') + '_clothing'
-    )
-    if (data?.Item) {
-      action.value *= 1 + action.optionValue * data.Item.value
+    if (clothingHousingInsulation != null) {
+      action.value *= 1 + action.optionValue * clothingHousingInsulation
     }
   }
 }
