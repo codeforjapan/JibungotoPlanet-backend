@@ -64,9 +64,10 @@ var toOption = function (rec) {
     };
 };
 var calculateActions = function (dynamodb, baselines, estimations, housingAnswer, mobilityAnswer, foodAnswer, parameterTableName, optionTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var results, _i, baselines_1, baseline, _a, estimations_1, estimation, key, result, toAction, optionData, actions, phase1, _b, _c, action, _d, phase2, _e, _f, action, phase3, _g, _h, action;
-    return __generator(this, function (_j) {
-        switch (_j.label) {
+    var results, _i, baselines_1, baseline, _a, estimations_1, estimation, key, result, toAction, optionData, actions, phase1, questionAnswerToTargetParams, questionReductionRateParams, questionAnswerToTargetInverseParams, _b, _c, action, _d, phase2, _e, _f, action, phase3, _g, _h, action;
+    var _j, _k, _l;
+    return __generator(this, function (_m) {
+        switch (_m.label) {
             case 0:
                 results = new Map();
                 for (_i = 0, baselines_1 = baselines; _i < baselines_1.length; _i++) {
@@ -97,7 +98,7 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
                     // resultがある場合にactionを作成
                 ];
             case 1:
-                optionData = _j.sent();
+                optionData = _m.sent();
                 actions = optionData.Items.map(function (item) { return toOption(item); })
                     .filter(function (option) { return results.has(option.key); })
                     .map(function (option) { return toAction(option); });
@@ -110,12 +111,15 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
                     'question-answer-to-target',
                     'question-answer-to-target-inverse'
                 ]);
+                questionAnswerToTargetParams = null;
+                questionReductionRateParams = null;
+                questionAnswerToTargetInverseParams = null;
                 _b = 0, _c = actions.filter(function (action) {
                     return phase1.has(action.operation);
                 });
-                _j.label = 2;
+                _m.label = 2;
             case 2:
-                if (!(_b < _c.length)) return [3 /*break*/, 14];
+                if (!(_b < _c.length)) return [3 /*break*/, 24];
                 action = _c[_b];
                 _d = action.operation;
                 switch (_d) {
@@ -124,38 +128,74 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
                     case 'increase-rate': return [3 /*break*/, 5];
                     case 'reduction-rate': return [3 /*break*/, 5];
                     case 'question-answer-to-target-inverse': return [3 /*break*/, 6];
-                    case 'question-answer-to-target': return [3 /*break*/, 8];
-                    case 'question-reduction-rate': return [3 /*break*/, 10];
+                    case 'question-answer-to-target': return [3 /*break*/, 11];
+                    case 'question-reduction-rate': return [3 /*break*/, 17];
                 }
-                return [3 /*break*/, 12];
+                return [3 /*break*/, 22];
             case 3:
                 absoluteTarget(action);
-                return [3 /*break*/, 12];
+                return [3 /*break*/, 22];
             case 4:
                 addAmount(action);
-                return [3 /*break*/, 12];
+                return [3 /*break*/, 22];
             case 5:
                 increaseRate(action);
-                return [3 /*break*/, 12];
-            case 6: return [4 /*yield*/, questionAnswerToTargetInverse(action, dynamodb, mobilityAnswer, parameterTableName)];
+                return [3 /*break*/, 22];
+            case 6:
+                if (!(questionAnswerToTargetInverseParams === null)) return [3 /*break*/, 9];
+                _j = {};
+                return [4 /*yield*/, calcTaxiPassengers(dynamodb, mobilityAnswer, parameterTableName)];
             case 7:
-                _j.sent();
-                return [3 /*break*/, 12];
-            case 8: return [4 /*yield*/, questionAnswerToTarget(action, dynamodb, housingAnswer, mobilityAnswer, foodAnswer, parameterTableName)];
-            case 9:
-                _j.sent();
-                return [3 /*break*/, 12];
-            case 10: return [4 /*yield*/, questionReductionRate(action, dynamodb, housingAnswer, parameterTableName)];
+                _j.taxiPassengers = _m.sent();
+                return [4 /*yield*/, calcPrivateCarPassengers(dynamodb, mobilityAnswer, parameterTableName)];
+            case 8:
+                questionAnswerToTargetInverseParams = (_j.privateCarPassengers = _m.sent(),
+                    _j);
+                _m.label = 9;
+            case 9: return [4 /*yield*/, questionAnswerToTargetInverse(action, questionAnswerToTargetInverseParams.taxiPassengers, questionAnswerToTargetInverseParams.privateCarPassengers)];
+            case 10:
+                _m.sent();
+                return [3 /*break*/, 22];
             case 11:
-                _j.sent();
-                return [3 /*break*/, 12];
+                if (!(questionAnswerToTargetParams === null)) return [3 /*break*/, 15];
+                _k = {};
+                return [4 /*yield*/, calcCarDrivingIntensity(dynamodb, housingAnswer, mobilityAnswer, parameterTableName)];
             case 12:
-                results.get(action.key).actions.set(action.option, action); // actionを登録
-                _j.label = 13;
+                _k.carDrivingIntensity = _m.sent();
+                return [4 /*yield*/, calcCarManufacturingIntensity(dynamodb, mobilityAnswer, parameterTableName)];
             case 13:
+                _k.carManufacturingIntensity = _m.sent();
+                return [4 /*yield*/, calcFoodPurchaseAmountConsideringFoodLossRatio(dynamodb, foodAnswer, parameterTableName)];
+            case 14:
+                questionAnswerToTargetParams = (_k.foodPurchaseAmountConsideringFoodLossRatio = _m.sent(),
+                    _k);
+                _m.label = 15;
+            case 15: return [4 /*yield*/, questionAnswerToTarget(action, questionAnswerToTargetParams.carDrivingIntensity, questionAnswerToTargetParams.carManufacturingIntensity, questionAnswerToTargetParams.foodPurchaseAmountConsideringFoodLossRatio)];
+            case 16:
+                _m.sent();
+                return [3 /*break*/, 22];
+            case 17:
+                if (!(questionReductionRateParams === null)) return [3 /*break*/, 20];
+                _l = {};
+                return [4 /*yield*/, calcRenovationHousingInsulation(dynamodb, housingAnswer, parameterTableName)];
+            case 18:
+                _l.renovationHousingInsulation = _m.sent();
+                return [4 /*yield*/, calcClothingHousingInsulation(dynamodb, housingAnswer, parameterTableName)];
+            case 19:
+                questionReductionRateParams = (_l.clothingHousingInsulation = _m.sent(),
+                    _l);
+                _m.label = 20;
+            case 20: return [4 /*yield*/, questionReductionRate(action, questionReductionRateParams.renovationHousingInsulation, questionReductionRateParams.clothingHousingInsulation)];
+            case 21:
+                _m.sent();
+                return [3 /*break*/, 22];
+            case 22:
+                results.get(action.key).actions.set(action.option, action); // actionを登録
+                _m.label = 23;
+            case 23:
                 _b++;
                 return [3 /*break*/, 2];
-            case 14:
+            case 24:
                 phase2 = new Set([
                     'proportional-to-other-items',
                     'shift-from-other-items',
@@ -348,72 +388,77 @@ var getData = function (dynamodb, parameterTableName, category, key) { return __
                         key: key
                     }
                 })
-                    .promise()
-                // rideshareだけなのでrideshareに特化した実装
-            ];
-            case 1: return [2 /*return*/, _a.sent()
-                // rideshareだけなのでrideshareに特化した実装
-            ];
+                    .promise()];
+            case 1: return [2 /*return*/, _a.sent()];
+        }
+    });
+}); };
+var calcTaxiPassengers = function (dynamodb, mobilityAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getData(dynamodb, parameterTableName, 'car-passengers', ((mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carPassengersFirstKey) || 'unknown') + '_taxi-passengers')];
+            case 1:
+                data = _a.sent();
+                return [2 /*return*/, (data === null || data === void 0 ? void 0 : data.Item) ? data.Item.value : null];
+        }
+    });
+}); };
+var calcPrivateCarPassengers = function (dynamodb, mobilityAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getData(dynamodb, parameterTableName, 'car-passengers', (mobilityAnswer.carPassengersFirstKey || 'unknown') +
+                    '_private-car-passengers')];
+            case 1:
+                data = _a.sent();
+                return [2 /*return*/, (data === null || data === void 0 ? void 0 : data.Item) ? data.Item.value : null];
         }
     });
 }); };
 // rideshareだけなのでrideshareに特化した実装
-var questionAnswerToTargetInverse = function (action, dynamodb, mobilityAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var data, data;
-    var _a, _b, _c, _d;
-    return __generator(this, function (_e) {
-        switch (_e.label) {
-            case 0:
-                if (!(action.args[0] === 'mobility_taxi-car-passengers')) return [3 /*break*/, 2];
-                return [4 /*yield*/, getData(dynamodb, parameterTableName, 'car-passengers', ((mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carPassengersFirstKey) || 'unknown') + '_taxi-passengers')];
-            case 1:
-                data = _e.sent();
-                if ((_a = data === null || data === void 0 ? void 0 : data.Item) === null || _a === void 0 ? void 0 : _a.value) {
-                    action.value *= ((_b = data === null || data === void 0 ? void 0 : data.Item) === null || _b === void 0 ? void 0 : _b.value) / action.optionValue;
-                }
-                return [3 /*break*/, 4];
-            case 2: return [4 /*yield*/, getData(dynamodb, parameterTableName, 'car-passengers', (mobilityAnswer.carPassengersFirstKey || 'unknown') +
-                    '_private-car-passengers')];
-            case 3:
-                data = _e.sent();
-                if ((_c = data === null || data === void 0 ? void 0 : data.Item) === null || _c === void 0 ? void 0 : _c.value) {
-                    action.value *= ((_d = data === null || data === void 0 ? void 0 : data.Item) === null || _d === void 0 ? void 0 : _d.value) / action.optionValue;
-                }
-                _e.label = 4;
-            case 4: return [2 /*return*/];
+var questionAnswerToTargetInverse = function (action, taxiPassengers, privateCarPassengers) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        if (action.args[0] === 'mobility_taxi-car-passengers') {
+            if (taxiPassengers != null) {
+                action.value *= taxiPassengers / action.optionValue;
+            }
         }
+        else {
+            if (privateCarPassengers != null) {
+                action.value *= privateCarPassengers / action.optionValue;
+            }
+        }
+        return [2 /*return*/];
     });
 }); };
-// car-ev-phv, car-ev-phv-re, lossで適用。
-// argsは、mobility_driving-intensity, mobility_manufacturing-intensity, food_food-amount-to-average
-var questionAnswerToTarget = function (action, dynamodb, housingAnswer, mobilityAnswer, foodAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var electricityIntensityFactor, electricityData, carChargingData, ghgIntensity, data, data_1, data, foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio;
-    var _a, _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
+// car-driving-intensityの取得
+var calcCarDrivingIntensity = function (dynamodb, housingAnswer, mobilityAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+    var electricityIntensityFactor, electricityData, carChargingData, ghgIntensity, data, data_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                if (!(action.args[0] === 'mobility_driving-intensity')) return [3 /*break*/, 7];
                 electricityIntensityFactor = 0;
                 if (!(housingAnswer === null || housingAnswer === void 0 ? void 0 : housingAnswer.electricityIntensityKey)) return [3 /*break*/, 3];
                 return [4 /*yield*/, getData(dynamodb, parameterTableName, 'electricity-intensity-factor', housingAnswer.electricityIntensityKey)];
             case 1:
-                electricityData = _c.sent();
+                electricityData = _a.sent();
                 if (electricityData === null || electricityData === void 0 ? void 0 : electricityData.Item) {
                     electricityIntensityFactor = electricityData.Item.value;
                 }
                 return [4 /*yield*/, getData(dynamodb, parameterTableName, 'car-charging', (mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carChargingKey) || 'unknown')];
             case 2:
-                carChargingData = _c.sent();
+                carChargingData = _a.sent();
                 if (carChargingData === null || carChargingData === void 0 ? void 0 : carChargingData.Item) {
                     electricityIntensityFactor *= carChargingData.Item.value;
                 }
-                _c.label = 3;
+                _a.label = 3;
             case 3:
                 ghgIntensity = 1;
                 return [4 /*yield*/, getData(dynamodb, parameterTableName, 'car-intensity-factor', ((mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorFirstKey) || 'unknown') +
                         '_driving-intensity')];
             case 4:
-                data = _c.sent();
+                data = _a.sent();
                 if (data === null || data === void 0 ? void 0 : data.Item) {
                     ghgIntensity = data.Item.value;
                 }
@@ -422,35 +467,43 @@ var questionAnswerToTarget = function (action, dynamodb, housingAnswer, mobility
                 return [4 /*yield*/, getData(dynamodb, parameterTableName, 'renewable-car-intensity-factor', ((mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorFirstKey) || 'unknown') +
                         '_driving-factor')];
             case 5:
-                data_1 = _c.sent();
+                data_1 = _a.sent();
                 if (data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) {
                     ghgIntensity =
                         ghgIntensity * (1 - electricityIntensityFactor) +
                             data_1.Item.value * electricityIntensityFactor;
                 }
-                _c.label = 6;
-            case 6:
-                action.value *= action.optionValue / ghgIntensity;
-                return [3 /*break*/, 13];
-            case 7:
-                if (!(action.args[0] === 'mobility_manufacturing-intensity')) return [3 /*break*/, 9];
-                return [4 /*yield*/, getData(dynamodb, parameterTableName, 'car-intensity-factor', ((mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorFirstKey) || 'unknown') +
-                        '_manufacturing-intensity')];
-            case 8:
-                data = _c.sent();
-                if (data === null || data === void 0 ? void 0 : data.Item) {
-                    action.value *= action.optionValue / data.Item.value;
-                }
-                return [3 /*break*/, 13];
-            case 9:
-                if (!(action.args[0] === 'food_food-amount-to-average')) return [3 /*break*/, 13];
-                if (!(foodAnswer.foodDirectWasteFactorKey &&
-                    foodAnswer.foodLeftoverFactorKey)) return [3 /*break*/, 13];
+                _a.label = 6;
+            case 6: return [2 /*return*/, ghgIntensity];
+        }
+    });
+}); };
+// car-manufacturing-intensityの取得
+var calcCarManufacturingIntensity = function (dynamodb, mobilityAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getData(dynamodb, parameterTableName, 'car-intensity-factor', ((mobilityAnswer === null || mobilityAnswer === void 0 ? void 0 : mobilityAnswer.carIntensityFactorFirstKey) || 'unknown') +
+                    '_manufacturing-intensity')];
+            case 1:
+                data = _a.sent();
+                return [2 /*return*/, (data === null || data === void 0 ? void 0 : data.Item) ? data.Item.value : null];
+        }
+    });
+}); };
+var calcFoodPurchaseAmountConsideringFoodLossRatio = function (dynamodb, foodAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+    var foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio;
+    var _a, _b;
+    return __generator(this, function (_c) {
+        switch (_c.label) {
+            case 0:
+                if (!((foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.foodDirectWasteFactorKey) &&
+                    (foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.foodLeftoverFactorKey))) return [3 /*break*/, 4];
                 return [4 /*yield*/, getData(dynamodb, parameterTableName, 'food-direct-waste-factor', foodAnswer.foodDirectWasteFactorKey)];
-            case 10:
+            case 1:
                 foodDirectWasteFactor = _c.sent();
                 return [4 /*yield*/, getData(dynamodb, parameterTableName, 'food-leftover-factor', foodAnswer.foodLeftoverFactorKey)];
-            case 11:
+            case 2:
                 foodLeftoverFactor = _c.sent();
                 return [4 /*yield*/, dynamodb
                         .query({
@@ -463,47 +516,80 @@ var questionAnswerToTarget = function (action, dynamodb, housingAnswer, mobility
                         }
                     })
                         .promise()];
-            case 12:
+            case 3:
                 foodWastRatio = _c.sent();
                 leftoverRatio = foodWastRatio.Items.find(function (item) { return item.key === 'leftover-per-food-waste'; });
                 directWasteRatio = foodWastRatio.Items.find(function (item) { return item.key === 'direct-waste-per-food-waste'; });
                 foodWasteRatio = foodWastRatio.Items.find(function (item) { return item.key === 'food-waste-per-food'; });
                 foodLossAverageRatio = ((_a = foodDirectWasteFactor.Item) === null || _a === void 0 ? void 0 : _a.value) * directWasteRatio.value +
                     ((_b = foodLeftoverFactor.Item) === null || _b === void 0 ? void 0 : _b.value) * leftoverRatio.value;
-                foodPurchaseAmountConsideringFoodLossRatio = (1 + foodLossAverageRatio * foodWasteRatio.value) /
-                    (1 + foodWasteRatio.value);
+                // 全体に影響する割合
+                // 食品ロスを考慮した食材購入量の平均に対する比率
+                return [2 /*return*/, ((1 + foodLossAverageRatio * foodWasteRatio.value) /
+                        (1 + foodWasteRatio.value))];
+            case 4: return [2 /*return*/, null];
+        }
+    });
+}); };
+// car-ev-phv, car-ev-phv-re, lossで適用。
+// argsは、mobility_driving-intensity, mobility_manufacturing-intensity, food_food-amount-to-average
+var questionAnswerToTarget = function (action, carDrivingIntensity, carManufacturingIntensity, foodPurchaseAmountConsideringFoodLossRatio) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        if (action.args[0] === 'mobility_driving-intensity') {
+            if (carDrivingIntensity != null) {
+                action.value *= action.optionValue / carDrivingIntensity;
+            }
+        }
+        else if (action.args[0] === 'mobility_manufacturing-intensity') {
+            if (carManufacturingIntensity != null) {
+                action.value *= action.optionValue / carManufacturingIntensity;
+            }
+        }
+        else if (action.args[0] === 'food_food-amount-to-average') {
+            if (foodPurchaseAmountConsideringFoodLossRatio != null) {
                 action.value *=
                     action.optionValue / foodPurchaseAmountConsideringFoodLossRatio;
-                _c.label = 13;
-            case 13: return [2 /*return*/];
+            }
+        }
+        return [2 /*return*/];
+    });
+}); };
+var calcRenovationHousingInsulation = function (dynamodb, housingAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getData(dynamodb, parameterTableName, 'housing-insulation', ((housingAnswer === null || housingAnswer === void 0 ? void 0 : housingAnswer.housingInsulationFirstKey) || 'unknown') + '_renovation')];
+            case 1:
+                data = _a.sent();
+                return [2 /*return*/, (data === null || data === void 0 ? void 0 : data.Item) ? data.Item.value : null];
+        }
+    });
+}); };
+var calcClothingHousingInsulation = function (dynamodb, housingAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getData(dynamodb, parameterTableName, 'housing-insulation', ((housingAnswer === null || housingAnswer === void 0 ? void 0 : housingAnswer.housingInsulationFirstKey) || 'unknown') + '_clothing')];
+            case 1:
+                data = _a.sent();
+                return [2 /*return*/, (data === null || data === void 0 ? void 0 : data.Item) ? data.Item.value : null];
         }
     });
 }); };
 // insrenov, clothes-homeのみ
-var questionReductionRate = function (action, dynamodb, housingAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var data, data;
+var questionReductionRate = function (action, renovationHousingInsulation, clothingHousingInsulation) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (!(action.args[0] === 'housing_housing-insulation-renovation')) return [3 /*break*/, 2];
-                return [4 /*yield*/, getData(dynamodb, parameterTableName, 'housing-insulation', (housingAnswer.housingInsulationFirstKey || 'unknown') + '_renovation')];
-            case 1:
-                data = _a.sent();
-                if (data === null || data === void 0 ? void 0 : data.Item) {
-                    action.value *= 1 + action.optionValue * data.Item.value;
-                }
-                return [3 /*break*/, 4];
-            case 2:
-                if (!(action.args[0] === 'housing_housing-insulation-clothing')) return [3 /*break*/, 4];
-                return [4 /*yield*/, getData(dynamodb, parameterTableName, 'housing-insulation', (housingAnswer.housingInsulationFirstKey || 'unknown') + '_clothing')];
-            case 3:
-                data = _a.sent();
-                if (data === null || data === void 0 ? void 0 : data.Item) {
-                    action.value *= 1 + action.optionValue * data.Item.value;
-                }
-                _a.label = 4;
-            case 4: return [2 /*return*/];
+        if (action.args[0] === 'housing_housing-insulation-renovation') {
+            if (renovationHousingInsulation != null) {
+                action.value *= 1 + action.optionValue * renovationHousingInsulation;
+            }
         }
+        else if (action.args[0] === 'housing_housing-insulation-clothing') {
+            if (clothingHousingInsulation != null) {
+                action.value *= 1 + action.optionValue * clothingHousingInsulation;
+            }
+        }
+        return [2 /*return*/];
     });
 }); };
 // zeh用の計算

@@ -85,6 +85,22 @@ const calculateActions = async (
     'question-answer-to-target-inverse'
   ])
 
+  let questionAnswerToTargetParams: {
+    carDrivingIntensity: number | null
+    carManufacturingIntensity: number | null
+    foodPurchaseAmountConsideringFoodLossRatio: number | null
+  } = null
+
+  let questionReductionRateParams: {
+    renovationHousingInsulation: number | null
+    clothingHousingInsulation: number | null
+  } = null
+
+  let questionAnswerToTargetInverseParams: {
+    taxiPassengers: number | null
+    privateCarPassengers: number | null
+  } = null
+
   for (const action of actions.filter((action) =>
     phase1.has(action.operation)
   )) {
@@ -100,29 +116,75 @@ const calculateActions = async (
         increaseRate(action)
         break
       case 'question-answer-to-target-inverse':
+        if (questionAnswerToTargetInverseParams === null) {
+          questionAnswerToTargetInverseParams = {
+            taxiPassengers: await calcTaxiPassengers(
+              dynamodb,
+              mobilityAnswer,
+              parameterTableName
+            ),
+            privateCarPassengers: await calcPrivateCarPassengers(
+              dynamodb,
+              mobilityAnswer,
+              parameterTableName
+            )
+          }
+        }
         await questionAnswerToTargetInverse(
           action,
-          dynamodb,
-          mobilityAnswer,
-          parameterTableName
+          questionAnswerToTargetInverseParams.taxiPassengers,
+          questionAnswerToTargetInverseParams.privateCarPassengers
         )
         break
       case 'question-answer-to-target':
+        if (questionAnswerToTargetParams === null) {
+          questionAnswerToTargetParams = {
+            carDrivingIntensity: await calcCarDrivingIntensity(
+              dynamodb,
+              housingAnswer,
+              mobilityAnswer,
+              parameterTableName
+            ),
+            carManufacturingIntensity: await calcCarManufacturingIntensity(
+              dynamodb,
+              mobilityAnswer,
+              parameterTableName
+            ),
+            foodPurchaseAmountConsideringFoodLossRatio:
+              await calcFoodPurchaseAmountConsideringFoodLossRatio(
+                dynamodb,
+                foodAnswer,
+                parameterTableName
+              )
+          }
+        }
+
         await questionAnswerToTarget(
           action,
-          dynamodb,
-          housingAnswer,
-          mobilityAnswer,
-          foodAnswer,
-          parameterTableName
+          questionAnswerToTargetParams.carDrivingIntensity,
+          questionAnswerToTargetParams.carManufacturingIntensity,
+          questionAnswerToTargetParams.foodPurchaseAmountConsideringFoodLossRatio
         )
         break
       case 'question-reduction-rate':
+        if (questionReductionRateParams === null) {
+          questionReductionRateParams = {
+            renovationHousingInsulation: await calcRenovationHousingInsulation(
+              dynamodb,
+              housingAnswer,
+              parameterTableName
+            ),
+            clothingHousingInsulation: await calcClothingHousingInsulation(
+              dynamodb,
+              housingAnswer,
+              parameterTableName
+            )
+          }
+        }
         await questionReductionRate(
           action,
-          dynamodb,
-          housingAnswer,
-          parameterTableName
+          questionReductionRateParams.renovationHousingInsulation,
+          questionReductionRateParams.clothingHousingInsulation
         )
         break
     }
@@ -344,206 +406,261 @@ const getData = async (dynamodb, parameterTableName, category, key) =>
     })
     .promise()
 
-// rideshareだけなのでrideshareに特化した実装
-const questionAnswerToTargetInverse = async (
-  action,
+const calcTaxiPassengers = async (
   dynamodb,
   mobilityAnswer,
   parameterTableName
 ) => {
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'car-passengers',
+    (mobilityAnswer?.carPassengersFirstKey || 'unknown') + '_taxi-passengers'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+const calcPrivateCarPassengers = async (
+  dynamodb,
+  mobilityAnswer,
+  parameterTableName
+) => {
+  // 乗車人数補正
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'car-passengers',
+    (mobilityAnswer.carPassengersFirstKey || 'unknown') +
+      '_private-car-passengers'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+// rideshareだけなのでrideshareに特化した実装
+const questionAnswerToTargetInverse = async (
+  action,
+  taxiPassengers,
+  privateCarPassengers
+) => {
   if (action.args[0] === 'mobility_taxi-car-passengers') {
-    // 乗車人数補正
-    const data = await getData(
-      dynamodb,
-      parameterTableName,
-      'car-passengers',
-      (mobilityAnswer?.carPassengersFirstKey || 'unknown') + '_taxi-passengers'
-    )
-    if (data?.Item?.value) {
-      action.value *= data?.Item?.value / action.optionValue
+    if (taxiPassengers != null) {
+      action.value *= taxiPassengers / action.optionValue
     }
   } else {
-    // 乗車人数補正
+    if (privateCarPassengers != null) {
+      action.value *= privateCarPassengers / action.optionValue
+    }
+  }
+}
+
+// car-driving-intensityの取得
+const calcCarDrivingIntensity = async (
+  dynamodb,
+  housingAnswer,
+  mobilityAnswer,
+  parameterTableName
+) => {
+  let electricityIntensityFactor = 0
+
+  // PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正
+  if (housingAnswer?.electricityIntensityKey) {
+    const electricityData = await getData(
+      dynamodb,
+      parameterTableName,
+      'electricity-intensity-factor',
+      housingAnswer.electricityIntensityKey
+    )
+    if (electricityData?.Item) {
+      electricityIntensityFactor = electricityData.Item.value
+    }
+
+    const carChargingData = await getData(
+      dynamodb,
+      parameterTableName,
+      'car-charging',
+      mobilityAnswer?.carChargingKey || 'unknown'
+    )
+    if (carChargingData?.Item) {
+      electricityIntensityFactor *= carChargingData.Item.value
+    }
+  }
+
+  // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
+  let ghgIntensity = 1
+  let data = await getData(
+    dynamodb,
+    parameterTableName,
+    'car-intensity-factor',
+    (mobilityAnswer?.carIntensityFactorFirstKey || 'unknown') +
+      '_driving-intensity'
+  )
+  if (data?.Item) {
+    ghgIntensity = data.Item.value
+  }
+
+  // PHV, EVの補正
+  if (
+    mobilityAnswer?.carIntensityFactorFirstKey === 'phv' ||
+    mobilityAnswer?.carIntensityFactorFirstKey === 'ev'
+  ) {
     const data = await getData(
       dynamodb,
       parameterTableName,
-      'car-passengers',
-      (mobilityAnswer.carPassengersFirstKey || 'unknown') +
-        '_private-car-passengers'
+      'renewable-car-intensity-factor',
+      (mobilityAnswer?.carIntensityFactorFirstKey || 'unknown') +
+        '_driving-factor'
     )
-    if (data?.Item?.value) {
-      action.value *= data?.Item?.value / action.optionValue
+
+    if (data?.Item) {
+      ghgIntensity =
+        ghgIntensity * (1 - electricityIntensityFactor) +
+        data.Item.value * electricityIntensityFactor
     }
   }
+  return ghgIntensity
+}
+
+// car-manufacturing-intensityの取得
+const calcCarManufacturingIntensity = async (
+  dynamodb,
+  mobilityAnswer,
+  parameterTableName
+) => {
+  // 製造次元単位補正
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'car-intensity-factor',
+    (mobilityAnswer?.carIntensityFactorFirstKey || 'unknown') +
+      '_manufacturing-intensity'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+const calcFoodPurchaseAmountConsideringFoodLossRatio = async (
+  dynamodb,
+  foodAnswer,
+  parameterTableName
+) => {
+  if (
+    foodAnswer?.foodDirectWasteFactorKey &&
+    foodAnswer?.foodLeftoverFactorKey
+  ) {
+    const foodDirectWasteFactor = await getData(
+      dynamodb,
+      parameterTableName,
+      'food-direct-waste-factor',
+      foodAnswer.foodDirectWasteFactorKey
+    )
+
+    const foodLeftoverFactor = await getData(
+      dynamodb,
+      parameterTableName,
+      'food-leftover-factor',
+      foodAnswer.foodLeftoverFactorKey
+    )
+
+    const foodWastRatio = await dynamodb
+      .query({
+        TableName: parameterTableName,
+        KeyConditions: {
+          category: {
+            ComparisonOperator: 'EQ',
+            AttributeValueList: ['food-waste-share']
+          }
+        }
+      })
+      .promise()
+
+    const leftoverRatio = foodWastRatio.Items.find(
+      (item) => item.key === 'leftover-per-food-waste'
+    )
+    const directWasteRatio = foodWastRatio.Items.find(
+      (item) => item.key === 'direct-waste-per-food-waste'
+    )
+    const foodWasteRatio = foodWastRatio.Items.find(
+      (item) => item.key === 'food-waste-per-food'
+    )
+
+    const foodLossAverageRatio =
+      foodDirectWasteFactor.Item?.value * directWasteRatio.value +
+      foodLeftoverFactor.Item?.value * leftoverRatio.value
+
+    // 全体に影響する割合
+    // 食品ロスを考慮した食材購入量の平均に対する比率
+    return (
+      (1 + foodLossAverageRatio * foodWasteRatio.value) /
+      (1 + foodWasteRatio.value)
+    )
+  }
+  return null
 }
 
 // car-ev-phv, car-ev-phv-re, lossで適用。
 // argsは、mobility_driving-intensity, mobility_manufacturing-intensity, food_food-amount-to-average
 const questionAnswerToTarget = async (
   action,
-  dynamodb,
-  housingAnswer,
-  mobilityAnswer,
-  foodAnswer,
-  parameterTableName
+  carDrivingIntensity,
+  carManufacturingIntensity,
+  foodPurchaseAmountConsideringFoodLossRatio
 ) => {
   if (action.args[0] === 'mobility_driving-intensity') {
-    // 運転時原単位補正
-
-    let electricityIntensityFactor = 0
-
-    // PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正
-    if (housingAnswer?.electricityIntensityKey) {
-      const electricityData = await getData(
-        dynamodb,
-        parameterTableName,
-        'electricity-intensity-factor',
-        housingAnswer.electricityIntensityKey
-      )
-      if (electricityData?.Item) {
-        electricityIntensityFactor = electricityData.Item.value
-      }
-
-      const carChargingData = await getData(
-        dynamodb,
-        parameterTableName,
-        'car-charging',
-        mobilityAnswer?.carChargingKey || 'unknown'
-      )
-      if (carChargingData?.Item) {
-        electricityIntensityFactor *= carChargingData.Item.value
-      }
+    if (carDrivingIntensity != null) {
+      action.value *= action.optionValue / carDrivingIntensity
     }
-
-    // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
-    let ghgIntensity = 1
-    let data = await getData(
-      dynamodb,
-      parameterTableName,
-      'car-intensity-factor',
-      (mobilityAnswer?.carIntensityFactorFirstKey || 'unknown') +
-        '_driving-intensity'
-    )
-    if (data?.Item) {
-      ghgIntensity = data.Item.value
-    }
-
-    // PHV, EVの補正
-    if (
-      mobilityAnswer?.carIntensityFactorFirstKey === 'phv' ||
-      mobilityAnswer?.carIntensityFactorFirstKey === 'ev'
-    ) {
-      const data = await getData(
-        dynamodb,
-        parameterTableName,
-        'renewable-car-intensity-factor',
-        (mobilityAnswer?.carIntensityFactorFirstKey || 'unknown') +
-          '_driving-factor'
-      )
-
-      if (data?.Item) {
-        ghgIntensity =
-          ghgIntensity * (1 - electricityIntensityFactor) +
-          data.Item.value * electricityIntensityFactor
-      }
-    }
-
-    action.value *= action.optionValue / ghgIntensity
   } else if (action.args[0] === 'mobility_manufacturing-intensity') {
-    // 製造次元単位補正
-    const data = await getData(
-      dynamodb,
-      parameterTableName,
-      'car-intensity-factor',
-      (mobilityAnswer?.carIntensityFactorFirstKey || 'unknown') +
-        '_manufacturing-intensity'
-    )
-    if (data?.Item) {
-      action.value *= action.optionValue / data.Item.value
+    if (carManufacturingIntensity != null) {
+      action.value *= action.optionValue / carManufacturingIntensity
     }
   } else if (action.args[0] === 'food_food-amount-to-average') {
-    if (
-      foodAnswer.foodDirectWasteFactorKey &&
-      foodAnswer.foodLeftoverFactorKey
-    ) {
-      const foodDirectWasteFactor = await getData(
-        dynamodb,
-        parameterTableName,
-        'food-direct-waste-factor',
-        foodAnswer.foodDirectWasteFactorKey
-      )
-
-      const foodLeftoverFactor = await getData(
-        dynamodb,
-        parameterTableName,
-        'food-leftover-factor',
-        foodAnswer.foodLeftoverFactorKey
-      )
-
-      const foodWastRatio = await dynamodb
-        .query({
-          TableName: parameterTableName,
-          KeyConditions: {
-            category: {
-              ComparisonOperator: 'EQ',
-              AttributeValueList: ['food-waste-share']
-            }
-          }
-        })
-        .promise()
-
-      const leftoverRatio = foodWastRatio.Items.find(
-        (item) => item.key === 'leftover-per-food-waste'
-      )
-      const directWasteRatio = foodWastRatio.Items.find(
-        (item) => item.key === 'direct-waste-per-food-waste'
-      )
-      const foodWasteRatio = foodWastRatio.Items.find(
-        (item) => item.key === 'food-waste-per-food'
-      )
-
-      const foodLossAverageRatio =
-        foodDirectWasteFactor.Item?.value * directWasteRatio.value +
-        foodLeftoverFactor.Item?.value * leftoverRatio.value
-
-      // 全体に影響する割合
-      // 食品ロスを考慮した食材購入量の平均に対する比率
-      const foodPurchaseAmountConsideringFoodLossRatio =
-        (1 + foodLossAverageRatio * foodWasteRatio.value) /
-        (1 + foodWasteRatio.value)
-
+    if (foodPurchaseAmountConsideringFoodLossRatio != null) {
       action.value *=
         action.optionValue / foodPurchaseAmountConsideringFoodLossRatio
     }
   }
 }
 
-// insrenov, clothes-homeのみ
-const questionReductionRate = async (
-  action,
+const calcRenovationHousingInsulation = async (
   dynamodb,
   housingAnswer,
   parameterTableName
 ) => {
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'housing-insulation',
+    (housingAnswer?.housingInsulationFirstKey || 'unknown') + '_renovation'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+const calcClothingHousingInsulation = async (
+  dynamodb,
+  housingAnswer,
+  parameterTableName
+) => {
+  const data = await getData(
+    dynamodb,
+    parameterTableName,
+    'housing-insulation',
+    (housingAnswer?.housingInsulationFirstKey || 'unknown') + '_clothing'
+  )
+  return data?.Item ? data.Item.value : null
+}
+
+// insrenov, clothes-homeのみ
+const questionReductionRate = async (
+  action,
+  renovationHousingInsulation,
+  clothingHousingInsulation
+) => {
   if (action.args[0] === 'housing_housing-insulation-renovation') {
-    const data = await getData(
-      dynamodb,
-      parameterTableName,
-      'housing-insulation',
-      (housingAnswer.housingInsulationFirstKey || 'unknown') + '_renovation'
-    )
-    if (data?.Item) {
-      action.value *= 1 + action.optionValue * data.Item.value
+    if (renovationHousingInsulation != null) {
+      action.value *= 1 + action.optionValue * renovationHousingInsulation
     }
   } else if (action.args[0] === 'housing_housing-insulation-clothing') {
-    const data = await getData(
-      dynamodb,
-      parameterTableName,
-      'housing-insulation',
-      (housingAnswer.housingInsulationFirstKey || 'unknown') + '_clothing'
-    )
-    if (data?.Item) {
-      action.value *= 1 + action.optionValue * data.Item.value
+    if (clothingHousingInsulation != null) {
+      action.value *= 1 + action.optionValue * clothingHousingInsulation
     }
   }
 }
