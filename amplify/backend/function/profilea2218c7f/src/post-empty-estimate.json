@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/profiles",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"estimate\": true}"
+}
