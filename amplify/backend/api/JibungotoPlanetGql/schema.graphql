@@ -190,7 +190,7 @@ type HousingAnswer {
   # 暖房、温水供給、調理にガスを使用していますか？
   useGas: Boolean # ガスの使用の有無
   # 使用しているガスの種類を教えてください
-  energyHeatIntensityKey: String # ガスの種類　urban-gas|lpg
+  energyHeatIntensityKey: String # ガスの種類　urban-gas|lpg|unknown
   # 1ヶ月のガス使用量はどのくらいですか？
   gasMonthlyConsumption: Float # 1ヶ月のガス使用量 m3
   gasSeasonFactorKey: String # 対象月 january|february|march|april|may|june|july|august|september|october|november|december
@@ -205,6 +205,9 @@ type HousingAnswer {
 
 # カーボンフットプリントの計算結果（AppSync経由でのアクセス不可に設定）
 type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
+  # フットプリント推定・削減施策計算を実施したかどうか
+  estimated: Boolean
+
   # uuid
   id: ID! @primaryKey
   # share時のuuid

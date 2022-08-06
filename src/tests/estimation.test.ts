@@ -71,9 +71,11 @@ describe('Test all estimations', () => {
       // 生成したProfileに対してテストケースを順番に適用
       for (const testCase of testCases) {
         test('Estimation: ' + testCase.case, async () => {
+          const req = testCase.toRequest()
+          req.estimate = true
           const resPut = await request(endpoint || app)
             .put('/profiles/' + id)
-            .send(testCase.toRequest())
+            .send(req)
             .set('x-apigateway-event', null) // エラーを出さないおまじない
             .set('x-apigateway-context', null) // エラーを出さないおまじない
 

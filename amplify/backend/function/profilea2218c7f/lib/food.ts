@@ -53,7 +53,7 @@ const estimateFood = async (
 
   const foodIntakeFactor = await getData(
     'food-intake-factor',
-    foodAnswer.foodIntakeFactorKey
+    foodAnswer?.foodIntakeFactorKey || 'unknown'
   )
 
   const estimationAmount = {
@@ -86,7 +86,10 @@ const estimateFood = async (
     'bar-cafe': createAmount(baselines, 'bar-cafe')
   }
 
-  if (foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey) {
+  if (
+    foodAnswer?.foodDirectWasteFactorKey &&
+    foodAnswer?.foodLeftoverFactorKey
+  ) {
     const foodDirectWasteFactor = await getData(
       'food-direct-waste-factor',
       foodAnswer.foodDirectWasteFactorKey
@@ -190,7 +193,7 @@ const estimateFood = async (
     //
 
     // 乳製品補正
-    if (foodAnswer.dairyFoodFactorKey) {
+    if (foodAnswer?.dairyFoodFactorKey) {
       const dairyFoodFactor = await getData(
         'dairy-food-factor',
         foodAnswer.dairyFoodFactorKey
@@ -215,7 +218,7 @@ const estimateFood = async (
 
     // 牛肉補正
     let dishBeefFactor = null
-    if (foodAnswer.dishBeefFactorKey) {
+    if (foodAnswer?.dishBeefFactorKey) {
       dishBeefFactor = await getData(
         'dish-beef-factor',
         foodAnswer.dishBeefFactorKey
@@ -230,7 +233,7 @@ const estimateFood = async (
 
     // 豚肉補正
     let dishPorkFactor = null
-    if (foodAnswer.dishPorkFactorKey) {
+    if (foodAnswer?.dishPorkFactorKey) {
       dishPorkFactor = await getData(
         'dish-pork-factor',
         foodAnswer.dishPorkFactorKey
@@ -250,7 +253,7 @@ const estimateFood = async (
 
     // 鶏肉補正
     let dishChickenFactor = null
-    if (foodAnswer.dishChickenFactorKey) {
+    if (foodAnswer?.dishChickenFactorKey) {
       dishChickenFactor = await getData(
         'dish-chicken-factor',
         foodAnswer.dishChickenFactorKey
@@ -279,7 +282,7 @@ const estimateFood = async (
     }
 
     // 魚補正
-    if (foodAnswer.dishSeafoodFactorKey) {
+    if (foodAnswer?.dishSeafoodFactorKey) {
       const dishSeafoodFactor = await getData(
         'dish-seafood-factor',
         foodAnswer.dishSeafoodFactorKey
@@ -298,7 +301,7 @@ const estimateFood = async (
     }
 
     // アルコール補正
-    if (foodAnswer.alcoholFactorKey) {
+    if (foodAnswer?.alcoholFactorKey) {
       const alcoholFactor = await getData(
         'alcohol-factor',
         foodAnswer.alcoholFactorKey
@@ -312,7 +315,7 @@ const estimateFood = async (
     }
 
     // 菓子など補正
-    if (foodAnswer.softDrinkSnackFactorKey) {
+    if (foodAnswer?.softDrinkSnackFactorKey) {
       const softDrinkSnackFactor = await getData(
         'soft-drink-snack-factor',
         foodAnswer.softDrinkSnackFactorKey
@@ -385,7 +388,7 @@ const estimateFood = async (
     estimations.push(readyMealIntensity)
 
     // 外食部分の計算
-    if (foodAnswer.eatOutFactorKey) {
+    if (foodAnswer?.eatOutFactorKey) {
       const eatOutFactor = await getData(
         'eat-out-factor',
         foodAnswer.eatOutFactorKey

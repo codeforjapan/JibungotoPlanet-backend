@@ -219,6 +219,7 @@ export type DeleteOptionIntensityRateInput = {
 };
 
 export type CreateProfileInput = {
+  estimated?: boolean | null,
   id?: string | null,
   shareId: string,
   gender?: string | null,
@@ -336,6 +337,7 @@ export type ActionInput = {
 };
 
 export type ModelProfileConditionInput = {
+  estimated?: ModelBooleanInput | null,
   shareId?: ModelStringInput | null,
   gender?: ModelStringInput | null,
   age?: ModelStringInput | null,
@@ -345,8 +347,16 @@ export type ModelProfileConditionInput = {
   not?: ModelProfileConditionInput | null,
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type Profile = {
   __typename: "Profile",
+  estimated?: boolean | null,
   id: string,
   shareId: string,
   gender?: string | null,
@@ -474,6 +484,7 @@ export type Action = {
 };
 
 export type UpdateProfileInput = {
+  estimated?: boolean | null,
   id: string,
   shareId?: string | null,
   gender?: string | null,
@@ -578,6 +589,7 @@ export type ModelOptionIntensityRateConnection = {
 };
 
 export type ModelProfileFilterInput = {
+  estimated?: ModelBooleanInput | null,
   id?: ModelIDInput | null,
   shareId?: ModelStringInput | null,
   gender?: ModelStringInput | null,
@@ -834,6 +846,7 @@ export type CreateProfileMutationVariables = {
 export type CreateProfileMutation = {
   createProfile?:  {
     __typename: "Profile",
+    estimated?: boolean | null,
     id: string,
     shareId: string,
     gender?: string | null,
@@ -953,6 +966,7 @@ export type UpdateProfileMutationVariables = {
 export type UpdateProfileMutation = {
   updateProfile?:  {
     __typename: "Profile",
+    estimated?: boolean | null,
     id: string,
     shareId: string,
     gender?: string | null,
@@ -1072,6 +1086,7 @@ export type DeleteProfileMutationVariables = {
 export type DeleteProfileMutation = {
   deleteProfile?:  {
     __typename: "Profile",
+    estimated?: boolean | null,
     id: string,
     shareId: string,
     gender?: string | null,
@@ -1364,6 +1379,7 @@ export type GetProfileQueryVariables = {
 export type GetProfileQuery = {
   getProfile?:  {
     __typename: "Profile",
+    estimated?: boolean | null,
     id: string,
     shareId: string,
     gender?: string | null,
@@ -1488,6 +1504,7 @@ export type ListProfilesQuery = {
     __typename: "ModelProfileConnection",
     items:  Array< {
       __typename: "Profile",
+      estimated?: boolean | null,
       id: string,
       shareId: string,
       gender?: string | null,
@@ -1614,6 +1631,7 @@ export type ProfilesByShareIdQuery = {
     __typename: "ModelProfileConnection",
     items:  Array< {
       __typename: "Profile",
+      estimated?: boolean | null,
       id: string,
       shareId: string,
       gender?: string | null,
@@ -1886,6 +1904,7 @@ export type OnDeleteOptionIntensityRateSubscription = {
 export type OnCreateProfileSubscription = {
   onCreateProfile?:  {
     __typename: "Profile",
+    estimated?: boolean | null,
     id: string,
     shareId: string,
     gender?: string | null,
@@ -2000,6 +2019,7 @@ export type OnCreateProfileSubscription = {
 export type OnUpdateProfileSubscription = {
   onUpdateProfile?:  {
     __typename: "Profile",
+    estimated?: boolean | null,
     id: string,
     shareId: string,
     gender?: string | null,
@@ -2114,6 +2134,7 @@ export type OnUpdateProfileSubscription = {
 export type OnDeleteProfileSubscription = {
   onDeleteProfile?:  {
     __typename: "Profile",
+    estimated?: boolean | null,
     id: string,
     shareId: string,
     gender?: string | null,
