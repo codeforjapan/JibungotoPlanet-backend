@@ -119,7 +119,7 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
                 });
                 _m.label = 2;
             case 2:
-                if (!(_b < _c.length)) return [3 /*break*/, 25];
+                if (!(_b < _c.length)) return [3 /*break*/, 24];
                 action = _c[_b];
                 _d = action.operation;
                 switch (_d) {
@@ -131,16 +131,16 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
                     case 'question-answer-to-target': return [3 /*break*/, 11];
                     case 'question-reduction-rate': return [3 /*break*/, 17];
                 }
-                return [3 /*break*/, 23];
+                return [3 /*break*/, 22];
             case 3:
                 absoluteTarget(action);
-                return [3 /*break*/, 23];
+                return [3 /*break*/, 22];
             case 4:
                 addAmount(action);
-                return [3 /*break*/, 23];
+                return [3 /*break*/, 22];
             case 5:
                 increaseRate(action);
-                return [3 /*break*/, 23];
+                return [3 /*break*/, 22];
             case 6:
                 if (!(questionAnswerToTargetInverseParams === null)) return [3 /*break*/, 9];
                 _j = {};
@@ -155,7 +155,7 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
             case 9: return [4 /*yield*/, questionAnswerToTargetInverse(action, questionAnswerToTargetInverseParams.taxiPassengers, questionAnswerToTargetInverseParams.privateCarPassengers)];
             case 10:
                 _m.sent();
-                return [3 /*break*/, 23];
+                return [3 /*break*/, 22];
             case 11:
                 if (!(questionAnswerToTargetParams === null)) return [3 /*break*/, 15];
                 _k = {};
@@ -173,30 +173,29 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
             case 15: return [4 /*yield*/, questionAnswerToTarget(action, questionAnswerToTargetParams.carDrivingIntensity, questionAnswerToTargetParams.carManufacturingIntensity, questionAnswerToTargetParams.foodPurchaseAmountConsideringFoodLossRatio)];
             case 16:
                 _m.sent();
-                return [3 /*break*/, 23];
+                return [3 /*break*/, 22];
             case 17:
-                if (!(questionReductionRateParams === null)) return [3 /*break*/, 21];
+                if (!(questionReductionRateParams === null)) return [3 /*break*/, 20];
                 _l = {};
                 return [4 /*yield*/, calcRenovationHousingInsulation(dynamodb, housingAnswer, parameterTableName)];
-            case 18: return [4 /*yield*/, _m.sent()];
-            case 19:
+            case 18:
                 _l.renovationHousingInsulation = _m.sent();
                 return [4 /*yield*/, calcClothingHousingInsulation(dynamodb, housingAnswer, parameterTableName)];
-            case 20:
+            case 19:
                 questionReductionRateParams = (_l.clothingHousingInsulation = _m.sent(),
                     _l);
-                _m.label = 21;
-            case 21: return [4 /*yield*/, questionReductionRate(action, questionReductionRateParams.renovationHousingInsulation, questionReductionRateParams.clothingHousingInsulation)];
-            case 22:
+                _m.label = 20;
+            case 20: return [4 /*yield*/, questionReductionRate(action, questionReductionRateParams.renovationHousingInsulation, questionReductionRateParams.clothingHousingInsulation)];
+            case 21:
                 _m.sent();
-                return [3 /*break*/, 23];
-            case 23:
+                return [3 /*break*/, 22];
+            case 22:
                 results.get(action.key).actions.set(action.option, action); // actionを登録
-                _m.label = 24;
-            case 24:
+                _m.label = 23;
+            case 23:
                 _b++;
                 return [3 /*break*/, 2];
-            case 25:
+            case 24:
                 phase2 = new Set([
                     'proportional-to-other-items',
                     'shift-from-other-items',
@@ -493,7 +492,7 @@ var calcCarManufacturingIntensity = function (dynamodb, mobilityAnswer, paramete
     });
 }); };
 var calcFoodPurchaseAmountConsideringFoodLossRatio = function (dynamodb, foodAnswer, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio, foodPurchaseAmountConsideringFoodLossRatio;
+    var foodDirectWasteFactor, foodLeftoverFactor, foodWastRatio, leftoverRatio, directWasteRatio, foodWasteRatio, foodLossAverageRatio;
     var _a, _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
@@ -524,9 +523,10 @@ var calcFoodPurchaseAmountConsideringFoodLossRatio = function (dynamodb, foodAns
                 foodWasteRatio = foodWastRatio.Items.find(function (item) { return item.key === 'food-waste-per-food'; });
                 foodLossAverageRatio = ((_a = foodDirectWasteFactor.Item) === null || _a === void 0 ? void 0 : _a.value) * directWasteRatio.value +
                     ((_b = foodLeftoverFactor.Item) === null || _b === void 0 ? void 0 : _b.value) * leftoverRatio.value;
-                foodPurchaseAmountConsideringFoodLossRatio = (1 + foodLossAverageRatio * foodWasteRatio.value) /
-                    (1 + foodWasteRatio.value);
-                return [2 /*return*/, foodPurchaseAmountConsideringFoodLossRatio];
+                // 全体に影響する割合
+                // 食品ロスを考慮した食材購入量の平均に対する比率
+                return [2 /*return*/, ((1 + foodLossAverageRatio * foodWasteRatio.value) /
+                        (1 + foodWasteRatio.value))];
             case 4: return [2 /*return*/, null];
         }
     });

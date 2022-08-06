@@ -169,12 +169,11 @@ const calculateActions = async (
       case 'question-reduction-rate':
         if (questionReductionRateParams === null) {
           questionReductionRateParams = {
-            renovationHousingInsulation:
-              await await calcRenovationHousingInsulation(
-                dynamodb,
-                housingAnswer,
-                parameterTableName
-              ),
+            renovationHousingInsulation: await calcRenovationHousingInsulation(
+              dynamodb,
+              housingAnswer,
+              parameterTableName
+            ),
             clothingHousingInsulation: await calcClothingHousingInsulation(
               dynamodb,
               housingAnswer,
@@ -589,10 +588,10 @@ const calcFoodPurchaseAmountConsideringFoodLossRatio = async (
 
     // 全体に影響する割合
     // 食品ロスを考慮した食材購入量の平均に対する比率
-    const foodPurchaseAmountConsideringFoodLossRatio =
+    return (
       (1 + foodLossAverageRatio * foodWasteRatio.value) /
       (1 + foodWasteRatio.value)
-    return foodPurchaseAmountConsideringFoodLossRatio
+    )
   }
   return null
 }
