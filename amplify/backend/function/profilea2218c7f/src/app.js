@@ -233,7 +233,7 @@ const updateProfile = async (dynamodb, profile) => {
     profile.estimations = profile.estimations.concat(estimations)
   }
 
-  const actions = await calculateActions(
+  profile.actions = await calculateActions(
     dynamodb,
     profile.baselines,
     profile.estimations,
@@ -243,7 +243,6 @@ const updateProfile = async (dynamodb, profile) => {
     parameterTableName,
     optionTableName
   )
-  profile.actions = actions
 }
 
 /************************************
