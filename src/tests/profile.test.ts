@@ -315,4 +315,44 @@ describe('Test profile operation', () => {
       )
     }
   })
+
+  test('create profile with unsupported gender', async () => {
+    const resPost = await request(app)
+      .post('/profiles')
+      .send({
+        estimate: true,
+        gender: 'man',
+        age: '20s',
+        region: 'hokkaido',
+        mobilityAnswer: {},
+        housingAnswer: {},
+        foodAnswer: {},
+        otherAnswer: {}
+      })
+      .set('x-apigateway-event', null) // エラーを出さないおまじない
+      .set('x-apigateway-context', null) // エラーを出さないおまじない
+
+    expect(resPost.status).toBe(400)
+  })
+
+  test('create profile with unsupported answers', async () => {
+    const resPost = await request(app)
+      .post('/profiles')
+      .send({
+        estimate: true,
+        gender: 'man',
+        age: '20',
+        region: 'hokkaido',
+        mobilityAnswer: {
+          carIntensityFactorFirstKey: 'horse'
+        },
+        housingAnswer: {
+          housingSizeKey: '10-room'
+        }
+      })
+      .set('x-apigateway-event', null) // エラーを出さないおまじない
+      .set('x-apigateway-context', null) // エラーを出さないおまじない
+
+    expect(resPost.status).toBe(400)
+  })
 })

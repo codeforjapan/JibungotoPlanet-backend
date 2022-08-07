@@ -40,6 +40,7 @@ const { estimateOther } = require('./other')
 const { estimateHousing } = require('./housing')
 const { calculateActions } = require('./action')
 const { optionIntensityRates } = require('./data')
+const { validate } = require('./validate')
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -47,6 +48,8 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const { v4: uuid } = require('uuid')
 const shortid = require('shortid')
+// const Ajv = require('ajv')
+// const ajv = new Ajv()
 
 AWS.config.update({ region: process.env.TABLE_REGION })
 
@@ -163,7 +166,7 @@ const mergeActionIntensityRates = (orgRates, newRates) => {
   // actionIntensityRatesの展開
   return orgRates.map((item) => {
     let value = newRates?.find((air) => air.option === item.option)?.value
-    if (value === null || value === undefined) {
+    if (value === null || value === undefined || isNaN(value)) {
       if (item.value === null || item.value === undefined) {
         value = item.defaultValue
       } else {
@@ -172,7 +175,7 @@ const mergeActionIntensityRates = (orgRates, newRates) => {
     }
     return {
       option: item.option,
-      value: value,
+      value: Number(value),
       defaultValue: item.defaultValue,
       range: item.range
     }
@@ -251,63 +254,68 @@ app.put(path + '/:id', async (req, res) => {
   const id = req.params.id
   const estimate = req.body.estimate
 
-  try {
-    const data = await dynamodb
-      .get({
-        TableName: profileTableName,
-        Key: { id }
+  if (validate(req.body)) {
+    try {
+      const data = await dynamodb
+        .get({
+          TableName: profileTableName,
+          Key: { id }
+        })
+        .promise()
+      const profile = data.Item
+
+      if (req.body.mobilityAnswer) {
+        profile.mobilityAnswer = req.body.mobilityAnswer
+      }
+      if (req.body.housingAnswer) {
+        profile.housingAnswer = req.body.housingAnswer
+      }
+      if (req.body.foodAnswer) {
+        profile.foodAnswer = req.body.foodAnswer
+      }
+      if (req.body.otherAnswer) {
+        profile.otherAnswer = req.body.otherAnswer
+      }
+      if (req.body.gender) {
+        profile.gender = req.body.gender
+      }
+      if (req.body.age) {
+        profile.age = req.body.age
+      }
+      if (req.body.region) {
+        profile.region = req.body.region
+      }
+
+      profile.actionIntensityRates = mergeActionIntensityRates(
+        profile.actionIntensityRates,
+        req.body.actionIntensityRates
+      )
+      profile.estimated = false
+
+      if (estimate) {
+        await updateProfile(dynamodb, profile)
+        profile.updatedAt = new Date().toISOString()
+        profile.estimated = true
+      }
+
+      await dynamodb
+        .put({
+          TableName: profileTableName,
+          Item: profile
+        })
+        .promise()
+      res.json({
+        success: 'put call succeed!',
+        url: req.url,
+        data: toResponse(profile, estimate)
       })
-      .promise()
-    const profile = data.Item
-
-    if (req.body.mobilityAnswer) {
-      profile.mobilityAnswer = req.body.mobilityAnswer
+    } catch (err) {
+      res.statusCode = 500
+      res.json({ error: 'Could not load items: ' + err })
     }
-    if (req.body.housingAnswer) {
-      profile.housingAnswer = req.body.housingAnswer
-    }
-    if (req.body.foodAnswer) {
-      profile.foodAnswer = req.body.foodAnswer
-    }
-    if (req.body.otherAnswer) {
-      profile.otherAnswer = req.body.otherAnswer
-    }
-    if (req.body.gender) {
-      profile.gender = req.body.gender
-    }
-    if (req.body.age) {
-      profile.age = req.body.age
-    }
-    if (req.body.region) {
-      profile.region = req.body.region
-    }
-
-    profile.actionIntensityRates = mergeActionIntensityRates(
-      profile.actionIntensityRates,
-      req.body.actionIntensityRates
-    )
-    profile.estimated = false
-
-    if (estimate) {
-      await updateProfile(dynamodb, profile)
-      profile.updatedAt = new Date().toISOString()
-      profile.estimated = true
-    }
-
-    await dynamodb
-      .put({
-        TableName: profileTableName,
-        Item: profile
-      })
-      .promise()
-    res.json({
-      success: 'put call succeed!',
-      url: req.url,
-      data: toResponse(profile, estimate)
-    })
-  } catch (err) {
-    res.statusCode = 500
-    res.json({ error: 'Could not load items: ' + err })
+  } else {
+    res.statusCode = 400
+    res.json({ error: 'Unsupported request' })
   }
 })
 
@@ -316,52 +324,57 @@ app.put(path + '/:id', async (req, res) => {
  *************************************/
 
 app.post(path, async (req, res) => {
-  try {
-    const estimate = req.body.estimate
+  if (validate(req.body)) {
+    try {
+      const estimate = req.body.estimate
 
-    const profile = {
-      estimated: false,
-      id: uuid(),
-      shareId: shortid.generate(),
-      mobilityAnswer: req.body.mobilityAnswer,
-      housingAnswer: req.body.housingAnswer,
-      foodAnswer: req.body.foodAnswer,
-      otherAnswer: req.body.otherAnswer,
-      gender: req.body.gender,
-      age: req.body.age,
-      region: req.body.region,
+      const profile = {
+        estimated: false,
+        id: uuid(),
+        shareId: shortid.generate(),
+        mobilityAnswer: req.body.mobilityAnswer,
+        housingAnswer: req.body.housingAnswer,
+        foodAnswer: req.body.foodAnswer,
+        otherAnswer: req.body.otherAnswer,
+        gender: req.body.gender,
+        age: req.body.age,
+        region: req.body.region,
 
-      baselines: [],
-      estimations: [],
-      actionIntensityRates: [],
+        baselines: [],
+        estimations: [],
+        actionIntensityRates: [],
 
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }
+
+      profile.actionIntensityRates = mergeActionIntensityRates(
+        optionIntensityRates,
+        req.body.actionIntensityRates
+      )
+
+      if (estimate) {
+        await updateProfile(dynamodb, profile)
+        profile.estimated = true
+      }
+
+      const params = {
+        TableName: profileTableName,
+        Item: profile
+      }
+      await dynamodb.put(params).promise()
+      res.json({
+        success: 'post call succeed!',
+        url: req.url,
+        data: toResponse(profile, estimate)
+      })
+    } catch (err) {
+      res.statusCode = 500
+      res.json({ error: err, url: req.url, body: req.body })
     }
-
-    profile.actionIntensityRates = mergeActionIntensityRates(
-      optionIntensityRates,
-      req.body.actionIntensityRates
-    )
-
-    if (estimate) {
-      await updateProfile(dynamodb, profile)
-      profile.estimated = true
-    }
-
-    const params = {
-      TableName: profileTableName,
-      Item: profile
-    }
-    await dynamodb.put(params).promise()
-    res.json({
-      success: 'post call succeed!',
-      url: req.url,
-      data: toResponse(profile, estimate)
-    })
-  } catch (err) {
-    res.statusCode = 500
-    res.json({ error: err, url: req.url, body: req.body })
+  } else {
+    res.statusCode = 400
+    res.json({ error: 'Unsupported request' })
   }
 })
 
