@@ -7,9 +7,21 @@ const estimateOther = async (
   footprintTableName,
   parameterTableName
 ) => {
-  // foodのベースラインの取得
-  const findAmount = (baselines, item) =>
-    findBaseline(baselines, 'other', item, 'amount')
+  // foodのEstimationの取得
+  const createAmount = (baselines, item) =>
+    toEstimation(findBaseline(baselines, 'other', item, 'amount'))
+
+  // parameterの取得
+  const getData = async (category, key) =>
+    await dynamodb
+      .get({
+        TableName: parameterTableName,
+        Key: {
+          category: category,
+          key: key
+        }
+      })
+      .promise()
 
   // otherAnswerのスキーマと取りうる値は以下を参照。
   // amplify/backend/api/JibungotoPlanetGql/schema.graphql
@@ -34,8 +46,18 @@ const estimateOther = async (
     return { baselines, estimations }
   }
 
-  let residentCount = 2.33
-  if (housingAnswer && housingAnswer.residentCount) {
+  // 平均の居住人数を取得
+  let residentCount = 1
+  const familySize = await getData('family-size', 'unknown')
+  if (familySize?.Item?.value) {
+    residentCount = familySize.Item.value
+  }
+
+  if (
+    housingAnswer &&
+    housingAnswer.residentCount !== undefined &&
+    housingAnswer.residentCount !== null
+  ) {
     residentCount = housingAnswer.residentCount
   }
 
@@ -153,16 +175,7 @@ const estimateOther = async (
 
   for (let ans of answers) {
     if (ans.key) {
-      const data = await dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: ans.category,
-            key: ans.key
-          }
-        })
-        .promise()
-
+      const data = await getData(ans.category, ans.key)
       let denominator = 1
 
       if (ans.base) {
@@ -171,15 +184,7 @@ const estimateOther = async (
           // 国平均に対する比率は1倍。denominatorをundefinedにして計算に使わないようにする。
           denominator = undefined
         } else {
-          const base = await dynamodb
-            .get({
-              TableName: parameterTableName,
-              Key: {
-                category: ans.category,
-                key: ans.base
-              }
-            })
-            .promise()
+          const base = await getData(ans.category, ans.base)
           if (base?.Item?.value) {
             // 分母は国平均の支出額（average-per-capita） * 居住人数
             denominator = base.Item.value * residentCount
@@ -190,7 +195,7 @@ const estimateOther = async (
       if (data?.Item?.value) {
         const coefficient = denominator ? data.Item.value / denominator : 1
         for (let item of ans.items) {
-          const estimation = toEstimation(findAmount(baselines, item))
+          const estimation = createAmount(baselines, item)
           estimation.value *= coefficient
           estimations.push(estimation)
         }
@@ -241,16 +246,12 @@ const estimateOther = async (
     results.set(key, estimation)
   }
 
-  let estimationSum = 0
-  const it = results.values()
-  let res = it.next()
-  while (!res.done) {
-    const estimation = res.value
-    estimationSum += estimation.value
-    res = it.next()
-  }
-  const wasteEstimation = toEstimation(findAmount(baselines, 'waste'))
+  const estimationSum = Array.from(results.values()).reduce(
+    (sum, res) => sum + res.value,
+    0
+  )
 
+  const wasteEstimation = createAmount(baselines, 'waste')
   if (baselineSum !== 0) {
     wasteEstimation.value *= estimationSum / baselineSum
   }

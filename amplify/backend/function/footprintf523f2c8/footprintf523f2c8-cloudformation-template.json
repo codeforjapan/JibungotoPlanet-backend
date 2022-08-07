@@ -39,6 +39,18 @@
     "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevStreamArn": {
       "Type": "String",
       "Default": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
+    },
+    "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdName": {
+      "Type": "String",
+      "Default": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdName"
+    },
+    "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn": {
+      "Type": "String",
+      "Default": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+    },
+    "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn": {
+      "Type": "String",
+      "Default": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
     }
   },
   "Conditions": {
@@ -111,6 +123,15 @@
             },
             "STORAGE_FOOTPRINT3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN": {
               "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
+            },
+            "STORAGE_FOOTPRINTZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_NAME": {
+              "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdName"
+            },
+            "STORAGE_FOOTPRINTZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_ARN": {
+              "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+            },
+            "STORAGE_FOOTPRINTZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_STREAMARN": {
+              "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
             }
           }
         },
@@ -297,6 +318,33 @@
                     [
                       {
                         "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn"
                       },
                       "index/*"
                     ]

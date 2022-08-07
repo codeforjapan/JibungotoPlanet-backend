@@ -72,6 +72,15 @@
             "Arn",
             "StreamArn"
           ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Footprintz6dhum3edrgfpb2gc4mmjdexpuprd",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
         }
       ]
     },
@@ -109,33 +118,6 @@
         },
         {
           "category": "storage",
-          "resourceName": "Footprintepwhhio5abgdthpzpwfkaox4bastg",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "Parameterepwhhio5abgdthpzpwfkaox4bastg",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "Profileepwhhio5abgdthpzpwfkaox4bastg",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
           "resourceName": "Option3uyvqum6jrc4pf63cde7njsxeidev",
           "attributes": [
             "Name",
@@ -145,7 +127,34 @@
         },
         {
           "category": "storage",
-          "resourceName": "Optionepwhhio5abgdthpzpwfkaox4bastg",
+          "resourceName": "Footprintz6dhum3edrgfpb2gc4mmjdexpuprd",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Optionz6dhum3edrgfpb2gc4mmjdexpuprd",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Parameterz6dhum3edrgfpb2gc4mmjdexpuprd",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Profilez6dhum3edrgfpb2gc4mmjdexpuprd",
           "attributes": [
             "Name",
             "Arn",
@@ -171,6 +180,15 @@
         {
           "category": "storage",
           "resourceName": "Profileepwhhio5abgdthpzpwfkaox4bastg",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Profilez6dhum3edrgfpb2gc4mmjdexpuprd",
           "attributes": [
             "Name",
             "Arn",
@@ -229,13 +247,25 @@
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     },
-    "OptionIntensityRate3uyvqum6jrc4pf63cde7njsxeidev": {
+    "Footprintz6dhum3edrgfpb2gc4mmjdexpuprd": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     },
-    "OptionIntensityRateepwhhio5abgdthpzpwfkaox4bastg": {
+    "Optionz6dhum3edrgfpb2gc4mmjdexpuprd": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    },
+    "Parameterz6dhum3edrgfpb2gc4mmjdexpuprd": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    },
+    "Profilez6dhum3edrgfpb2gc4mmjdexpuprd": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",

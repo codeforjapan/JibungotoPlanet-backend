@@ -26,8 +26,7 @@ var toBaseline = function (rec) {
         type: item_type[1],
         value: rec.value,
         subdomain: rec.subdomain,
-        unit: rec.unit,
-        citation: rec.citation
+        unit: rec.unit
     };
 };
 exports.toBaseline = toBaseline;

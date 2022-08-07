@@ -135,43 +135,6 @@ export const listOptions = /* GraphQL */ `
     }
   }
 `;
-export const getOptionIntensityRate = /* GraphQL */ `
-  query GetOptionIntensityRate($option: String!) {
-    getOptionIntensityRate(option: $option) {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listOptionIntensityRates = /* GraphQL */ `
-  query ListOptionIntensityRates(
-    $option: String
-    $filter: ModelOptionIntensityRateFilterInput
-    $limit: Int
-    $nextToken: String
-    $sortDirection: ModelSortDirection
-  ) {
-    listOptionIntensityRates(
-      option: $option
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
-      items {
-        option
-        defaultValue
-        range
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getProfile = /* GraphQL */ `
   query GetProfile($id: ID!) {
     getProfile(id: $id) {
@@ -252,7 +215,6 @@ export const getProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        citation
       }
       estimations {
         domain
@@ -270,9 +232,6 @@ export const getProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        optionValue
-        args
-        operation
       }
       createdAt
       updatedAt
@@ -372,7 +331,6 @@ export const listProfiles = /* GraphQL */ `
           subdomain
           value
           unit
-          citation
         }
         estimations {
           domain
@@ -390,9 +348,6 @@ export const listProfiles = /* GraphQL */ `
           subdomain
           value
           unit
-          optionValue
-          args
-          operation
         }
         createdAt
         updatedAt
@@ -494,7 +449,6 @@ export const profilesByShareId = /* GraphQL */ `
           subdomain
           value
           unit
-          citation
         }
         estimations {
           domain
@@ -512,9 +466,6 @@ export const profilesByShareId = /* GraphQL */ `
           subdomain
           value
           unit
-          optionValue
-          args
-          operation
         }
         createdAt
         updatedAt

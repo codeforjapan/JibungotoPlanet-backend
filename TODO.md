@@ -29,7 +29,4 @@
 - led:housing_electricity_amount=0.0660406 → は-0.0660406。
 - car-ev-phv, car-ev-phv-re:amount->intensity へ変更。
 - subdomain を kebab に変更。
-
-## Option
-
-- 要確認: zeh(housing_electricity_amount が二つあるのは辛い), ec(option.value が正しくない？)、
+- rideshare で平均乗車人数を変更しても原単位の値が変わらない。testCase の rideshare01 と rideshare02。相乗り時の原単位なので変わらないので正しいということか。

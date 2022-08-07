@@ -185,39 +185,6 @@ export type DeleteOptionInput = {
   domain_item_type: string,
 };
 
-export type CreateOptionIntensityRateInput = {
-  option: string,
-  defaultValue: number,
-  range: Array< number >,
-};
-
-export type ModelOptionIntensityRateConditionInput = {
-  defaultValue?: ModelFloatInput | null,
-  range?: ModelFloatInput | null,
-  and?: Array< ModelOptionIntensityRateConditionInput | null > | null,
-  or?: Array< ModelOptionIntensityRateConditionInput | null > | null,
-  not?: ModelOptionIntensityRateConditionInput | null,
-};
-
-export type OptionIntensityRate = {
-  __typename: "OptionIntensityRate",
-  option: string,
-  defaultValue: number,
-  range: Array< number >,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type UpdateOptionIntensityRateInput = {
-  option: string,
-  defaultValue?: number | null,
-  range?: Array< number > | null,
-};
-
-export type DeleteOptionIntensityRateInput = {
-  option: string,
-};
-
 export type CreateProfileInput = {
   estimated?: boolean | null,
   id?: string | null,
@@ -311,7 +278,6 @@ export type BaselineInput = {
   subdomain: string,
   value: number,
   unit?: string | null,
-  citation?: string | null,
 };
 
 export type EstimationInput = {
@@ -331,9 +297,6 @@ export type ActionInput = {
   subdomain: string,
   value: number,
   unit?: string | null,
-  optionValue: number,
-  args?: Array< string > | null,
-  operation: string,
 };
 
 export type ModelProfileConditionInput = {
@@ -456,7 +419,6 @@ export type Baseline = {
   subdomain: string,
   value: number,
   unit?: string | null,
-  citation?: string | null,
 };
 
 export type Estimation = {
@@ -478,9 +440,6 @@ export type Action = {
   subdomain: string,
   value: number,
   unit?: string | null,
-  optionValue: number,
-  args?: Array< string > | null,
-  operation: string,
 };
 
 export type UpdateProfileInput = {
@@ -570,21 +529,6 @@ export type ModelOptionFilterInput = {
 export type ModelOptionConnection = {
   __typename: "ModelOptionConnection",
   items:  Array<Option | null >,
-  nextToken?: string | null,
-};
-
-export type ModelOptionIntensityRateFilterInput = {
-  option?: ModelStringInput | null,
-  defaultValue?: ModelFloatInput | null,
-  range?: ModelFloatInput | null,
-  and?: Array< ModelOptionIntensityRateFilterInput | null > | null,
-  or?: Array< ModelOptionIntensityRateFilterInput | null > | null,
-  not?: ModelOptionIntensityRateFilterInput | null,
-};
-
-export type ModelOptionIntensityRateConnection = {
-  __typename: "ModelOptionIntensityRateConnection",
-  items:  Array<OptionIntensityRate | null >,
   nextToken?: string | null,
 };
 
@@ -790,54 +734,6 @@ export type DeleteOptionMutation = {
   } | null,
 };
 
-export type CreateOptionIntensityRateMutationVariables = {
-  input: CreateOptionIntensityRateInput,
-  condition?: ModelOptionIntensityRateConditionInput | null,
-};
-
-export type CreateOptionIntensityRateMutation = {
-  createOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateOptionIntensityRateMutationVariables = {
-  input: UpdateOptionIntensityRateInput,
-  condition?: ModelOptionIntensityRateConditionInput | null,
-};
-
-export type UpdateOptionIntensityRateMutation = {
-  updateOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteOptionIntensityRateMutationVariables = {
-  input: DeleteOptionIntensityRateInput,
-  condition?: ModelOptionIntensityRateConditionInput | null,
-};
-
-export type DeleteOptionIntensityRateMutation = {
-  deleteOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
 export type CreateProfileMutationVariables = {
   input: CreateProfileInput,
   condition?: ModelProfileConditionInput | null,
@@ -929,7 +825,6 @@ export type CreateProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -949,9 +844,6 @@ export type CreateProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1049,7 +941,6 @@ export type UpdateProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -1069,9 +960,6 @@ export type UpdateProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1169,7 +1057,6 @@ export type DeleteProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -1189,9 +1076,6 @@ export type DeleteProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1334,44 +1218,6 @@ export type ListOptionsQuery = {
   } | null,
 };
 
-export type GetOptionIntensityRateQueryVariables = {
-  option: string,
-};
-
-export type GetOptionIntensityRateQuery = {
-  getOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListOptionIntensityRatesQueryVariables = {
-  option?: string | null,
-  filter?: ModelOptionIntensityRateFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
-};
-
-export type ListOptionIntensityRatesQuery = {
-  listOptionIntensityRates?:  {
-    __typename: "ModelOptionIntensityRateConnection",
-    items:  Array< {
-      __typename: "OptionIntensityRate",
-      option: string,
-      defaultValue: number,
-      range: Array< number >,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type GetProfileQueryVariables = {
   id: string,
 };
@@ -1462,7 +1308,6 @@ export type GetProfileQuery = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -1482,9 +1327,6 @@ export type GetProfileQuery = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1587,7 +1429,6 @@ export type ListProfilesQuery = {
         subdomain: string,
         value: number,
         unit?: string | null,
-        citation?: string | null,
       } > | null,
       estimations?:  Array< {
         __typename: "Estimation",
@@ -1607,9 +1448,6 @@ export type ListProfilesQuery = {
         subdomain: string,
         value: number,
         unit?: string | null,
-        optionValue: number,
-        args?: Array< string > | null,
-        operation: string,
       } > | null,
       createdAt: string,
       updatedAt: string,
@@ -1714,7 +1552,6 @@ export type ProfilesByShareIdQuery = {
         subdomain: string,
         value: number,
         unit?: string | null,
-        citation?: string | null,
       } > | null,
       estimations?:  Array< {
         __typename: "Estimation",
@@ -1734,9 +1571,6 @@ export type ProfilesByShareIdQuery = {
         subdomain: string,
         value: number,
         unit?: string | null,
-        optionValue: number,
-        args?: Array< string > | null,
-        operation: string,
       } > | null,
       createdAt: string,
       updatedAt: string,
@@ -1868,39 +1702,6 @@ export type OnDeleteOptionSubscription = {
   } | null,
 };
 
-export type OnCreateOptionIntensityRateSubscription = {
-  onCreateOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateOptionIntensityRateSubscription = {
-  onUpdateOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteOptionIntensityRateSubscription = {
-  onDeleteOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
 export type OnCreateProfileSubscription = {
   onCreateProfile?:  {
     __typename: "Profile",
@@ -1987,7 +1788,6 @@ export type OnCreateProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -2007,9 +1807,6 @@ export type OnCreateProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -2102,7 +1899,6 @@ export type OnUpdateProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -2122,9 +1918,6 @@ export type OnUpdateProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -2217,7 +2010,6 @@ export type OnDeleteProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -2237,9 +2029,6 @@ export type OnDeleteProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,

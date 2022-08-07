@@ -241,10 +241,15 @@ var calculateActions = function (dynamodb, baselines, estimations, housingAnswer
                     results.get(action.key).actions.set(action.option, action); // actionを登録
                 }
                 // keyを削除してactionsを返す
-                return [2 /*return*/, actions.map(function (action) {
-                        action.key = undefined;
-                        return action;
-                    })];
+                return [2 /*return*/, actions.map(function (action) { return ({
+                        option: action.option,
+                        domain: action.domain,
+                        item: action.item,
+                        type: action.type,
+                        subdomain: action.subdomain,
+                        value: action.value,
+                        unit: action.unit
+                    }); })];
         }
     });
 }); };

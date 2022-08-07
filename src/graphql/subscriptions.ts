@@ -125,39 +125,6 @@ export const onDeleteOption = /* GraphQL */ `
     }
   }
 `;
-export const onCreateOptionIntensityRate = /* GraphQL */ `
-  subscription OnCreateOptionIntensityRate {
-    onCreateOptionIntensityRate {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateOptionIntensityRate = /* GraphQL */ `
-  subscription OnUpdateOptionIntensityRate {
-    onUpdateOptionIntensityRate {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteOptionIntensityRate = /* GraphQL */ `
-  subscription OnDeleteOptionIntensityRate {
-    onDeleteOptionIntensityRate {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile {
     onCreateProfile {
@@ -238,7 +205,6 @@ export const onCreateProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        citation
       }
       estimations {
         domain
@@ -256,9 +222,6 @@ export const onCreateProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        optionValue
-        args
-        operation
       }
       createdAt
       updatedAt
@@ -345,7 +308,6 @@ export const onUpdateProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        citation
       }
       estimations {
         domain
@@ -363,9 +325,6 @@ export const onUpdateProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        optionValue
-        args
-        operation
       }
       createdAt
       updatedAt
@@ -452,7 +411,6 @@ export const onDeleteProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        citation
       }
       estimations {
         domain
@@ -470,9 +428,6 @@ export const onDeleteProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        optionValue
-        args
-        operation
       }
       createdAt
       updatedAt
