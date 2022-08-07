@@ -209,18 +209,7 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                 if (!(_i < answers_1.length)) return [3 /*break*/, 9];
                 ans = answers_1[_i];
                 if (!ans.key) return [3 /*break*/, 8];
-                return [4 /*yield*/, getData(ans.category, ans.key)
-                    /*
-                    dynamodb
-                      .get({
-                        TableName: parameterTableName,
-                        Key: {
-                          category: ans.category,
-                          key: ans.key
-                        }
-                      })
-                      .promise()*/
-                ];
+                return [4 /*yield*/, getData(ans.category, ans.key)];
             case 4:
                 data_1 = _j.sent();
                 denominator = 1;
@@ -230,28 +219,9 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                 // 国平均に対する比率は1倍。denominatorをundefinedにして計算に使わないようにする。
                 denominator = undefined;
                 return [3 /*break*/, 7];
-            case 5: return [4 /*yield*/, getData(ans.category, ans.base)
-                /*dynamodb
-                  .get({
-                    TableName: parameterTableName,
-                    Key: {
-                      category: ans.category,
-                      key: ans.base
-                    }
-                  })
-                  .promise()*/
-            ];
+            case 5: return [4 /*yield*/, getData(ans.category, ans.base)];
             case 6:
                 base = _j.sent();
-                /*dynamodb
-                  .get({
-                    TableName: parameterTableName,
-                    Key: {
-                      category: ans.category,
-                      key: ans.base
-                    }
-                  })
-                  .promise()*/
                 if ((_g = base === null || base === void 0 ? void 0 : base.Item) === null || _g === void 0 ? void 0 : _g.value) {
                     // 分母は国平均の支出額（average-per-capita） * 居住人数
                     denominator = base.Item.value * residentCount;

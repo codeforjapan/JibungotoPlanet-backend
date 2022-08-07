@@ -176,17 +176,6 @@ const estimateOther = async (
   for (let ans of answers) {
     if (ans.key) {
       const data = await getData(ans.category, ans.key)
-      /*
-      dynamodb
-        .get({
-          TableName: parameterTableName,
-          Key: {
-            category: ans.category,
-            key: ans.key
-          }
-        })
-        .promise()*/
-
       let denominator = 1
 
       if (ans.base) {
@@ -196,15 +185,6 @@ const estimateOther = async (
           denominator = undefined
         } else {
           const base = await getData(ans.category, ans.base)
-          /*dynamodb
-            .get({
-              TableName: parameterTableName,
-              Key: {
-                category: ans.category,
-                key: ans.base
-              }
-            })
-            .promise()*/
           if (base?.Item?.value) {
             // 分母は国平均の支出額（average-per-capita） * 居住人数
             denominator = base.Item.value * residentCount
