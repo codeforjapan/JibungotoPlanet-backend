@@ -7,6 +7,9 @@
 	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN
 	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME
 	STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN
+	STORAGE_PROFILEZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_ARN
+	STORAGE_PROFILEZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_NAME
+	STORAGE_PROFILEZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_STREAMARN
 Amplify Params - DO NOT EDIT */ /*
 Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
@@ -26,6 +29,8 @@ let suffix = '3uyvqum6jrc4pf63cde7njsxei-dev'
 if (process.env.ENV && process.env.ENV !== 'NONE') {
   if (process.env.ENV === 'stg') {
     suffix = 'epwhhio5abgdthpzpwfkaox4ba-stg'
+  } else if (process.env.ENV === 'prd') {
+    suffix = 'z6dhum3edrgfpb2gc4mmjdexpu-prd'
   }
 }
 

@@ -13,23 +13,23 @@
         "update",
         "delete"
       ],
-      "Footprintepwhhio5abgdthpzpwfkaox4bastg": [
+      "Option3uyvqum6jrc4pf63cde7njsxeidev": [
         "read"
       ],
-      "Parameterepwhhio5abgdthpzpwfkaox4bastg": [
+      "Footprintz6dhum3edrgfpb2gc4mmjdexpuprd": [
         "read"
       ],
-      "Profileepwhhio5abgdthpzpwfkaox4bastg": [
+      "Optionz6dhum3edrgfpb2gc4mmjdexpuprd": [
+        "read"
+      ],
+      "Parameterz6dhum3edrgfpb2gc4mmjdexpuprd": [
+        "read"
+      ],
+      "Profilez6dhum3edrgfpb2gc4mmjdexpuprd": [
         "create",
         "read",
         "update",
         "delete"
-      ],
-      "Option3uyvqum6jrc4pf63cde7njsxeidev": [
-        "read"
-      ],
-      "Optionepwhhio5abgdthpzpwfkaox4bastg": [
-        "read"
       ]
     }
   },

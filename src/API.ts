@@ -185,39 +185,6 @@ export type DeleteOptionInput = {
   domain_item_type: string,
 };
 
-export type CreateOptionIntensityRateInput = {
-  option: string,
-  defaultValue: number,
-  range: Array< number >,
-};
-
-export type ModelOptionIntensityRateConditionInput = {
-  defaultValue?: ModelFloatInput | null,
-  range?: ModelFloatInput | null,
-  and?: Array< ModelOptionIntensityRateConditionInput | null > | null,
-  or?: Array< ModelOptionIntensityRateConditionInput | null > | null,
-  not?: ModelOptionIntensityRateConditionInput | null,
-};
-
-export type OptionIntensityRate = {
-  __typename: "OptionIntensityRate",
-  option: string,
-  defaultValue: number,
-  range: Array< number >,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type UpdateOptionIntensityRateInput = {
-  option: string,
-  defaultValue?: number | null,
-  range?: Array< number > | null,
-};
-
-export type DeleteOptionIntensityRateInput = {
-  option: string,
-};
-
 export type CreateProfileInput = {
   estimated?: boolean | null,
   id?: string | null,
@@ -573,21 +540,6 @@ export type ModelOptionConnection = {
   nextToken?: string | null,
 };
 
-export type ModelOptionIntensityRateFilterInput = {
-  option?: ModelStringInput | null,
-  defaultValue?: ModelFloatInput | null,
-  range?: ModelFloatInput | null,
-  and?: Array< ModelOptionIntensityRateFilterInput | null > | null,
-  or?: Array< ModelOptionIntensityRateFilterInput | null > | null,
-  not?: ModelOptionIntensityRateFilterInput | null,
-};
-
-export type ModelOptionIntensityRateConnection = {
-  __typename: "ModelOptionIntensityRateConnection",
-  items:  Array<OptionIntensityRate | null >,
-  nextToken?: string | null,
-};
-
 export type ModelProfileFilterInput = {
   estimated?: ModelBooleanInput | null,
   id?: ModelIDInput | null,
@@ -785,54 +737,6 @@ export type DeleteOptionMutation = {
     args?: Array< string > | null,
     operation: string,
     citation?: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreateOptionIntensityRateMutationVariables = {
-  input: CreateOptionIntensityRateInput,
-  condition?: ModelOptionIntensityRateConditionInput | null,
-};
-
-export type CreateOptionIntensityRateMutation = {
-  createOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateOptionIntensityRateMutationVariables = {
-  input: UpdateOptionIntensityRateInput,
-  condition?: ModelOptionIntensityRateConditionInput | null,
-};
-
-export type UpdateOptionIntensityRateMutation = {
-  updateOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteOptionIntensityRateMutationVariables = {
-  input: DeleteOptionIntensityRateInput,
-  condition?: ModelOptionIntensityRateConditionInput | null,
-};
-
-export type DeleteOptionIntensityRateMutation = {
-  deleteOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1334,44 +1238,6 @@ export type ListOptionsQuery = {
   } | null,
 };
 
-export type GetOptionIntensityRateQueryVariables = {
-  option: string,
-};
-
-export type GetOptionIntensityRateQuery = {
-  getOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListOptionIntensityRatesQueryVariables = {
-  option?: string | null,
-  filter?: ModelOptionIntensityRateFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
-};
-
-export type ListOptionIntensityRatesQuery = {
-  listOptionIntensityRates?:  {
-    __typename: "ModelOptionIntensityRateConnection",
-    items:  Array< {
-      __typename: "OptionIntensityRate",
-      option: string,
-      defaultValue: number,
-      range: Array< number >,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type GetProfileQueryVariables = {
   id: string,
 };
@@ -1863,39 +1729,6 @@ export type OnDeleteOptionSubscription = {
     args?: Array< string > | null,
     operation: string,
     citation?: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreateOptionIntensityRateSubscription = {
-  onCreateOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateOptionIntensityRateSubscription = {
-  onUpdateOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteOptionIntensityRateSubscription = {
-  onDeleteOptionIntensityRate?:  {
-    __typename: "OptionIntensityRate",
-    option: string,
-    defaultValue: number,
-    range: Array< number >,
     createdAt: string,
     updatedAt: string,
   } | null,

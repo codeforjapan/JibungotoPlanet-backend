@@ -152,48 +152,6 @@ export const deleteOption = /* GraphQL */ `
     }
   }
 `;
-export const createOptionIntensityRate = /* GraphQL */ `
-  mutation CreateOptionIntensityRate(
-    $input: CreateOptionIntensityRateInput!
-    $condition: ModelOptionIntensityRateConditionInput
-  ) {
-    createOptionIntensityRate(input: $input, condition: $condition) {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateOptionIntensityRate = /* GraphQL */ `
-  mutation UpdateOptionIntensityRate(
-    $input: UpdateOptionIntensityRateInput!
-    $condition: ModelOptionIntensityRateConditionInput
-  ) {
-    updateOptionIntensityRate(input: $input, condition: $condition) {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteOptionIntensityRate = /* GraphQL */ `
-  mutation DeleteOptionIntensityRate(
-    $input: DeleteOptionIntensityRateInput!
-    $condition: ModelOptionIntensityRateConditionInput
-  ) {
-    deleteOptionIntensityRate(input: $input, condition: $condition) {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createProfile = /* GraphQL */ `
   mutation CreateProfile(
     $input: CreateProfileInput!

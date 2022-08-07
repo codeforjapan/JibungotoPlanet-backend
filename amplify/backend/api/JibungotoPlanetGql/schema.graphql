@@ -27,15 +27,6 @@ type Option @model @auth(rules: [{ allow: public, operations: [read] }]) {
   citation: String
 }
 
-# 削減施策の実施率
-type OptionIntensityRate
-  @model
-  @auth(rules: [{ allow: public, operations: [read] }]) {
-  option: String! @primaryKey
-  defaultValue: Float!
-  range: [Float!]!
-}
-
 # フットプリント（ベースライン）のProfile内の１レコード
 type Baseline {
   domain: String! # food|mobility|housing|other

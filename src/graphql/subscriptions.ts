@@ -125,39 +125,6 @@ export const onDeleteOption = /* GraphQL */ `
     }
   }
 `;
-export const onCreateOptionIntensityRate = /* GraphQL */ `
-  subscription OnCreateOptionIntensityRate {
-    onCreateOptionIntensityRate {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateOptionIntensityRate = /* GraphQL */ `
-  subscription OnUpdateOptionIntensityRate {
-    onUpdateOptionIntensityRate {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteOptionIntensityRate = /* GraphQL */ `
-  subscription OnDeleteOptionIntensityRate {
-    onDeleteOptionIntensityRate {
-      option
-      defaultValue
-      range
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile {
     onCreateProfile {
