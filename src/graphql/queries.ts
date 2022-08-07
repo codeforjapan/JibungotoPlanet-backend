@@ -175,6 +175,7 @@ export const listOptionIntensityRates = /* GraphQL */ `
 export const getProfile = /* GraphQL */ `
   query GetProfile($id: ID!) {
     getProfile(id: $id) {
+      estimated
       id
       shareId
       gender
@@ -294,6 +295,7 @@ export const listProfiles = /* GraphQL */ `
       sortDirection: $sortDirection
     ) {
       items {
+        estimated
         id
         shareId
         gender
@@ -415,6 +417,7 @@ export const profilesByShareId = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        estimated
         id
         shareId
         gender

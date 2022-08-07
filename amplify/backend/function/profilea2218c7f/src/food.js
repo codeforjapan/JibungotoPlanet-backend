@@ -95,7 +95,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 if (!foodAnswer) {
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
-                return [4 /*yield*/, getData('food-intake-factor', foodAnswer.foodIntakeFactorKey)];
+                return [4 /*yield*/, getData('food-intake-factor', (foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.foodIntakeFactorKey) || 'unknown')];
             case 2:
                 foodIntakeFactor = _4.sent();
                 estimationAmount = {
@@ -127,7 +127,8 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                     restaurant: createAmount(baselines, 'restaurant'),
                     'bar-cafe': createAmount(baselines, 'bar-cafe')
                 };
-                if (!(foodAnswer.foodDirectWasteFactorKey && foodAnswer.foodLeftoverFactorKey)) return [3 /*break*/, 21];
+                if (!((foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.foodDirectWasteFactorKey) &&
+                    (foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.foodLeftoverFactorKey))) return [3 /*break*/, 21];
                 return [4 /*yield*/, getData('food-direct-waste-factor', foodAnswer.foodDirectWasteFactorKey)];
             case 3:
                 foodDirectWasteFactor = _4.sent();
@@ -209,7 +210,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 estimations.push(estimationAmount.oil);
                 estimations.push(estimationAmount.seasoning);
                 estimations.push(estimationAmount['ready-meal']);
-                if (!foodAnswer.dairyFoodFactorKey) return [3 /*break*/, 7];
+                if (!(foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.dairyFoodFactorKey)) return [3 /*break*/, 7];
                 return [4 /*yield*/, getData('dairy-food-factor', foodAnswer.dairyFoodFactorKey)];
             case 6:
                 dairyFoodFactor = _4.sent();
@@ -231,7 +232,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 _4.label = 7;
             case 7:
                 dishBeefFactor = null;
-                if (!foodAnswer.dishBeefFactorKey) return [3 /*break*/, 9];
+                if (!(foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.dishBeefFactorKey)) return [3 /*break*/, 9];
                 return [4 /*yield*/, getData('dish-beef-factor', foodAnswer.dishBeefFactorKey)];
             case 8:
                 dishBeefFactor = _4.sent();
@@ -243,7 +244,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 _4.label = 9;
             case 9:
                 dishPorkFactor = null;
-                if (!foodAnswer.dishPorkFactorKey) return [3 /*break*/, 11];
+                if (!(foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.dishPorkFactorKey)) return [3 /*break*/, 11];
                 return [4 /*yield*/, getData('dish-pork-factor', foodAnswer.dishPorkFactorKey)];
             case 10:
                 dishPorkFactor = _4.sent();
@@ -260,7 +261,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 _4.label = 11;
             case 11:
                 dishChickenFactor = null;
-                if (!foodAnswer.dishChickenFactorKey) return [3 /*break*/, 13];
+                if (!(foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.dishChickenFactorKey)) return [3 /*break*/, 13];
                 return [4 /*yield*/, getData('dish-chicken-factor', foodAnswer.dishChickenFactorKey)];
             case 12:
                 dishChickenFactor = _4.sent();
@@ -285,7 +286,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                                 createAmount(baselines, 'chicken').value);
                     estimations.push(estimationAmount['processed-meat']);
                 }
-                if (!foodAnswer.dishSeafoodFactorKey) return [3 /*break*/, 15];
+                if (!(foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.dishSeafoodFactorKey)) return [3 /*break*/, 15];
                 return [4 /*yield*/, getData('dish-seafood-factor', foodAnswer.dishSeafoodFactorKey)];
             case 14:
                 dishSeafoodFactor = _4.sent();
@@ -301,7 +302,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 estimations.push(estimationAmount['processed-fish']);
                 _4.label = 15;
             case 15:
-                if (!foodAnswer.alcoholFactorKey) return [3 /*break*/, 17];
+                if (!(foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.alcoholFactorKey)) return [3 /*break*/, 17];
                 return [4 /*yield*/, getData('alcohol-factor', foodAnswer.alcoholFactorKey)];
             case 16:
                 alcoholFactor = _4.sent();
@@ -312,7 +313,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                 estimations.push(estimationAmount.alcohol);
                 _4.label = 17;
             case 17:
-                if (!foodAnswer.softDrinkSnackFactorKey) return [3 /*break*/, 19];
+                if (!(foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.softDrinkSnackFactorKey)) return [3 /*break*/, 19];
                 return [4 /*yield*/, getData('soft-drink-snack-factor', foodAnswer.softDrinkSnackFactorKey)];
             case 18:
                 softDrinkSnackFactor = _4.sent();
@@ -368,7 +369,7 @@ var estimateFood = function (dynamodb, foodAnswer, footprintTableName, parameter
                         (beforeReadyMealKeyArray.reduce(function (res, key) { return res + getCategoryBaseTotal(key); }, 0) /
                             baseTotalAmount);
                 estimations.push(readyMealIntensity_1);
-                if (!foodAnswer.eatOutFactorKey) return [3 /*break*/, 21];
+                if (!(foodAnswer === null || foodAnswer === void 0 ? void 0 : foodAnswer.eatOutFactorKey)) return [3 /*break*/, 21];
                 return [4 /*yield*/, getData('eat-out-factor', foodAnswer.eatOutFactorKey)];
             case 20:
                 eatOutFactor = _4.sent();

@@ -161,6 +161,7 @@ export const onDeleteOptionIntensityRate = /* GraphQL */ `
 export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile {
     onCreateProfile {
+      estimated
       id
       shareId
       gender
@@ -267,6 +268,7 @@ export const onCreateProfile = /* GraphQL */ `
 export const onUpdateProfile = /* GraphQL */ `
   subscription OnUpdateProfile {
     onUpdateProfile {
+      estimated
       id
       shareId
       gender
@@ -373,6 +375,7 @@ export const onUpdateProfile = /* GraphQL */ `
 export const onDeleteProfile = /* GraphQL */ `
   subscription OnDeleteProfile {
     onDeleteProfile {
+      estimated
       id
       shareId
       gender

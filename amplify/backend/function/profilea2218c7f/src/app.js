@@ -62,7 +62,6 @@ let footprintTableName = 'Footprint-' + suffix
 let parameterTableName = 'Parameter-' + suffix
 let profileTableName = 'Profile-' + suffix
 let optionTableName = 'Option-' + suffix
-// let optionIntensityRateTableName = 'OptionIntensityRate-' + suffix
 
 if (
   'AWS_EXECUTION_ENV' in process.env &&
@@ -79,7 +78,6 @@ if (
   parameterTableName = 'ParameterTable'
   profileTableName = 'ProfileTable'
   optionTableName = 'OptionTable'
-  // optionIntensityRateTableName = 'OptionIntensityRateTable'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -98,26 +96,88 @@ app.use(function (req, res, next) {
   next()
 })
 
+const toResponse = (profile, estimate) => {
+  const common = {
+    id: profile.id,
+    shareId: profile.shareId,
+
+    gender: profile.gender,
+    age: profile.age,
+    region: profile.region,
+
+    actionIntensityRates: profile.actionIntensityRates,
+    mobilityAnswer: profile.mobilityAnswer,
+    housingAnswer: profile.housingAnswer,
+    foodAnswer: profile.foodAnswer,
+    otherAnswer: profile.otherAnswer
+  }
+
+  return estimate
+    ? {
+        ...common,
+        baselines: profile.baselines,
+        estimations: profile.estimations,
+        actions: profile.actions
+      }
+    : common
+}
+
 /*****************************************
  * HTTP Get method for get single object *
  *****************************************/
 
 app.get(path + '/:id', async (req, res) => {
-  const params = {
-    TableName: profileTableName,
-    Key: { id: req.params.id }
-  }
-
   try {
-    const data = await dynamodb.get(params).promise()
-    res.json(data.Item)
+    const data = await dynamodb
+      .get({
+        TableName: profileTableName,
+        Key: { id: req.params.id }
+      })
+      .promise()
+
+    const profile = data.Item
+
+    // 計算がされていない場合は遅延初期化
+    if (!profile.estimated) {
+      await updateProfile(dynamodb, profile)
+      profile.estimated = true
+      profile.updatedAt = new Date().toISOString()
+      await dynamodb
+        .put({
+          TableName: profileTableName,
+          Item: profile
+        })
+        .promise()
+    }
+
+    res.json(toResponse(profile, true))
   } catch (err) {
     res.statusCode = 500
     res.json({ error: 'Could not load item: ' + err })
   }
 })
 
-const updateProfile = async (dynamodb, actionIntensityRates, profile) => {
+const mergeActionIntensityRates = (orgRates, newRates) => {
+  // actionIntensityRatesの展開
+  return orgRates.map((item) => {
+    let value = newRates?.find((air) => air.option === item.option)?.value
+    if (value === null || value === undefined) {
+      if (item.value === null || item.value === undefined) {
+        value = item.defaultValue
+      } else {
+        value = item.value
+      }
+    }
+    return {
+      option: item.option,
+      value: value,
+      defaultValue: item.defaultValue,
+      range: item.range
+    }
+  })
+}
+
+const updateProfile = async (dynamodb, profile) => {
   profile.baselines = []
   profile.estimations = []
 
@@ -179,23 +239,6 @@ const updateProfile = async (dynamodb, actionIntensityRates, profile) => {
     optionTableName
   )
   profile.actions = actions
-
-  /*
-  const optionIntensityRateData = await dynamodb
-    .scan({
-      TableName: optionIntensityRateTableName
-    })
-    .promise()*/
-
-  // actionIntensityRatesの展開
-  profile.actionIntensityRates = optionIntensityRates.map((item) => ({
-    option: item.option,
-    value:
-      actionIntensityRates?.find((air) => air.option === item.option)?.value ||
-      item.defaultValue,
-    defaultValue: item.defaultValue,
-    range: item.range
-  }))
 }
 
 /************************************
@@ -204,29 +247,28 @@ const updateProfile = async (dynamodb, actionIntensityRates, profile) => {
 
 app.put(path + '/:id', async (req, res) => {
   const id = req.params.id
-  try {
-    let params = {
-      TableName: profileTableName,
-      Key: { id }
-    }
-    let data = await dynamodb.get(params).promise()
-    const profile = data.Item
-    const mobilityAnswer = req.body.mobilityAnswer
-    const housingAnswer = req.body.housingAnswer
-    const foodAnswer = req.body.foodAnswer
-    const otherAnswer = req.body.otherAnswer
+  const estimate = req.body.estimate
 
-    if (mobilityAnswer) {
-      profile.mobilityAnswer = mobilityAnswer
+  try {
+    const data = await dynamodb
+      .get({
+        TableName: profileTableName,
+        Key: { id }
+      })
+      .promise()
+    const profile = data.Item
+
+    if (req.body.mobilityAnswer) {
+      profile.mobilityAnswer = req.body.mobilityAnswer
     }
-    if (housingAnswer) {
-      profile.housingAnswer = housingAnswer
+    if (req.body.housingAnswer) {
+      profile.housingAnswer = req.body.housingAnswer
     }
-    if (foodAnswer) {
-      profile.foodAnswer = foodAnswer
+    if (req.body.foodAnswer) {
+      profile.foodAnswer = req.body.foodAnswer
     }
-    if (otherAnswer) {
-      profile.otherAnswer = otherAnswer
+    if (req.body.otherAnswer) {
+      profile.otherAnswer = req.body.otherAnswer
     }
     if (req.body.gender) {
       profile.gender = req.body.gender
@@ -238,15 +280,29 @@ app.put(path + '/:id', async (req, res) => {
       profile.region = req.body.region
     }
 
-    await updateProfile(dynamodb, req.body.actionIntensityRates, profile)
-    profile.updatedAt = new Date().toISOString()
+    profile.actionIntensityRates = mergeActionIntensityRates(
+      profile.actionIntensityRates,
+      req.body.actionIntensityRates
+    )
+    profile.estimated = false
 
-    params = {
-      TableName: profileTableName,
-      Item: profile
+    if (estimate) {
+      await updateProfile(dynamodb, profile)
+      profile.updatedAt = new Date().toISOString()
+      profile.estimated = true
     }
-    data = await dynamodb.put(params).promise()
-    res.json({ success: 'put call succeed!', url: req.url, data: profile })
+
+    await dynamodb
+      .put({
+        TableName: profileTableName,
+        Item: profile
+      })
+      .promise()
+    res.json({
+      success: 'put call succeed!',
+      url: req.url,
+      data: toResponse(profile, estimate)
+    })
   } catch (err) {
     res.statusCode = 500
     res.json({ error: 'Could not load items: ' + err })
@@ -259,7 +315,10 @@ app.put(path + '/:id', async (req, res) => {
 
 app.post(path, async (req, res) => {
   try {
+    const estimate = req.body.estimate
+
     const profile = {
+      estimated: false,
       id: uuid(),
       shareId: shortid.generate(),
       mobilityAnswer: req.body.mobilityAnswer,
@@ -278,14 +337,26 @@ app.post(path, async (req, res) => {
       updatedAt: new Date().toISOString()
     }
 
-    await updateProfile(dynamodb, req.body.actionIntensityRates, profile)
+    profile.actionIntensityRates = mergeActionIntensityRates(
+      optionIntensityRates,
+      req.body.actionIntensityRates
+    )
+
+    if (estimate) {
+      await updateProfile(dynamodb, profile)
+      profile.estimated = true
+    }
 
     const params = {
       TableName: profileTableName,
       Item: profile
     }
-    const data = await dynamodb.put(params).promise()
-    res.json({ success: 'post call succeed!', url: req.url, data: profile })
+    await dynamodb.put(params).promise()
+    res.json({
+      success: 'post call succeed!',
+      url: req.url,
+      data: toResponse(profile, estimate)
+    })
   } catch (err) {
     res.statusCode = 500
     res.json({ error: err, url: req.url, body: req.body })

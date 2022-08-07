@@ -200,6 +200,7 @@ export const createProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     createProfile(input: $input, condition: $condition) {
+      estimated
       id
       shareId
       gender
@@ -309,6 +310,7 @@ export const updateProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     updateProfile(input: $input, condition: $condition) {
+      estimated
       id
       shareId
       gender
@@ -418,6 +420,7 @@ export const deleteProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     deleteProfile(input: $input, condition: $condition) {
+      estimated
       id
       shareId
       gender
