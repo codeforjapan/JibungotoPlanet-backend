@@ -215,7 +215,6 @@ export const getProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        citation
       }
       estimations {
         domain
@@ -233,9 +232,6 @@ export const getProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        optionValue
-        args
-        operation
       }
       createdAt
       updatedAt
@@ -335,7 +331,6 @@ export const listProfiles = /* GraphQL */ `
           subdomain
           value
           unit
-          citation
         }
         estimations {
           domain
@@ -353,9 +348,6 @@ export const listProfiles = /* GraphQL */ `
           subdomain
           value
           unit
-          optionValue
-          args
-          operation
         }
         createdAt
         updatedAt
@@ -457,7 +449,6 @@ export const profilesByShareId = /* GraphQL */ `
           subdomain
           value
           unit
-          citation
         }
         estimations {
           domain
@@ -475,9 +466,6 @@ export const profilesByShareId = /* GraphQL */ `
           subdomain
           value
           unit
-          optionValue
-          args
-          operation
         }
         createdAt
         updatedAt

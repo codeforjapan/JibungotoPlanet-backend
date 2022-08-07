@@ -278,7 +278,6 @@ export type BaselineInput = {
   subdomain: string,
   value: number,
   unit?: string | null,
-  citation?: string | null,
 };
 
 export type EstimationInput = {
@@ -298,9 +297,6 @@ export type ActionInput = {
   subdomain: string,
   value: number,
   unit?: string | null,
-  optionValue: number,
-  args?: Array< string > | null,
-  operation: string,
 };
 
 export type ModelProfileConditionInput = {
@@ -423,7 +419,6 @@ export type Baseline = {
   subdomain: string,
   value: number,
   unit?: string | null,
-  citation?: string | null,
 };
 
 export type Estimation = {
@@ -445,9 +440,6 @@ export type Action = {
   subdomain: string,
   value: number,
   unit?: string | null,
-  optionValue: number,
-  args?: Array< string > | null,
-  operation: string,
 };
 
 export type UpdateProfileInput = {
@@ -833,7 +825,6 @@ export type CreateProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -853,9 +844,6 @@ export type CreateProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -953,7 +941,6 @@ export type UpdateProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -973,9 +960,6 @@ export type UpdateProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1073,7 +1057,6 @@ export type DeleteProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -1093,9 +1076,6 @@ export type DeleteProfileMutation = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1328,7 +1308,6 @@ export type GetProfileQuery = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -1348,9 +1327,6 @@ export type GetProfileQuery = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1453,7 +1429,6 @@ export type ListProfilesQuery = {
         subdomain: string,
         value: number,
         unit?: string | null,
-        citation?: string | null,
       } > | null,
       estimations?:  Array< {
         __typename: "Estimation",
@@ -1473,9 +1448,6 @@ export type ListProfilesQuery = {
         subdomain: string,
         value: number,
         unit?: string | null,
-        optionValue: number,
-        args?: Array< string > | null,
-        operation: string,
       } > | null,
       createdAt: string,
       updatedAt: string,
@@ -1580,7 +1552,6 @@ export type ProfilesByShareIdQuery = {
         subdomain: string,
         value: number,
         unit?: string | null,
-        citation?: string | null,
       } > | null,
       estimations?:  Array< {
         __typename: "Estimation",
@@ -1600,9 +1571,6 @@ export type ProfilesByShareIdQuery = {
         subdomain: string,
         value: number,
         unit?: string | null,
-        optionValue: number,
-        args?: Array< string > | null,
-        operation: string,
       } > | null,
       createdAt: string,
       updatedAt: string,
@@ -1820,7 +1788,6 @@ export type OnCreateProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -1840,9 +1807,6 @@ export type OnCreateProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -1935,7 +1899,6 @@ export type OnUpdateProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -1955,9 +1918,6 @@ export type OnUpdateProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,
@@ -2050,7 +2010,6 @@ export type OnDeleteProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      citation?: string | null,
     } > | null,
     estimations?:  Array< {
       __typename: "Estimation",
@@ -2070,9 +2029,6 @@ export type OnDeleteProfileSubscription = {
       subdomain: string,
       value: number,
       unit?: string | null,
-      optionValue: number,
-      args?: Array< string > | null,
-      operation: string,
     } > | null,
     createdAt: string,
     updatedAt: string,

@@ -205,7 +205,6 @@ export const onCreateProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        citation
       }
       estimations {
         domain
@@ -223,9 +222,6 @@ export const onCreateProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        optionValue
-        args
-        operation
       }
       createdAt
       updatedAt
@@ -312,7 +308,6 @@ export const onUpdateProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        citation
       }
       estimations {
         domain
@@ -330,9 +325,6 @@ export const onUpdateProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        optionValue
-        args
-        operation
       }
       createdAt
       updatedAt
@@ -419,7 +411,6 @@ export const onDeleteProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        citation
       }
       estimations {
         domain
@@ -437,9 +428,6 @@ export const onDeleteProfile = /* GraphQL */ `
         subdomain
         value
         unit
-        optionValue
-        args
-        operation
       }
       createdAt
       updatedAt

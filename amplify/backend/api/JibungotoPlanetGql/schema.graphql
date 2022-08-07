@@ -35,7 +35,6 @@ type Baseline {
   subdomain: String!
   value: Float!
   unit: String
-  citation: String
 }
 
 # 推定結果の１レコード
@@ -57,9 +56,6 @@ type Action {
   subdomain: String!
   value: Float!
   unit: String
-  optionValue: Float!
-  args: [String!]
-  operation: String!
 }
 
 # 削減施策の実施率のProfile内の１レコード

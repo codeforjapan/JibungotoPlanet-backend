@@ -244,10 +244,15 @@ const calculateActions = async (
   }
 
   // keyを削除してactionsを返す
-  return actions.map((action) => {
-    action.key = undefined
-    return action
-  })
+  return actions.map((action) => ({
+    option: action.option,
+    domain: action.domain,
+    item: action.item,
+    type: action.type,
+    subdomain: action.subdomain,
+    value: action.value,
+    unit: action.unit
+  }))
 }
 
 // [削減後] = [value]
