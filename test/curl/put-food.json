@@ -1,4 +1,5 @@
 {
+  "estimate": true,
   "foodAnswer": {
     "foodIntakeFactorKey": "very-much",
     "foodDirectWasteFactorKey": "seldom",

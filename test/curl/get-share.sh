@@ -1,1 +1,1 @@
-curl ${JIBUNGOTO_PLANET_REST}/shares/tuofWVWJY > get-share.result.json
+curl ${JIBUNGOTO_PLANET_REST}/shares/iDRh8tmAc > get-share.result.json

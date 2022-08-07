@@ -118,6 +118,33 @@
         },
         {
           "category": "storage",
+          "resourceName": "Footprintepwhhio5abgdthpzpwfkaox4bastg",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Parameterepwhhio5abgdthpzpwfkaox4bastg",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Profileepwhhio5abgdthpzpwfkaox4bastg",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
           "resourceName": "Option3uyvqum6jrc4pf63cde7njsxeidev",
           "attributes": [
             "Name",
@@ -127,34 +154,7 @@
         },
         {
           "category": "storage",
-          "resourceName": "Footprintz6dhum3edrgfpb2gc4mmjdexpuprd",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "Optionz6dhum3edrgfpb2gc4mmjdexpuprd",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "Parameterz6dhum3edrgfpb2gc4mmjdexpuprd",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "Profilez6dhum3edrgfpb2gc4mmjdexpuprd",
+          "resourceName": "Optionepwhhio5abgdthpzpwfkaox4bastg",
           "attributes": [
             "Name",
             "Arn",

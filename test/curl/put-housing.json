@@ -1,4 +1,5 @@
 {
+  "estimate": true,
   "housingAnswer": {
     "residentCount": 2,
     "housingSizeKey": "unknown",
