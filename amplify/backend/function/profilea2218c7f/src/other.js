@@ -39,14 +39,36 @@ exports.__esModule = true;
 exports.estimateOther = void 0;
 var util_1 = require("./util");
 var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTableName, parameterTableName) { return __awaiter(void 0, void 0, void 0, function () {
-    var findAmount, estimations, params, data, baselines, residentCount, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, estimation, wasteSet, isTarget, targets, results, baselineSum, _c, targets_1, baseline, key, _d, _e, estimation, key, estimationSum, it, res, estimation, wasteEstimation;
-    var _f, _g;
-    return __generator(this, function (_h) {
-        switch (_h.label) {
+    var createAmount, getData, estimations, params, data, baselines, residentCount, familySize, answers, _i, answers_1, ans, data_1, denominator, base, coefficient, _a, _b, item, estimation, wasteSet, isTarget, targets, results, baselineSum, _c, targets_1, baseline, key, _d, _e, estimation, key, estimationSum, wasteEstimation;
+    var _f, _g, _h;
+    return __generator(this, function (_j) {
+        switch (_j.label) {
             case 0:
-                findAmount = function (baselines, item) {
-                    return (0, util_1.findBaseline)(baselines, 'other', item, 'amount');
+                createAmount = function (baselines, item) {
+                    return (0, util_1.toEstimation)((0, util_1.findBaseline)(baselines, 'other', item, 'amount'));
                 };
+                getData = function (category, key) { return __awaiter(void 0, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, dynamodb
+                                    .get({
+                                    TableName: parameterTableName,
+                                    Key: {
+                                        category: category,
+                                        key: key
+                                    }
+                                })
+                                    .promise()
+                                // otherAnswerのスキーマと取りうる値は以下を参照。
+                                // amplify/backend/api/JibungotoPlanetGql/schema.graphql
+                            ];
+                            case 1: return [2 /*return*/, _a.sent()
+                                // otherAnswerのスキーマと取りうる値は以下を参照。
+                                // amplify/backend/api/JibungotoPlanetGql/schema.graphql
+                            ];
+                        }
+                    });
+                }); };
                 estimations = [];
                 params = {
                     TableName: footprintTableName,
@@ -59,14 +81,22 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                 };
                 return [4 /*yield*/, dynamodb.query(params).promise()];
             case 1:
-                data = _h.sent();
+                data = _j.sent();
                 baselines = data.Items.map(function (item) { return (0, util_1.toBaseline)(item); });
                 // 回答がない場合はベースラインのみ返す
                 if (!otherAnswer) {
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
-                residentCount = 2.33;
-                if (housingAnswer && housingAnswer.residentCount) {
+                residentCount = 1;
+                return [4 /*yield*/, getData('family-size', 'unknown')];
+            case 2:
+                familySize = _j.sent();
+                if ((_f = familySize === null || familySize === void 0 ? void 0 : familySize.Item) === null || _f === void 0 ? void 0 : _f.value) {
+                    residentCount = familySize.Item.value;
+                }
+                if (housingAnswer &&
+                    housingAnswer.residentCount !== undefined &&
+                    housingAnswer.residentCount !== null) {
                     residentCount = housingAnswer.residentCount;
                 }
                 answers = [
@@ -174,60 +204,74 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                     }
                 ];
                 _i = 0, answers_1 = answers;
-                _h.label = 2;
-            case 2:
-                if (!(_i < answers_1.length)) return [3 /*break*/, 8];
+                _j.label = 3;
+            case 3:
+                if (!(_i < answers_1.length)) return [3 /*break*/, 9];
                 ans = answers_1[_i];
-                if (!ans.key) return [3 /*break*/, 7];
-                return [4 /*yield*/, dynamodb
-                        .get({
+                if (!ans.key) return [3 /*break*/, 8];
+                return [4 /*yield*/, getData(ans.category, ans.key)
+                    /*
+                    dynamodb
+                      .get({
                         TableName: parameterTableName,
                         Key: {
-                            category: ans.category,
-                            key: ans.key
+                          category: ans.category,
+                          key: ans.key
                         }
-                    })
-                        .promise()];
-            case 3:
-                data_1 = _h.sent();
+                      })
+                      .promise()*/
+                ];
+            case 4:
+                data_1 = _j.sent();
                 denominator = 1;
-                if (!ans.base) return [3 /*break*/, 6];
-                if (!(ans.key === 'unknown')) return [3 /*break*/, 4];
+                if (!ans.base) return [3 /*break*/, 7];
+                if (!(ans.key === 'unknown')) return [3 /*break*/, 5];
                 // 国平均の支出額（average-per-capita）が指定されていて、わからない、の回答の場合は
                 // 国平均に対する比率は1倍。denominatorをundefinedにして計算に使わないようにする。
                 denominator = undefined;
-                return [3 /*break*/, 6];
-            case 4: return [4 /*yield*/, dynamodb
-                    .get({
+                return [3 /*break*/, 7];
+            case 5: return [4 /*yield*/, getData(ans.category, ans.base)
+                /*dynamodb
+                  .get({
                     TableName: parameterTableName,
                     Key: {
-                        category: ans.category,
-                        key: ans.base
+                      category: ans.category,
+                      key: ans.base
                     }
-                })
-                    .promise()];
-            case 5:
-                base = _h.sent();
-                if ((_f = base === null || base === void 0 ? void 0 : base.Item) === null || _f === void 0 ? void 0 : _f.value) {
+                  })
+                  .promise()*/
+            ];
+            case 6:
+                base = _j.sent();
+                /*dynamodb
+                  .get({
+                    TableName: parameterTableName,
+                    Key: {
+                      category: ans.category,
+                      key: ans.base
+                    }
+                  })
+                  .promise()*/
+                if ((_g = base === null || base === void 0 ? void 0 : base.Item) === null || _g === void 0 ? void 0 : _g.value) {
                     // 分母は国平均の支出額（average-per-capita） * 居住人数
                     denominator = base.Item.value * residentCount;
                 }
-                _h.label = 6;
-            case 6:
-                if ((_g = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _g === void 0 ? void 0 : _g.value) {
+                _j.label = 7;
+            case 7:
+                if ((_h = data_1 === null || data_1 === void 0 ? void 0 : data_1.Item) === null || _h === void 0 ? void 0 : _h.value) {
                     coefficient = denominator ? data_1.Item.value / denominator : 1;
                     for (_a = 0, _b = ans.items; _a < _b.length; _a++) {
                         item = _b[_a];
-                        estimation = (0, util_1.toEstimation)(findAmount(baselines, item));
+                        estimation = createAmount(baselines, item);
                         estimation.value *= coefficient;
                         estimations.push(estimation);
                     }
                 }
-                _h.label = 7;
-            case 7:
-                _i++;
-                return [3 /*break*/, 2];
+                _j.label = 8;
             case 8:
+                _i++;
+                return [3 /*break*/, 3];
+            case 9:
                 wasteSet = new Set([
                     'cooking-appliances',
                     'heating-cooling-appliances',
@@ -267,15 +311,8 @@ var estimateOther = function (dynamodb, housingAnswer, otherAnswer, footprintTab
                     key = estimation.domain + '_' + estimation.item + '_' + estimation.type;
                     results.set(key, estimation);
                 }
-                estimationSum = 0;
-                it = results.values();
-                res = it.next();
-                while (!res.done) {
-                    estimation = res.value;
-                    estimationSum += estimation.value;
-                    res = it.next();
-                }
-                wasteEstimation = (0, util_1.toEstimation)(findAmount(baselines, 'waste'));
+                estimationSum = Array.from(results.values()).reduce(function (sum, res) { return sum + res.value; }, 0);
+                wasteEstimation = createAmount(baselines, 'waste');
                 if (baselineSum !== 0) {
                     wasteEstimation.value *= estimationSum / baselineSum;
                 }
