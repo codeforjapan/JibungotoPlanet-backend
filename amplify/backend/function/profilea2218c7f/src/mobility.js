@@ -347,7 +347,6 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                     a[x.key] = x.value;
                     return a;
                 }, {});
-                // console.log(JSON.stringify(consumptionByArea))
                 estimationAmount.airplane.value =
                     consumptionByArea[mileageByAreaFirstKey + '_airplane'];
                 estimationAmount.train.value =
@@ -371,18 +370,12 @@ var estimateMobility = function (dynamodb, housingAnswer, mobilityAnswer, footpr
                 additionalAmount = {
                     bicycleDriving: createAmount(baselines, 'bicycle-driving'),
                     walking: createAmount(baselines, 'walking'),
-                    privateCarPurchase: createAmount(baselines, 'private-car-purchase'),
-                    privateCarMaintenance: createAmount(baselines, 'private-car-maintenance'),
                     bicycleMaintenance: createAmount(baselines, 'bicycle-maintenance')
                 };
                 additionalAmount.walking.value =
                     consumptionByArea[mileageByAreaFirstKey + '_walking'];
                 additionalAmount.bicycleDriving.value =
                     consumptionByArea[mileageByAreaFirstKey + '_bicycle-driving'];
-                additionalAmount.privateCarPurchase.value =
-                    consumptionByArea[mileageByAreaFirstKey + '_private-car-purchase'];
-                additionalAmount.privateCarMaintenance.value =
-                    consumptionByArea[mileageByAreaFirstKey + '_private-car-maintenance'];
                 additionalAmount.bicycleMaintenance.value =
                     consumptionByArea[mileageByAreaFirstKey + '_bicycle-maintenance'];
                 // ベースラインの値を書き換えてEstimationを生成
