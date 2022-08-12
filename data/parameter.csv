@@ -357,14 +357,14 @@ daily-goods-amount,5k-10k,7500,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-2
 daily-goods-amount,10k-20k,15000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 daily-goods-amount,20k-30k,25000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 daily-goods-amount,30k-more,40000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
-daily-goods-amount,unknown,10785.73383,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
+daily-goods-amount,unknown,8376.919944,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 daily-goods-amount,average-per-capita,3595.244611,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 communication-amount,5k-less,3000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 communication-amount,5k-10k,7500,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 communication-amount,10k-20k,15000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 communication-amount,20k-30k,25000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 communication-amount,30k-more,40000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
-communication-amount,unknown,36999.76066,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
+communication-amount,unknown,28736.48078,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 communication-amount,average-per-capita,12333.25355,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 service-factor,5k-less,0.262661425,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 service-factor,5k-10k,0.562845911,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
@@ -378,7 +378,7 @@ appliance-furniture-amount,100k-200k,150000,JPY,Assumption,2022-07-29T21:54:47.8
 appliance-furniture-amount,200k-300k,250000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 appliance-furniture-amount,300k-400k,350000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 appliance-furniture-amount,400k-more,500000,JPY,Assumption,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
-appliance-furniture-amount,unknown,239914.5459,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
+appliance-furniture-amount,unknown,186333.6307,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 appliance-furniture-amount,average-per-capita,79971.51531,JPY,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 leisure-sports-factor,5k-less,0.285556309,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z
 leisure-sports-factor,5k-10k,0.856668926,times,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:54:47.870Z,2022-07-29T21:54:47.870Z

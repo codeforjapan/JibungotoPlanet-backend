@@ -51,6 +51,7 @@ amplify/backend/api/JibungotoPlanetGql/resolvers
 # data import
 data/local/
 data/venv/
+data/aws/config.ini
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend

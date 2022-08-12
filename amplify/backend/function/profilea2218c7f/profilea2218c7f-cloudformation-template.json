@@ -64,53 +64,53 @@
       "Type": "String",
       "Default": "storageOption3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
     },
-    "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdName": {
+    "storageFootprintepwhhio5abgdthpzpwfkaox4bastgName": {
       "Type": "String",
-      "Default": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdName"
+      "Default": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgName"
     },
-    "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn": {
+    "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn": {
       "Type": "String",
-      "Default": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+      "Default": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
     },
-    "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn": {
+    "storageFootprintepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
       "Type": "String",
-      "Default": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
+      "Default": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgStreamArn"
     },
-    "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdName": {
+    "storageParameterepwhhio5abgdthpzpwfkaox4bastgName": {
       "Type": "String",
-      "Default": "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdName"
+      "Default": "storageParameterepwhhio5abgdthpzpwfkaox4bastgName"
     },
-    "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdArn": {
+    "storageParameterepwhhio5abgdthpzpwfkaox4bastgArn": {
       "Type": "String",
-      "Default": "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+      "Default": "storageParameterepwhhio5abgdthpzpwfkaox4bastgArn"
     },
-    "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn": {
+    "storageParameterepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
       "Type": "String",
-      "Default": "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
+      "Default": "storageParameterepwhhio5abgdthpzpwfkaox4bastgStreamArn"
     },
-    "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdName": {
+    "storageProfileepwhhio5abgdthpzpwfkaox4bastgName": {
       "Type": "String",
-      "Default": "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdName"
+      "Default": "storageProfileepwhhio5abgdthpzpwfkaox4bastgName"
     },
-    "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdArn": {
+    "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn": {
       "Type": "String",
-      "Default": "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+      "Default": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
     },
-    "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn": {
+    "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
       "Type": "String",
-      "Default": "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
+      "Default": "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn"
     },
-    "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdName": {
+    "storageOptionepwhhio5abgdthpzpwfkaox4bastgName": {
       "Type": "String",
-      "Default": "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdName"
+      "Default": "storageOptionepwhhio5abgdthpzpwfkaox4bastgName"
     },
-    "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdArn": {
+    "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn": {
       "Type": "String",
-      "Default": "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdArn"
+      "Default": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
     },
-    "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdStreamArn": {
+    "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn": {
       "Type": "String",
-      "Default": "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
+      "Default": "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn"
     }
   },
   "Conditions": {
@@ -202,41 +202,41 @@
             "STORAGE_OPTION3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN": {
               "Ref": "storageOption3uyvqum6jrc4pf63cde7njsxeidevStreamArn"
             },
-            "STORAGE_FOOTPRINTZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_NAME": {
-              "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdName"
+            "STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME": {
+              "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgName"
             },
-            "STORAGE_FOOTPRINTZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_ARN": {
-              "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+            "STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN": {
+              "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
             },
-            "STORAGE_FOOTPRINTZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_STREAMARN": {
-              "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
+            "STORAGE_FOOTPRINTEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
+              "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgStreamArn"
             },
-            "STORAGE_OPTIONZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_NAME": {
-              "Ref": "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdName"
+            "STORAGE_PARAMETEREPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME": {
+              "Ref": "storageParameterepwhhio5abgdthpzpwfkaox4bastgName"
             },
-            "STORAGE_OPTIONZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_ARN": {
-              "Ref": "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+            "STORAGE_PARAMETEREPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN": {
+              "Ref": "storageParameterepwhhio5abgdthpzpwfkaox4bastgArn"
             },
-            "STORAGE_OPTIONZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_STREAMARN": {
-              "Ref": "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
+            "STORAGE_PARAMETEREPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
+              "Ref": "storageParameterepwhhio5abgdthpzpwfkaox4bastgStreamArn"
             },
-            "STORAGE_PARAMETERZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_NAME": {
-              "Ref": "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdName"
+            "STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME": {
+              "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgName"
             },
-            "STORAGE_PARAMETERZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_ARN": {
-              "Ref": "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+            "STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN": {
+              "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
             },
-            "STORAGE_PARAMETERZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_STREAMARN": {
-              "Ref": "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
+            "STORAGE_PROFILEEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
+              "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgStreamArn"
             },
-            "STORAGE_PROFILEZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_NAME": {
-              "Ref": "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdName"
+            "STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_NAME": {
+              "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgName"
             },
-            "STORAGE_PROFILEZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_ARN": {
-              "Ref": "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdArn"
+            "STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_ARN": {
+              "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
             },
-            "STORAGE_PROFILEZ6DHUM3EDRGFPB2GC4MMJDEXPUPRD_STREAMARN": {
-              "Ref": "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdStreamArn"
+            "STORAGE_OPTIONEPWHHIO5ABGDTHPZPWFKAOX4BASTG_STREAMARN": {
+              "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgStreamArn"
             }
           }
         },
@@ -475,6 +475,93 @@
               ],
               "Resource": [
                 {
+                  "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageFootprintepwhhio5abgdthpzpwfkaox4bastgArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageParameterepwhhio5abgdthpzpwfkaox4bastgArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageParameterepwhhio5abgdthpzpwfkaox4bastgArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageProfileepwhhio5abgdthpzpwfkaox4bastgArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
                   "Ref": "storageOption3uyvqum6jrc4pf63cde7njsxeidevArn"
                 },
                 {
@@ -502,101 +589,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn"
+                  "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageFootprintz6dhum3edrgfpb2gc4mmjdexpuprdArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageOptionz6dhum3edrgfpb2gc4mmjdexpuprdArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageParameterz6dhum3edrgfpb2gc4mmjdexpuprdArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageProfilez6dhum3edrgfpb2gc4mmjdexpuprdArn"
+                        "Ref": "storageOptionepwhhio5abgdthpzpwfkaox4bastgArn"
                       },
                       "index/*"
                     ]

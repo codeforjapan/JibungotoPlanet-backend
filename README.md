@@ -1,6 +1,6 @@
-# ジブンゴト Planet バックエンド
+# じぶんごとプラネット バックエンド
 
-ジブンゴト Planet のバックエンドのプロジェクトです。個人のカーボンフットプリントを推定するアンケートのための API を提供します。
+じぶんごとプラネットのバックエンドのプロジェクトです。個人のカーボンフットプリントを推定し削減施策を算出するアンケートのための API を提供します。
 
 ## REST API
 
@@ -46,7 +46,7 @@ GET [REST API endpoint]/footprints/baseline/[domain]
 
 ### リクエストとレスポンスの内容
 
-[schema.graphql](amplify/backend/api/JibungotoPlanetGql/schema.graphql)の Profile の定義を確認下さい。2022 年 6 月現在、JSON 形式のみサポートされています。なお、シェア用には各種回答情報と[id]が削除されたレスポンスが返ります。
+[schema.graphql](amplify/backend/api/JibungotoPlanetGql/schema.graphql)の Profile の定義を確認下さい。2022 年 8 月現在、JSON 形式のみサポートされています。なお、シェア用には各種回答情報と[id]が削除されたレスポンスが返ります。
 
 ### Profile の baselines, estimations, actions の使い方
 
@@ -81,4 +81,4 @@ Baseline, Estimation, Action が個別のデータ項目で、domain+item+type �
 
 ## バックエンドの開発について
 
-開発は aws Amplify の環境で進めています（2022 年 6 月現在）。詳細は[CONTRIBUTING](CONTRIBUTING.md)を参照下さい。
+開発は aws Amplify の環境で進めています（2022 年 8 月現在）。詳細は[CONTRIBUTING](CONTRIBUTING.md)を参照下さい。

@@ -1,5 +1,28 @@
 # Contributor Guide
 
+## アーキテクチャ
+
+### 全体構成
+
+![アーキテクチャ全体構成](doc/img/archtecture.png)
+
+### バックエンド実装方案選定の考え方
+
+#### 経緯
+
+- 様々な主体からカーボンフットプリントの計算に対しての需要があり、それをオープンソース化したい。
+- 上記を実現する手段として、計算関数を Code for Japan がホストする API にして公開し、開発者が使いやすい状態にする方案を採用。
+- また、API 単体ではの使い方のイメージがつかず広めていくことは難しいため、個人のカーボンフットプリントと削減施策を算出する「じぶんごとプラネット」としてユースケースも同時に作る。
+
+#### 実装方案選定の前提条件
+
+- Code for Japan で使える aws の環境があるためバックエンド環境は aws を採用。
+- 計算関数は、基本的にはテーブルルックアップ主体のロジックで、負荷の高い計算は行わないことから lambda で実装する方案を採用。
+- データベースはキー読み、JSON の保存ができればよく、複雑なデータの結合は必要ないため dynamodb を採用。
+- API は初期バージョンでは REST、将来的には GraphQL もサポートしたい。
+
+上記の前提で開発を効率的に進めるため、本プロジェクトでは aws Amplify を採用。
+
 ## バックエンドの開発
 
 ### 前提条件
@@ -167,14 +190,13 @@ yarn add --dev jest ts-jest supertest eslint-plugin-jest @types/jest @types/supe
 
 tsconfig.json をプロジェクトルートに作成します。内容は以下です。
 
-````json
+```json
 {
   "compilerOptions": {
     "esModuleInterop": true
   }
 }
-```json
-````
+```
 
 jest.config.js をプロジェクトルートに作成します。内容は以下です。
 
@@ -218,8 +240,50 @@ app.listen(3000, function () {
 })
 ```
 
-`src/__test__`にテストコードを保存します。`amplify mock`を別シェルで実行後、`yarn test`もしくは`yarn jest`を実行下さい。
+`src/tests`にテストコードを保存します。`amplify mock`を別シェルで実行後、`yarn test`もしくは`yarn jest`を実行下さい。
 
 #### テストツール
 
-テストの効率化のため、Excel からテストケース、期待する結果を読み込んで検証する仕組みを構築しました。`src/tests/test-cases.xlsx`の answers シートにテストケース（xxxAnswer の値を設定）を作成し、case 名と同じ名前のシートに期待する結果を記入します。一行目が黄色の列のデータを取り込み、テストを実施します。
+テストの効率化のため、Excel からテストケース、期待する結果を読み込んで検証する仕組みを構築しました。`src/tests/xxx-xxx-test-cases.xlsx`の answers シートにテストケース（xxxAnswer の値を設定）を作成し、case 名と同じ名前のシートに期待する結果を記入します。一行目が黄色の列のデータを取り込み、テストを実施します。
+
+## バックエンドの運用方法
+
+### Amplify の環境
+
+以下の３つの環境を用意していますが、運用においては後述する課題があります。
+|環境|名前|用途|
+|---|---|---|
+|dev|開発環境|主にバックエンドの開発用に利用|
+|stg|テスト環境|主にフロントエンドの開発用に利用|
+|prd|本番環境|本番で利用|
+
+### データの更新方法
+
+Footprint, Parameter, Option のデータは data/aws フォルダの `load-dev.sh`, `load-stg.sh`, `load-prd.sh` スクリプトを実行することで各環境のデータを更新できます。各テーブルのデータを全削除して再ロードします。左記のスクリプトを実行するためには、data/aws/config.ini に AWS_ACCESS_KEY_ID, AWS_SECRET_KEY, REGION を設定する必要があります。data/aws/sample.config.ini にサンプルの設定を記載していますでコピーして書き換えて下さい。
+
+### 特記事項
+
+#### dynamodb のテーブル名
+
+GraphQL と REST で同じ dynamodb を参照するため、Amplify が自動生成する dynamodb のテーブルを REST から参照・更新する構成にしています。自動生成されたテーブル名のためかなり長い名前になります。
+
+| 環境 | テーブル名                               | 説明                                               |
+| ---- | ---------------------------------------- | -------------------------------------------------- |
+| dev  | Footprint-3uyvqum6jrc4pf63cde7njsxei-dev | フットプリントの数量、原単位の全国標準情報         |
+| dev  | Parameter-3uyvqum6jrc4pf63cde7njsxei-dev | 個人のフットプリントの計算に必要なパラメーター情報 |
+| dev  | Option-3uyvqum6jrc4pf63cde7njsxei-dev    | 削減施策を計算するためのパラメータ情報             |
+| dev  | Profile-3uyvqum6jrc4pf63cde7njsxei-dev   | 個人のフットプリントの計算結果を保存               |
+| stg  | Footprint-epwhhio5abgdthpzpwfkaox4ba-stg | フットプリントの数量、原単位の全国標準情報         |
+| stg  | Parameter-epwhhio5abgdthpzpwfkaox4ba-stg | 個人のフットプリントの計算に必要なパラメーター情報 |
+| stg  | Option-epwhhio5abgdthpzpwfkaox4ba-stg    | 削減施策を計算するためのパラメータ情報             |
+| stg  | Profile-epwhhio5abgdthpzpwfkaox4ba-stg   | 個人のフットプリントの計算結果を保存               |
+| prd  | Footprint-z6dhum3edrgfpb2gc4mmjdexpu-prd | フットプリントの数量、原単位の全国標準情報         |
+| prd  | Parameter-z6dhum3edrgfpb2gc4mmjdexpu-prd | 個人のフットプリントの計算に必要なパラメーター情報 |
+| prd  | Option-z6dhum3edrgfpb2gc4mmjdexpu-prd    | 削減施策を計算するためのパラメータ情報             |
+| prd  | Profile-z6dhum3edrgfpb2gc4mmjdexpu-prd   | 個人のフットプリントの計算結果を保存               |
+
+#### lambda から dynamodb へのアクセス設定
+
+REST API から上記の dynamodb へアクセスする場合は`amplify update function`で上記のテーブルへのアクセス権を付与する必要があります（dev, stg, prd 各々に設定する必要があります）。アクセス権の設定は lambda への環境変数で渡されますが（ソースコードの`/* Amplify Params - DO NOT EDIT ... Amplify Params - DO NOT EDIT */`内に記載されています）、アクセスするテーブル数が多いと環境変数の容量制限に引っかかります。
+
+profile 編集用の lambda(profilea2218c7f)がこの制約に引っかかっており、3 つの環境へのアクセス設定ができない状況です。現状は dev はアクセス可能な状況にしておいて、stg に`amplify push`する際は stg のテーブルにアクセス許可を付与し、prd に`amplify push`するときは stg のテーブルへのアクセス許可を解除して、prd へのアクセス許可を付与する設定変更を実施しています。開発が落ち着いたら stg は廃止して、dev, prd の２環境で運用保守を進めることで上記の問題は解消できます。

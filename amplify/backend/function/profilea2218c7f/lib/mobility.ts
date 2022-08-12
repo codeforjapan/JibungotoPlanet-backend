@@ -397,8 +397,6 @@ const estimateMobility = async (
       return a
     }, {})
 
-    // console.log(JSON.stringify(consumptionByArea))
-
     estimationAmount.airplane.value =
       consumptionByArea[mileageByAreaFirstKey + '_airplane']
     estimationAmount.train.value =
@@ -423,8 +421,6 @@ const estimateMobility = async (
     const additionalAmount = {
       bicycleDriving: createAmount(baselines, 'bicycle-driving'),
       walking: createAmount(baselines, 'walking'),
-      privateCarPurchase: createAmount(baselines, 'private-car-purchase'),
-      privateCarMaintenance: createAmount(baselines, 'private-car-maintenance'),
       bicycleMaintenance: createAmount(baselines, 'bicycle-maintenance')
     }
 
@@ -432,10 +428,6 @@ const estimateMobility = async (
       consumptionByArea[mileageByAreaFirstKey + '_walking']
     additionalAmount.bicycleDriving.value =
       consumptionByArea[mileageByAreaFirstKey + '_bicycle-driving']
-    additionalAmount.privateCarPurchase.value =
-      consumptionByArea[mileageByAreaFirstKey + '_private-car-purchase']
-    additionalAmount.privateCarMaintenance.value =
-      consumptionByArea[mileageByAreaFirstKey + '_private-car-maintenance']
     additionalAmount.bicycleMaintenance.value =
       consumptionByArea[mileageByAreaFirstKey + '_bicycle-maintenance']
 

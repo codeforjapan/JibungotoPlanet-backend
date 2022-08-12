@@ -210,7 +210,7 @@ eco-tourism,other_culture-leisure_amount,0,,absolute-target,Koide et al. 2021. E
 eco-tourism,other_entertainment-leisure_amount,0,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 eco-tourism,other_sports-leisure_amount,0,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 eco-tourism,other_bath-spa_amount,0,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
-zeh,housing_housing-maintenance_amount,81.06712652,,add-amount,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
+zeh,housing_housing-maintenance_amount,0.744995626,,increase-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 zeh,housing_electricity_amount,0.369,-0.2 housing_urban-gas_amount housing_lpg_amount housing_kerosene_amount housing_other-energy_amount,shift-from-other-items-then-reduction-rate,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 zeh,housing_urban-gas_amount,0,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z
 zeh,housing_lpg_amount,0,,absolute-target,Koide et al. 2021. Environmental Research Letters 16 084001,2022-07-29T21:56:16.220Z,2022-07-29T21:56:16.220Z

@@ -1,1 +1,1 @@
-curl ${JIBUNGOTO_PLANET_REST}/profiles/35f9a461-4d01-4974-8a5b-5e9072c363a1 > get.result.json
+curl ${JIBUNGOTO_PLANET_REST}/profiles/6b2b92a0-cf3e-4bca-9281-c579be5c1a4a > get.result.json

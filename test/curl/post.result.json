@@ -2,10 +2,8 @@
   "success": "post call succeed!",
   "url": "/profiles",
   "data": {
-    "id": "35f9a461-4d01-4974-8a5b-5e9072c363a1",
-    "shareId": "tuofWVWJY",
-    "baselines": [],
-    "estimations": [],
+    "id": "6b2b92a0-cf3e-4bca-9281-c579be5c1a4a",
+    "shareId": "iDRh8tmAc",
     "actionIntensityRates": [
       { "option": "zeh", "value": 1, "defaultValue": 1, "range": [0, 1] },
       { "option": "self-re", "value": 1, "defaultValue": 1, "range": [0, 1] },
@@ -131,9 +129,6 @@
         "defaultValue": 0.25,
         "range": []
       }
-    ],
-    "createdAt": "2022-08-01T12:05:00.500Z",
-    "updatedAt": "2022-08-01T12:05:00.500Z",
-    "actions": []
+    ]
   }
 }
