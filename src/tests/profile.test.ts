@@ -251,7 +251,7 @@ describe('Test profile operation', () => {
     expect(profile.region).toBe('hokkaido')
     expect(profile.actionIntensityRates.length).toBe(34)
     for (const air of profile.actionIntensityRates) {
-      expect(air.value).toBe(air.defaultValue)
+      expect(air.value).toBe(0)
     }
     expect(profile.baselines).toBeFalsy()
     expect(profile.estimations).toBeFalsy()
@@ -264,11 +264,11 @@ describe('Test profile operation', () => {
         actionIntensityRates: [
           {
             option: 'zeh',
-            value: 0
+            value: 1
           },
           {
             option: 'self-re',
-            value: 0
+            value: 1
           }
         ]
       })
@@ -283,7 +283,7 @@ describe('Test profile operation', () => {
     expect(newProfile.actionIntensityRates.length).toBe(34)
     for (const air of newProfile.actionIntensityRates) {
       expect(air.value).toBe(
-        air.option === 'zeh' || air.option === 'self-re' ? 0 : air.defaultValue
+        air.option === 'zeh' || air.option === 'self-re' ? 1 : 0
       )
     }
 
@@ -311,7 +311,7 @@ describe('Test profile operation', () => {
     expect(newProfile2.actions.length > 0).toBeTruthy()
     for (const air of newProfile2.actionIntensityRates) {
       expect(air.value).toBe(
-        air.option === 'zeh' || air.option === 'self-re' ? 0 : air.defaultValue
+        air.option === 'zeh' || air.option === 'self-re' ? 1 : 0
       )
     }
   })

@@ -48,8 +48,6 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const { v4: uuid } = require('uuid')
 const shortid = require('shortid')
-// const Ajv = require('ajv')
-// const ajv = new Ajv()
 
 AWS.config.update({ region: process.env.TABLE_REGION })
 
@@ -168,7 +166,7 @@ const mergeActionIntensityRates = (orgRates, newRates) => {
     let value = newRates?.find((air) => air.option === item.option)?.value
     if (value === null || value === undefined || isNaN(value)) {
       if (item.value === null || item.value === undefined) {
-        value = item.defaultValue
+        value = 0 // 0で初期化
       } else {
         value = item.value
       }
@@ -314,7 +312,7 @@ app.put(path + '/:id', async (req, res) => {
     }
   } else {
     res.statusCode = 400
-    res.json({ error: 'Unsupported request' })
+    res.json({ error: validate.errors })
   }
 })
 
@@ -373,7 +371,7 @@ app.post(path, async (req, res) => {
     }
   } else {
     res.statusCode = 400
-    res.json({ error: 'Unsupported request' })
+    res.json({ error: validate.errors })
   }
 })
 

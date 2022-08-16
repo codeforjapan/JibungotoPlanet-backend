@@ -12,7 +12,7 @@ var schema = {
             type: 'string',
             pattern: 'hokkaido|tohoku|kanto|tokai|kinki|chugoku|sikoku|kyusyu|okinawa'
         },
-        housingAnswerSchema: {
+        housingAnswer: {
             type: 'object',
             properties: {
                 residentCount: { type: 'number' },
@@ -52,7 +52,7 @@ var schema = {
                 }
             }
         },
-        mobilityAnswerSchema: {
+        mobilityAnswer: {
             type: 'object',
             properties: {
                 carIntensityFactorFirstKey: {
@@ -86,7 +86,7 @@ var schema = {
                 ferryAnnualTravelingTime: { type: 'number' }
             }
         },
-        foodAnswerSchema: {
+        foodAnswer: {
             type: 'object',
             properties: {
                 foodIntakeFactorKey: {
@@ -135,7 +135,7 @@ var schema = {
                 }
             }
         },
-        otherAnswerSchema: {
+        otherAnswer: {
             type: 'object',
             properties: {
                 dailyGoodsAmountKey: {
@@ -175,43 +175,5 @@ var schema = {
     },
     additionalProperties: true
 };
-var validateSchema = ajv.compile(schema);
-var validate = function (body) {
-    /*
-    const validHousingAnswer = housingAnswer
-      ? validateHousingAnswer(housingAnswer)
-      : true
-    const validMobilityAnswer = mobilityAnswer
-      ? validateMobilityAnswer(mobilityAnswer)
-      : true
-    const validFoodAnswer = foodAnswer ? validateFoodAnswer(foodAnswer) : true
-    const validOtherAnswer = otherAnswer ? validateOtherAnswer(otherAnswer) : true
-    */
-    /*
-    if (!validHousingAnswer) {
-      console.log(housingAnswer)
-      console.log(validateHousingAnswer.errors)
-    }
-    if (!validMobilityAnswer) {
-      console.log(mobilityAnswer)
-      console.log(validateMobilityAnswer.errors)
-    }
-    if (!validFoodAnswer) {
-      console.log(foodAnswer)
-      console.log(validateFoodAnswer.errors)
-    }
-    if (!validOtherAnswer) {
-      console.log(otherAnswer)
-      console.log(validateOtherAnswer.errors)
-    }
-    */
-    return validateSchema(body);
-    /*
-      validHousingAnswer &&
-      validMobilityAnswer &&
-      validFoodAnswer &&
-      validOtherAnswer
-    )
-    */
-};
+var validate = ajv.compile(schema);
 exports.validate = validate;
