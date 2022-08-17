@@ -12,7 +12,7 @@ const schema = {
       pattern: 'hokkaido|tohoku|kanto|tokai|kinki|chugoku|sikoku|kyusyu|okinawa'
     },
 
-    housingAnswerSchema: {
+    housingAnswer: {
       type: 'object',
       properties: {
         residentCount: { type: 'number' },
@@ -57,7 +57,7 @@ const schema = {
       }
     },
 
-    mobilityAnswerSchema: {
+    mobilityAnswer: {
       type: 'object',
       properties: {
         carIntensityFactorFirstKey: {
@@ -95,7 +95,7 @@ const schema = {
       }
     },
 
-    foodAnswerSchema: {
+    foodAnswer: {
       type: 'object',
       properties: {
         foodIntakeFactorKey: {
@@ -155,7 +155,7 @@ const schema = {
       }
     },
 
-    otherAnswerSchema: {
+    otherAnswer: {
       type: 'object',
       properties: {
         dailyGoodsAmountKey: {
@@ -200,47 +200,12 @@ const schema = {
   additionalProperties: true
 }
 
-const validateSchema = ajv.compile(schema)
+const validate = ajv.compile(schema)
 
-const validate = (body) => {
-  /*
-  const validHousingAnswer = housingAnswer
-    ? validateHousingAnswer(housingAnswer)
-    : true
-  const validMobilityAnswer = mobilityAnswer
-    ? validateMobilityAnswer(mobilityAnswer)
-    : true
-  const validFoodAnswer = foodAnswer ? validateFoodAnswer(foodAnswer) : true
-  const validOtherAnswer = otherAnswer ? validateOtherAnswer(otherAnswer) : true
-  */
-
-  /*
-  if (!validHousingAnswer) {
-    console.log(housingAnswer)
-    console.log(validateHousingAnswer.errors)
-  }
-  if (!validMobilityAnswer) {
-    console.log(mobilityAnswer)
-    console.log(validateMobilityAnswer.errors)
-  }
-  if (!validFoodAnswer) {
-    console.log(foodAnswer)
-    console.log(validateFoodAnswer.errors)
-  }
-  if (!validOtherAnswer) {
-    console.log(otherAnswer)
-    console.log(validateOtherAnswer.errors)
-  }
-  */
-
+/*
+const validate = (body): { bool; any } => {
   return validateSchema(body)
-  /*
-    validHousingAnswer &&
-    validMobilityAnswer &&
-    validFoodAnswer &&
-    validOtherAnswer
-  )
-  */
 }
+*/
 
 export { validate }
