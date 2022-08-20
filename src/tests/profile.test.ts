@@ -355,4 +355,50 @@ describe('Test profile operation', () => {
 
     expect(resPost.status).toBe(400)
   })
+
+  test('create profile with a long wrong key', async () => {
+    const resPost = await request(app)
+      .post('/profiles')
+      .send({
+        estimate: true,
+        housingAnswer: {
+          housingSizeKey: 'unknown-answer'
+        }
+      })
+      .set('x-apigateway-event', null) // エラーを出さないおまじない
+      .set('x-apigateway-context', null) // エラーを出さないおまじない
+
+    expect(resPost.status).toBe(400)
+  })
+
+  test('create profile with residentCount = 0', async () => {
+    const resPost = await request(app)
+      .post('/profiles')
+      .send({
+        estimate: true,
+        housingAnswer: {
+          residentCount: 0
+        }
+      })
+      .set('x-apigateway-event', null) // エラーを出さないおまじない
+      .set('x-apigateway-context', null) // エラーを出さないおまじない
+
+    expect(resPost.status).toBe(400)
+  })
+
+  test('create profile with otherCarAnnualTravelingTime: -100', async () => {
+    const resPost = await request(app)
+      .post('/profiles')
+      .send({
+        estimate: true,
+        mobilityAnswer: {
+          hasTravelingTime: true,
+          otherCarAnnualTravelingTime: -100
+        }
+      })
+      .set('x-apigateway-event', null) // エラーを出さないおまじない
+      .set('x-apigateway-context', null) // エラーを出さないおまじない
+
+    expect(resPost.status).toBe(400)
+  })
 })
