@@ -386,7 +386,7 @@ describe('Test profile operation', () => {
     expect(resPost.status).toBe(400)
   })
 
-  test('create profile with otherCarAnnualTravelingTime: -100', async () => {
+  test('create profile with otherCarAnnualTravelingTime = -100', async () => {
     const resPost = await request(app)
       .post('/profiles')
       .send({
@@ -400,5 +400,38 @@ describe('Test profile operation', () => {
       .set('x-apigateway-context', null) // エラーを出さないおまじない
 
     expect(resPost.status).toBe(400)
+  })
+
+  test('create profile with keroseneMonthlyConsumption = 100', async () => {
+    const resPost = await request(app)
+      .post('/profiles')
+      .send({
+        estimate: true,
+        mobilityAnswer: {
+          useKerosene: true,
+          keroseneMonthlyConsumption: 100
+        }
+      })
+      .set('x-apigateway-event', null) // エラーを出さないおまじない
+      .set('x-apigateway-context', null) // エラーを出さないおまじない
+
+    expect(resPost.status).toBe(200)
+  })
+
+  test('create profile with trainWeeklyTravelingTime = 0 and busWeeklyTravelingTime = 100', async () => {
+    const resPost = await request(app)
+      .post('/profiles')
+      .send({
+        estimate: true,
+        mobilityAnswer: {
+          hasTravelingTime: true,
+          trainWeeklyTravelingTime: 0,
+          busWeeklyTravelingTime: 100
+        }
+      })
+      .set('x-apigateway-event', null) // エラーを出さないおまじない
+      .set('x-apigateway-context', null) // エラーを出さないおまじない
+
+    expect(resPost.status).toBe(200)
   })
 })
