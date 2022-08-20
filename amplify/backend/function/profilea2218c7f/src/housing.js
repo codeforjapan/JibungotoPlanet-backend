@@ -101,6 +101,10 @@ var estimateHousing = function (dynamodb, housingAnswer, mobilityAnswer, footpri
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
                 residentCount = housingAnswer.residentCount;
+                // 住居人数が0以下の場合はベースラインのみ返す
+                if (residentCount <= 0) {
+                    return [2 /*return*/, { baselines: baselines, estimations: estimations }];
+                }
                 estimationAmount = {
                     'land-rent': createAmount('land-rent'),
                     'imputed-rent': createAmount('imputed-rent'),
@@ -177,7 +181,8 @@ var estimateHousing = function (dynamodb, housingAnswer, mobilityAnswer, footpri
                 estimations.push(electricityIntensity);
                 _l.label = 7;
             case 7:
-                if (!(housingAnswer.electricityMonthlyConsumption &&
+                if (!(housingAnswer.electricityMonthlyConsumption != undefined &&
+                    housingAnswer.electricityMonthlyConsumption != null &&
                     housingAnswer.electricitySeasonFactorKey)) return [3 /*break*/, 12];
                 return [4 /*yield*/, getData('electricity-season-factor', housingAnswer.electricitySeasonFactorKey)];
             case 8:
@@ -212,7 +217,8 @@ var estimateHousing = function (dynamodb, housingAnswer, mobilityAnswer, footpri
             case 12:
                 if (!housingAnswer.useGas) return [3 /*break*/, 16];
                 gasParam = null;
-                if (!(housingAnswer.gasMonthlyConsumption &&
+                if (!(housingAnswer.gasMonthlyConsumption != undefined &&
+                    housingAnswer.gasMonthlyConsumption != null &&
                     housingAnswer.gasSeasonFactorKey)) return [3 /*break*/, 15];
                 return [4 /*yield*/, getData('gas-season-factor', housingAnswer.gasSeasonFactorKey)];
             case 13:
@@ -228,13 +234,13 @@ var estimateHousing = function (dynamodb, housingAnswer, mobilityAnswer, footpri
                 _l.label = 15;
             case 15:
                 if (housingAnswer.energyHeatIntensityKey === 'lpg') {
-                    if (gasParam) {
+                    if (gasParam != null) {
                         estimationAmount.lpg.value = gasParam;
                     }
                     estimationAmount['urban-gas'].value = 0;
                 }
                 else if (housingAnswer.energyHeatIntensityKey === 'urban-gas') {
-                    if (gasParam) {
+                    if (gasParam != null) {
                         estimationAmount['urban-gas'].value = gasParam;
                     }
                     estimationAmount.lpg.value = 0;
@@ -252,8 +258,10 @@ var estimateHousing = function (dynamodb, housingAnswer, mobilityAnswer, footpri
                 _l.label = 17;
             case 17:
                 if (!housingAnswer.useKerosene) return [3 /*break*/, 20];
-                if (!(housingAnswer.keroseneMonthlyConsumption &&
-                    housingAnswer.keroseneMonthCount)) return [3 /*break*/, 19];
+                if (!(housingAnswer.keroseneMonthlyConsumption != undefined &&
+                    housingAnswer.keroseneMonthlyConsumption != null &&
+                    housingAnswer.keroseneMonthCount != undefined &&
+                    housingAnswer.keroseneMonthCount != null)) return [3 /*break*/, 19];
                 return [4 /*yield*/, getData('energy-heat-intensity', 'kerosene')];
             case 18:
                 keroseneData = _l.sent();

@@ -61,6 +61,10 @@ const estimateHousing = async (
     return { baselines, estimations }
   }
   const residentCount = housingAnswer.residentCount
+  // 住居人数が0以下の場合はベースラインのみ返す
+  if (residentCount <= 0) {
+    return { baselines, estimations }
+  }
 
   // 下記部分でパラメータ名から一致を取る必要があるため、ケバブのまま変数化
   const estimationAmount = {
@@ -169,7 +173,8 @@ const estimateHousing = async (
 
   // 電力使用量
   if (
-    housingAnswer.electricityMonthlyConsumption &&
+    housingAnswer.electricityMonthlyConsumption != undefined &&
+    housingAnswer.electricityMonthlyConsumption != null &&
     housingAnswer.electricitySeasonFactorKey
   ) {
     const electricitySeason = await getData(
@@ -216,7 +221,8 @@ const estimateHousing = async (
   if (housingAnswer.useGas) {
     let gasParam = null
     if (
-      housingAnswer.gasMonthlyConsumption &&
+      housingAnswer.gasMonthlyConsumption != undefined &&
+      housingAnswer.gasMonthlyConsumption != null &&
       housingAnswer.gasSeasonFactorKey
     ) {
       const gasSeason = await getData(
@@ -235,12 +241,12 @@ const estimateHousing = async (
         residentCount
     }
     if (housingAnswer.energyHeatIntensityKey === 'lpg') {
-      if (gasParam) {
+      if (gasParam != null) {
         estimationAmount.lpg.value = gasParam
       }
       estimationAmount['urban-gas'].value = 0
     } else if (housingAnswer.energyHeatIntensityKey === 'urban-gas') {
-      if (gasParam) {
+      if (gasParam != null) {
         estimationAmount['urban-gas'].value = gasParam
       }
       estimationAmount.lpg.value = 0
@@ -257,8 +263,10 @@ const estimateHousing = async (
   // 灯油の使用の有無
   if (housingAnswer.useKerosene) {
     if (
-      housingAnswer.keroseneMonthlyConsumption &&
-      housingAnswer.keroseneMonthCount
+      housingAnswer.keroseneMonthlyConsumption != undefined &&
+      housingAnswer.keroseneMonthlyConsumption != null &&
+      housingAnswer.keroseneMonthCount != undefined &&
+      housingAnswer.keroseneMonthCount != null
     ) {
       const keroseneData = await getData('energy-heat-intensity', 'kerosene')
       estimationAmount.kerosene.value =

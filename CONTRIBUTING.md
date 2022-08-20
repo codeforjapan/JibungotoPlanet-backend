@@ -41,8 +41,6 @@ OpenJDK 64-Bit Server VM (build 16.0.1+9-24, mixed mode, sharing)
 aws-cli/2.7.7 Python/3.9.11 Darwin/21.5.0 exe/x86_64 prompt/off # aws cliのバージョン
 ```
 
----
-
 ### ローカルのでの開発方法
 
 #### 環境構築
@@ -246,6 +244,10 @@ app.listen(3000, function () {
 
 テストの効率化のため、Excel からテストケース、期待する結果を読み込んで検証する仕組みを構築しました。`src/tests/xxx-xxx-test-cases.xlsx`の answers シートにテストケース（xxxAnswer の値を設定）を作成し、case 名と同じ名前のシートに期待する結果を記入します。一行目が黄色の列のデータを取り込み、テストを実施します。
 
+:::note warn
+github に push する際は `yarn test` が動くため、`amplify mock`で mock 環境を立ち上げておいてください。
+:::
+
 ## バックエンドの運用方法
 
 ### Amplify の環境
@@ -260,6 +262,11 @@ app.listen(3000, function () {
 ### データの更新方法
 
 Footprint, Parameter, Option のデータは data/aws フォルダの `load-dev.sh`, `load-stg.sh`, `load-prd.sh` スクリプトを実行することで各環境のデータを更新できます。各テーブルのデータを全削除して再ロードします。左記のスクリプトを実行するためには、data/aws/config.ini に AWS_ACCESS_KEY_ID, AWS_SECRET_KEY, REGION を設定する必要があります。data/aws/sample.config.ini にサンプルの設定を記載していますでコピーして書き換えて下さい。
+
+各々のスクリプトでは、`data/footprint.csv`, `data/parameter.csv`, `data/option.csv` をテーブルにロードしますが、これらの csv ファイルは別途管理する Excel ファイルから生成されます。注意事項としては、
+
+- ロードに使っている dynamodb-csv が対応する文字コードは UTF8 になります。Excel が出力する UTF8 は BOM 付き UTF8 で、dynamodb-csv では読めません。
+- 上記から、parameter.csv ファイルを生成する際は、日本語が含まれていますので一旦 Shift JIS の csv ファイルで保存してもらい、テキストエディタ等 UTF8 に変換して下さい。
 
 ### 特記事項
 
@@ -287,3 +294,7 @@ GraphQL と REST で同じ dynamodb を参照するため、Amplify が自動生
 REST API から上記の dynamodb へアクセスする場合は`amplify update function`で上記のテーブルへのアクセス権を付与する必要があります（dev, stg, prd 各々に設定する必要があります）。アクセス権の設定は lambda への環境変数で渡されますが（ソースコードの`/* Amplify Params - DO NOT EDIT ... Amplify Params - DO NOT EDIT */`内に記載されています）、アクセスするテーブル数が多いと環境変数の容量制限に引っかかります。
 
 profile 編集用の lambda(profilea2218c7f)がこの制約に引っかかっており、3 つの環境へのアクセス設定ができない状況です。現状は dev はアクセス可能な状況にしておいて、stg に`amplify push`する際は stg のテーブルにアクセス許可を付与し、prd に`amplify push`するときは stg のテーブルへのアクセス許可を解除して、prd へのアクセス許可を付与する設定変更を実施しています。開発が落ち着いたら stg は廃止して、dev, prd の２環境で運用保守を進めることで上記の問題は解消できます。
+
+## 残課題
+
+- parameter テーブル、option テーブルについては更新頻度も少なく、データとして他の用途に流用することもないので、json に変換して、lambda のプログラムの一部として読みこむ方案も考えられる。これにより dynamodb へのアクセスが減りレスポンスも向上する。
