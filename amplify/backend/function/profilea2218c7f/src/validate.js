@@ -6,7 +6,7 @@ var ajv = new ajv_1["default"]();
 var schema = {
     type: 'object',
     properties: {
-        gender: { type: 'string', pattern: '^male$|^female$|^unknown' },
+        gender: { type: 'string', pattern: '^male$|^female$|^unknown$' },
         age: {
             type: 'string',
             pattern: '^10s$|^20s$|^30s$|^40s$|^50s$|^60s$|^70s-$'
@@ -114,7 +114,7 @@ var schema = {
                 },
                 dishChickenFactorKey: {
                     type: 'string',
-                    pattern: '^everyday$|^4-5-per-week$|^2-3-per-week$|^1-per-week$|^2-3-per-month$|^1-less-per-month$|^never$|^unknown'
+                    pattern: '^everyday$|^4-5-per-week$|^2-3-per-week$|^1-per-week$|^2-3-per-month$|^1-less-per-month$|^never$|^unknown$'
                 },
                 dishSeafoodFactorKey: {
                     type: 'string',
