@@ -68,7 +68,6 @@ const estimateHousing = async (
 
   // 下記部分でパラメータ名から一致を取る必要があるため、ケバブのまま変数化
   const estimationAmount = {
-    'land-rent': createAmount('land-rent'),
     'imputed-rent': createAmount('imputed-rent'),
     rent: createAmount('rent'),
     'housing-maintenance': createAmount('housing-maintenance'),

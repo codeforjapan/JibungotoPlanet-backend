@@ -106,7 +106,6 @@ var estimateHousing = function (dynamodb, housingAnswer, mobilityAnswer, footpri
                     return [2 /*return*/, { baselines: baselines, estimations: estimations }];
                 }
                 estimationAmount = {
-                    'land-rent': createAmount('land-rent'),
                     'imputed-rent': createAmount('imputed-rent'),
                     rent: createAmount('rent'),
                     'housing-maintenance': createAmount('housing-maintenance'),
