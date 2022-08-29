@@ -244,9 +244,8 @@ app.listen(3000, function () {
 
 テストの効率化のため、Excel からテストケース、期待する結果を読み込んで検証する仕組みを構築しました。`src/tests/xxx-xxx-test-cases.xlsx`の answers シートにテストケース（xxxAnswer の値を設定）を作成し、case 名と同じ名前のシートに期待する結果を記入します。一行目が黄色の列のデータを取り込み、テストを実施します。
 
-:::note warn
-github に push する際は `yarn test` が動くため、`amplify mock`で mock 環境を立ち上げておいてください。
-:::
+> **Note**
+> github に push する際は `yarn test` が動くため、`amplify mock`で mock 環境を立ち上げておいてください。
 
 ## バックエンドの運用方法
 
