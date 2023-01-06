@@ -4,19 +4,28 @@ import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
 
 export class DynamodbStack extends Stack {
-  public readonly table: aws_dynamodb.Table
+  public readonly itemTable: aws_dynamodb.Table
+  public readonly profileTable: aws_dynamodb.Table
 
   constructor(scope: Construct, id: string, props: BaseStackProps) {
     super(scope, id, props);
 
-    this.table = new Table(this, "items", {
+    this.itemTable = new Table(this, `${ props.stage }${ props.serviceName }items`, {
       partitionKey: {
         name: "itemId",
-        type: AttributeType.STRING,
+        type: AttributeType.STRING
       },
-      tableName: "items",
-      removalPolicy: RemovalPolicy.DESTROY, // NOT recommended for production code
-    });
+      tableName: `${ props.stage }${ props.serviceName }items`,
+      removalPolicy: RemovalPolicy.DESTROY
+    })
 
+    this.profileTable = new Table(this, `${ props.stage }${ props.serviceName }profiles`, {
+      partitionKey: {
+        name: "id",
+        type: AttributeType.STRING
+      },
+      tableName: `${ props.stage }${ props.serviceName }profile`,
+      removalPolicy: RemovalPolicy.DESTROY
+    })
   }
 }

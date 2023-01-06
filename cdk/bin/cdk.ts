@@ -3,6 +3,7 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { Config, getConfig } from '../lib/config';
 import { AppStack } from "../lib/app-stack";
+import { DynamodbStack } from "../lib/dynamodb-stack";
 
 const app = new cdk.App();
 
@@ -20,8 +21,15 @@ const env = {
   region: config.aws.region
 }
 
-new AppStack(app, `${ stage }${ serviceName }AppStack`, {
+const dynamoDB = new DynamodbStack(app, `${ stage }${ serviceName }DynamoDBStack`, {
   stage,
   env,
   serviceName
+})
+
+new AppStack(app, `${ stage }${ serviceName }AppStack`, {
+  stage,
+  env,
+  serviceName,
+  dynamoTable: dynamoDB.itemTable
 })

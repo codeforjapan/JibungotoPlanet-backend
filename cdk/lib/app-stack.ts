@@ -1,7 +1,6 @@
-import { aws_lambda_nodejs, RemovalPolicy, Stack } from "aws-cdk-lib";
+import { aws_dynamodb, aws_lambda_nodejs, Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
-import { AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import {
   LambdaIntegration,
@@ -9,18 +8,13 @@ import {
 } from "aws-cdk-lib/aws-apigateway";
 import * as path from "path";
 
-export class AppStack extends Stack {
-  constructor(scope: Construct, id: string, props: BaseStackProps) {
-    super(scope, id, props);
+export interface AppStackProps extends BaseStackProps {
+  dynamoTable: aws_dynamodb.Table
+}
 
-    const dynamoTable = new Table(this, "items", {
-      partitionKey: {
-        name: "itemId",
-        type: AttributeType.STRING
-      },
-      tableName: 'items',
-      removalPolicy: RemovalPolicy.DESTROY
-    })
+export class AppStack extends Stack {
+  constructor(scope: Construct, id: string, props: AppStackProps) {
+    super(scope, id, props);
 
     const getItemLambda = new aws_lambda_nodejs.NodejsFunction(this, "getOneItemFunction", {
       functionName: `${ props.stage }${ props.serviceName }itemLambda`,
@@ -28,7 +22,7 @@ export class AppStack extends Stack {
       handler: "handler",
       runtime: Runtime.NODEJS_16_X,
       environment: {
-        TABLE_NAME: dynamoTable.tableName,
+        TABLE_NAME: props.dynamoTable.tableName,
         PRIMARY_KEY: "itemId",
       },
     })
@@ -39,7 +33,7 @@ export class AppStack extends Stack {
       runtime: Runtime.NODEJS_16_X,
     })
 
-    dynamoTable.grantReadData(getItemLambda);
+    props.dynamoTable.grantReadData(getItemLambda);
 
     const api = new RestApi(this, `${ props.stage }${ props.serviceName }apiGateway`, {
       restApiName: `${ props.stage }${ props.serviceName }apiGateway`,
