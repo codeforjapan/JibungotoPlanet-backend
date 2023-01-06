@@ -4,6 +4,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Config, getConfig } from '../lib/config';
 import { AppStack } from "../lib/app-stack";
 import { DynamodbStack } from "../lib/dynamodb-stack";
+import { ApiGatewayStack } from "../lib/api-gateway-stack";
 
 const app = new cdk.App();
 
@@ -27,9 +28,17 @@ const dynamoDB = new DynamodbStack(app, `${ stage }${ serviceName }DynamoDBStack
   serviceName
 })
 
-new AppStack(app, `${ stage }${ serviceName }AppStack`, {
+const lambda = new AppStack(app, `${ stage }${ serviceName }AppStack`, {
   stage,
   env,
   serviceName,
   dynamoTable: dynamoDB.itemTable
+})
+
+new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewayStack`, {
+  stage,
+  env,
+  serviceName,
+  itemLambda: lambda.itemLambda,
+  helloLambda: lambda.helloLambda
 })
