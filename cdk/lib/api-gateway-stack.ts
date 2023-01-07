@@ -18,6 +18,10 @@ export class ApiGatewayStack extends Stack {
 
     const api = new RestApi(this, `${ props.stage }${ props.serviceName }apiGateway`, {
       restApiName: `${ props.stage }${ props.serviceName }apiGateway`,
+      deployOptions: {
+        tracingEnabled: true,
+        metricsEnabled: true,
+      },
     });
     const items = api.root.addResource("items");
     const hello = api.root.addResource("hello");
