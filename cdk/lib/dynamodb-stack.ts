@@ -5,6 +5,7 @@ import { BaseStackProps } from "./props";
 
 export class DynamodbStack extends Stack {
   public readonly itemTable: aws_dynamodb.Table
+  public readonly footprintTable: aws_dynamodb.Table
   public readonly profileTable: aws_dynamodb.Table
 
   constructor(scope: Construct, id: string, props: BaseStackProps) {
@@ -19,12 +20,21 @@ export class DynamodbStack extends Stack {
       removalPolicy: RemovalPolicy.DESTROY
     })
 
-    this.profileTable = new Table(this, `${ props.stage }${ props.serviceName }footprint`, {
+    this.footprintTable = new Table(this, `${ props.stage }${ props.serviceName }footprint`, {
       partitionKey: {
         name: "id",
         type: AttributeType.STRING
       },
       tableName: `${ props.stage }${ props.serviceName }footprint`,
+      removalPolicy: RemovalPolicy.DESTROY
+    })
+
+    this.profileTable = new Table(this, `${ props.stage }${ props.serviceName }profile`, {
+      partitionKey: {
+        name: "id",
+        type: AttributeType.STRING
+      },
+      tableName: `${ props.stage }${ props.serviceName }profile`,
       removalPolicy: RemovalPolicy.DESTROY
     })
   }

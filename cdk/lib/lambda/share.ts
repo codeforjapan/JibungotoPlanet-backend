@@ -1,5 +1,5 @@
 const awsServerlessExpress = require('aws-serverless-express')
-import app from './footprint-app'
+import app from './share-app'
 
 app.listen(3000, function () {
   console.log('App started')

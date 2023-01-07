@@ -10,6 +10,7 @@ export interface ApiGatewayStackProps extends BaseStackProps {
   itemLambda: aws_lambda_nodejs.NodejsFunction
   helloLambda: aws_lambda_nodejs.NodejsFunction
   footprintLambda: aws_lambda_nodejs.NodejsFunction
+  shareLambda: aws_lambda_nodejs.NodejsFunction
 }
 
 export class ApiGatewayStack extends Stack {
@@ -24,20 +25,29 @@ export class ApiGatewayStack extends Stack {
       },
     });
     const items = api.root.addResource("items");
-    const hello = api.root.addResource("hello");
-    const footprint = api.root.addResource("footprint",)
     const singleItem = items.addResource("{id}");
+
+    const hello = api.root.addResource("hello");
+
+    // memo replaceに向けて個別でルーティングする
+    const footprint = api.root.addResource("footprints",)
     const footprintDir = footprint.addResource("{dir}");
     const footprintDomain = footprintDir.addResource("{domain}");
     const footprintType = footprintDomain.addResource("{item}").addResource("{type}");
+
+    const share = api.root.addResource("shares",)
+    const shareId = share.addResource("{id}");
+
     const getItemIntegration = new LambdaIntegration(props.itemLambda);
     const getHelloIntegration = new LambdaIntegration(props.helloLambda);
     const footprintIntegration = new LambdaIntegration(props.footprintLambda);
+    const shareIntegration = new LambdaIntegration(props.shareLambda);
 
     singleItem.addMethod("GET", getItemIntegration);
     hello.addMethod("GET", getHelloIntegration)
     footprintDir.addMethod("GET", footprintIntegration)
     footprintDomain.addMethod("GET", footprintIntegration)
     footprintType.addMethod("GET", footprintIntegration)
+    shareId.addMethod("GET", shareIntegration)
   }
 }

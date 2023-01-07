@@ -6,6 +6,7 @@ import { AppStack } from "../lib/app-stack";
 import { DynamodbStack } from "../lib/dynamodb-stack";
 import { ApiGatewayStack } from "../lib/api-gateway-stack";
 import { FootprintStack } from "../lib/footprint-stack";
+import { ShareStack } from "../lib/share-stack";
 
 const app = new cdk.App();
 
@@ -41,6 +42,14 @@ const footprintLambda = new FootprintStack(app, `${ stage }${ serviceName }Footp
   stage,
   env,
   serviceName,
+  dynamoTable: dynamoDB.footprintTable
+})
+footprintLambda.addDependency(dynamoDB)
+
+const shareLambda = new ShareStack(app, `${ stage }${ serviceName }ShareStack`, {
+  stage,
+  env,
+  serviceName,
   dynamoTable: dynamoDB.profileTable
 })
 footprintLambda.addDependency(dynamoDB)
@@ -51,7 +60,9 @@ const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewa
   serviceName,
   itemLambda: lambda.itemLambda,
   helloLambda: lambda.helloLambda,
-  footprintLambda: footprintLambda.lambda
+  footprintLambda: footprintLambda.lambda,
+  shareLambda: shareLambda.lambda
 })
 apiGateway.addDependency(lambda)
 apiGateway.addDependency(footprintLambda)
+apiGateway.addDependency(shareLambda)
