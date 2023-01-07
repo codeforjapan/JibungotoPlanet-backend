@@ -25,6 +25,7 @@ export class ApiGatewayStack extends Stack {
     const singleItem = items.addResource("{id}");
     const footprintDir = footprint.addResource("{dir}");
     const footprintDomain = footprintDir.addResource("{domain}");
+    const footprintType = footprintDomain.addResource("{item}").addResource("{type}");
     const getItemIntegration = new LambdaIntegration(props.itemLambda);
     const getHelloIntegration = new LambdaIntegration(props.helloLambda);
     const footprintIntegration = new LambdaIntegration(props.footprintLambda);
@@ -33,5 +34,6 @@ export class ApiGatewayStack extends Stack {
     hello.addMethod("GET", getHelloIntegration)
     footprintDir.addMethod("GET", footprintIntegration)
     footprintDomain.addMethod("GET", footprintIntegration)
+    footprintType.addMethod("GET", footprintIntegration)
   }
 }
