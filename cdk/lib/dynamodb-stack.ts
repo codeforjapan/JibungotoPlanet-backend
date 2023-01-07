@@ -19,12 +19,12 @@ export class DynamodbStack extends Stack {
       removalPolicy: RemovalPolicy.DESTROY
     })
 
-    this.profileTable = new Table(this, `${ props.stage }${ props.serviceName }profiles`, {
+    this.profileTable = new Table(this, `${ props.stage }${ props.serviceName }footprint`, {
       partitionKey: {
         name: "id",
         type: AttributeType.STRING
       },
-      tableName: `${ props.stage }${ props.serviceName }profile`,
+      tableName: `${ props.stage }${ props.serviceName }footprint`,
       removalPolicy: RemovalPolicy.DESTROY
     })
   }
