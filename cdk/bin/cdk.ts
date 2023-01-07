@@ -5,6 +5,7 @@ import { Config, getConfig } from '../lib/config';
 import { AppStack } from "../lib/app-stack";
 import { DynamodbStack } from "../lib/dynamodb-stack";
 import { ApiGatewayStack } from "../lib/api-gateway-stack";
+import { FootprintStack } from "../lib/footprint-stack";
 
 const app = new cdk.App();
 
@@ -34,11 +35,23 @@ const lambda = new AppStack(app, `${ stage }${ serviceName }AppStack`, {
   serviceName,
   dynamoTable: dynamoDB.itemTable
 })
+lambda.addDependency(dynamoDB)
 
-new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewayStack`, {
+const footprintLambda = new FootprintStack(app, `${ stage }${ serviceName }FootprintStack`, {
+  stage,
+  env,
+  serviceName,
+  dynamoTable: dynamoDB.profileTable
+})
+footprintLambda.addDependency(dynamoDB)
+
+const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewayStack`, {
   stage,
   env,
   serviceName,
   itemLambda: lambda.itemLambda,
-  helloLambda: lambda.helloLambda
+  helloLambda: lambda.helloLambda,
+  footprintLambda: footprintLambda.lambda
 })
+apiGateway.addDependency(lambda)
+apiGateway.addDependency(footprintLambda)

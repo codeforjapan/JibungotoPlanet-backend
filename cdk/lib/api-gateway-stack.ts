@@ -9,6 +9,7 @@ import {
 export interface ApiGatewayStackProps extends BaseStackProps {
   itemLambda: aws_lambda_nodejs.NodejsFunction
   helloLambda: aws_lambda_nodejs.NodejsFunction
+  footprintLambda: aws_lambda_nodejs.NodejsFunction
 }
 
 export class ApiGatewayStack extends Stack {
@@ -20,10 +21,17 @@ export class ApiGatewayStack extends Stack {
     });
     const items = api.root.addResource("items");
     const hello = api.root.addResource("hello");
+    const footprint = api.root.addResource("footprint",)
     const singleItem = items.addResource("{id}");
+    const footprintDir = footprint.addResource("{dir}");
+    const footprintDomain = footprintDir.addResource("{domain}");
     const getItemIntegration = new LambdaIntegration(props.itemLambda);
     const getHelloIntegration = new LambdaIntegration(props.helloLambda);
+    const footprintIntegration = new LambdaIntegration(props.footprintLambda);
+
     singleItem.addMethod("GET", getItemIntegration);
     hello.addMethod("GET", getHelloIntegration)
+    footprintDir.addMethod("GET", footprintIntegration)
+    footprintDomain.addMethod("GET", footprintIntegration)
   }
 }
