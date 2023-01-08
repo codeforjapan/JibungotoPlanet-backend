@@ -11,6 +11,7 @@ export interface ApiGatewayStackProps extends BaseStackProps {
   helloLambda: aws_lambda_nodejs.NodejsFunction
   footprintLambda: aws_lambda_nodejs.NodejsFunction
   shareLambda: aws_lambda_nodejs.NodejsFunction
+  profileLambda: aws_lambda_nodejs.NodejsFunction
 }
 
 export class ApiGatewayStack extends Stack {
@@ -38,10 +39,15 @@ export class ApiGatewayStack extends Stack {
     const share = api.root.addResource("shares",)
     const shareId = share.addResource("{id}");
 
+    const profile = api.root.addResource("profiles")
+    const profileId = profile.addResource("{id}");
+
+
     const getItemIntegration = new LambdaIntegration(props.itemLambda);
     const getHelloIntegration = new LambdaIntegration(props.helloLambda);
     const footprintIntegration = new LambdaIntegration(props.footprintLambda);
     const shareIntegration = new LambdaIntegration(props.shareLambda);
+    const profileIntegration = new LambdaIntegration(props.profileLambda);
 
     singleItem.addMethod("GET", getItemIntegration);
     hello.addMethod("GET", getHelloIntegration)
@@ -49,5 +55,8 @@ export class ApiGatewayStack extends Stack {
     footprintDomain.addMethod("GET", footprintIntegration)
     footprintType.addMethod("GET", footprintIntegration)
     shareId.addMethod("GET", shareIntegration)
+    profile.addMethod("POST", profileIntegration)
+    profileId.addMethod("GET", profileIntegration)
+    profileId.addMethod("PUT", profileIntegration)
   }
 }

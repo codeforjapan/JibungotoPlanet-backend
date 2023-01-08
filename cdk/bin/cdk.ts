@@ -7,6 +7,8 @@ import { DynamodbStack } from "../lib/dynamodb-stack";
 import { ApiGatewayStack } from "../lib/api-gateway-stack";
 import { FootprintStack } from "../lib/footprint-stack";
 import { ShareStack } from "../lib/share-stack";
+import { ProfileStack } from "../lib/profile-stack";
+import { Tags } from 'aws-cdk-lib';
 
 const app = new cdk.App();
 
@@ -54,6 +56,17 @@ const shareLambda = new ShareStack(app, `${ stage }${ serviceName }ShareStack`, 
 })
 footprintLambda.addDependency(dynamoDB)
 
+const profileLambda = new ProfileStack(app, `${ stage }${ serviceName }ProfileStack`, {
+  stage,
+  env,
+  serviceName,
+  footprintTable: dynamoDB.footprintTable,
+  profileTable: dynamoDB.profileTable,
+  parameterTable: dynamoDB.parameterTable,
+  optionTable: dynamoDB.optionTable
+})
+footprintLambda.addDependency(dynamoDB)
+
 const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewayStack`, {
   stage,
   env,
@@ -61,8 +74,15 @@ const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewa
   itemLambda: lambda.itemLambda,
   helloLambda: lambda.helloLambda,
   footprintLambda: footprintLambda.lambda,
-  shareLambda: shareLambda.lambda
+  shareLambda: shareLambda.lambda,
+  profileLambda: profileLambda.lambda
 })
 apiGateway.addDependency(lambda)
 apiGateway.addDependency(footprintLambda)
 apiGateway.addDependency(shareLambda)
+apiGateway.addDependency(profileLambda)
+
+Tags.of(app).add('Project', 'JibungotoPlanet');
+Tags.of(app).add('Repository', 'JibungotoPlanet-backend');
+Tags.of(app).add('Env', stage);
+Tags.of(app).add('ManagedBy', 'cdk');
