@@ -18,7 +18,6 @@ import {
 export interface ApiGatewayStackProps extends BaseStackProps {
   domain: string
   certificateArn: string
-  itemLambda: aws_lambda_nodejs.NodejsFunction
   helloLambda: aws_lambda_nodejs.NodejsFunction
   footprintLambda: aws_lambda_nodejs.NodejsFunction
   shareLambda: aws_lambda_nodejs.NodejsFunction
@@ -38,8 +37,6 @@ export class ApiGatewayStack extends Stack {
       },
       endpointTypes: [EndpointType.REGIONAL]
     });
-    const items = api.root.addResource("items");
-    const singleItem = items.addResource("{id}");
 
     const hello = api.root.addResource("hello");
 
@@ -55,14 +52,11 @@ export class ApiGatewayStack extends Stack {
     const profile = api.root.addResource("profiles")
     const profileId = profile.addResource("{id}");
 
-
-    const getItemIntegration = new LambdaIntegration(props.itemLambda);
     const getHelloIntegration = new LambdaIntegration(props.helloLambda);
     const footprintIntegration = new LambdaIntegration(props.footprintLambda);
     const shareIntegration = new LambdaIntegration(props.shareLambda);
     const profileIntegration = new LambdaIntegration(props.profileLambda);
 
-    singleItem.addMethod("GET", getItemIntegration);
     hello.addMethod("GET", getHelloIntegration)
     footprintDir.addMethod("GET", footprintIntegration)
     footprintDomain.addMethod("GET", footprintIntegration)

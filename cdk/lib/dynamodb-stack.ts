@@ -13,15 +13,6 @@ export class DynamodbStack extends Stack {
   constructor(scope: Construct, id: string, props: BaseStackProps) {
     super(scope, id, props);
 
-    this.itemTable = new Table(this, `${ props.stage }${ props.serviceName }items`, {
-      partitionKey: {
-        name: "itemId",
-        type: AttributeType.STRING
-      },
-      tableName: `${ props.stage }${ props.serviceName }items`,
-      removalPolicy: RemovalPolicy.DESTROY
-    })
-
     this.footprintTable = new Table(this, `${ props.stage }${ props.serviceName }footprint`, {
       partitionKey: {
         name: "dir_domain",
