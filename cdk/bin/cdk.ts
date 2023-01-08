@@ -71,6 +71,8 @@ const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewa
   stage,
   env,
   serviceName,
+  domain: config.domain,
+  certificateArn: config.certificateArn,
   itemLambda: lambda.itemLambda,
   helloLambda: lambda.helloLambda,
   footprintLambda: footprintLambda.lambda,

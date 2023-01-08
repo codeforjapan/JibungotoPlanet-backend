@@ -5,6 +5,9 @@ export interface Config {
     accountId: string;
     region: string;
   };
+
+  domain: string
+  certificateArn: string
 }
 
 export function getConfig (stage: string): Config {
