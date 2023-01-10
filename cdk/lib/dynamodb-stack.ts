@@ -1,5 +1,5 @@
 import { aws_dynamodb, RemovalPolicy, Stack } from "aws-cdk-lib";
-import { AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
+import { Attribute, AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
 import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
 
@@ -11,65 +11,60 @@ export class DynamodbStack extends Stack {
   public readonly optionTable: aws_dynamodb.Table
 
   constructor(scope: Construct, id: string, props: BaseStackProps) {
-    super(scope, id, props);
+    super(scope, id, props)
 
-    const tableObjects = [
-      {
-        key: "footprint",
-        props: {
-          partitionKey: {
-            name: "dir_domain",
-            type: AttributeType.STRING
-          },
-          sortKey: {
-            name: "item_type",
-            type: AttributeType.STRING
-          },
-        }
-      },
-      {
-        key: "profile",
-        props: {
-          partitionKey: {
-            name: "id",
-            type: AttributeType.STRING
-          },
-        }
-      },
-      {
-        key: 'parameter',
-        props: {
-          partitionKey: {
-            name: "category",
-            type: AttributeType.STRING
-          },
-          sortKey: {
-            name: "key",
-            type: AttributeType.STRING
-          },
-        }
-      },
-      {
-        key: 'option',
-        props: {
-          partitionKey: {
-            name: "option",
-            type: AttributeType.STRING
-          },
-          sortKey: {
-            name: "domain_item_type",
-            type: AttributeType.STRING
-          },
-        }
+    interface TableObjects {
+      [key: string]: {
+        partitionKey: Attribute
+        sortKey?: Attribute
       }
-    ]
+    }
 
-    for (const tableObject of tableObjects) {
+    const tableObjects: TableObjects = {
+      footprint: {
+        partitionKey: {
+          name: "dir_domain",
+          type: AttributeType.STRING
+        },
+        sortKey: {
+          name: "item_type",
+          type: AttributeType.STRING
+        },
+      },
+      profile: {
+        partitionKey: {
+          name: "id",
+          type: AttributeType.STRING
+        },
+      },
+      parameter: {
+        partitionKey: {
+          name: "category",
+          type: AttributeType.STRING
+        },
+        sortKey: {
+          name: "key",
+          type: AttributeType.STRING
+        },
+      },
+      option: {
+        partitionKey: {
+          name: "option",
+          type: AttributeType.STRING
+        },
+        sortKey: {
+          name: "domain_item_type",
+          type: AttributeType.STRING
+        },
+      }
+    }
+
+    for (const [key, tableObject] of Object.entries(tableObjects)) {
       // @ts-ignore
-      this[`${tableObject.key}Table`] = new Table(this, `${ props.stage }${ props.serviceName }${ tableObject.key }`, {
-        partitionKey: tableObject.props.partitionKey,
-        sortKey: tableObject.props.sortKey,
-        tableName: `${ props.stage }${ props.serviceName }${ tableObject.key }`,
+      this[`${ key }Table`] = new Table(this, `${ props.stage }${ props.serviceName }${ key }`, {
+        partitionKey: tableObject.partitionKey,
+        sortKey: tableObject.sortKey,
+        tableName: `${ props.stage }${ props.serviceName }${ key }`,
         removalPolicy: RemovalPolicy.DESTROY
       })
     }
