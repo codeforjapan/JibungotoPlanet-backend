@@ -35,6 +35,14 @@ export class DynamodbStack extends Stack {
       removalPolicy: RemovalPolicy.DESTROY
     })
 
+    this.profileTable.addGlobalSecondaryIndex({
+      indexName: "profilesByShareId",
+      partitionKey: {
+        name: "shareId",
+        type: AttributeType.STRING
+      }
+    })
+
     this.parameterTable = new Table(this, `${ props.stage }${ props.serviceName }parameter`, {
       partitionKey: {
         name: "category",

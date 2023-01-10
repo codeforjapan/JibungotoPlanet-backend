@@ -1,4 +1,4 @@
-import { aws_dynamodb, aws_iam, aws_lambda_nodejs, Stack } from "aws-cdk-lib";
+import { aws_dynamodb, aws_lambda_nodejs, Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
 import { Runtime, Tracing } from "aws-cdk-lib/aws-lambda";
@@ -26,11 +26,5 @@ export class ShareStack extends Stack {
       tracing: Tracing.ACTIVE,
     })
     props.dynamoTable.grantReadData(this.lambda);
-    this.lambda.addToRolePolicy(
-      new aws_iam.PolicyStatement({
-        actions: ['dynamodb:Query'],
-        resources: [`${props.dynamoTable.tableArn}/index/*`],
-      }),
-    );
   }
 }
