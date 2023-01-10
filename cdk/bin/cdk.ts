@@ -9,6 +9,7 @@ import { FootprintStack } from "../lib/footprint-stack";
 import { ShareStack } from "../lib/share-stack";
 import { ProfileStack } from "../lib/profile-stack";
 import { Tags } from 'aws-cdk-lib';
+import { Route53Stack } from "../lib/route53";
 
 const app = new cdk.App();
 
@@ -71,8 +72,6 @@ const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewa
   stage,
   env,
   serviceName,
-  domain: config.domain,
-  certificateArn: config.certificateArn,
   helloLambda: lambda.helloLambda,
   footprintLambda: footprintLambda.lambda,
   shareLambda: shareLambda.lambda,
@@ -82,6 +81,16 @@ apiGateway.addDependency(lambda)
 apiGateway.addDependency(footprintLambda)
 apiGateway.addDependency(shareLambda)
 apiGateway.addDependency(profileLambda)
+
+const route53 = new Route53Stack(app, `${ stage }${ serviceName }Route53Stack`, {
+  stage,
+  env,
+  serviceName,
+  domain: config.domain,
+  certificateArn: config.certificateArn,
+  api: apiGateway.api
+})
+route53.addDependency(apiGateway)
 
 Tags.of(app).add('Project', 'JibungotoPlanet');
 Tags.of(app).add('Repository', 'JibungotoPlanet-backend');
