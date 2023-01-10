@@ -72,6 +72,8 @@ const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewa
   stage,
   env,
   serviceName,
+  domain: config.domain,
+  certificateArn: config.certificateArn,
   helloLambda: lambda.helloLambda,
   footprintLambda: footprintLambda.lambda,
   shareLambda: shareLambda.lambda,
@@ -87,7 +89,6 @@ const route53 = new Route53Stack(app, `${ stage }${ serviceName }Route53Stack`, 
   env,
   serviceName,
   domain: config.domain,
-  certificateArn: config.certificateArn,
   api: apiGateway.api
 })
 route53.addDependency(apiGateway)
