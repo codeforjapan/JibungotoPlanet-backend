@@ -1,5 +1,4 @@
 import {
-  aws_lambda_nodejs,
   Stack
 } from "aws-cdk-lib";
 import { Construct } from "constructs";
@@ -9,12 +8,13 @@ import {
   LambdaIntegration,
   RestApi,
 } from "aws-cdk-lib/aws-apigateway";
+import { IFunction } from "aws-cdk-lib/aws-lambda";
 
 export interface ApiGatewayStackProps extends BaseStackProps {
-  helloLambda: aws_lambda_nodejs.NodejsFunction
-  footprintLambda: aws_lambda_nodejs.NodejsFunction
-  shareLambda: aws_lambda_nodejs.NodejsFunction
-  profileLambda: aws_lambda_nodejs.NodejsFunction
+  helloLambda: IFunction
+  footprintLambda: IFunction
+  shareLambda: IFunction
+  profileLambda: IFunction
 }
 
 export class ApiGatewayStack extends Stack {

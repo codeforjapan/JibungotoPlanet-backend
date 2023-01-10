@@ -1,9 +1,8 @@
 import { aws_dynamodb, aws_lambda_nodejs, Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
-import { Runtime, Tracing } from "aws-cdk-lib/aws-lambda";
+import { IFunction, Runtime, Tracing } from "aws-cdk-lib/aws-lambda";
 import * as path from "path";
-import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 
 export interface ProfileStackProps extends BaseStackProps {
   footprintTable: aws_dynamodb.Table
@@ -13,7 +12,7 @@ export interface ProfileStackProps extends BaseStackProps {
 }
 
 export class ProfileStack extends Stack {
-  public readonly lambda: NodejsFunction
+  public readonly lambda: IFunction
 
   constructor(scope: Construct, id: string, props: ProfileStackProps) {
     super(scope, id, props);

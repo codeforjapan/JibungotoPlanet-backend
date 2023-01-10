@@ -1,16 +1,15 @@
 import { aws_dynamodb, aws_lambda_nodejs, Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
-import { Runtime } from "aws-cdk-lib/aws-lambda";
+import { IFunction, Runtime } from "aws-cdk-lib/aws-lambda";
 import * as path from "path";
-import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 
 export interface AppStackProps extends BaseStackProps {
   dynamoTable: aws_dynamodb.Table
 }
 
 export class AppStack extends Stack {
-  public readonly helloLambda: NodejsFunction
+  public readonly helloLambda: IFunction
 
   constructor(scope: Construct, id: string, props: AppStackProps) {
     super(scope, id, props);

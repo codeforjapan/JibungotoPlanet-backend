@@ -1,16 +1,15 @@
 import { aws_dynamodb, aws_lambda_nodejs, Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
-import { Runtime, Tracing } from "aws-cdk-lib/aws-lambda";
+import { IFunction, Runtime, Tracing } from "aws-cdk-lib/aws-lambda";
 import * as path from "path";
-import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 
 export interface ShareStackProps extends BaseStackProps {
   dynamoTable: aws_dynamodb.Table
 }
 
 export class ShareStack extends Stack {
-  public readonly lambda: NodejsFunction
+  public readonly lambda: IFunction
 
   constructor(scope: Construct, id: string, props: ShareStackProps) {
     super(scope, id, props);
