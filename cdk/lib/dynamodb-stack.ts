@@ -13,27 +13,70 @@ export class DynamodbStack extends Stack {
   constructor(scope: Construct, id: string, props: BaseStackProps) {
     super(scope, id, props);
 
-    this.footprintTable = new Table(this, `${ props.stage }${ props.serviceName }footprint`, {
-      partitionKey: {
-        name: "dir_domain",
-        type: AttributeType.STRING
+    const tableObjects = [
+      {
+        var: this.footprintTable,
+        key: "footprint",
+        props: {
+          partitionKey: {
+            name: "dir_domain",
+            type: AttributeType.STRING
+          },
+          sortKey: {
+            name: "item_type",
+            type: AttributeType.STRING
+          },
+        }
       },
-      sortKey: {
-        name: "item_type",
-        type: AttributeType.STRING
+      {
+        var: this.profileTable,
+        key: "profile",
+        props: {
+          partitionKey: {
+            name: "id",
+            type: AttributeType.STRING
+          },
+        }
       },
-      tableName: `${ props.stage }${ props.serviceName }footprint`,
-      removalPolicy: RemovalPolicy.DESTROY
-    })
+      {
+        var: this.parameterTable,
+        key: 'parameter',
+        props: {
+          partitionKey: {
+            name: "category",
+            type: AttributeType.STRING
+          },
+          sortKey: {
+            name: "key",
+            type: AttributeType.STRING
+          },
+        }
+      },
+      {
+        var: this.optionTable,
+        key: 'option',
+        props: {
+          partitionKey: {
+            name: "option",
+            type: AttributeType.STRING
+          },
+          sortKey: {
+            name: "domain_item_type",
+            type: AttributeType.STRING
+          },
+        }
+      }
+    ]
 
-    this.profileTable = new Table(this, `${ props.stage }${ props.serviceName }profile`, {
-      partitionKey: {
-        name: "id",
-        type: AttributeType.STRING
-      },
-      tableName: `${ props.stage }${ props.serviceName }profile`,
-      removalPolicy: RemovalPolicy.DESTROY
-    })
+    for (const tableObject of tableObjects) {
+      // @ts-ignore
+      this[`${tableObject.key}Table`] = new Table(this, `${ props.stage }${ props.serviceName }${ tableObject.key }`, {
+        partitionKey: tableObject.props.partitionKey,
+        sortKey: tableObject.props.sortKey,
+        tableName: `${ props.stage }${ props.serviceName }${ tableObject.key }`,
+        removalPolicy: RemovalPolicy.DESTROY
+      })
+    }
 
     this.profileTable.addGlobalSecondaryIndex({
       indexName: "profilesByShareId",
@@ -41,32 +84,6 @@ export class DynamodbStack extends Stack {
         name: "shareId",
         type: AttributeType.STRING
       }
-    })
-
-    this.parameterTable = new Table(this, `${ props.stage }${ props.serviceName }parameter`, {
-      partitionKey: {
-        name: "category",
-        type: AttributeType.STRING
-      },
-      sortKey: {
-        name: "key",
-        type: AttributeType.STRING
-      },
-      tableName: `${ props.stage }${ props.serviceName }parameter`,
-      removalPolicy: RemovalPolicy.DESTROY
-    })
-
-    this.optionTable = new Table(this, `${ props.stage }${ props.serviceName }option`, {
-      partitionKey: {
-        name: "option",
-        type: AttributeType.STRING
-      },
-      sortKey: {
-        name: "domain_item_type",
-        type: AttributeType.STRING
-      },
-      tableName: `${ props.stage }${ props.serviceName }option`,
-      removalPolicy: RemovalPolicy.DESTROY
     })
   }
 }
