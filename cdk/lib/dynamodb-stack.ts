@@ -15,7 +15,6 @@ export class DynamodbStack extends Stack {
 
     const tableObjects = [
       {
-        var: this.footprintTable,
         key: "footprint",
         props: {
           partitionKey: {
@@ -29,7 +28,6 @@ export class DynamodbStack extends Stack {
         }
       },
       {
-        var: this.profileTable,
         key: "profile",
         props: {
           partitionKey: {
@@ -39,7 +37,6 @@ export class DynamodbStack extends Stack {
         }
       },
       {
-        var: this.parameterTable,
         key: 'parameter',
         props: {
           partitionKey: {
@@ -53,7 +50,6 @@ export class DynamodbStack extends Stack {
         }
       },
       {
-        var: this.optionTable,
         key: 'option',
         props: {
           partitionKey: {
