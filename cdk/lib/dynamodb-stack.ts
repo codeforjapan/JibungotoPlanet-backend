@@ -1,31 +1,80 @@
 import { aws_dynamodb, RemovalPolicy, Stack } from "aws-cdk-lib";
-import { AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
+import { Attribute, AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
 import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
 
 export class DynamodbStack extends Stack {
   public readonly itemTable: aws_dynamodb.Table
+  public readonly footprintTable: aws_dynamodb.Table
   public readonly profileTable: aws_dynamodb.Table
+  public readonly parameterTable: aws_dynamodb.Table
+  public readonly optionTable: aws_dynamodb.Table
 
   constructor(scope: Construct, id: string, props: BaseStackProps) {
-    super(scope, id, props);
+    super(scope, id, props)
 
-    this.itemTable = new Table(this, `${ props.stage }${ props.serviceName }items`, {
-      partitionKey: {
-        name: "itemId",
-        type: AttributeType.STRING
-      },
-      tableName: `${ props.stage }${ props.serviceName }items`,
-      removalPolicy: RemovalPolicy.DESTROY
-    })
+    interface TableObjects {
+      [key: string]: {
+        partitionKey: Attribute
+        sortKey?: Attribute
+      }
+    }
 
-    this.profileTable = new Table(this, `${ props.stage }${ props.serviceName }footprint`, {
-      partitionKey: {
-        name: "id",
-        type: AttributeType.STRING
+    const tableObjects: TableObjects = {
+      footprint: {
+        partitionKey: {
+          name: "dir_domain",
+          type: AttributeType.STRING
+        },
+        sortKey: {
+          name: "item_type",
+          type: AttributeType.STRING
+        },
       },
-      tableName: `${ props.stage }${ props.serviceName }footprint`,
-      removalPolicy: RemovalPolicy.DESTROY
+      profile: {
+        partitionKey: {
+          name: "id",
+          type: AttributeType.STRING
+        },
+      },
+      parameter: {
+        partitionKey: {
+          name: "category",
+          type: AttributeType.STRING
+        },
+        sortKey: {
+          name: "key",
+          type: AttributeType.STRING
+        },
+      },
+      option: {
+        partitionKey: {
+          name: "option",
+          type: AttributeType.STRING
+        },
+        sortKey: {
+          name: "domain_item_type",
+          type: AttributeType.STRING
+        },
+      }
+    }
+
+    for (const [key, tableObject] of Object.entries(tableObjects)) {
+      // @ts-ignore
+      this[`${ key }Table`] = new Table(this, `${ props.stage }${ props.serviceName }${ key }`, {
+        partitionKey: tableObject.partitionKey,
+        sortKey: tableObject.sortKey,
+        tableName: `${ props.stage }${ props.serviceName }${ key }`,
+        removalPolicy: RemovalPolicy.DESTROY
+      })
+    }
+
+    this.profileTable.addGlobalSecondaryIndex({
+      indexName: "profilesByShareId",
+      partitionKey: {
+        name: "shareId",
+        type: AttributeType.STRING
+      }
     })
   }
 }

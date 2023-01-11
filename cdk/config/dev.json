@@ -1,6 +1,9 @@
 {
   "aws": {
-    "accountId": "783049388105",
+    "accountId": "",
     "region": "ap-northeast-1"
-  }
+  },
+
+  "domain": "jibungoto-planet.jp",
+  "certificateArn": "arn:aws:acm:ap-northeast-1::certificate/2be06363-b7f7-4735-bcbe-6071646b3a05"
 }

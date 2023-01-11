@@ -37,7 +37,7 @@ if (MOCK) {
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
 
-const path = '/footprint'
+const path = '/footprints'
 
 // declare a new express app
 const app: express.Express = express()
@@ -142,4 +142,4 @@ app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
 // Export the app object. When executing the application local this does nothing. However,
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
 // this file
-module.exports = app
+export default app
