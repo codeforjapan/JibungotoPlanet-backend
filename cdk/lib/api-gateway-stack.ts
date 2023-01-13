@@ -6,6 +6,7 @@ import { Construct } from "constructs";
 import { BaseStackProps } from "./props";
 import {
   BasePathMapping,
+  Cors,
   DomainName,
   EndpointType, IDomainName,
   LambdaIntegration,
@@ -35,7 +36,13 @@ export class ApiGatewayStack extends Stack {
         metricsEnabled: true,
         stageName: props.stage
       },
-      endpointTypes: [EndpointType.REGIONAL]
+      endpointTypes: [EndpointType.REGIONAL],
+      defaultCorsPreflightOptions: {
+        allowOrigins: Cors.ALL_ORIGINS,
+        allowMethods: Cors.ALL_METHODS,
+        allowHeaders: Cors.DEFAULT_HEADERS,
+        statusCode: 200,
+      },
     });
 
     const hello = apiGateway.root.addResource("hello");
