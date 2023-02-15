@@ -31,8 +31,6 @@ const estimateHousing = async (
   }
   /* eslint-disable no-unused-vars */
 
-  // housingAnswerのスキーマと取りうる値は以下を参照
-  // amplify/backend/api/JibungotoPlanetGql/schema.graphql
   const estimations: { domain: any; item: any; type: any; value: any; subdomain: any; unit: any }[] = []
 
   // ベースラインのフットプリントを取得

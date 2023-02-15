@@ -1,7 +1,7 @@
-import { aws_dynamodb, RemovalPolicy, Stack } from "aws-cdk-lib";
-import { Attribute, AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
-import { Construct } from "constructs";
-import { BaseStackProps } from "./props";
+import { aws_dynamodb, RemovalPolicy, Stack } from 'aws-cdk-lib'
+import { Attribute, AttributeType, Table } from 'aws-cdk-lib/aws-dynamodb'
+import { Construct } from 'constructs'
+import { BaseStackProps } from './props'
 
 export class DynamodbStack extends Stack {
   public readonly itemTable: aws_dynamodb.Table
@@ -23,56 +23,60 @@ export class DynamodbStack extends Stack {
     const tableObjects: TableObjects = {
       footprint: {
         partitionKey: {
-          name: "dir_domain",
+          name: 'dir_domain',
           type: AttributeType.STRING
         },
         sortKey: {
-          name: "item_type",
+          name: 'item_type',
           type: AttributeType.STRING
-        },
+        }
       },
       profile: {
         partitionKey: {
-          name: "id",
+          name: 'id',
           type: AttributeType.STRING
-        },
+        }
       },
       parameter: {
         partitionKey: {
-          name: "category",
+          name: 'category',
           type: AttributeType.STRING
         },
         sortKey: {
-          name: "key",
+          name: 'key',
           type: AttributeType.STRING
-        },
+        }
       },
       option: {
         partitionKey: {
-          name: "option",
+          name: 'option',
           type: AttributeType.STRING
         },
         sortKey: {
-          name: "domain_item_type",
+          name: 'domain_item_type',
           type: AttributeType.STRING
-        },
+        }
       }
     }
 
     for (const [key, tableObject] of Object.entries(tableObjects)) {
       // @ts-ignore
-      this[`${ key }Table`] = new Table(this, `${ props.stage }${ props.serviceName }${ key }`, {
-        partitionKey: tableObject.partitionKey,
-        sortKey: tableObject.sortKey,
-        tableName: `${ props.stage }${ props.serviceName }${ key }`,
-        removalPolicy: RemovalPolicy.DESTROY
-      })
+      this[`${key}Table`] = new Table(
+        this,
+        `${props.stage}${props.serviceName}${key}`,
+        {
+          partitionKey: tableObject.partitionKey,
+          sortKey: tableObject.sortKey,
+          tableName: `${props.stage}${props.serviceName}${key}`,
+          removalPolicy: RemovalPolicy.DESTROY
+        }
+      )
     }
 
     this.profileTable.addGlobalSecondaryIndex({
-      indexName: "profilesByShareId",
+      indexName: 'profilesByShareId',
       partitionKey: {
-        name: "shareId",
+        name: 'shareId',
         type: AttributeType.STRING
       }
     })

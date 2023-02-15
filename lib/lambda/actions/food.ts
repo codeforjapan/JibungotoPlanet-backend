@@ -28,8 +28,6 @@ const estimateFood = async (
   const getCategoryCustomTotal = (item: string, value: number) =>
     value * findBaseline(baselines, 'food', item, 'intensity').value
 
-  // foodAnswerのスキーマと取りうる値は以下を参照。
-  // amplify/backend/api/JibungotoPlanetGql/schema.graphql
   const estimations: { domain: any; item: any; type: any; value: any; subdomain: any; unit: any; }[] = []
 
   // ベースラインのフットプリントを取得
