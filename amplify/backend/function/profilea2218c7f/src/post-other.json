@@ -1,8 +1,0 @@
-{
-  "httpMethod": "POST",
-  "path": "/profiles",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\"otherAnswer\": {\"dailyGoodsAmountKey\": \"5k-less\", \"communicationAmountKey\": \"5k-less\", \"applianceFurnitureAmountKey\": \"50k-less\", \"serviceFactorKey\": \"5k-less\", \"hobbyGoodsFactorKey\": \"5k-less\", \"clothesBeautyFactorKey\": \"5k-less\", \"leisureSportsFactorKey\": \"5k-less\", \"travelFactorKey\": \"10k-less\"}}"
-}

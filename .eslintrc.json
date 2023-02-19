@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": ["eslint:recommended", "plugin:jest/recommended", "prettier"],
   "parser": "@typescript-eslint/parser",
@@ -11,5 +12,7 @@
   },
   "plugins": ["@typescript-eslint", "jest"],
   "root": true,
-  "rules": {}
+  "rules": {
+    "no-unused-vars": "off"
+  }
 }
