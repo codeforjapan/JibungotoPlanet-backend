@@ -1,9 +1,7 @@
-./venv/bin/dynamodb-csv --truncate -t FootprintTable
-./venv/bin/dynamodb-csv --truncate -t ParameterTable
-./venv/bin/dynamodb-csv --truncate -t OptionTable
-# ./venv/bin/dynamodb-csv --truncate -t OptionIntensityRateTable
+./venv/bin/dynamodb-csv --truncate -t localJibungotoPlanetfootprint
+./venv/bin/dynamodb-csv --truncate -t localJibungotoPlanetparameter
+./venv/bin/dynamodb-csv --truncate -t localJibungotoPlanetoption
 
-./venv/bin/dynamodb-csv -i -t FootprintTable -f footprint.csv
-./venv/bin/dynamodb-csv -i -t ParameterTable -f parameter.csv
-./venv/bin/dynamodb-csv -i -t OptionTable -f option.csv
-# ./venv/bin/dynamodb-csv -i -t OptionIntensityRateTable -f optionIntensityRate.csv
+./venv/bin/dynamodb-csv -i -t localJibungotoPlanetfootprint -f footprint.csv
+./venv/bin/dynamodb-csv -i -t localJibungotoPlanetparameter -f parameter.csv
+./venv/bin/dynamodb-csv -i -t localJibungotoPlanetoption -f option.csv
