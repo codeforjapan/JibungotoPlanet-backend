@@ -6,8 +6,7 @@
   },
   "private": true,
   "scripts": {
-    "yarn:all": "yarn && yarn yarn:footprintf523f2c8 && yarn yarn:profilea2218c7f && yarn yarn:shareb311c853",
-    "test": "yarn yarn:all && yarn tc:all && jest",
+    "test": "jest",
     "jest": "jest",
     "lint": "eslint --ext .ts,.js lib/",
     "lint:fix": "prettier --write 'lib/*.ts' && eslint --fix lib/*.ts",
@@ -47,6 +46,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "2.59.0",
+    "aws-cdk-local": "^2.17.0",
     "constructs": "^10.1.250",
     "source-map-support": "^0.5.21"
   }
