@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=apigateway,lambda,dynamodb,route53
+      - PERSISTENCE=1
+      - AWS_DEFAULT_REGION=ap-northeast-1
+      - AWS_ACCESS_KEY_ID=testUser
+      - AWS_SECRET_ACCESS_KEY=testAccessKey
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/data
+

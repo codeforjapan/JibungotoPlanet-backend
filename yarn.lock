@@ -1140,10 +1140,17 @@ aws-cdk-lib@2.59.0:
     semver "^7.3.8"
     yaml "1.10.2"
 
-aws-cdk@2.59.0:
-  version "2.59.0"
-  resolved "https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.59.0.tgz"
-  integrity sha512-5xKh+nC6wLsjYGwA+YYbX9ZonJLYmthxSZy8pK/Bm9rL2mFpnMKvQZJz67L6ghOt1XumoB1vZbIhptln68jTuw==
+aws-cdk-local@^2.17.0:
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/aws-cdk-local/-/aws-cdk-local-2.17.0.tgz#f63b29e9c047b31caba8a35e7d09c4b5a7e5f980"
+  integrity sha512-KJZic0fDOx4UvW33XLgGB1j8ZrhknsdooLF87uzkj40OsruHU62/Nu2FBZZROFgYln0HbeHS6s0iCz+ALC/JXg==
+  dependencies:
+    diff "^5.0.0"
+
+aws-cdk@^2.66.1:
+  version "2.66.1"
+  resolved "https://registry.yarnpkg.com/aws-cdk/-/aws-cdk-2.66.1.tgz#1b70a28e1e50362d53b32ff7bb4f1ff7f49a41c1"
+  integrity sha512-exm97/VOH6yZPN2is3UC0acc6KF56AANvCg2gAEhyu6dPBueKxNCzrvsjNg/vmXrA8HqJ2jYJMg88YRNaUfylA==
   optionalDependencies:
     fsevents "2.3.2"
 
@@ -1587,6 +1594,11 @@ diff@^4.0.1:
   version "4.0.2"
   resolved "https://registry.npmjs.org/diff/-/diff-4.0.2.tgz"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
+
+diff@^5.0.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-5.1.0.tgz#bc52d298c5ea8df9194800224445ed43ffc87e40"
+  integrity sha512-D+mk+qE8VC/PAUrlAU34N+VfXev0ghe5ywmpqrawphmVZc1bEfn56uo9qpyGp1p4xpzOHkSW4ztBd6L7Xx4ACw==
 
 dir-glob@^3.0.1:
   version "3.0.1"

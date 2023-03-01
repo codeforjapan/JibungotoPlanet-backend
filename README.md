@@ -123,10 +123,6 @@ GET [REST API endpoint]/shares/[shareId]
 GET [REST API endpoint]/footprints/baseline/[domain]
 ```
 
-### リクエストとレスポンスの内容
-
-[schema.graphql](amplify/backend/api/JibungotoPlanetGql/schema.graphql)の Profile の定義を確認下さい。2022 年 8 月現在、JSON 形式のみサポートされています。なお、シェア用には各種回答情報と[id]が削除されたレスポンスが返ります。
-
 ### Profile の baselines, estimations, actions の使い方
 
 Profile に個人のカーボンフットプリントの推定結果が格納されています。
@@ -160,7 +156,7 @@ Baseline, Estimation, Action が個別のデータ項目で、domain+item+type �
 
 ## バックエンドの開発について
 
-開発は aws Amplify の環境で進めています（2022 年 8 月現在）。詳細は[CONTRIBUTING](CONTRIBUTING.md)を参照下さい。
+開発は aws CDK で環境を作成しています（2023 年 2 月現在）。詳細は[CONTRIBUTING](CONTRIBUTING.md)を参照下さい。
 
 ## Welcome to your CDK TypeScript project
 
