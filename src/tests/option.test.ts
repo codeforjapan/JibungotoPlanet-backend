@@ -83,8 +83,8 @@ describe('Test all options', () => {
 
     const resGet = await request(endpoint || footprintApp)
       .get('/footprints/baseline')
-      .set('x-apigateway-event', '') // エラーを出さないおまじない
-      .set('x-apigateway-context', '') // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     originalBaselines = resGet.body
   })
@@ -102,8 +102,8 @@ describe('Test all options', () => {
         const resPost = await request(endpoint || app)
           .post('/profiles')
           .send({})
-          .set('x-apigateway-event', '') // エラーを出さないおまじない
-          .set('x-apigateway-context', '') // エラーを出さないおまじない
+          .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+          .set('x-apigateway-context', 'null') // エラーを出さないおまじない
         id = resPost.body.data.id
       })
 
@@ -116,8 +116,8 @@ describe('Test all options', () => {
           const resPut = await request(endpoint || app)
             .put('/profiles/' + id)
             .send(req)
-            .set('x-apigateway-event', '') // エラーを出さないおまじない
-            .set('x-apigateway-context', '') // エラーを出さないおまじない
+            .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+            .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
           expect(resPut.status).toBe(200)
 
@@ -137,7 +137,7 @@ describe('Test all options', () => {
             log(testCase, 'action', action)
             expect(exp).not.toBeNull()
             expect(exp?.estimated).toBeTruthy()
-            expect(action.value).toBeCloseTo(exp?.value || NaN)
+            expect(action.value).toBeCloseTo(exp ? exp.value : NaN)
           }
 
           // actionに重複がないことを確認

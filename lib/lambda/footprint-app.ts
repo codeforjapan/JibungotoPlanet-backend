@@ -3,8 +3,8 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 const bodyParser = require('body-parser')
 import express from 'express'
 
-const TABLE_NAME = process.env.TABLE_NAME || "";
-const MOCK = process.env.mock || false
+const TABLE_NAME = process.env.TABLE_NAME || ''
+const MOCK = process.env.AWS_EXECUTION_ENV === 'local-mock' || false
 
 const toComponent = (item: any) => {
   const dir_domain = item.dir_domain.split('_')
@@ -27,12 +27,12 @@ let tableName = TABLE_NAME
 if (MOCK) {
   // for local mock
   dynamoParam = {
-    endpoint: 'http://localhost:62224',
-    region: 'us-fake-1',
-    accessKeyId: 'fake',
-    secretAccessKey: 'fake'
+    endpoint: 'http://localhost:4566',
+    region: 'ap-northeast-1',
+    accessKeyId: 'testUser',
+    secretAccessKey: 'testAccessKey'
   }
-  tableName = 'FootprintTable'
+  tableName = 'localJibungotoPlanetfootprint'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -45,7 +45,11 @@ app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
-app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
+app.use(function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', '*')
   next()
@@ -73,7 +77,9 @@ app.get(path + '/:dir', async (req: express.Request, res: express.Response) => {
 
     try {
       const data = await dynamodb.query(params).promise()
-      response = response.concat(data.Items.map((item: any) => toComponent(item)))
+      response = response.concat(
+        data.Items.map((item: any) => toComponent(item))
+      )
     } catch (err) {
       res.statusCode = 500
       res.json({ error: 'Could not load dir: ' + err })

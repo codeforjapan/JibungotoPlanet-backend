@@ -25,8 +25,8 @@ describe('Test error cases', () => {
           eatOutFactorKey: '5k-10k'
         }
       })
-      .set('x-apigateway-event', '') // エラーを出さないおまじない
-      .set('x-apigateway-context', '') // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(400)
     console.log(JSON.stringify(resPost.body))
@@ -49,8 +49,8 @@ describe('Test error cases', () => {
           eatOutFactorKey: '5k-10k'
         }
       })
-      .set('x-apigateway-event', '') // エラーを出さないおまじない
-      .set('x-apigateway-context', '') // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost2.body.data
     expect(resPost2.status).toBe(200)
@@ -62,8 +62,8 @@ describe('Test error cases', () => {
           hasPrivateCar: 'Yes'
         }
       })
-      .set('x-apigateway-event', '') // エラーを出さないおまじない
-      .set('x-apigateway-context', '') // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPut.status).toBe(400)
     console.log(JSON.stringify(resPut.body))

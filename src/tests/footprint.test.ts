@@ -5,12 +5,12 @@ process.env.ENV = 'dev' // eslint-disable-line no-undef
 process.env.AWS_EXECUTION_ENV = 'local-mock' // eslint-disable-line no-undef
 import app from '../../lib/lambda/footprint-app' // テスト対象をインポート
 
-describe.only('Footprint', () => {
+describe('Footprint', () => {
   test('Get', async () => {
     const res = await request(app)
       .get('/footprints/baseline/mobility/airplane/amount')
-      .set('x-apigateway-event', '')
-      .set('x-apigateway-context', '')
+      .set('x-apigateway-event', 'null')
+      .set('x-apigateway-context', 'null')
 
     expect(res.status).toBe(200)
     expect(res.body.dir).toBe('baseline')
