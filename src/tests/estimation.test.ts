@@ -33,12 +33,6 @@ describe('Test all estimations', () => {
     }
   }
 
-  /*
-  //test('Dummy:', () => {
-    expect(true).toBe(true)
-  })
-  */
-
   let originalBaselines: any = null
   beforeAll(async () => {
     // オリジナルのベースライン情報を取得
