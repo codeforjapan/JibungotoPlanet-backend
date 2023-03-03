@@ -42,19 +42,14 @@ aws-cli/2.7.7 Python/3.9.11 Darwin/21.5.0 exe/x86_64 prompt/off # aws cliのバ�
 #### 環境構築
 
 本プロジェクトはaws CDKを利用しています。本リポジトリを fork して、開発環境に pull した後、以下のコマンドでaws環境を構築してください。
-localでは localstack を使用しています。localstackはdocker環境を再起動する度に以下のコマンドの実行が必要になります
-
+localでは localstack およびdockerを使用しています。作業後はdockerを停止することを忘れないでください
 
 ```bash
-docker-compose up -d --build
-docker-compose exec localstack bash
-# ここからdocker内
-awslocal route53 create-hosted-zone --name jibungoto-planet.jp --caller-reference `date +%Y-%m-%d_%H-%M-%S`
-exit
+# build 方法
+sh build.sh
 
-# ここから手元のsh
-npx cdklocal bootstrap -c stage=local
-npx cdklocal deploy -c stage=local --all --require-approval never
+# 停止方法
+docker compose down
 ```
 全てのコマンドが完了後以下のようにApiGatewayの宛先が表示されるので、そこからアクセス
 
@@ -72,27 +67,16 @@ arn:aws:cloudformation:ap-northeast-1:000000000000:stack/localJibungotoPlanetApi
 https://5e0co6qiao.execute-api.localhost.localstack.cloud:4566/local/
 ````
 
-#### DynamoDB/GraphQL の構築方法
-データのインポートは dynamodb-csv をインストールして実行します。data 以下にインストール用、local 環境へのデータインポート用のスクリプトを用意しています。
-
-```bash
-cd data
-./install.sh
-./load-local.sh # モック環境のDynamoDBへデータを読み込み。
-```
-
 #### テストツール
 
 テストの効率化のため、Excel からテストケース、期待する結果を読み込んで検証する仕組みを構築しました。`src/tests/xxx-xxx-test-cases.xlsx`の answers シートにテストケース（xxxAnswer の値を設定）を作成し、case 名と同じ名前のシートに期待する結果を記入します。一行目が黄色の列のデータを取り込み、テストを実施します。
-
-> **Note**
-> github に push する際は `yarn test` が動くため、`amplify mock`で mock 環境を立ち上げておいてください。
 
 ## バックエンドの運用方法
 
 ### CDKの環境
 
 以下の３つの環境を用意していますが、運用においては後述する課題があります。
+
 |環境|名前|用途|
 |---|---|---|
 |dev|開発環境|主にバックエンドの開発用に利用|
