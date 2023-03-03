@@ -2,7 +2,7 @@ import request from 'supertest'
 // local mock の設定。テスト対象をimportする前に設定
 process.env.TABLE_REGION = 'ap-northeast-1' // eslint-disable-line no-undef
 process.env.ENV = 'dev' // eslint-disable-line no-undef
-process.env.LOCALSTACK_HOSTNAME === 'localhost' // eslint-disable-line no-undef
+process.env.LOCALSTACK_HOSTNAME = 'localhost' // eslint-disable-line no-undef
 import app from '../../lib/lambda/profile-app' // テスト対象をインポート
 
 describe('Test error cases', () => {
