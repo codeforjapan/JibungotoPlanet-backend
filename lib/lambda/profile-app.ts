@@ -17,7 +17,7 @@ const FOOTPRINT_TABLE_NAME = process.env.FOOTPRINT_TABLE_NAME || ''
 const PARAMETER_TABLE_NAME = process.env.PARAMETER_TABLE_NAME || ''
 const PROFILE_TABLE_NAME = process.env.PROFILE_TABLE_NAME || ''
 const OPTION_TABLE_NAME = process.env.OPTION_TABLE_NAME || ''
-const MOCK = process.env.AWS_EXECUTION_ENV === 'local-mock' || false
+const MOCK = process.env.LOCALSTACK_HOSTNAME === 'localhost' || false
 
 let dynamoParam = {}
 let footprintTableName = FOOTPRINT_TABLE_NAME

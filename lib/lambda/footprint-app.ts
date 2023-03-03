@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 import express from 'express'
 
 const TABLE_NAME = process.env.TABLE_NAME || ''
-const MOCK = process.env.AWS_EXECUTION_ENV === 'local-mock' || false
+const MOCK = process.env.LOCALSTACK_HOSTNAME === 'localhost' || false
 
 const toComponent = (item: any) => {
   const dir_domain = item.dir_domain.split('_')
