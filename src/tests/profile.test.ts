@@ -1,10 +1,10 @@
 import request from 'supertest'
 // local mock の設定。テスト対象をimportする前に設定
-process.env.TABLE_REGION = 'us-fake-1' // eslint-disable-line no-undef
+process.env.TABLE_REGION = 'ap-northeast-1' // eslint-disable-line no-undef
 process.env.ENV = 'dev' // eslint-disable-line no-undef
-process.env.AWS_EXECUTION_ENV = 'local-mock' // eslint-disable-line no-undef
-import app from '../../amplify/backend/function/profilea2218c7f/src/app' // テスト対象をインポート
-import shareApp from '../../amplify/backend/function/shareb311c853/src/app' // テスト対象をインポート
+process.env.LOCALSTACK_HOSTNAME = 'localhost' // eslint-disable-line no-undef
+import app from '../../lib/lambda/profile-app' // テスト対象をインポート
+import shareApp from '../../lib/lambda/share-app' // テスト対象をインポート
 
 describe('Test profile operation', () => {
   test('create profile without estimation and answers', async () => {
@@ -15,8 +15,8 @@ describe('Test profile operation', () => {
         age: '20s',
         region: 'hokkaido'
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost.body.data
 
@@ -39,8 +39,8 @@ describe('Test profile operation', () => {
         age: '20s',
         region: 'hokkaido'
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost.body.data
 
@@ -67,8 +67,8 @@ describe('Test profile operation', () => {
         foodAnswer: {},
         otherAnswer: {}
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost.body.data
 
@@ -94,8 +94,8 @@ describe('Test profile operation', () => {
         foodAnswer: {},
         otherAnswer: {}
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost.body.data
 
@@ -122,8 +122,8 @@ describe('Test profile operation', () => {
         foodAnswer: {},
         otherAnswer: {}
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost.body.data
 
@@ -139,8 +139,8 @@ describe('Test profile operation', () => {
     // shareIdでprofileを取得する（estimate前なので404が返る）
     const resShareGet = await request(shareApp)
       .get('/shares/' + profile.shareId)
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const sharedProfile = resShareGet.body
 
@@ -151,8 +151,8 @@ describe('Test profile operation', () => {
     // idでprofileを取得する（遅延初期化でfootprint推定値が計算される）
     const resGet = await request(app)
       .get('/profiles/' + profile.id)
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const newProfile = resGet.body
 
@@ -168,8 +168,8 @@ describe('Test profile operation', () => {
     // 更にshareIdでprofileを取得する
     const resShareGetAfter = await request(shareApp)
       .get('/shares/' + profile.shareId)
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const sharedProfileAfter = resShareGetAfter.body
 
@@ -194,8 +194,8 @@ describe('Test profile operation', () => {
         age: '20s',
         region: 'hokkaido'
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost.body.data
 
@@ -217,8 +217,8 @@ describe('Test profile operation', () => {
         foodAnswer: {},
         otherAnswer: {}
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const newProfile = resPut.body.data
     expect(resPut.status).toBe(200)
@@ -240,8 +240,8 @@ describe('Test profile operation', () => {
         age: '20s',
         region: 'hokkaido'
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost.body.data
 
@@ -272,8 +272,8 @@ describe('Test profile operation', () => {
           }
         ]
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const newProfile = resPut.body.data
     expect(resPut.status).toBe(200)
@@ -297,8 +297,8 @@ describe('Test profile operation', () => {
         foodAnswer: {},
         otherAnswer: {}
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const newProfile2 = resPut2.body.data
     expect(resPut2.status).toBe(200)
@@ -329,8 +329,8 @@ describe('Test profile operation', () => {
         foodAnswer: {},
         otherAnswer: {}
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(400)
   })
@@ -350,8 +350,8 @@ describe('Test profile operation', () => {
           housingSizeKey: '10-room'
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(400)
   })
@@ -365,8 +365,8 @@ describe('Test profile operation', () => {
           housingSizeKey: 'unknown-answer'
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(400)
   })
@@ -380,8 +380,8 @@ describe('Test profile operation', () => {
           residentCount: 0
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(400)
   })
@@ -396,8 +396,8 @@ describe('Test profile operation', () => {
           otherCarAnnualTravelingTime: -100
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(400)
   })
@@ -412,8 +412,8 @@ describe('Test profile operation', () => {
           keroseneMonthlyConsumption: 100
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(200)
   })
@@ -429,8 +429,8 @@ describe('Test profile operation', () => {
           busWeeklyTravelingTime: 100
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(200)
   })

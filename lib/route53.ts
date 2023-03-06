@@ -27,7 +27,7 @@ export class Route53Stack extends Stack {
         target: aws_route53.RecordTarget.fromAlias(
           new aws_route53_targets.ApiGatewayDomain(props.api)
         ),
-        recordName: `${ props.stage }-api-endpoint`,
+        recordName: `${props.stage}-api-endpoint`,
         deleteExisting: true
       }).applyRemovalPolicy(RemovalPolicy.DESTROY)
     }

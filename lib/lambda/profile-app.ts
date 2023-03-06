@@ -1,10 +1,10 @@
-import { validate } from "./actions/validate";
-import { estimateMobility } from "./actions/mobility";
-import { estimateHousing } from "./actions/housing";
-import { estimateFood } from "./actions/food";
-import { estimateOther } from "./actions/other";
-import { calculateActions } from "./actions/action";
-import { optionIntensityRates } from "./actions/data";
+import { validate } from './actions/validate'
+import { estimateMobility } from './actions/mobility'
+import { estimateHousing } from './actions/housing'
+import { estimateFood } from './actions/food'
+import { estimateOther } from './actions/other'
+import { calculateActions } from './actions/action'
+import { optionIntensityRates } from './actions/data'
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -13,12 +13,11 @@ const { v4: uuid } = require('uuid')
 const shortid = require('shortid')
 import express from 'express'
 
-const FOOTPRINT_TABLE_NAME = process.env.FOOTPRINT_TABLE_NAME || "";
-const PARAMETER_TABLE_NAME = process.env.PARAMETER_TABLE_NAME || "";
-const PROFILE_TABLE_NAME = process.env.PROFILE_TABLE_NAME || "";
-const OPTION_TABLE_NAME = process.env.OPTION_TABLE_NAME || "";
-const MOCK = process.env.mock || false
-
+const FOOTPRINT_TABLE_NAME = process.env.FOOTPRINT_TABLE_NAME || ''
+const PARAMETER_TABLE_NAME = process.env.PARAMETER_TABLE_NAME || ''
+const PROFILE_TABLE_NAME = process.env.PROFILE_TABLE_NAME || ''
+const OPTION_TABLE_NAME = process.env.OPTION_TABLE_NAME || ''
+const MOCK = process.env.LOCALSTACK_HOSTNAME === 'localhost' || false
 
 let dynamoParam = {}
 let footprintTableName = FOOTPRINT_TABLE_NAME
@@ -29,15 +28,15 @@ let optionTableName = OPTION_TABLE_NAME
 if (MOCK) {
   // for local mock
   dynamoParam = {
-    endpoint: 'http://localhost:62224',
-    region: 'us-fake-1',
-    accessKeyId: 'fake',
-    secretAccessKey: 'fake'
+    endpoint: 'http://localhost:4566',
+    region: 'ap-northeast-1',
+    accessKeyId: 'testUser',
+    secretAccessKey: 'testAccessKey'
   }
-  footprintTableName = 'FootprintTable'
-  parameterTableName = 'ParameterTable'
-  profileTableName = 'ProfileTable'
-  optionTableName = 'OptionTable'
+  footprintTableName = 'localJibungotoPlanetfootprint'
+  parameterTableName = 'localJibungotoPlanetparameter'
+  profileTableName = 'localJibungotoPlanetprofile'
+  optionTableName = 'localJibungotoPlanetoption'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -50,7 +49,11 @@ app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
-app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
+app.use(function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', '*')
   next()
@@ -74,11 +77,11 @@ const toResponse = (profile: any, estimate: any) => {
 
   return estimate
     ? {
-      ...common,
-      baselines: profile.baselines,
-      estimations: profile.estimations,
-      actions: profile.actions
-    }
+        ...common,
+        baselines: profile.baselines,
+        estimations: profile.estimations,
+        actions: profile.actions
+      }
     : common
 }
 
@@ -117,7 +120,7 @@ app.get(path + '/:id', async (req: express.Request, res: express.Response) => {
   }
 })
 
-const mergeActionIntensityRates = (orgRates: any, newRates:any) => {
+const mergeActionIntensityRates = (orgRates: any, newRates: any) => {
   // actionIntensityRatesの展開
   return orgRates.map((item: any) => {
     let value = newRates?.find((air: any) => air.option === item.option)?.value
@@ -207,6 +210,7 @@ const updateProfile = async (dynamodb: any, profile: any) => {
 app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
   const id = req.params.id
   const estimate = req.body.estimate
+  const body: any = req.body
 
   if (validate(req.body)) {
     try {
@@ -218,31 +222,31 @@ app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
         .promise()
       const profile = data.Item
 
-      if (req.body.mobilityAnswer) {
-        profile.mobilityAnswer = req.body.mobilityAnswer
+      if (body.mobilityAnswer) {
+        profile.mobilityAnswer = body.mobilityAnswer
       }
-      if (req.body.housingAnswer) {
-        profile.housingAnswer = req.body.housingAnswer
+      if (body.housingAnswer) {
+        profile.housingAnswer = body.housingAnswer
       }
-      if (req.body.foodAnswer) {
-        profile.foodAnswer = req.body.foodAnswer
+      if (body.foodAnswer) {
+        profile.foodAnswer = body.foodAnswer
       }
-      if (req.body.otherAnswer) {
-        profile.otherAnswer = req.body.otherAnswer
+      if (body.otherAnswer) {
+        profile.otherAnswer = body.otherAnswer
       }
-      if (req.body.gender) {
-        profile.gender = req.body.gender
+      if (body.gender) {
+        profile.gender = body.gender
       }
-      if (req.body.age) {
-        profile.age = req.body.age
+      if (body.age) {
+        profile.age = body.age
       }
-      if (req.body.region) {
-        profile.region = req.body.region
+      if (body.region) {
+        profile.region = body.region
       }
 
       profile.actionIntensityRates = mergeActionIntensityRates(
         profile.actionIntensityRates,
-        req.body.actionIntensityRates
+        body.actionIntensityRates
       )
       profile.estimated = false
 
@@ -280,19 +284,20 @@ app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
 app.post(path, async (req: express.Request, res: express.Response) => {
   if (validate(req.body)) {
     try {
-      const estimate = req.body.estimate
+      const body: any = req.body
+      const estimate = body.estimate
 
       const profile = {
         estimated: false,
         id: uuid(),
         shareId: shortid.generate(),
-        mobilityAnswer: req.body.mobilityAnswer,
-        housingAnswer: req.body.housingAnswer,
-        foodAnswer: req.body.foodAnswer,
-        otherAnswer: req.body.otherAnswer,
-        gender: req.body.gender,
-        age: req.body.age,
-        region: req.body.region,
+        mobilityAnswer: body.mobilityAnswer,
+        housingAnswer: body.housingAnswer,
+        foodAnswer: body.foodAnswer,
+        otherAnswer: body.otherAnswer,
+        gender: body.gender,
+        age: body.age,
+        region: body.region,
 
         baselines: [],
         estimations: [],
@@ -304,7 +309,7 @@ app.post(path, async (req: express.Request, res: express.Response) => {
 
       profile.actionIntensityRates = mergeActionIntensityRates(
         optionIntensityRates,
-        req.body.actionIntensityRates
+        body.actionIntensityRates
       )
 
       if (estimate) {

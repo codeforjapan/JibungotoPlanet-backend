@@ -1,9 +1,9 @@
 import request from 'supertest'
 // local mock の設定。テスト対象をimportする前に設定
-process.env.TABLE_REGION = 'us-fake-1' // eslint-disable-line no-undef
+process.env.TABLE_REGION = 'ap-northeast-1' // eslint-disable-line no-undef
 process.env.ENV = 'dev' // eslint-disable-line no-undef
-process.env.AWS_EXECUTION_ENV = 'local-mock' // eslint-disable-line no-undef
-import app from '../../amplify/backend/function/profilea2218c7f/src/app' // テスト対象をインポート
+process.env.LOCALSTACK_HOSTNAME = 'localhost' // eslint-disable-line no-undef
+import app from '../../lib/lambda/profile-app' // テスト対象をインポート
 
 describe('Test error cases', () => {
   test('create profile with unsupported foodAnswer', async () => {
@@ -25,8 +25,8 @@ describe('Test error cases', () => {
           eatOutFactorKey: '5k-10k'
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPost.status).toBe(400)
     console.log(JSON.stringify(resPost.body))
@@ -49,8 +49,8 @@ describe('Test error cases', () => {
           eatOutFactorKey: '5k-10k'
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     const profile = resPost2.body.data
     expect(resPost2.status).toBe(200)
@@ -62,8 +62,8 @@ describe('Test error cases', () => {
           hasPrivateCar: 'Yes'
         }
       })
-      .set('x-apigateway-event', null) // エラーを出さないおまじない
-      .set('x-apigateway-context', null) // エラーを出さないおまじない
+      .set('x-apigateway-event', 'null') // エラーを出さないおまじない
+      .set('x-apigateway-context', 'null') // エラーを出さないおまじない
 
     expect(resPut.status).toBe(400)
     console.log(JSON.stringify(resPut.body))

@@ -3,8 +3,8 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 const bodyParser = require('body-parser')
 import express from 'express'
 
-const TABLE_NAME = process.env.TABLE_NAME || "";
-const MOCK = process.env.mock || false
+const TABLE_NAME = process.env.TABLE_NAME || ''
+const MOCK = process.env.LOCALSTACK_HOSTNAME === 'localhost' || false
 
 let dynamoParam = {}
 let tableName = TABLE_NAME
@@ -12,12 +12,12 @@ let tableName = TABLE_NAME
 if (MOCK) {
   // for local mock
   dynamoParam = {
-    endpoint: 'http://localhost:62224',
-    region: 'us-fake-1',
-    accessKeyId: 'fake',
-    secretAccessKey: 'fake'
+    endpoint: 'http://localhost:4566',
+    region: 'ap-northeast-1',
+    accessKeyId: 'testUser',
+    secretAccessKey: 'testAccessKey'
   }
-  tableName = 'ProfileTable'
+  tableName = 'localJibungotoPlanetprofile'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -30,7 +30,11 @@ app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
-app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
+app.use(function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', '*')
   next()
