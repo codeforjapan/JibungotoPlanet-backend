@@ -246,9 +246,9 @@ const stream = fs
   .pipe(JSONStream.parse('Items.*'))
 
 stream.on('data', (rec: any) => {
-  const updatedAt = new Date(Date.parse(rec.updatedAt.S))
-  const serviceInDate = new Date(2021, 8, 31, 12, 0)
-  if (updatedAt >= serviceInDate) {
+  const createdAt = new Date(Date.parse(rec.createdAt.S))
+  const serviceInDate = new Date(2022, 8 - 1, 31, 12, 0) // 月は0〜11
+  if (createdAt > serviceInDate) {
     profiles.push(toProfile(rec, index))
     estimations.push(...toEstimations(rec, index))
     actions.push(...toActions(rec, index))
