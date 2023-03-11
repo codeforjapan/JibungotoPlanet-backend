@@ -17,7 +17,7 @@ const FOOTPRINT_TABLE_NAME = process.env.FOOTPRINT_TABLE_NAME || ''
 const PARAMETER_TABLE_NAME = process.env.PARAMETER_TABLE_NAME || ''
 const PROFILE_TABLE_NAME = process.env.PROFILE_TABLE_NAME || ''
 const OPTION_TABLE_NAME = process.env.OPTION_TABLE_NAME || ''
-const MOCK = process.env.LOCALSTACK_HOSTNAME === 'localhost' || false
+const MOCK = process.env.LOCALSTACK_HOSTNAME ? true : false
 
 let dynamoParam = {}
 let footprintTableName = FOOTPRINT_TABLE_NAME
@@ -26,9 +26,9 @@ let profileTableName = PROFILE_TABLE_NAME
 let optionTableName = OPTION_TABLE_NAME
 
 if (MOCK) {
-  // for local mock
+  // for mock and localstack
   dynamoParam = {
-    endpoint: 'http://localhost:4566',
+    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
     region: 'ap-northeast-1',
     accessKeyId: 'testUser',
     secretAccessKey: 'testAccessKey'

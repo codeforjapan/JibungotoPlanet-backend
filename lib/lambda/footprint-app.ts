@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 import express from 'express'
 
 const TABLE_NAME = process.env.TABLE_NAME || ''
-const MOCK = process.env.LOCALSTACK_HOSTNAME === 'localhost' || false
+const MOCK = process.env.LOCALSTACK_HOSTNAME ? true : false
 
 const toComponent = (item: any) => {
   const dir_domain = item.dir_domain.split('_')
@@ -25,9 +25,9 @@ let dynamoParam = {}
 let tableName = TABLE_NAME
 
 if (MOCK) {
-  // for local mock
+  // for mock and localstack
   dynamoParam = {
-    endpoint: 'http://localhost:4566',
+    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
     region: 'ap-northeast-1',
     accessKeyId: 'testUser',
     secretAccessKey: 'testAccessKey'
