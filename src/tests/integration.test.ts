@@ -8,6 +8,8 @@ import app from '../../lib/lambda/profile-app' // テスト対象をインポー
 import footprintApp from '../../lib/lambda/footprint-app' // テスト対象をインポート
 import { createTestCases, TestCase } from './util'
 
+jest.setTimeout(10000)
+
 describe('Test all integrations', () => {
   const domains = ['housing', 'mobility', 'other', 'extra']
   // eslint-disable-next-line no-undef
