@@ -78,7 +78,9 @@ export class ApiGatewayStack extends Stack {
     const profileIntegration = new LambdaIntegration(props.profileLambda)
 
     const getAuthHelloIntegration = new LambdaIntegration(props.authHelloLambda)
-    const authProfileIntegration = new LambdaIntegration(props.authProfileLambda)
+    const authProfileIntegration = new LambdaIntegration(
+      props.authProfileLambda
+    )
 
     hello.addMethod('GET', getHelloIntegration)
     footprintDir.addMethod('GET', footprintIntegration)
