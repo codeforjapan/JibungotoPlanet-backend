@@ -46,6 +46,7 @@ localでは localstack およびdockerを使用しています。作業後はdoc
 
 ```bash
 # build 方法
+npm install
 sh build.sh
 
 # 停止方法

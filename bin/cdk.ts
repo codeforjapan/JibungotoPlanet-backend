@@ -13,7 +13,7 @@ import { Route53Stack } from "../lib/route53";
 
 const app = new cdk.App();
 
-const stages = ['local', 'dev', 'prd']
+const stages = ['local', 'dev', 'test', 'prd']
 const stage = app.node.tryGetContext('stage')
 if (!stages.includes(stage)) {
   throw new Error('set stage value using -c option')
