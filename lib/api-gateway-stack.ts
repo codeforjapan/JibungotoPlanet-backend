@@ -17,9 +17,11 @@ export interface ApiGatewayStackProps extends BaseStackProps {
   domain: string
   certificateArn: string
   helloLambda: IFunction
+  authHelloLambda: IFunction
   footprintLambda: IFunction
   shareLambda: IFunction
   profileLambda: IFunction
+  authProfileLambda: IFunction
 }
 
 export class ApiGatewayStack extends Stack {
@@ -64,10 +66,19 @@ export class ApiGatewayStack extends Stack {
     const profile = apiGateway.root.addResource('profiles')
     const profileId = profile.addResource('{id}')
 
+    // auth routes
+    const auth = apiGateway.root.addResource('auth')
+    const authHello = auth.addResource('hello')
+    const authProfile = auth.addResource('profiles')
+    const authProfileId = authProfile.addResource('{id}')
+
     const getHelloIntegration = new LambdaIntegration(props.helloLambda)
     const footprintIntegration = new LambdaIntegration(props.footprintLambda)
     const shareIntegration = new LambdaIntegration(props.shareLambda)
     const profileIntegration = new LambdaIntegration(props.profileLambda)
+
+    const getAuthHelloIntegration = new LambdaIntegration(props.authHelloLambda)
+    const authProfileIntegration = new LambdaIntegration(props.authProfileLambda)
 
     hello.addMethod('GET', getHelloIntegration)
     footprintDir.addMethod('GET', footprintIntegration)
@@ -77,6 +88,10 @@ export class ApiGatewayStack extends Stack {
     profile.addMethod('POST', profileIntegration)
     profileId.addMethod('GET', profileIntegration)
     profileId.addMethod('PUT', profileIntegration)
+    authHello.addMethod('GET', getAuthHelloIntegration)
+    authProfileId.addMethod('GET', authProfileIntegration)
+    authProfileId.addMethod('PUT', authProfileIntegration)
+    authProfile.addMethod('POST', authProfileIntegration)
 
     const domain = new DomainName(
       this,

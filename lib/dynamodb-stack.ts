@@ -9,6 +9,7 @@ export class DynamodbStack extends Stack {
   public readonly profileTable: aws_dynamodb.Table
   public readonly parameterTable: aws_dynamodb.Table
   public readonly optionTable: aws_dynamodb.Table
+  public readonly usersTable: aws_dynamodb.Table
 
   constructor(scope: Construct, id: string, props: BaseStackProps) {
     super(scope, id, props)
@@ -54,6 +55,12 @@ export class DynamodbStack extends Stack {
         },
         sortKey: {
           name: 'domain_item_type',
+          type: AttributeType.STRING
+        }
+      },
+      users: {
+        partitionKey: {
+          name: 'user_id',
           type: AttributeType.STRING
         }
       }

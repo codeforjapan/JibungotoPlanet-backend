@@ -64,7 +64,8 @@ const profileLambda = new ProfileStack(app, `${ stage }${ serviceName }ProfileSt
   footprintTable: dynamoDB.footprintTable,
   profileTable: dynamoDB.profileTable,
   parameterTable: dynamoDB.parameterTable,
-  optionTable: dynamoDB.optionTable
+  optionTable: dynamoDB.optionTable,
+  usersTable: dynamoDB.usersTable
 })
 footprintLambda.addDependency(dynamoDB)
 
@@ -75,9 +76,11 @@ const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewa
   domain: config.domain,
   certificateArn: config.certificateArn,
   helloLambda: lambda.helloLambda,
+  authHelloLambda: lambda.authHelloLambda,
   footprintLambda: footprintLambda.lambda,
   shareLambda: shareLambda.lambda,
-  profileLambda: profileLambda.lambda
+  profileLambda: profileLambda.lambda,
+  authProfileLambda: profileLambda.authLambda
 })
 apiGateway.addDependency(lambda)
 apiGateway.addDependency(footprintLambda)
