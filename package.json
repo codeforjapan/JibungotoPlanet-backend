@@ -46,9 +46,12 @@
     "xlsx": "^0.18.5"
   },
   "dependencies": {
+    "@types/aws-lambda": "^8.10.113",
     "aws-cdk-lib": "2.59.0",
     "aws-cdk-local": "^2.17.0",
     "constructs": "^10.1.250",
+    "jsonwebtoken": "^9.0.0",
+    "jwks-rsa": "^3.0.1",
     "source-map-support": "^0.5.21"
   }
 }

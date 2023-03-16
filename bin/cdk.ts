@@ -55,7 +55,7 @@ const shareLambda = new ShareStack(app, `${ stage }${ serviceName }ShareStack`, 
   serviceName,
   dynamoTable: dynamoDB.profileTable
 })
-footprintLambda.addDependency(dynamoDB)
+shareLambda.addDependency(dynamoDB)
 
 const profileLambda = new ProfileStack(app, `${ stage }${ serviceName }ProfileStack`, {
   stage,
@@ -67,7 +67,7 @@ const profileLambda = new ProfileStack(app, `${ stage }${ serviceName }ProfileSt
   optionTable: dynamoDB.optionTable,
   usersTable: dynamoDB.usersTable
 })
-footprintLambda.addDependency(dynamoDB)
+profileLambda.addDependency(dynamoDB)
 
 const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewayStack`, {
   stage,
