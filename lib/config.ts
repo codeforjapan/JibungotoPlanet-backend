@@ -10,8 +10,8 @@ export interface Config {
   certificateArn: string
 
   auth: {
-    audience: string,
-    jwksUri: string,
+    audience: string
+    jwksUri: string
     tokenIssuer: string
   }
 }

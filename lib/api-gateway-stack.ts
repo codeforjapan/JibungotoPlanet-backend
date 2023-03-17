@@ -47,7 +47,7 @@ export class ApiGatewayStack extends Stack {
         environment: {
           AUDIENCE: props.audience,
           JWKS_URI: props.jwksUri,
-          TOKEN_ISSUER: props.tokenIssuer,
+          TOKEN_ISSUER: props.tokenIssuer
         }
       }
     )
