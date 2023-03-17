@@ -25,6 +25,9 @@ export interface ApiGatewayStackProps extends BaseStackProps {
   shareLambda: IFunction
   profileLambda: IFunction
   authProfileLambda: IFunction
+  audience: string
+  jwksUri: string
+  tokenIssuer: string
 }
 
 export class ApiGatewayStack extends Stack {
@@ -40,7 +43,12 @@ export class ApiGatewayStack extends Stack {
         functionName: `${props.stage}${props.serviceName}Authorizer`,
         entry: path.join(__dirname, './lambda/authorizer.ts'),
         handler: 'handler',
-        runtime: Runtime.NODEJS_16_X
+        runtime: Runtime.NODEJS_16_X,
+        environment: {
+          AUDIENCE: props.audience,
+          JWKS_URI: props.jwksUri,
+          TOKEN_ISSUER: props.tokenIssuer,
+        }
       }
     )
 
