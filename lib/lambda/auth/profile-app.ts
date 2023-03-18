@@ -29,7 +29,7 @@ let usersTableName = USERS_TABLE_NAME
 if (MOCK) {
   // for mock and localstack
   dynamoParam = {
-    endpoint: `http://${ process.env.LOCALSTACK_HOSTNAME }:4566`,
+    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
     region: 'ap-northeast-1',
     accessKeyId: 'testUser',
     secretAccessKey: 'testAccessKey'
@@ -38,7 +38,7 @@ if (MOCK) {
   parameterTableName = 'localJibungotoPlanetparameter'
   profileTableName = 'localJibungotoPlanetprofile'
   optionTableName = 'localJibungotoPlanetoption'
-  optionTableName = 'localJibungotoPlanetusers'
+  usersTableName = 'localJibungotoPlanetusers'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -228,12 +228,14 @@ app.post(path, async (req: express.Request, res: express.Response) => {
           Item: profile
         }
         await dynamodb.put(params).promise()
-        await dynamodb.put({
-          TableName: usersTableName,
-          Item: {
-            user_id: user_id
-          }
-        }).promise()
+        await dynamodb
+          .put({
+            TableName: usersTableName,
+            Item: {
+              user_id: user_id
+            }
+          })
+          .promise()
         res.json({
           success: 'post call succeed!',
           url: req.url,
@@ -249,7 +251,6 @@ app.post(path, async (req: express.Request, res: express.Response) => {
     res.json({ error: validate.errors })
   }
 })
-
 
 const toResponse = (profile: any, estimate: any) => {
   const common = {
@@ -269,11 +270,11 @@ const toResponse = (profile: any, estimate: any) => {
 
   return estimate
     ? {
-      ...common,
-      baselines: profile.baselines,
-      estimations: profile.estimations,
-      actions: profile.actions
-    }
+        ...common,
+        baselines: profile.baselines,
+        estimations: profile.estimations,
+        actions: profile.actions
+      }
     : common
 }
 

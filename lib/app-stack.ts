@@ -11,6 +11,7 @@ export interface AppStackProps extends BaseStackProps {
 export class AppStack extends Stack {
   public readonly helloLambda: IFunction
   public readonly authHelloLambda: IFunction
+  public readonly authHelloWorldLambda: IFunction
 
   constructor(scope: Construct, id: string, props: AppStackProps) {
     super(scope, id, props)
@@ -31,6 +32,17 @@ export class AppStack extends Stack {
       'getAuthHelloFunction',
       {
         functionName: `${props.stage}${props.serviceName}authHelloLambda`,
+        entry: path.join(__dirname, './lambda/auth/hello.ts'),
+        handler: 'handler',
+        runtime: Runtime.NODEJS_16_X
+      }
+    )
+
+    this.authHelloWorldLambda = new aws_lambda_nodejs.NodejsFunction(
+      this,
+      'getAuthHelloWorldFunction',
+      {
+        functionName: `${props.stage}${props.serviceName}authHelloWorldLambda`,
         entry: path.join(__dirname, './lambda/auth/hello.ts'),
         handler: 'handler',
         runtime: Runtime.NODEJS_16_X

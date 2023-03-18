@@ -18,6 +18,7 @@ export interface ApiGatewayStackProps extends BaseStackProps {
   certificateArn: string
   helloLambda: IFunction
   authHelloLambda: IFunction
+  authIntegrateWalletLambda: IFunction
   footprintLambda: IFunction
   shareLambda: IFunction
   profileLambda: IFunction
@@ -69,6 +70,7 @@ export class ApiGatewayStack extends Stack {
     // auth routes
     const auth = apiGateway.root.addResource('auth')
     const authHello = auth.addResource('hello')
+    const authIntegrateWallet = auth.addResource('integrate-wallet')
     const authProfile = auth.addResource('profiles')
     const authProfileId = authProfile.addResource('{id}')
 
@@ -78,6 +80,9 @@ export class ApiGatewayStack extends Stack {
     const profileIntegration = new LambdaIntegration(props.profileLambda)
 
     const getAuthHelloIntegration = new LambdaIntegration(props.authHelloLambda)
+    const authIntegrateWalletIntegration = new LambdaIntegration(
+      props.authIntegrateWalletLambda
+    )
     const authProfileIntegration = new LambdaIntegration(
       props.authProfileLambda
     )
@@ -91,6 +96,8 @@ export class ApiGatewayStack extends Stack {
     profileId.addMethod('GET', profileIntegration)
     profileId.addMethod('PUT', profileIntegration)
     authHello.addMethod('GET', getAuthHelloIntegration)
+    authIntegrateWallet.addMethod('GET', authIntegrateWalletIntegration)
+    authIntegrateWallet.addMethod('POST', authIntegrateWalletIntegration)
     authProfileId.addMethod('GET', authProfileIntegration)
     authProfileId.addMethod('PUT', authProfileIntegration)
     authProfile.addMethod('POST', authProfileIntegration)
