@@ -8,6 +8,12 @@ export interface Config {
 
   domain: string
   certificateArn: string
+
+  auth: {
+    audience: string
+    jwksUri: string
+    tokenIssuer: string
+  }
 }
 
 export function getConfig(stage: string): Config {

@@ -3,7 +3,15 @@
     "accountId": "000000000000",
     "region": "ap-northeast-1"
   },
-
   "domain": "jibungoto-planet.jp",
-  "certificateArn": "arn:aws:acm:ap-northeast-1:000000000000:certificate/00000000-0000-0000-0000-000000000000"
+  "certificateArn": "arn:aws:acm:ap-northeast-1:000000000000:certificate/00000000-0000-0000-0000-000000000000",
+  "auth": {
+    "audience": "https://dev-api-endpoint.jibungoto-planet.jp/",
+    "jwksUri": "https://dev-yhu65yl54yw0tnsx.jp.auth0.com/.well-known/jwks.json",
+    "tokenIssuer": "https://dev-yhu65yl54yw0tnsx.jp.auth0.com/"
+  },
+  "web3": {
+    "historyContractAddress": "",
+    "secretKey": ""
+  }
 }

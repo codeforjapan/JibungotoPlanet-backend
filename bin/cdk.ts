@@ -14,7 +14,7 @@ import { Route53Stack } from '../lib/route53'
 
 const app = new cdk.App()
 
-const stages = ['local', 'dev', 'test', 'prd']
+const stages = ['local', 'dev', 'test','auth', 'prd']
 const stage = app.node.tryGetContext('stage')
 if (!stages.includes(stage)) {
   throw new Error('set stage value using -c option')
@@ -60,7 +60,7 @@ const shareLambda = new ShareStack(app, `${stage}${serviceName}ShareStack`, {
   serviceName,
   dynamoTable: dynamoDB.profileTable
 })
-footprintLambda.addDependency(dynamoDB)
+shareLambda.addDependency(dynamoDB)
 
 const profileLambda = new ProfileStack(
   app,
@@ -87,27 +87,25 @@ const web3Lambda = new Web3Stack(app, `${stage}${serviceName}Web3Stack`, {
   optionTable: dynamoDB.optionTable,
   usersTable: dynamoDB.usersTable
 })
+profileLambda.addDependency(dynamoDB)
 
-footprintLambda.addDependency(dynamoDB)
-
-const apiGateway = new ApiGatewayStack(
-  app,
-  `${stage}${serviceName}ApiGatewayStack`,
-  {
-    stage,
-    env,
-    serviceName,
-    domain: config.domain,
-    certificateArn: config.certificateArn,
-    helloLambda: lambda.helloLambda,
-    authHelloLambda: lambda.authHelloLambda,
-    footprintLambda: footprintLambda.lambda,
-    shareLambda: shareLambda.lambda,
-    profileLambda: profileLambda.lambda,
-    authProfileLambda: profileLambda.authLambda,
-    authIntegrateWalletLambda: web3Lambda.authIntegrateWalletLambda
-  }
-)
+const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewayStack`, {
+  stage,
+  env,
+  serviceName,
+  domain: config.domain,
+  certificateArn: config.certificateArn,
+  helloLambda: lambda.helloLambda,
+  authHelloLambda: lambda.authHelloLambda,
+  footprintLambda: footprintLambda.lambda,
+  shareLambda: shareLambda.lambda,
+  profileLambda: profileLambda.lambda,
+  authProfileLambda: profileLambda.authLambda,
+  authIntegrateWalletLambda: web3Lambda.authIntegrateWalletLambda,
+  audience: config.auth.audience,
+  jwksUri: config.auth.jwksUri,
+  tokenIssuer: config.auth.tokenIssuer,
+})
 apiGateway.addDependency(lambda)
 apiGateway.addDependency(footprintLambda)
 apiGateway.addDependency(shareLambda)

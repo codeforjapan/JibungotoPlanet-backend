@@ -1,4 +1,4 @@
-import { aws_certificatemanager, Stack } from 'aws-cdk-lib'
+import { aws_certificatemanager, aws_lambda_nodejs, Stack } from 'aws-cdk-lib'
 import { Construct } from 'constructs'
 import { BaseStackProps } from './props'
 import {
@@ -6,12 +6,15 @@ import {
   Cors,
   DomainName,
   EndpointType,
+  IdentitySource,
   IDomainName,
   LambdaIntegration,
   RestApi,
-  SecurityPolicy
+  SecurityPolicy,
+  TokenAuthorizer
 } from 'aws-cdk-lib/aws-apigateway'
-import { IFunction } from 'aws-cdk-lib/aws-lambda'
+import { IFunction, Runtime } from 'aws-cdk-lib/aws-lambda'
+import path from 'path'
 
 export interface ApiGatewayStackProps extends BaseStackProps {
   domain: string
@@ -23,6 +26,9 @@ export interface ApiGatewayStackProps extends BaseStackProps {
   shareLambda: IFunction
   profileLambda: IFunction
   authProfileLambda: IFunction
+  audience: string
+  jwksUri: string
+  tokenIssuer: string
 }
 
 export class ApiGatewayStack extends Stack {
@@ -30,6 +36,22 @@ export class ApiGatewayStack extends Stack {
 
   constructor(scope: Construct, id: string, props: ApiGatewayStackProps) {
     super(scope, id, props)
+
+    const authorizerLambda = new aws_lambda_nodejs.NodejsFunction(
+      this,
+      'lambdaAuthorizerFunction',
+      {
+        functionName: `${props.stage}${props.serviceName}Authorizer`,
+        entry: path.join(__dirname, './lambda/authorizer.ts'),
+        handler: 'handler',
+        runtime: Runtime.NODEJS_16_X,
+        environment: {
+          AUDIENCE: props.audience,
+          JWKS_URI: props.jwksUri,
+          TOKEN_ISSUER: props.tokenIssuer
+        }
+      }
+    )
 
     const apiGateway = new RestApi(
       this,
@@ -50,6 +72,12 @@ export class ApiGatewayStack extends Stack {
         }
       }
     )
+
+    const lambdaAuth = new TokenAuthorizer(this, 'lambdaAuthorizer', {
+      authorizerName: 'lambdaAuthorizer',
+      handler: authorizerLambda, //ここでLambda Authorizer用のLambda関数を割り当てる
+      identitySource: IdentitySource.header('Authorization') //アクセストークンを渡すためのヘッダーを指定
+    })
 
     const hello = apiGateway.root.addResource('hello')
 
@@ -95,7 +123,9 @@ export class ApiGatewayStack extends Stack {
     profile.addMethod('POST', profileIntegration)
     profileId.addMethod('GET', profileIntegration)
     profileId.addMethod('PUT', profileIntegration)
-    authHello.addMethod('GET', getAuthHelloIntegration)
+    authHello.addMethod('GET', getAuthHelloIntegration, {
+      authorizer: lambdaAuth
+    })
     authIntegrateWallet.addMethod('GET', authIntegrateWalletIntegration)
     authIntegrateWallet.addMethod('POST', authIntegrateWalletIntegration)
     authProfileId.addMethod('GET', authProfileIntegration)
