@@ -72,11 +72,11 @@ export class ApiGatewayStack extends Stack {
       }
     )
 
-    const lambdaAuth = new TokenAuthorizer(this, 'lambdaAuthorizer', {
+    const lambdaAuth = props.stage !== 'local' ? new TokenAuthorizer(this, 'lambdaAuthorizer', {
       authorizerName: 'lambdaAuthorizer',
       handler: authorizerLambda, //ここでLambda Authorizer用のLambda関数を割り当てる
       identitySource: IdentitySource.header('Authorization') //アクセストークンを渡すためのヘッダーを指定
-    })
+    }) : undefined
 
     const hello = apiGateway.root.addResource('hello')
 
@@ -121,9 +121,15 @@ export class ApiGatewayStack extends Stack {
     authHello.addMethod('GET', getAuthHelloIntegration, {
       authorizer: lambdaAuth
     })
-    authProfileId.addMethod('GET', authProfileIntegration)
-    authProfileId.addMethod('PUT', authProfileIntegration)
-    authProfile.addMethod('POST', authProfileIntegration)
+    authProfileId.addMethod('GET', authProfileIntegration, {
+      authorizer: lambdaAuth
+    })
+    authProfileId.addMethod('PUT', authProfileIntegration, {
+      authorizer: lambdaAuth
+    })
+    authProfile.addMethod('POST', authProfileIntegration, {
+      authorizer: lambdaAuth
+    })
 
     const domain = new DomainName(
       this,
