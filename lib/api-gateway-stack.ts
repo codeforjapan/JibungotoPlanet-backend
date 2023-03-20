@@ -21,11 +21,13 @@ export interface ApiGatewayStackProps extends BaseStackProps {
   certificateArn: string
   helloLambda: IFunction
   authHelloLambda: IFunction
+  authHelloWorldLambda: IFunction
   authIntegrateWalletLambda: IFunction
   footprintLambda: IFunction
   shareLambda: IFunction
   profileLambda: IFunction
   authProfileLambda: IFunction
+  web3Lambda: IFunction
   audience: string
   jwksUri: string
   tokenIssuer: string
@@ -98,9 +100,12 @@ export class ApiGatewayStack extends Stack {
     const profile = apiGateway.root.addResource('profiles')
     const profileId = profile.addResource('{id}')
 
+    const web3 = apiGateway.root.addResource('web3')
+
     // auth routes
     const auth = apiGateway.root.addResource('auth')
     const authHello = auth.addResource('hello')
+    const authHelloWorld = auth.addResource('hello-world')
     const authIntegrateWallet = auth.addResource('integrate-wallet')
     const authProfile = auth.addResource('profiles')
     const authProfileId = authProfile.addResource('{id}')
@@ -109,8 +114,12 @@ export class ApiGatewayStack extends Stack {
     const footprintIntegration = new LambdaIntegration(props.footprintLambda)
     const shareIntegration = new LambdaIntegration(props.shareLambda)
     const profileIntegration = new LambdaIntegration(props.profileLambda)
+    const web3Integration = new LambdaIntegration(props.web3Lambda)
 
     const getAuthHelloIntegration = new LambdaIntegration(props.authHelloLambda)
+    const getAuthHelloWorldIntegration = new LambdaIntegration(
+      props.authHelloWorldLambda
+    )
     const authIntegrateWalletIntegration = new LambdaIntegration(
       props.authIntegrateWalletLambda
     )
@@ -126,20 +135,16 @@ export class ApiGatewayStack extends Stack {
     profile.addMethod('POST', profileIntegration)
     profileId.addMethod('GET', profileIntegration)
     profileId.addMethod('PUT', profileIntegration)
+    web3.addMethod('GET', web3Integration)
     authHello.addMethod('GET', getAuthHelloIntegration, {
       authorizer: lambdaAuth
     })
+    authHelloWorld.addMethod('GET', getAuthHelloWorldIntegration)
     authIntegrateWallet.addMethod('GET', authIntegrateWalletIntegration)
     authIntegrateWallet.addMethod('POST', authIntegrateWalletIntegration)
-    authProfileId.addMethod('GET', authProfileIntegration, {
-      authorizer: lambdaAuth
-    })
-    authProfileId.addMethod('PUT', authProfileIntegration, {
-      authorizer: lambdaAuth
-    })
-    authProfile.addMethod('POST', authProfileIntegration, {
-      authorizer: lambdaAuth
-    })
+    authProfileId.addMethod('GET', authProfileIntegration)
+    authProfileId.addMethod('PUT', authProfileIntegration)
+    authProfile.addMethod('POST', authProfileIntegration)
 
     const domain = new DomainName(
       this,

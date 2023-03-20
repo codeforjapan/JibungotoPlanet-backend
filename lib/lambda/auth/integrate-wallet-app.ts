@@ -1,14 +1,8 @@
-import { estimateMobility } from '../actions/mobility'
-import { estimateHousing } from '../actions/housing'
-import { estimateFood } from '../actions/food'
-import { estimateOther } from '../actions/other'
-import { calculateActions } from '../actions/action'
 import { ethers } from 'ethers'
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
-const shortid = require('shortid')
 import express from 'express'
 
 const FOOTPRINT_TABLE_NAME = process.env.FOOTPRINT_TABLE_NAME || ''
@@ -65,7 +59,7 @@ app.get(path, async (req: express.Request, res: express.Response) => {
     const { Item: user } = await dynamodb
       .get({
         TableName: usersTableName,
-        Key: { user_id: 'test' }
+        Key: { user_id: req.query.user_id }
       })
       .promise()
     res.json(user)
@@ -77,15 +71,18 @@ app.get(path, async (req: express.Request, res: express.Response) => {
 
 app.post(path, async (req: express.Request, res: express.Response) => {
   try {
-    const { signature, message }: { signature: string; message: string } =
-      req.body
+    const {
+      signature,
+      message,
+      user_id
+    }: { signature: string; message: string; user_id: string } = req.body
     const digest = ethers.hashMessage(message)
     const wallet_address = ethers.recoverAddress(digest, signature)
 
     await dynamodb
       .put({
         TableName: usersTableName,
-        Item: { user_id: 'test', wallet_address }
+        Item: { user_id: user_id, wallet_address }
       })
       .promise()
     res.json({ wallet_address })

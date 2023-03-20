@@ -14,6 +14,12 @@ export interface Config {
     jwksUri: string
     tokenIssuer: string
   }
+
+  web3: {
+    jsonRpcProvider: string
+    actionHistoryAddr: string
+    privateKey: string
+  }
 }
 
 export function getConfig(stage: string): Config {

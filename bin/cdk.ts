@@ -14,7 +14,7 @@ import { Route53Stack } from '../lib/route53'
 
 const app = new cdk.App()
 
-const stages = ['local', 'dev', 'test','auth', 'prd']
+const stages = ['local', 'dev', 'test', 'auth', 'prd']
 const stage = app.node.tryGetContext('stage')
 if (!stages.includes(stage)) {
   throw new Error('set stage value using -c option')
@@ -76,6 +76,7 @@ const profileLambda = new ProfileStack(
     usersTable: dynamoDB.usersTable
   }
 )
+profileLambda.addDependency(dynamoDB)
 
 const web3Lambda = new Web3Stack(app, `${stage}${serviceName}Web3Stack`, {
   stage,
@@ -85,27 +86,34 @@ const web3Lambda = new Web3Stack(app, `${stage}${serviceName}Web3Stack`, {
   profileTable: dynamoDB.profileTable,
   parameterTable: dynamoDB.parameterTable,
   optionTable: dynamoDB.optionTable,
-  usersTable: dynamoDB.usersTable
+  usersTable: dynamoDB.usersTable,
+  web3: config.web3
 })
-profileLambda.addDependency(dynamoDB)
+web3Lambda.addDependency(dynamoDB)
 
-const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewayStack`, {
-  stage,
-  env,
-  serviceName,
-  domain: config.domain,
-  certificateArn: config.certificateArn,
-  helloLambda: lambda.helloLambda,
-  authHelloLambda: lambda.authHelloLambda,
-  footprintLambda: footprintLambda.lambda,
-  shareLambda: shareLambda.lambda,
-  profileLambda: profileLambda.lambda,
-  authProfileLambda: profileLambda.authLambda,
-  authIntegrateWalletLambda: web3Lambda.authIntegrateWalletLambda,
-  audience: config.auth.audience,
-  jwksUri: config.auth.jwksUri,
-  tokenIssuer: config.auth.tokenIssuer,
-})
+const apiGateway = new ApiGatewayStack(
+  app,
+  `${stage}${serviceName}ApiGatewayStack`,
+  {
+    stage,
+    env,
+    serviceName,
+    domain: config.domain,
+    certificateArn: config.certificateArn,
+    helloLambda: lambda.helloLambda,
+    authHelloLambda: lambda.authHelloLambda,
+    authHelloWorldLambda: lambda.authHelloWorldLambda,
+    footprintLambda: footprintLambda.lambda,
+    shareLambda: shareLambda.lambda,
+    profileLambda: profileLambda.lambda,
+    web3Lambda: web3Lambda.web3Lambda,
+    authProfileLambda: profileLambda.authLambda,
+    authIntegrateWalletLambda: web3Lambda.authIntegrateWalletLambda,
+    audience: config.auth.audience,
+    jwksUri: config.auth.jwksUri,
+    tokenIssuer: config.auth.tokenIssuer
+  }
+)
 apiGateway.addDependency(lambda)
 apiGateway.addDependency(footprintLambda)
 apiGateway.addDependency(shareLambda)
