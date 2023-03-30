@@ -72,11 +72,14 @@ export class ApiGatewayStack extends Stack {
       }
     )
 
-    const lambdaAuth = props.stage !== 'local' ? new TokenAuthorizer(this, 'lambdaAuthorizer', {
-      authorizerName: 'lambdaAuthorizer',
-      handler: authorizerLambda, //ここでLambda Authorizer用のLambda関数を割り当てる
-      identitySource: IdentitySource.header('Authorization') //アクセストークンを渡すためのヘッダーを指定
-    }) : undefined
+    const lambdaAuth =
+      props.stage !== 'local'
+        ? new TokenAuthorizer(this, 'lambdaAuthorizer', {
+            authorizerName: 'lambdaAuthorizer',
+            handler: authorizerLambda, //ここでLambda Authorizer用のLambda関数を割り当てる
+            identitySource: IdentitySource.header('Authorization') //アクセストークンを渡すためのヘッダーを指定
+          })
+        : undefined
 
     const hello = apiGateway.root.addResource('hello')
 
