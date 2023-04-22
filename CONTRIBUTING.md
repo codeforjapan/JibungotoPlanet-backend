@@ -63,7 +63,7 @@ localJibungotoPlanetApiGatewayStack.localJibungotoPlanetapiGatewayEndpointEA44D7
 Stack ARN:
 arn:aws:cloudformation:ap-northeast-1:000000000000:stack/localJibungotoPlanetApiGatewayStack/55405aaa
 
-# この場合は
+# この場合は以下の情報を、フロントのNEXT_PUBLIC_API_URLに設定する
 https://5e0co6qiao.execute-api.localhost.localstack.cloud:4566/local/
 ````
 
