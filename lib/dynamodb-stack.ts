@@ -68,7 +68,8 @@ export class DynamodbStack extends Stack {
           partitionKey: tableObject.partitionKey,
           sortKey: tableObject.sortKey,
           tableName: `${props.stage}${props.serviceName}${key}`,
-          removalPolicy: RemovalPolicy.DESTROY
+          removalPolicy: RemovalPolicy.DESTROY,
+          billingMode: aws_dynamodb.BillingMode.PAY_PER_REQUEST
         }
       )
     }
