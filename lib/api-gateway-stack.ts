@@ -1,4 +1,4 @@
-import { aws_certificatemanager, Stack } from 'aws-cdk-lib'
+import { aws_certificatemanager, aws_lambda_nodejs, Stack } from 'aws-cdk-lib'
 import { Construct } from 'constructs'
 import { BaseStackProps } from './props'
 import {
@@ -6,20 +6,28 @@ import {
   Cors,
   DomainName,
   EndpointType,
+  IdentitySource,
   IDomainName,
   LambdaIntegration,
   RestApi,
-  SecurityPolicy
+  SecurityPolicy,
+  TokenAuthorizer
 } from 'aws-cdk-lib/aws-apigateway'
-import { IFunction } from 'aws-cdk-lib/aws-lambda'
+import { IFunction, Runtime } from 'aws-cdk-lib/aws-lambda'
+import path from 'path'
 
 export interface ApiGatewayStackProps extends BaseStackProps {
   domain: string
   certificateArn: string
   helloLambda: IFunction
+  authHelloLambda: IFunction
   footprintLambda: IFunction
   shareLambda: IFunction
   profileLambda: IFunction
+  authProfileLambda: IFunction
+  audience: string
+  jwksUri: string
+  tokenIssuer: string
 }
 
 export class ApiGatewayStack extends Stack {
@@ -27,6 +35,22 @@ export class ApiGatewayStack extends Stack {
 
   constructor(scope: Construct, id: string, props: ApiGatewayStackProps) {
     super(scope, id, props)
+
+    const authorizerLambda = new aws_lambda_nodejs.NodejsFunction(
+      this,
+      'lambdaAuthorizerFunction',
+      {
+        functionName: `${props.stage}${props.serviceName}Authorizer`,
+        entry: path.join(__dirname, './lambda/authorizer.ts'),
+        handler: 'handler',
+        runtime: Runtime.NODEJS_16_X,
+        environment: {
+          AUDIENCE: props.audience,
+          JWKS_URI: props.jwksUri,
+          TOKEN_ISSUER: props.tokenIssuer
+        }
+      }
+    )
 
     const apiGateway = new RestApi(
       this,
@@ -48,6 +72,15 @@ export class ApiGatewayStack extends Stack {
       }
     )
 
+    const lambdaAuth =
+      props.stage !== 'local'
+        ? new TokenAuthorizer(this, 'lambdaAuthorizer', {
+            authorizerName: 'lambdaAuthorizer',
+            handler: authorizerLambda, //ここでLambda Authorizer用のLambda関数を割り当てる
+            identitySource: IdentitySource.header('Authorization') //アクセストークンを渡すためのヘッダーを指定
+          })
+        : undefined
+
     const hello = apiGateway.root.addResource('hello')
 
     // memo replaceに向けて個別でルーティングする
@@ -64,10 +97,21 @@ export class ApiGatewayStack extends Stack {
     const profile = apiGateway.root.addResource('profiles')
     const profileId = profile.addResource('{id}')
 
+    // auth routes
+    const auth = apiGateway.root.addResource('auth')
+    const authHello = auth.addResource('hello')
+    const authProfile = auth.addResource('profiles')
+    const authProfileId = authProfile.addResource('{id}')
+
     const getHelloIntegration = new LambdaIntegration(props.helloLambda)
     const footprintIntegration = new LambdaIntegration(props.footprintLambda)
     const shareIntegration = new LambdaIntegration(props.shareLambda)
     const profileIntegration = new LambdaIntegration(props.profileLambda)
+
+    const getAuthHelloIntegration = new LambdaIntegration(props.authHelloLambda)
+    const authProfileIntegration = new LambdaIntegration(
+      props.authProfileLambda
+    )
 
     hello.addMethod('GET', getHelloIntegration)
     footprintDir.addMethod('GET', footprintIntegration)
@@ -77,6 +121,18 @@ export class ApiGatewayStack extends Stack {
     profile.addMethod('POST', profileIntegration)
     profileId.addMethod('GET', profileIntegration)
     profileId.addMethod('PUT', profileIntegration)
+    authHello.addMethod('GET', getAuthHelloIntegration, {
+      authorizer: lambdaAuth
+    })
+    authProfileId.addMethod('GET', authProfileIntegration, {
+      authorizer: lambdaAuth
+    })
+    authProfileId.addMethod('PUT', authProfileIntegration, {
+      authorizer: lambdaAuth
+    })
+    authProfile.addMethod('POST', authProfileIntegration, {
+      authorizer: lambdaAuth
+    })
 
     const domain = new DomainName(
       this,

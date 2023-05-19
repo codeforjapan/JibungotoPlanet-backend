@@ -13,7 +13,7 @@ import { Route53Stack } from "../lib/route53";
 
 const app = new cdk.App();
 
-const stages = ['local', 'dev', 'prd']
+const stages = ['local', 'dev', 'test','auth', 'prd']
 const stage = app.node.tryGetContext('stage')
 if (!stages.includes(stage)) {
   throw new Error('set stage value using -c option')
@@ -55,7 +55,7 @@ const shareLambda = new ShareStack(app, `${ stage }${ serviceName }ShareStack`, 
   serviceName,
   dynamoTable: dynamoDB.profileTable
 })
-footprintLambda.addDependency(dynamoDB)
+shareLambda.addDependency(dynamoDB)
 
 const profileLambda = new ProfileStack(app, `${ stage }${ serviceName }ProfileStack`, {
   stage,
@@ -64,9 +64,10 @@ const profileLambda = new ProfileStack(app, `${ stage }${ serviceName }ProfileSt
   footprintTable: dynamoDB.footprintTable,
   profileTable: dynamoDB.profileTable,
   parameterTable: dynamoDB.parameterTable,
-  optionTable: dynamoDB.optionTable
+  optionTable: dynamoDB.optionTable,
+  usersTable: dynamoDB.usersTable
 })
-footprintLambda.addDependency(dynamoDB)
+profileLambda.addDependency(dynamoDB)
 
 const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewayStack`, {
   stage,
@@ -75,9 +76,14 @@ const apiGateway = new ApiGatewayStack(app, `${ stage }${ serviceName }ApiGatewa
   domain: config.domain,
   certificateArn: config.certificateArn,
   helloLambda: lambda.helloLambda,
+  authHelloLambda: lambda.authHelloLambda,
   footprintLambda: footprintLambda.lambda,
   shareLambda: shareLambda.lambda,
-  profileLambda: profileLambda.lambda
+  profileLambda: profileLambda.lambda,
+  authProfileLambda: profileLambda.authLambda,
+  audience: config.auth.audience,
+  jwksUri: config.auth.jwksUri,
+  tokenIssuer: config.auth.tokenIssuer,
 })
 apiGateway.addDependency(lambda)
 apiGateway.addDependency(footprintLambda)

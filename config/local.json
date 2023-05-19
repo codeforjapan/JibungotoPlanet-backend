@@ -5,5 +5,11 @@
   },
 
   "domain": "jibungoto-planet.jp",
-  "certificateArn": "arn:aws:acm:ap-northeast-1:000000000000:certificate/00000000-0000-0000-0000-000000000000"
+  "certificateArn": "arn:aws:acm:ap-northeast-1:000000000000:certificate/00000000-0000-0000-0000-000000000000",
+
+  "auth": {
+    "audience": "",
+    "jwksUri": "",
+    "tokenIssuer": ""
+  }
 }
