@@ -105,6 +105,44 @@ interface Profile {
   clothesBeautyFactorKey: string
   leisureSportsFactorKey: string
   travelFactorKey: string
+
+  //
+  // actionIntensityRates
+  //
+  zehRate: Number
+  selfReRate: Number
+  gridReRate: Number
+  comHouseRate: Number
+  insrenovRate: Number
+  clothesHomeRate: Number
+  ecRate: Number
+  acRate: Number
+  ledRate: Number
+  enenudgeRate: Number
+  teleworkRate: Number
+  closeworkRate: Number
+  mictourismRate: Number
+  closeserviceRate: Number
+  dailyshiftRate: Number
+  longshiftRate: Number
+  rideshareRate: Number
+  carshareRate: Number
+  carEvPhvRate: Number
+  carEvPhvReRate: Number
+  veganRate: Number
+  vegetarianRate: Number
+  whiteMeatFishRate: Number
+  guideMealRate: Number
+  guideSnackDrinkRate: Number
+  lossRate: Number
+  seasonalRate: Number
+  localRate: Number
+  clothesAccessoryR: Number
+  electronicsFurnitureRate: Number
+  hobbyRate: Number
+  consumablesRate: Number
+  booksRate: Number
+  ecoTourismRate: Number
 }
 
 const toEstimations = (rec: any, index: number): Estimation[] => {
@@ -155,6 +193,12 @@ const toProfile = (rec: any, index: number): Profile => {
   const housingAnswer = rec?.housingAnswer?.M || {}
   const foodAnswer = rec?.foodAnswer?.M || {}
   const otherAnswer = rec?.otherAnswer?.M || {}
+  const actionIntensityRates = rec?.actionIntensityRates?.L || []
+
+  const air = (option: String) =>
+    actionIntensityRates.find((rate: any) => rate.M.option.S === option)?.M
+      .value.N ?? 0
+
   return {
     updatedAt: new Date(Date.parse(rec.updatedAt.S)),
     createdAt: new Date(Date.parse(rec.createdAt.S)),
@@ -232,7 +276,45 @@ const toProfile = (rec: any, index: number): Profile => {
     hobbyGoodsFactorKey: otherAnswer?.hobbyGoodsFactorKey?.S,
     clothesBeautyFactorKey: otherAnswer?.clothesBeautyFactorKey?.S,
     leisureSportsFactorKey: otherAnswer?.leisureSportsFactorKey?.S,
-    travelFactorKey: otherAnswer?.travelFactorKey?.S
+    travelFactorKey: otherAnswer?.travelFactorKey?.S,
+
+    //
+    // actionIntensityRates
+    //
+    zehRate: air('zeh'),
+    selfReRate: air('self-re'),
+    gridReRate: air('grid-re'),
+    comHouseRate: air('com-house'),
+    insrenovRate: air('insrenov'),
+    clothesHomeRate: air('clothes-home'),
+    ecRate: air('ec'),
+    acRate: air('ac'),
+    ledRate: air('led'),
+    enenudgeRate: air('enenudge'),
+    teleworkRate: air('telework'),
+    closeworkRate: air('closework'),
+    mictourismRate: air('mictourism'),
+    closeserviceRate: air('closeservice'),
+    dailyshiftRate: air('dailyshift'),
+    longshiftRate: air('longshift'),
+    rideshareRate: air('rideshare'),
+    carshareRate: air('carshare'),
+    carEvPhvRate: air('car-ev-phv'),
+    carEvPhvReRate: air('car-ev-phv-re'),
+    veganRate: air('vegan'),
+    vegetarianRate: air('vegetarian'),
+    whiteMeatFishRate: air('white-meat-fish'),
+    guideMealRate: air('guide-meal'),
+    guideSnackDrinkRate: air('guide-snack-drink'),
+    lossRate: air('loss'),
+    seasonalRate: air('seasonal'),
+    localRate: air('local'),
+    clothesAccessoryR: air('clothes-accessory'),
+    electronicsFurnitureRate: air('electronics-furniture'),
+    hobbyRate: air('hobby'),
+    consumablesRate: air('consumables'),
+    booksRate: air('books'),
+    ecoTourismRate: air('eco-tourism')
   }
 }
 
@@ -240,9 +322,11 @@ const profiles: Profile[] = []
 const estimations: Estimation[] = []
 const actions: Action[] = []
 
+const suffix = 'prd'
+
 let index = 0
 const stream = fs
-  .createReadStream('local/profile-stg.json')
+  .createReadStream(`local/profile-${suffix}.json`)
   .pipe(JSONStream.parse('Items.*'))
 
 stream.on('data', (rec: any) => {
@@ -260,7 +344,7 @@ stream.on('end', () => {
   console.log('writing profile: ' + profiles.length)
 
   fs.writeFileSync(
-    'local/profile.csv',
+    `local/profile-${suffix}.csv`,
     stringify(profiles, {
       header: true,
       cast: {
@@ -273,7 +357,7 @@ stream.on('end', () => {
   console.log('writing estimations: ' + estimations.length)
 
   fs.writeFileSync(
-    'local/estimation.csv',
+    `local/estimation-${suffix}.csv`,
     stringify(estimations, {
       header: true,
       cast: {
@@ -286,7 +370,7 @@ stream.on('end', () => {
   console.log('writing action: ' + actions.length)
 
   fs.writeFileSync(
-    'local/action.csv',
+    `local/action-${suffix}.csv`,
     stringify(actions, {
       header: true,
       cast: {
