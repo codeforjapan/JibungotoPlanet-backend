@@ -4,43 +4,6 @@ const bodyParser = require('body-parser')
 import { enumerateBaselines } from 'cfp-calc'
 import express from 'express'
 import { toFootprint } from './utils/adapter'
-import { Footprint } from 'cfp-calc/entity'
-
-const TABLE_NAME = process.env.TABLE_NAME || ''
-const MOCK = process.env.LOCALSTACK_HOSTNAME ? true : false
-
-/*
-const toComponent = (item: any) => {
-  const dir_domain = item.dir_domain.split('_')
-  const item_type = item.item_type.split('_')
-  return {
-    dir: dir_domain[0],
-    domain: dir_domain[1],
-    item: item_type[0],
-    type: item_type[1],
-    subdomain: item.subdomain,
-    value: item.value,
-    unit: item.unit,
-    citation: item.citation
-  }
-}
-*/
-
-let dynamoParam = {}
-let tableName = TABLE_NAME
-
-if (MOCK) {
-  // for mock and localstack
-  dynamoParam = {
-    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
-    region: 'ap-northeast-1',
-    accessKeyId: 'testUser',
-    secretAccessKey: 'testAccessKey'
-  }
-  tableName = 'localJibungotoPlanetfootprint'
-}
-
-const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
 
 const path = '/footprints'
 
@@ -68,21 +31,6 @@ app.get(path + '/:dir', async (req: express.Request, res: express.Response) => {
   const dir = req.params.dir
   let response: any[] = []
 
-  /*
-  // domainは決めうちで設定
-  for (const domain of ['housing', 'mobility', 'food', 'other']) {
-    const params = {
-      TableName: tableName,
-      KeyConditions: {
-        dir_domain: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: [dir + '_' + domain]
-        }
-      }
-    }
-
-  }
-  */
   try {
     // baseline 取得に決めうち
     response = response.concat(
@@ -106,18 +54,6 @@ app.get(path + '/:dir/:domain', async (req, res) => {
   const dir = req.params.dir
   const domain = req.params.domain
 
-  /*
-  const params = {
-    TableName: tableName,
-    KeyConditions: {
-      dir_domain: {
-        ComparisonOperator: 'EQ',
-        AttributeValueList: [dir + '_' + domain]
-      }
-    }
-  }
-  */
-
   try {
     // baseline 取得に決めうち
     const data = enumerateBaselines().filter((bl: any) => bl.domain === domain)
@@ -137,16 +73,6 @@ app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
   const domain = req.params.domain
   const item = req.params.item
   const type = req.params.type
-
-  /*
-  const params = {
-    TableName: tableName,
-    Key: {
-      dir_domain: dir + '_' + domain,
-      item_type: item + '_' + type
-    }
-  }
-  */
 
   try {
     // baseline 取得に決めうち

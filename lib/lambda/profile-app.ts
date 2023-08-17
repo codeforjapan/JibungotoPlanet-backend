@@ -1,4 +1,4 @@
-import { validate } from './actions/validate'
+import { validate } from './utils/validate'
 import {
   estimateMobility,
   estimateHousing,
@@ -6,7 +6,7 @@ import {
   estimateOther,
   enumerateBaselinesBy
 } from './utils/adapter'
-import { optionIntensityRates } from './actions/data'
+import { optionIntensityRates } from './utils/data'
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -16,17 +16,11 @@ const shortid = require('shortid')
 import express from 'express'
 import { Diagnosis } from 'cfp-calc'
 
-const FOOTPRINT_TABLE_NAME = process.env.FOOTPRINT_TABLE_NAME || ''
-const PARAMETER_TABLE_NAME = process.env.PARAMETER_TABLE_NAME || ''
 const PROFILE_TABLE_NAME = process.env.PROFILE_TABLE_NAME || ''
-const OPTION_TABLE_NAME = process.env.OPTION_TABLE_NAME || ''
 const MOCK = process.env.LOCALSTACK_HOSTNAME ? true : false
 
 let dynamoParam = {}
-let footprintTableName = FOOTPRINT_TABLE_NAME
-let parameterTableName = PARAMETER_TABLE_NAME
 let profileTableName = PROFILE_TABLE_NAME
-let optionTableName = OPTION_TABLE_NAME
 
 if (MOCK) {
   // for mock and localstack
@@ -36,10 +30,7 @@ if (MOCK) {
     accessKeyId: 'testUser',
     secretAccessKey: 'testAccessKey'
   }
-  footprintTableName = 'localJibungotoPlanetfootprint'
-  parameterTableName = 'localJibungotoPlanetparameter'
   profileTableName = 'localJibungotoPlanetprofile'
-  optionTableName = 'localJibungotoPlanetoption'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -105,7 +96,7 @@ app.get(path + '/:id', async (req: express.Request, res: express.Response) => {
 
     // 計算がされていない場合は遅延初期化
     if (!profile.estimated) {
-      await updateProfile(dynamodb, profile)
+      updateProfile(profile)
       profile.estimated = true
       profile.updatedAt = new Date().toISOString()
       await dynamodb
@@ -143,7 +134,7 @@ const mergeActionIntensityRates = (orgRates: any, newRates: any) => {
   })
 }
 
-const updateProfile = async (dynamodb: any, profile: any) => {
+const updateProfile = (profile: any) => {
   profile.baselines = []
   profile.estimations = []
 
@@ -225,7 +216,7 @@ app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
       profile.estimated = false
 
       if (estimate) {
-        await updateProfile(dynamodb, profile)
+        updateProfile(profile)
         profile.updatedAt = new Date().toISOString()
         profile.estimated = true
       }
@@ -287,7 +278,7 @@ app.post(path, async (req: express.Request, res: express.Response) => {
       )
 
       if (estimate) {
-        await updateProfile(dynamodb, profile)
+        updateProfile(profile)
         profile.estimated = true
       }
 
