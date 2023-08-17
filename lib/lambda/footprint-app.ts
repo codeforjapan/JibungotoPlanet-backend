@@ -1,41 +1,9 @@
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
+import { enumerateBaselines } from 'cfp-calc'
 import express from 'express'
-
-const TABLE_NAME = process.env.TABLE_NAME || ''
-const MOCK = process.env.LOCALSTACK_HOSTNAME ? true : false
-
-const toComponent = (item: any) => {
-  const dir_domain = item.dir_domain.split('_')
-  const item_type = item.item_type.split('_')
-  return {
-    dir: dir_domain[0],
-    domain: dir_domain[1],
-    item: item_type[0],
-    type: item_type[1],
-    subdomain: item.subdomain,
-    value: item.value,
-    unit: item.unit,
-    citation: item.citation
-  }
-}
-
-let dynamoParam = {}
-let tableName = TABLE_NAME
-
-if (MOCK) {
-  // for mock and localstack
-  dynamoParam = {
-    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
-    region: 'ap-northeast-1',
-    accessKeyId: 'testUser',
-    secretAccessKey: 'testAccessKey'
-  }
-  tableName = 'localJibungotoPlanetfootprint'
-}
-
-const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
+import { toFootprint } from './utils/adapter'
 
 const path = '/footprints'
 
@@ -63,27 +31,14 @@ app.get(path + '/:dir', async (req: express.Request, res: express.Response) => {
   const dir = req.params.dir
   let response: any[] = []
 
-  // domainは決めうちで設定
-  for (const domain of ['housing', 'mobility', 'food', 'other']) {
-    const params = {
-      TableName: tableName,
-      KeyConditions: {
-        dir_domain: {
-          ComparisonOperator: 'EQ',
-          AttributeValueList: [dir + '_' + domain]
-        }
-      }
-    }
-
-    try {
-      const data = await dynamodb.query(params).promise()
-      response = response.concat(
-        data.Items.map((item: any) => toComponent(item))
-      )
-    } catch (err) {
-      res.statusCode = 500
-      res.json({ error: 'Could not load dir: ' + err })
-    }
+  try {
+    // baseline 取得に決めうち
+    response = response.concat(
+      enumerateBaselines().map((item: any) => toFootprint(item))
+    )
+  } catch (err) {
+    res.statusCode = 500
+    res.json({ error: 'Could not load dir: ' + err })
   }
 
   if (res.statusCode !== 500) {
@@ -99,19 +54,10 @@ app.get(path + '/:dir/:domain', async (req, res) => {
   const dir = req.params.dir
   const domain = req.params.domain
 
-  const params = {
-    TableName: tableName,
-    KeyConditions: {
-      dir_domain: {
-        ComparisonOperator: 'EQ',
-        AttributeValueList: [dir + '_' + domain]
-      }
-    }
-  }
-
   try {
-    const data = await dynamodb.query(params).promise()
-    res.json(data.Items.map((item: any) => toComponent(item)))
+    // baseline 取得に決めうち
+    const data = enumerateBaselines().filter((bl: any) => bl.domain === domain)
+    res.json(data.map((item: any) => toFootprint(item)))
   } catch (err) {
     res.statusCode = 500
     res.json({ error: 'Could not load domain: ' + err })
@@ -128,17 +74,12 @@ app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
   const item = req.params.item
   const type = req.params.type
 
-  const params = {
-    TableName: tableName,
-    Key: {
-      dir_domain: dir + '_' + domain,
-      item_type: item + '_' + type
-    }
-  }
-
   try {
-    const data = await dynamodb.get(params).promise()
-    res.json(toComponent(data.Item))
+    // baseline 取得に決めうち
+    const data = enumerateBaselines().filter(
+      (bl) => bl.domain === domain && bl.item === item && bl.type === type
+    )
+    res.json(toFootprint(data[0]))
   } catch (err: any) {
     res.statusCode = 500
     res.json({ error: 'Could not load item & type: ' + err.message })

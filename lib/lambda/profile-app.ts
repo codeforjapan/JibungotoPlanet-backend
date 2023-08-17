@@ -1,10 +1,12 @@
-import { validate } from './actions/validate'
-import { estimateMobility } from './actions/mobility'
-import { estimateHousing } from './actions/housing'
-import { estimateFood } from './actions/food'
-import { estimateOther } from './actions/other'
-import { calculateActions } from './actions/action'
-import { optionIntensityRates } from './actions/data'
+import { validate } from './utils/validate'
+import {
+  estimateMobility,
+  estimateHousing,
+  estimateFood,
+  estimateOther,
+  enumerateBaselinesBy
+} from './utils/adapter'
+import { optionIntensityRates } from './utils/data'
 
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -12,18 +14,13 @@ const bodyParser = require('body-parser')
 const { v4: uuid } = require('uuid')
 const shortid = require('shortid')
 import express from 'express'
+import { Diagnosis } from 'cfp-calc'
 
-const FOOTPRINT_TABLE_NAME = process.env.FOOTPRINT_TABLE_NAME || ''
-const PARAMETER_TABLE_NAME = process.env.PARAMETER_TABLE_NAME || ''
 const PROFILE_TABLE_NAME = process.env.PROFILE_TABLE_NAME || ''
-const OPTION_TABLE_NAME = process.env.OPTION_TABLE_NAME || ''
 const MOCK = process.env.LOCALSTACK_HOSTNAME ? true : false
 
 let dynamoParam = {}
-let footprintTableName = FOOTPRINT_TABLE_NAME
-let parameterTableName = PARAMETER_TABLE_NAME
 let profileTableName = PROFILE_TABLE_NAME
-let optionTableName = OPTION_TABLE_NAME
 
 if (MOCK) {
   // for mock and localstack
@@ -33,10 +30,7 @@ if (MOCK) {
     accessKeyId: 'testUser',
     secretAccessKey: 'testAccessKey'
   }
-  footprintTableName = 'localJibungotoPlanetfootprint'
-  parameterTableName = 'localJibungotoPlanetparameter'
   profileTableName = 'localJibungotoPlanetprofile'
-  optionTableName = 'localJibungotoPlanetoption'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
@@ -102,7 +96,7 @@ app.get(path + '/:id', async (req: express.Request, res: express.Response) => {
 
     // 計算がされていない場合は遅延初期化
     if (!profile.estimated) {
-      await updateProfile(dynamodb, profile)
+      updateProfile(profile)
       profile.estimated = true
       profile.updatedAt = new Date().toISOString()
       await dynamodb
@@ -140,67 +134,38 @@ const mergeActionIntensityRates = (orgRates: any, newRates: any) => {
   })
 }
 
-const updateProfile = async (dynamodb: any, profile: any) => {
+const updateProfile = (profile: any) => {
   profile.baselines = []
   profile.estimations = []
 
+  const diagnosis = new Diagnosis()
+
   if (profile.housingAnswer) {
-    const { baselines, estimations } = await estimateHousing(
-      dynamodb,
-      profile.housingAnswer,
-      profile.mobilityAnswer,
-      footprintTableName,
-      parameterTableName
+    estimateHousing(profile.housingAnswer, profile.mobilityAnswer, diagnosis)
+    profile.baselines = profile.baselines.concat(
+      enumerateBaselinesBy('housing')
     )
-    profile.baselines = profile.baselines.concat(baselines)
-    profile.estimations = profile.estimations.concat(estimations)
   }
 
   if (profile.mobilityAnswer) {
-    const { baselines, estimations } = await estimateMobility(
-      dynamodb,
-      profile.housingAnswer,
-      profile.mobilityAnswer,
-      footprintTableName,
-      parameterTableName
+    estimateMobility(profile.housingAnswer, profile.mobilityAnswer, diagnosis)
+    profile.baselines = profile.baselines.concat(
+      enumerateBaselinesBy('mobility')
     )
-    profile.baselines = profile.baselines.concat(baselines)
-    profile.estimations = profile.estimations.concat(estimations)
   }
 
   if (profile.foodAnswer) {
-    const { baselines, estimations } = await estimateFood(
-      dynamodb,
-      profile.foodAnswer,
-      footprintTableName,
-      parameterTableName
-    )
-    profile.baselines = profile.baselines.concat(baselines)
-    profile.estimations = profile.estimations.concat(estimations)
+    estimateFood(profile.foodAnswer, diagnosis)
+    profile.baselines = profile.baselines.concat(enumerateBaselinesBy('food'))
   }
 
   if (profile.otherAnswer) {
-    const { baselines, estimations } = await estimateOther(
-      dynamodb,
-      profile.housingAnswer,
-      profile.otherAnswer,
-      footprintTableName,
-      parameterTableName
-    )
-    profile.baselines = profile.baselines.concat(baselines)
-    profile.estimations = profile.estimations.concat(estimations)
+    estimateOther(profile.housingAnswer, profile.otherAnswer, diagnosis)
+    profile.baselines = profile.baselines.concat(enumerateBaselinesBy('other'))
   }
 
-  profile.actions = await calculateActions(
-    dynamodb,
-    profile.baselines,
-    profile.estimations,
-    profile.housingAnswer,
-    profile.mobilityAnswer,
-    profile.foodAnswer,
-    parameterTableName,
-    optionTableName
-  )
+  profile.estimations = diagnosis.enumerateEstimations()
+  profile.actions = diagnosis.enumerateActions()
 }
 
 /************************************
@@ -251,7 +216,7 @@ app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
       profile.estimated = false
 
       if (estimate) {
-        await updateProfile(dynamodb, profile)
+        updateProfile(profile)
         profile.updatedAt = new Date().toISOString()
         profile.estimated = true
       }
@@ -313,7 +278,7 @@ app.post(path, async (req: express.Request, res: express.Response) => {
       )
 
       if (estimate) {
-        await updateProfile(dynamodb, profile)
+        updateProfile(profile)
         profile.estimated = true
       }
 
