@@ -32,8 +32,8 @@
 ```bash
 node -v; yarn -v; aws --version
 # 以下は実行結果の例
-v16.13.0 # Node.jsのバージョン
-1.22.17 # yarnのバージョン、npmでなくyarnを使って下さい。
+v18.13.0 # Node.jsのバージョン
+1.22.19 # yarnのバージョン、npmでなくyarnを使って下さい。
 aws-cli/2.7.7 Python/3.9.11 Darwin/21.5.0 exe/x86_64 prompt/off # aws cliのバージョン
 ```
 

@@ -60,3 +60,6 @@ node_modules
 cdk.out
 volume
 cdk.context.json
+data/export-*
+data/aws/load-*
+data/export/*
