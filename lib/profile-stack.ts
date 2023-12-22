@@ -24,7 +24,7 @@ export class ProfileStack extends Stack {
         functionName: `${props.stage}${props.serviceName}profileLambda`,
         entry: path.join(__dirname, './lambda/profile.ts'),
         handler: 'handler',
-        runtime: Runtime.NODEJS_16_X,
+        runtime: Runtime.NODEJS_18_X,
         environment: {
           FOOTPRINT_TABLE_NAME: props.footprintTable.tableName,
           PARAMETER_TABLE_NAME: props.parameterTable.tableName,
