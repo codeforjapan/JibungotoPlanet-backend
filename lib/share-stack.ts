@@ -18,7 +18,7 @@ export class ShareStack extends Stack {
       functionName: `${props.stage}${props.serviceName}shareLambda`,
       entry: path.join(__dirname, './lambda/share.ts'),
       handler: 'handler',
-      runtime: Runtime.NODEJS_16_X,
+      runtime: Runtime.NODEJS_18_X,
       environment: {
         TABLE_NAME: props.dynamoTable.tableName
       },

@@ -6,7 +6,7 @@ services:
     ports:
       - "4566:4566"
     environment:
-      - SERVICES=apigateway,lambda,dynamodb,route53
+      - SERVICES=apigateway,lambda,dynamodb,route53,cloudformation,iam,ssm,events
       - PERSISTENCE=1
       - AWS_DEFAULT_REGION=ap-northeast-1
       - AWS_ACCESS_KEY_ID=testUser
