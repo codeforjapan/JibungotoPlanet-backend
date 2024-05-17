@@ -1,4 +1,4 @@
-import { aws_dynamodb, aws_lambda_nodejs, Stack } from 'aws-cdk-lib'
+import { aws_dynamodb, aws_lambda_nodejs, Duration, Stack } from 'aws-cdk-lib'
 import { Construct } from 'constructs'
 import { BaseStackProps } from './props'
 import { IFunction, Runtime, Tracing } from 'aws-cdk-lib/aws-lambda'
@@ -22,7 +22,8 @@ export class ShareStack extends Stack {
       environment: {
         TABLE_NAME: props.dynamoTable.tableName
       },
-      tracing: Tracing.ACTIVE
+      tracing: Tracing.ACTIVE,
+      timeout: Duration.seconds(10)
     })
     props.dynamoTable.grantReadData(this.lambda)
   }
