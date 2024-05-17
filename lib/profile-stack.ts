@@ -1,4 +1,4 @@
-import { aws_dynamodb, aws_lambda_nodejs, Stack } from 'aws-cdk-lib'
+import { aws_dynamodb, aws_lambda_nodejs, Duration, Stack } from 'aws-cdk-lib'
 import { Construct } from 'constructs'
 import { BaseStackProps } from './props'
 import { IFunction, Runtime, Tracing } from 'aws-cdk-lib/aws-lambda'
@@ -31,7 +31,8 @@ export class ProfileStack extends Stack {
           PROFILE_TABLE_NAME: props.profileTable.tableName,
           OPTION_TABLE_NAME: props.optionTable.tableName
         },
-        tracing: Tracing.ACTIVE
+        tracing: Tracing.ACTIVE,
+        timeout: Duration.seconds(10)
       }
     )
     props.footprintTable.grantReadData(this.lambda)
