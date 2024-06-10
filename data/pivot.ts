@@ -7,6 +7,8 @@ interface Estimation {
   createdAt: Date
 
   index: string
+  id: string,
+  shareId: string,
 
   domain: string
   item: string
@@ -21,6 +23,8 @@ interface Action {
   createdAt: Date
 
   index: string
+  id: string
+  shareId: string
 
   option: string
   domain: string
@@ -35,10 +39,13 @@ interface Profile {
   updatedAt: Date
   createdAt: Date
 
+  id: string
+  shareId: string
   index: string
   gender: string
   age: string
   region: string
+  additional_info: any
 
   //
   // mobilityAnswer
@@ -116,6 +123,8 @@ const toEstimations = (rec: any, index: number): Estimation[] => {
       updatedAt,
       createdAt,
       index,
+      id: rec?.id?.S,
+      shareId: rec?.shareId?.S,
       domain: e?.M?.domain?.S,
       item: e?.M?.item?.S,
       type: e?.M?.type?.S,
@@ -137,6 +146,8 @@ const toActions = (rec: any, index: number): Action[] => {
       updatedAt,
       createdAt,
       index,
+      id: rec?.id?.S,
+      shareId: rec?.shareId?.S,
       option: a.M.option.S,
       domain: a.M.domain.S,
       item: a.M.item.S,
@@ -160,9 +171,12 @@ const toProfile = (rec: any, index: number): Profile => {
     createdAt: new Date(Date.parse(rec.createdAt.S)),
 
     index: index.toString(),
+    id: rec?.id?.S,
+    shareId: rec?.shareId?.S,
     gender: rec?.gender?.S,
     age: rec?.age?.S,
     region: rec?.region?.S,
+    additional_info: rec?.additional_info,
 
     //
     // mobilityAnswer

@@ -67,6 +67,7 @@ const toResponse = (profile: any, estimate: any) => {
     gender: profile.gender,
     age: profile.age,
     region: profile.region,
+    additional_info: profile.additional_info,
 
     actionIntensityRates: profile.actionIntensityRates,
     mobilityAnswer: profile.mobilityAnswer,
@@ -243,6 +244,9 @@ app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
       if (body.region) {
         profile.region = body.region
       }
+      if (body.additional_info) {
+        profile.additional_info = body.additional_info
+      }
 
       profile.actionIntensityRates = mergeActionIntensityRates(
         profile.actionIntensityRates,
@@ -298,6 +302,7 @@ app.post(path, async (req: express.Request, res: express.Response) => {
         gender: body.gender,
         age: body.age,
         region: body.region,
+        additional_info: body.additional_info,
 
         baselines: [],
         estimations: [],
