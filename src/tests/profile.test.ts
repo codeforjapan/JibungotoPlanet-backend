@@ -7,8 +7,12 @@ import app from '../../lib/lambda/profile-app' // テスト対象をインポー
 import shareApp from '../../lib/lambda/share-app' // テスト対象をインポート
 
 describe('Test profile operation', () => {
+  // eslint-disable-next-line no-undef
+  const endpoint = process.env.REST_ENDPOINT
+  const shareEndpoint = process.env.REST_ENDPOINT
+  console.log('endpoint = ' + endpoint)
   test('create profile without estimation and answers', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         gender: 'male',
@@ -31,7 +35,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile without answers', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -55,7 +59,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile with estimation', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -83,7 +87,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile without estimation', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         gender: 'male',
@@ -111,7 +115,7 @@ describe('Test profile operation', () => {
 
   test('create profile without estimation, then get profile', async () => {
     // estimateしないpostを投げる
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         gender: 'male',
@@ -137,7 +141,7 @@ describe('Test profile operation', () => {
     expect(profile.actions).toBeFalsy()
 
     // shareIdでprofileを取得する（estimate前なので404が返る）
-    const resShareGet = await request(shareApp)
+    const resShareGet = await request(shareEndpoint || shareApp)
       .get('/shares/' + profile.shareId)
       .set('x-apigateway-event', 'null') // エラーを出さないおまじない
       .set('x-apigateway-context', 'null') // エラーを出さないおまじない
@@ -149,7 +153,7 @@ describe('Test profile operation', () => {
     expect(Object.values(sharedProfile).length).toBe(0)
 
     // idでprofileを取得する（遅延初期化でfootprint推定値が計算される）
-    const resGet = await request(app)
+    const resGet = await request(endpoint || app)
       .get('/profiles/' + profile.id)
       .set('x-apigateway-event', 'null') // エラーを出さないおまじない
       .set('x-apigateway-context', 'null') // エラーを出さないおまじない
@@ -166,7 +170,7 @@ describe('Test profile operation', () => {
     expect(newProfile.actions.length > 0).toBeTruthy()
 
     // 更にshareIdでprofileを取得する
-    const resShareGetAfter = await request(shareApp)
+    const resShareGetAfter = await request(shareEndpoint || shareApp)
       .get('/shares/' + profile.shareId)
       .set('x-apigateway-event', 'null') // エラーを出さないおまじない
       .set('x-apigateway-context', 'null') // エラーを出さないおまじない
@@ -187,7 +191,7 @@ describe('Test profile operation', () => {
 
   test('create profile without estimation, then post profile', async () => {
     // estimateしないpostを投げる
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         gender: 'male',
@@ -208,7 +212,7 @@ describe('Test profile operation', () => {
     expect(profile.estimations).toBeFalsy()
     expect(profile.actions).toBeFalsy()
 
-    const resPut = await request(app)
+    const resPut = await request(endpoint || app)
       .put('/profiles/' + profile.id)
       .send({
         estimate: true,
@@ -233,7 +237,7 @@ describe('Test profile operation', () => {
 
   test('create profile, then update actionIntensityRate', async () => {
     // estimateしないpostを投げる
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         gender: 'male',
@@ -258,7 +262,7 @@ describe('Test profile operation', () => {
     expect(profile.actions).toBeFalsy()
 
     // actionIntensityRatesを更新
-    const resPut = await request(app)
+    const resPut = await request(endpoint || app)
       .put('/profiles/' + profile.id)
       .send({
         actionIntensityRates: [
@@ -288,7 +292,7 @@ describe('Test profile operation', () => {
     }
 
     // answerを更新してfootprintを計算
-    const resPut2 = await request(app)
+    const resPut2 = await request(endpoint || app)
       .put('/profiles/' + profile.id)
       .send({
         estimate: true,
@@ -317,7 +321,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile with unsupported gender', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -336,7 +340,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile with unsupported answers', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -357,7 +361,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile with a long wrong key', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -372,7 +376,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile with residentCount = 0', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -387,7 +391,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile with otherCarAnnualTravelingTime = -100', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -403,7 +407,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile with keroseneMonthlyConsumption = 100', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -419,7 +423,7 @@ describe('Test profile operation', () => {
   })
 
   test('create profile with trainWeeklyTravelingTime = 0 and busWeeklyTravelingTime = 100', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
