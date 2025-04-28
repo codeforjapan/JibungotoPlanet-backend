@@ -8,7 +8,7 @@ module.exports = {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   // リモートエンドポイントに対するテストのためにタイムアウト時間を延長
-  testTimeout: 30000,
+  testTimeout: 60_000,
   // テストの並列実行数を制限
   maxWorkers: '50%'
 }
