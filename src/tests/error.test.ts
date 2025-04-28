@@ -6,8 +6,11 @@ process.env.LOCALSTACK_HOSTNAME = 'localhost' // eslint-disable-line no-undef
 import app from '../../lib/lambda/profile-app' // テスト対象をインポート
 
 describe('Test error cases', () => {
+  // eslint-disable-next-line no-undef
+  const endpoint = process.env.REST_ENDPOINT
+  console.log('endpoint = ' + endpoint)
   test('create profile with unsupported foodAnswer', async () => {
-    const resPost = await request(app)
+    const resPost = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -31,7 +34,7 @@ describe('Test error cases', () => {
     expect(resPost.status).toBe(400)
     console.log(JSON.stringify(resPost.body))
 
-    const resPost2 = await request(app)
+    const resPost2 = await request(endpoint || app)
       .post('/profiles')
       .send({
         estimate: true,
@@ -54,7 +57,7 @@ describe('Test error cases', () => {
 
     const profile = resPost2.body.data
     expect(resPost2.status).toBe(200)
-    const resPut = await request(app)
+    const resPut = await request(endpoint || app)
       .put('/profiles/' + profile.id)
       .send({
         estimate: true,

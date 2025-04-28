@@ -166,9 +166,31 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ### Useful commands
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+- `npm run build` compile typescript to js
+- `npm run watch` watch for changes and compile
+- `npm run test` perform the jest unit tests with local mock (LocalStack)
+- `npm run test:dev` perform the jest unit tests against dev environment endpoint (sequential execution)
+- `npm run test:prd` perform the jest unit tests against production environment endpoint (sequential execution)
+- `npm run test:custom` perform the jest unit tests against custom endpoint (set by ENDPOINT environment variable, sequential execution)
+- `npm run test:dev:single "test name"` run a specific test against dev environment endpoint (use quotes around test name pattern)
+- `npm run test:prd:single "test name"` run a specific test against production environment endpoint (use quotes around test name pattern)
+- `cdk deploy` deploy this stack to your default AWS account/region
+- `cdk diff` compare deployed stack with current state
+- `cdk synth` emits the synthesized CloudFormation template
+
+### リモートエンドポイントに対するテスト実行について
+
+リモートエンドポイント（開発環境や本番環境）に対してテストを実行する場合、以下の点に注意してください：
+
+1. テストの実行時間がローカルテストよりも長くなります。タイムアウト時間は 30 秒に設定されています。 
+2. 特定のテストのみを実行する場合は、`test:dev:single`または`test:prd:single`スクリプトを使用してください。
+
+例：
+
+```bash
+# 開発環境に対して「Get」という名前を含むテストのみを実行
+npm run test:dev:single "Get"
+
+# 本番環境に対して「create profile」という名前を含むテストのみを実行
+npm run test:prd:single "create profile"
+```

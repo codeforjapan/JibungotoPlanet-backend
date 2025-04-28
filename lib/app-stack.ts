@@ -21,7 +21,7 @@ export class AppStack extends Stack {
         functionName: `${props.stage}${props.serviceName}helloLambda`,
         entry: path.join(__dirname, './lambda/hello.ts'),
         handler: 'handler',
-        runtime: Runtime.NODEJS_18_X
+        runtime: Runtime.NODEJS_20_X
       }
     )
   }

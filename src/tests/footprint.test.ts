@@ -6,8 +6,12 @@ process.env.LOCALSTACK_HOSTNAME = 'localhost' // eslint-disable-line no-undef
 import app from '../../lib/lambda/footprint-app' // テスト対象をインポート
 
 describe('Footprint', () => {
+  // eslint-disable-next-line no-undef
+  const endpoint = process.env.REST_ENDPOINT
+  console.log('endpoint = ' + endpoint)
+
   test('Get', async () => {
-    const res = await request(app)
+    const res = await request(endpoint || app)
       .get('/footprints/baseline/mobility/airplane/amount')
       .set('x-apigateway-event', 'null')
       .set('x-apigateway-context', 'null')

@@ -21,7 +21,7 @@ export class FootprintStack extends Stack {
         functionName: `${props.stage}${props.serviceName}footprintLambda`,
         entry: path.join(__dirname, './lambda/footprint.ts'),
         handler: 'handler',
-        runtime: Runtime.NODEJS_18_X,
+        runtime: Runtime.NODEJS_20_X,
         environment: {
           TABLE_NAME: props.dynamoTable.tableName
         },
