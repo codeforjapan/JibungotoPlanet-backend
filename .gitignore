@@ -63,3 +63,4 @@ cdk.context.json
 data/export-*
 data/aws/load-*
 data/export/*
+config/*
