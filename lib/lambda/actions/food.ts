@@ -1,22 +1,21 @@
 import { toBaseline, findBaseline, toEstimation } from './util'
+import { DynamoDBDocumentClient, GetCommand, QueryCommand } from '@aws-sdk/lib-dynamodb'
 
 const estimateFood = async (
-  dynamodb: { get: (arg0: { TableName: any; Key: { category: any; key: any } }) => { (): any; new(): any; promise: { (): any; new(): any } }; query: (arg0: { TableName: any; KeyConditions: { dir_domain: { ComparisonOperator: string; AttributeValueList: string[] } } | { category: { ComparisonOperator: string; AttributeValueList: string[] } } }) => { (): any; new(): any; promise: { (): any; new(): any } } },
+  dynamodb: DynamoDBDocumentClient,
   foodAnswer: { foodIntakeFactorKey: any; foodDirectWasteFactorKey: any; foodLeftoverFactorKey: any; dairyFoodFactorKey: any; dishBeefFactorKey: any; dishPorkFactorKey: any; dishChickenFactorKey: any; dishSeafoodFactorKey: any; alcoholFactorKey: any; softDrinkSnackFactorKey: any; eatOutFactorKey: any },
   footprintTableName: string,
   parameterTableName: string
 ) => {
   const getData = async (category: string, key: any) =>
-    await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: category,
-          key: key
-        }
-      })
-      .promise()
-
+    await dynamodb.send(new GetCommand({
+      TableName: parameterTableName,
+      Key: {
+        category: category,
+        key: key
+      }
+    }))
+      
   // foodのベースラインの取得
   const createAmount = (baselines: any, item: string) =>
     toEstimation(findBaseline(baselines, 'food', item, 'amount'))
@@ -35,14 +34,14 @@ const estimateFood = async (
     TableName: footprintTableName,
     KeyConditions: {
       dir_domain: {
-        ComparisonOperator: 'EQ',
+        ComparisonOperator: 'EQ' as const,
         AttributeValueList: ['baseline_food']
       }
     }
   }
 
-  const data = await dynamodb.query(params).promise()
-  const baselines = data.Items.map((item: any) => toBaseline(item))
+  const data = await dynamodb.send(new QueryCommand(params))
+  const baselines = (data.Items || []).map((item: any) => toBaseline(item))
 
   // 回答がない場合はベースラインのみ返す
   if (!foodAnswer) {
@@ -98,37 +97,36 @@ const estimateFood = async (
       foodAnswer.foodLeftoverFactorKey
     )
 
-    const foodWastRatio = await dynamodb
-      .query({
-        TableName: parameterTableName,
-        KeyConditions: {
-          category: {
-            ComparisonOperator: 'EQ',
-            AttributeValueList: ['food-waste-share']
-          }
+    const foodWastRatio = await dynamodb.send(new QueryCommand({
+      TableName: parameterTableName,
+      KeyConditions: {
+        category: {
+          ComparisonOperator: 'EQ' as const,
+          AttributeValueList: ['food-waste-share']
         }
-      })
-      .promise()
+      }
+    }))
 
-    const leftoverRatio = foodWastRatio.Items.find(
-      (item: { key: string; }) => item.key === 'leftover-per-food-waste'
+    const foodWasteItems = foodWastRatio.Items || []
+    const leftoverRatio = foodWasteItems.find(
+      (item: any) => item.key === 'leftover-per-food-waste'
     )
-    const directWasteRatio = foodWastRatio.Items.find(
-      (item: { key: string; }) => item.key === 'direct-waste-per-food-waste'
+    const directWasteRatio = foodWasteItems.find(
+      (item: any) => item.key === 'direct-waste-per-food-waste'
     )
-    const foodWasteRatio = foodWastRatio.Items.find(
-      (item: { key: string; }) => item.key === 'food-waste-per-food'
+    const foodWasteRatio = foodWasteItems.find(
+      (item: any) => item.key === 'food-waste-per-food'
     )
 
     const foodLossAverageRatio =
-      foodDirectWasteFactor.Item?.value * directWasteRatio.value +
-      foodLeftoverFactor.Item?.value * leftoverRatio.value
+      foodDirectWasteFactor.Item?.value * (directWasteRatio?.value || 0) +
+      foodLeftoverFactor.Item?.value * (leftoverRatio?.value || 0)
 
     // 全体に影響する割合
     // 食品ロスを考慮した食材購入量の平均に対する比率
     const foodPurchaseAmountConsideringFoodLossRatio =
-      (1 + foodLossAverageRatio * foodWasteRatio.value) /
-      (1 + foodWasteRatio.value)
+      (1 + foodLossAverageRatio * (foodWasteRatio?.value || 0)) /
+      (1 + (foodWasteRatio?.value || 0))
 
     estimationAmount.rice.value =
       estimationAmount.rice.value *

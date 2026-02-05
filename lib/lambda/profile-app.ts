@@ -6,7 +6,8 @@ import { estimateOther } from './actions/other'
 import { calculateActions } from './actions/action'
 import { optionIntensityRates } from './actions/data'
 
-const AWS = require('aws-sdk')
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb')
+const { DynamoDBDocumentClient, GetCommand, PutCommand } = require('@aws-sdk/lib-dynamodb')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 const { v4: uuid } = require('uuid')
@@ -30,8 +31,10 @@ if (MOCK) {
   dynamoParam = {
     endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
     region: 'ap-northeast-1',
-    accessKeyId: 'testUser',
-    secretAccessKey: 'testAccessKey'
+    credentials: {
+      accessKeyId: 'testUser',
+      secretAccessKey: 'testAccessKey'
+    }
   }
   footprintTableName = 'localJibungotoPlanetfootprint'
   parameterTableName = 'localJibungotoPlanetparameter'
@@ -39,7 +42,8 @@ if (MOCK) {
   optionTableName = 'localJibungotoPlanetoption'
 }
 
-const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
+const client = new DynamoDBClient(dynamoParam)
+const dynamodb = DynamoDBDocumentClient.from(client)
 
 const path = '/profiles'
 
@@ -92,12 +96,10 @@ const toResponse = (profile: any, estimate: any) => {
 
 app.get(path + '/:id', async (req: express.Request, res: express.Response) => {
   try {
-    const data = await dynamodb
-      .get({
-        TableName: profileTableName,
-        Key: { id: req.params.id }
-      })
-      .promise()
+    const data = await dynamodb.send(new GetCommand({
+      TableName: profileTableName,
+      Key: { id: req.params.id }
+    }))
 
     const profile = data.Item
 
@@ -106,12 +108,10 @@ app.get(path + '/:id', async (req: express.Request, res: express.Response) => {
       await updateProfile(dynamodb, profile)
       profile.estimated = true
       profile.updatedAt = new Date().toISOString()
-      await dynamodb
-        .put({
-          TableName: profileTableName,
-          Item: profile
-        })
-        .promise()
+      await dynamodb.send(new PutCommand({
+        TableName: profileTableName,
+        Item: profile
+      }))
     }
 
     res.json(toResponse(profile, true))
@@ -215,12 +215,10 @@ app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
 
   if (validate(req.body)) {
     try {
-      const data = await dynamodb
-        .get({
-          TableName: profileTableName,
-          Key: { id }
-        })
-        .promise()
+      const data = await dynamodb.send(new GetCommand({
+        TableName: profileTableName,
+        Key: { id }
+      }))
       const profile = data.Item
 
       if (body.mobilityAnswer) {
@@ -260,12 +258,10 @@ app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
         profile.estimated = true
       }
 
-      await dynamodb
-        .put({
-          TableName: profileTableName,
-          Item: profile
-        })
-        .promise()
+      await dynamodb.send(new PutCommand({
+        TableName: profileTableName,
+        Item: profile
+      }))
       res.json({
         success: 'put call succeed!',
         url: req.url,
@@ -322,11 +318,10 @@ app.post(path, async (req: express.Request, res: express.Response) => {
         profile.estimated = true
       }
 
-      const params = {
+      await dynamodb.send(new PutCommand({
         TableName: profileTableName,
         Item: profile
-      }
-      await dynamodb.put(params).promise()
+      }))
       res.json({
         success: 'post call succeed!',
         url: req.url,

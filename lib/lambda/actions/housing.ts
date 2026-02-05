@@ -1,23 +1,22 @@
 import { toBaseline, findBaseline, toEstimation } from './util'
+import { DynamoDBDocumentClient, GetCommand, QueryCommand } from '@aws-sdk/lib-dynamodb'
 
 const estimateHousing = async (
-  dynamodb: any,
+  dynamodb: DynamoDBDocumentClient,
   housingAnswer: any,
   mobilityAnswer: any,
   footprintTableName: any,
   parameterTableName: any
 ) => {
   const getData = async (category: any, key: any) =>
-    await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: category,
-          key: key
-        }
-      })
-      .promise()
-
+    await dynamodb.send(new GetCommand({
+      TableName: parameterTableName,
+      Key: {
+        category: category,
+        key: key
+      }
+    }))
+      
   /* eslint-disable no-unused-vars */
   const pushOrUpdateEstimate = (item: any, type: any, estimation: any) => {
     const estimate = estimations.find(
@@ -38,14 +37,14 @@ const estimateHousing = async (
     TableName: footprintTableName,
     KeyConditions: {
       dir_domain: {
-        ComparisonOperator: 'EQ',
+        ComparisonOperator: 'EQ' as const,
         AttributeValueList: ['baseline_housing']
       }
     }
   }
 
-  const data = await dynamodb.query(params).promise()
-  const baselines = data.Items.map((item: any) => toBaseline(item))
+  const data = await dynamodb.send(new QueryCommand(params))
+  const baselines = (data.Items || []).map((item: any) => toBaseline(item))
 
   const findAmount = (item: string) =>
     findBaseline(baselines, 'housing', item, 'amount')
@@ -89,21 +88,20 @@ const estimateHousing = async (
       TableName: parameterTableName,
       KeyConditions: {
         category: {
-          ComparisonOperator: 'EQ',
+          ComparisonOperator: 'EQ' as const,
           AttributeValueList: ['housing-amount-by-region']
         },
         key: {
-          ComparisonOperator: 'BEGINS_WITH',
+          ComparisonOperator: 'BEGINS_WITH' as const,
           AttributeValueList: [housingAmountByRegion]
         }
       }
     }
-    const amountByRegion = await dynamodb.query(params).promise()
-
+    const amountByRegion = await dynamodb.send(new QueryCommand(params))
     // estimationAmountに項目があるものだけ、amountByRegionの値を上書き
     for (const key of Object.keys(estimationAmount)) {
-      const rec = amountByRegion.Items.find(
-        (a: { key: string }) => a.key === housingAmountByRegion + key + '-amount'
+      const rec = (amountByRegion.Items || []).find(
+        (a: any) => a.key === housingAmountByRegion + key + '-amount'
       )
       if (rec) {
         // @ts-ignore

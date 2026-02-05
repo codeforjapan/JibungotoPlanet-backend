@@ -1,4 +1,5 @@
 import { toEstimation } from './util'
+import { DynamoDBDocumentClient, ScanCommand, GetCommand, QueryCommand } from '@aws-sdk/lib-dynamodb'
 
 // dynamodbのレコードをoptionへの変換
 const toOption = (rec: { domain_item_type: string; option: any; value: any; args: any; operation: any }) => {
@@ -16,7 +17,7 @@ const toOption = (rec: { domain_item_type: string; option: any; value: any; args
 }
 
 const calculateActions = async (
-  dynamodb: { scan: (arg0: { TableName: any }) => { (): any; new(): any; promise: { (): any; new(): any } } },
+  dynamodb: DynamoDBDocumentClient,
   baselines: any,
   estimations: any,
   housingAnswer: any,
@@ -57,14 +58,12 @@ const calculateActions = async (
   }
 
   // オプションを取得（このプロジェクトでは問題ないが、データが1MB以上の時は以下のコードだと1MB以上の部分が欠損）
-  const optionData = await dynamodb
-    .scan({
-      TableName: optionTableName
-    })
-    .promise()
-
+  const optionData = await dynamodb.send(new ScanCommand({
+    TableName: optionTableName
+  }))
+    
   // resultがある場合にactionを作成
-  const actions = optionData.Items.map((item: { domain_item_type: string; option: any; value: any; args: any; operation: any; }) => toOption(item))
+  const actions = (optionData.Items || []).map((item: any) => toOption(item))
     .filter((option: { key: any; }) => results.has(option.key))
     .map((option: { key: any; option: any; value: any; args: any; operation: any; }) => toAction(option))
 
@@ -403,19 +402,17 @@ const furtherReductionFromOtherFootprints = (action: { args: any; option: any; t
     denominator
 }
 
-const getData = async (dynamodb: any, parameterTableName: any, category: string, key: string) =>
-  await dynamodb
-    .get({
-      TableName: parameterTableName,
-      Key: {
-        category: category,
-        key: key
-      }
-    })
-    .promise()
-
+const getData = async (dynamodb: DynamoDBDocumentClient, parameterTableName: string, category: string, key: string) =>
+  await dynamodb.send(new GetCommand({
+    TableName: parameterTableName,
+    Key: {
+      category: category,
+      key: key
+    }
+  }))
+    
 const calcTaxiPassengers = async (
-  dynamodb: { scan?: (arg0: { TableName: any; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; get?: (arg0: { TableName: any; Key: { category: any; key: any; }; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; },
+  dynamodb: DynamoDBDocumentClient,
   mobilityAnswer: { carPassengersFirstKey: any; },
   parameterTableName: string
 ) => {
@@ -429,7 +426,7 @@ const calcTaxiPassengers = async (
 }
 
 const calcPrivateCarPassengers = async (
-  dynamodb: { scan?: (arg0: { TableName: any; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; get?: (arg0: { TableName: any; Key: { category: any; key: any; }; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; },
+  dynamodb: DynamoDBDocumentClient,
   mobilityAnswer: { carPassengersFirstKey: any; },
   parameterTableName: string
 ) => {
@@ -463,7 +460,7 @@ const questionAnswerToTargetInverse = async (
 
 // car-driving-intensityの取得
 const calcCarDrivingIntensity = async (
-  dynamodb: { scan?: (arg0: { TableName: any; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; get?: (arg0: { TableName: any; Key: { category: any; key: any; }; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; },
+  dynamodb: DynamoDBDocumentClient,
   housingAnswer: { electricityIntensityKey: string; },
   mobilityAnswer: { carChargingKey: any; carIntensityFactorFirstKey: string; },
   parameterTableName: string
@@ -530,7 +527,7 @@ const calcCarDrivingIntensity = async (
 
 // car-manufacturing-intensityの取得
 const calcCarManufacturingIntensity = async (
-  dynamodb: { scan?: (arg0: { TableName: any; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; get?: (arg0: { TableName: any; Key: { category: any; key: any; }; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; },
+  dynamodb: DynamoDBDocumentClient,
   mobilityAnswer: { carIntensityFactorFirstKey: any; },
   parameterTableName: string
 ) => {
@@ -546,7 +543,7 @@ const calcCarManufacturingIntensity = async (
 }
 
 const calcFoodPurchaseAmountConsideringFoodLossRatio = async (
-  dynamodb: { scan?: (arg0: { TableName: any; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; query?: any; get?: (arg0: { TableName: any; Key: { category: any; key: any; }; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; },
+  dynamodb: DynamoDBDocumentClient,
   foodAnswer: { foodDirectWasteFactorKey: string; foodLeftoverFactorKey: string; },
   parameterTableName: string
 ) => {
@@ -568,37 +565,36 @@ const calcFoodPurchaseAmountConsideringFoodLossRatio = async (
       foodAnswer.foodLeftoverFactorKey
     )
 
-    const foodWastRatio = await dynamodb
-      .query({
-        TableName: parameterTableName,
-        KeyConditions: {
-          category: {
-            ComparisonOperator: 'EQ',
-            AttributeValueList: ['food-waste-share']
-          }
+    const foodWastRatio = await dynamodb.send(new QueryCommand({
+      TableName: parameterTableName,
+      KeyConditions: {
+        category: {
+          ComparisonOperator: 'EQ' as const,
+          AttributeValueList: ['food-waste-share']
         }
-      })
-      .promise()
+      }
+    }))
 
-    const leftoverRatio = foodWastRatio.Items.find(
-      (item: { key: string; }) => item.key === 'leftover-per-food-waste'
+    const items = foodWastRatio.Items || []
+    const leftoverRatio = items.find(
+      (item: any) => item.key === 'leftover-per-food-waste'
     )
-    const directWasteRatio = foodWastRatio.Items.find(
-      (item: { key: string; }) => item.key === 'direct-waste-per-food-waste'
+    const directWasteRatio = items.find(
+      (item: any) => item.key === 'direct-waste-per-food-waste'
     )
-    const foodWasteRatio = foodWastRatio.Items.find(
-      (item: { key: string; }) => item.key === 'food-waste-per-food'
+    const foodWasteRatio = items.find(
+      (item: any) => item.key === 'food-waste-per-food'
     )
 
     const foodLossAverageRatio =
-      foodDirectWasteFactor.Item?.value * directWasteRatio.value +
-      foodLeftoverFactor.Item?.value * leftoverRatio.value
+      foodDirectWasteFactor.Item?.value * (directWasteRatio?.value || 0) +
+      foodLeftoverFactor.Item?.value * (leftoverRatio?.value || 0)
 
     // 全体に影響する割合
     // 食品ロスを考慮した食材購入量の平均に対する比率
     return (
-      (1 + foodLossAverageRatio * foodWasteRatio.value) /
-      (1 + foodWasteRatio.value)
+      (1 + foodLossAverageRatio * (foodWasteRatio?.value || 0)) /
+      (1 + (foodWasteRatio?.value || 0))
     )
   }
   return null
@@ -629,7 +625,7 @@ const questionAnswerToTarget = async (
 }
 
 const calcRenovationHousingInsulation = async (
-  dynamodb: { scan?: (arg0: { TableName: any; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; get?: (arg0: { TableName: any; Key: { category: any; key: any; }; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; },
+  dynamodb: DynamoDBDocumentClient,
   housingAnswer: { housingInsulationFirstKey: any; },
   parameterTableName: string
 ) => {
@@ -643,7 +639,7 @@ const calcRenovationHousingInsulation = async (
 }
 
 const calcClothingHousingInsulation = async (
-  dynamodb: { scan?: (arg0: { TableName: any; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; get?: (arg0: { TableName: any; Key: { category: any; key: any; }; }) => { (): any; new(): any; promise: { (): any; new(): any; }; }; },
+  dynamodb: DynamoDBDocumentClient,
   housingAnswer: { housingInsulationFirstKey: any; },
   parameterTableName: string
 ) => {

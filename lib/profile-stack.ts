@@ -24,7 +24,7 @@ export class ProfileStack extends Stack {
         functionName: `${props.stage}${props.serviceName}profileLambda`,
         entry: path.join(__dirname, './lambda/profile.ts'),
         handler: 'handler',
-        runtime: Runtime.NODEJS_20_X,
+        runtime: Runtime.NODEJS_24_X,
         environment: {
           FOOTPRINT_TABLE_NAME: props.footprintTable.tableName,
           PARAMETER_TABLE_NAME: props.parameterTable.tableName,
@@ -32,7 +32,10 @@ export class ProfileStack extends Stack {
           OPTION_TABLE_NAME: props.optionTable.tableName
         },
         tracing: Tracing.ACTIVE,
-        timeout: Duration.seconds(10)
+        timeout: Duration.seconds(10),
+        bundling: {
+          externalModules: ['@aws-sdk/*']
+        }
       }
     )
     props.footprintTable.grantReadData(this.lambda)
