@@ -1,4 +1,5 @@
-const AWS = require('aws-sdk')
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb')
+const { DynamoDBDocumentClient, QueryCommand, GetCommand } = require('@aws-sdk/lib-dynamodb')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 import express from 'express'
@@ -29,13 +30,16 @@ if (MOCK) {
   dynamoParam = {
     endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
     region: 'ap-northeast-1',
-    accessKeyId: 'testUser',
-    secretAccessKey: 'testAccessKey'
+    credentials: {
+      accessKeyId: 'testUser',
+      secretAccessKey: 'testAccessKey'
+    }
   }
   tableName = 'localJibungotoPlanetfootprint'
 }
 
-const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
+const client = new DynamoDBClient(dynamoParam)
+const dynamodb = DynamoDBDocumentClient.from(client)
 
 const path = '/footprints'
 
@@ -69,16 +73,16 @@ app.get(path + '/:dir', async (req: express.Request, res: express.Response) => {
       TableName: tableName,
       KeyConditions: {
         dir_domain: {
-          ComparisonOperator: 'EQ',
+          ComparisonOperator: 'EQ' as const,
           AttributeValueList: [dir + '_' + domain]
         }
       }
     }
 
     try {
-      const data = await dynamodb.query(params).promise()
+      const data = await dynamodb.send(new QueryCommand(params))
       response = response.concat(
-        data.Items.map((item: any) => toComponent(item))
+        (data.Items || []).map((item: any) => toComponent(item))
       )
     } catch (err) {
       res.statusCode = 500
@@ -103,15 +107,15 @@ app.get(path + '/:dir/:domain', async (req, res) => {
     TableName: tableName,
     KeyConditions: {
       dir_domain: {
-        ComparisonOperator: 'EQ',
+        ComparisonOperator: 'EQ' as const,
         AttributeValueList: [dir + '_' + domain]
       }
     }
   }
 
   try {
-    const data = await dynamodb.query(params).promise()
-    res.json(data.Items.map((item: any) => toComponent(item)))
+    const data = await dynamodb.send(new QueryCommand(params))
+    res.json((data.Items || []).map((item: any) => toComponent(item)))
   } catch (err) {
     res.statusCode = 500
     res.json({ error: 'Could not load domain: ' + err })
@@ -137,7 +141,7 @@ app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
   }
 
   try {
-    const data = await dynamodb.get(params).promise()
+    const data = await dynamodb.send(new GetCommand(params))
     res.json(toComponent(data.Item))
   } catch (err: any) {
     res.statusCode = 500

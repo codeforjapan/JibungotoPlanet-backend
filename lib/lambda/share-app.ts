@@ -1,4 +1,5 @@
-const AWS = require('aws-sdk')
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb')
+const { DynamoDBDocumentClient, QueryCommand } = require('@aws-sdk/lib-dynamodb')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 import express from 'express'
@@ -14,13 +15,16 @@ if (MOCK) {
   dynamoParam = {
     endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
     region: 'ap-northeast-1',
-    accessKeyId: 'testUser',
-    secretAccessKey: 'testAccessKey'
+    credentials: {
+      accessKeyId: 'testUser',
+      secretAccessKey: 'testAccessKey'
+    }
   }
   tableName = 'localJibungotoPlanetprofile'
 }
 
-const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
+const client = new DynamoDBClient(dynamoParam)
+const dynamodb = DynamoDBDocumentClient.from(client)
 
 const path = '/shares'
 
@@ -54,7 +58,7 @@ app.get(path + '/:id', async (req: express.Request, res: express.Response) => {
   }
 
   try {
-    const data = await dynamodb.query(params).promise()
+    const data = await dynamodb.send(new QueryCommand(params))
     const item = data.Items[0]
     if (item) {
       if (item.estimated) {

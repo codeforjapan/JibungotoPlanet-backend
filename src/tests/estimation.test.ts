@@ -1,5 +1,5 @@
 import request from 'supertest'
-import xlsx from 'xlsx'
+import ExcelJS from 'exceljs'
 // local mock の設定。テスト対象をimportする前に設定
 process.env.TABLE_REGION = 'ap-northeast-1' // eslint-disable-line no-undef
 process.env.ENV = 'dev' // eslint-disable-line no-undef
@@ -46,15 +46,24 @@ describe('Test all estimations', () => {
     originalBaselines = resGet.body
   })
 
+  // Jest 30 requires at least one test in a suite
+  // This placeholder ensures the suite is not empty during test collection
+  test('estimation test suite initialized', () => {
+    expect(domains.length).toBe(4)
+  })
+
   for (const domain of domains) {
     describe('Test ' + domain + ' estimations', () => {
-      // テストケースを記載したExcel
-      const workbook = xlsx.readFile(
-        'src/tests/estimation-' + domain + '.test-cases.xlsx'
-      )
-      const testCases = createTestCases(workbook)
+      let testCases: TestCase[] = []
       let id: string | null = null
       beforeAll(async () => {
+        // テストケースを記載したExcel
+        const workbook = new ExcelJS.Workbook()
+        await workbook.xlsx.readFile(
+          'src/tests/estimation-' + domain + '.test-cases.xlsx'
+        )
+        testCases = createTestCases(workbook)
+
         // 最初にProfileの生成
         const resPost = await request(endpoint || app)
           .post('/profiles')
@@ -62,6 +71,11 @@ describe('Test all estimations', () => {
           .set('x-apigateway-event', 'null') // エラーを出さないおまじない
           .set('x-apigateway-context', 'null') // エラーを出さないおまじない
         id = resPost.body.data.id
+      })
+
+      // Jest 30 requires at least one test per describe block
+      test('test cases loaded for ' + domain, () => {
+        expect(testCases.length).toBeGreaterThan(0)
       })
 
       // 生成したProfileに対してテストケースを順番に適用

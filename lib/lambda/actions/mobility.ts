@@ -1,7 +1,8 @@
 import { toBaseline, findBaseline, toEstimation } from './util'
+import { DynamoDBDocumentClient, GetCommand, QueryCommand } from '@aws-sdk/lib-dynamodb'
 
 const estimateMobility = async (
-  dynamodb: { get: (arg0: { TableName: any; Key: { category: any; key: any } }) => { (): any; new(): any; promise: { (): any; new(): any } }; query: (arg0: { TableName: any; KeyConditions: { dir_domain: { ComparisonOperator: string; AttributeValueList: string[] } } | { category: { ComparisonOperator: string; AttributeValueList: string[] } } | { category: { ComparisonOperator: string; AttributeValueList: string[] }; key: { ComparisonOperator: string; AttributeValueList: string[] } } }) => { (): any; new(): any; promise: { (): any; new(): any } } },
+  dynamodb: DynamoDBDocumentClient,
   housingAnswer: { electricityIntensityKey: any },
   mobilityAnswer: { carChargingKey: any; hasPrivateCar: any; carIntensityFactorFirstKey: string; carPassengersFirstKey: string; privateCarAnnualMileage: number; hasTravelingTime: any; trainWeeklyTravelingTime: any; busWeeklyTravelingTime: any; motorbikeWeeklyTravelingTime: any; otherCarWeeklyTravelingTime: any; otherCarAnnualTravelingTime: any; trainAnnualTravelingTime: any; busAnnualTravelingTime: any; motorbikeAnnualTravelingTime: any; airplaneAnnualTravelingTime: any; ferryAnnualTravelingTime: any; mileageByAreaFirstKey: string },
   footprintTableName: any,
@@ -14,16 +15,14 @@ const estimateMobility = async (
     toEstimation(findBaseline(baselines, 'mobility', item, 'intensity'))
 
   const getData = async (category: string, key: string) =>
-    await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: category,
-          key: key
-        }
-      })
-      .promise()
-
+    await dynamodb.send(new GetCommand({
+      TableName: parameterTableName,
+      Key: {
+        category: category,
+        key: key
+      }
+    }))
+      
   const estimations: { domain: any; item: any; type: any; value: any; subdomain: any; unit: any; }[] = []
 
   const pushOrUpdateEstimate = (item: any, type: any, estimation: { domain?: any; item?: any; type?: any; value: any; subdomain?: any; unit?: any; }) => {
@@ -43,14 +42,14 @@ const estimateMobility = async (
     TableName: footprintTableName,
     KeyConditions: {
       dir_domain: {
-        ComparisonOperator: 'EQ',
+        ComparisonOperator: 'EQ' as const,
         AttributeValueList: ['baseline_mobility']
       }
     }
   }
 
-  let data = await dynamodb.query(params).promise()
-  const baselines = data.Items.map((item: any) => toBaseline(item))
+  let data = await dynamodb.send(new QueryCommand(params))
+  const baselines = (data.Items || []).map((item: any) => toBaseline(item))
 
   // 回答がない場合はベースラインのみ返す
   if (!mobilityAnswer) {
@@ -294,10 +293,10 @@ const estimateMobility = async (
     }
 
     // 年間週数の取得
-    data = await getData('misc', 'weeks-per-year-excluding-long-vacations')
+    const weeksData = await getData('misc', 'weeks-per-year-excluding-long-vacations')
     let weekCount = 49
-    if (data?.Item) {
-      weekCount = data.Item.value
+    if (weeksData?.Item) {
+      weekCount = weeksData.Item.value
     }
 
     // 時速の取得
@@ -305,13 +304,13 @@ const estimateMobility = async (
       TableName: parameterTableName,
       KeyConditions: {
         category: {
-          ComparisonOperator: 'EQ',
+          ComparisonOperator: 'EQ' as const,
           AttributeValueList: ['transportation-speed']
         }
       }
     }
-    data = await dynamodb.query(paramsTransportation).promise()
-    const speed = data.Items.reduce((a: { [x: string]: any; }, x: { key: string | number; value: any; }) => {
+    data = await dynamodb.send(new QueryCommand(paramsTransportation))
+    const speed = (data.Items || []).reduce((a: { [x: string]: any; }, x: any) => {
       a[x.key] = x.value
       return a
     }, {})
@@ -383,17 +382,17 @@ const estimateMobility = async (
       TableName: parameterTableName,
       KeyConditions: {
         category: {
-          ComparisonOperator: 'EQ',
+          ComparisonOperator: 'EQ' as const,
           AttributeValueList: ['mileage-by-area']
         },
         key: {
-          ComparisonOperator: 'BEGINS_WITH',
+          ComparisonOperator: 'BEGINS_WITH' as const,
           AttributeValueList: [mileageByAreaFirstKey + '_']
         }
       }
     }
-    const data = await dynamodb.query(params).promise()
-    const consumptionByArea = data.Items.reduce((a: { [x: string]: any; }, x: { key: string | number; value: any; }) => {
+    const data = await dynamodb.send(new QueryCommand(params))
+    const consumptionByArea = (data.Items || []).reduce((a: { [x: string]: any; }, x: any) => {
       a[x.key] = x.value
       return a
     }, {})

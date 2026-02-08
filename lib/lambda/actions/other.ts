@@ -1,7 +1,8 @@
 import { toBaseline, findBaseline, toEstimation } from './util'
+import { DynamoDBDocumentClient, GetCommand, QueryCommand } from '@aws-sdk/lib-dynamodb'
 
 const estimateOther = async (
-  dynamodb: { get: (arg0: { TableName: any; Key: { category: any; key: any } }) => { (): any; new(): any; promise: { (): any; new(): any } }; query: (arg0: { TableName: any; KeyConditions: { dir_domain: { ComparisonOperator: string; AttributeValueList: string[] } } }) => { (): any; new(): any; promise: { (): any; new(): any } } },
+  dynamodb: DynamoDBDocumentClient,
   housingAnswer: { residentCount: number | null | undefined },
   otherAnswer: { dailyGoodsAmountKey: any; communicationAmountKey: any; applianceFurnitureAmountKey: any; serviceFactorKey: any; hobbyGoodsFactorKey: any; clothesBeautyFactorKey: any; leisureSportsFactorKey: any; travelFactorKey: any },
   footprintTableName: string,
@@ -13,16 +14,14 @@ const estimateOther = async (
 
   // parameterの取得
   const getData = async (category: string, key: string) =>
-    await dynamodb
-      .get({
-        TableName: parameterTableName,
-        Key: {
-          category: category,
-          key: key
-        }
-      })
-      .promise()
-
+    await dynamodb.send(new GetCommand({
+      TableName: parameterTableName,
+      Key: {
+        category: category,
+        key: key
+      }
+    }))
+      
   const estimations: { domain: any; item: any; type: any; value: any; subdomain: any; unit: any; }[] = []
 
   // ベースラインのフットプリントを取得
@@ -30,14 +29,14 @@ const estimateOther = async (
     TableName: footprintTableName,
     KeyConditions: {
       dir_domain: {
-        ComparisonOperator: 'EQ',
+        ComparisonOperator: 'EQ' as const,
         AttributeValueList: ['baseline_other']
       }
     }
   }
 
-  const data = await dynamodb.query(params).promise()
-  const baselines = data.Items.map((item: any) => toBaseline(item))
+  const data = await dynamodb.send(new QueryCommand(params))
+  const baselines = (data.Items || []).map((item: any) => toBaseline(item))
 
   // 回答がない場合はベースラインのみ返す
   if (!otherAnswer) {

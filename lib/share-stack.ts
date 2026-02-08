@@ -18,12 +18,15 @@ export class ShareStack extends Stack {
       functionName: `${props.stage}${props.serviceName}shareLambda`,
       entry: path.join(__dirname, './lambda/share.ts'),
       handler: 'handler',
-      runtime: Runtime.NODEJS_20_X,
+      runtime: Runtime.NODEJS_24_X,
       environment: {
         TABLE_NAME: props.dynamoTable.tableName
       },
       tracing: Tracing.ACTIVE,
-      timeout: Duration.seconds(10)
+      timeout: Duration.seconds(10),
+      bundling: {
+        externalModules: ['@aws-sdk/*']
+      }
     })
     props.dynamoTable.grantReadData(this.lambda)
   }

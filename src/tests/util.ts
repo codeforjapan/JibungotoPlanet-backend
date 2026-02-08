@@ -1,4 +1,4 @@
-import xlsx from 'xlsx'
+import ExcelJS from 'exceljs'
 
 export type Answer = {
   answer: string
@@ -35,8 +35,32 @@ export class TestCase {
   }
 }
 
-export const createTestCases = (workbook: xlsx.WorkBook) => {
-  const answers = xlsx.utils.sheet_to_json(workbook.Sheets['answers']) as any[]
+const sheetToJson = (worksheet: ExcelJS.Worksheet): any[] => {
+  const rows: any[] = []
+  const headers: string[] = []
+
+  worksheet.eachRow((row, rowNumber) => {
+    if (rowNumber === 1) {
+      row.eachCell((cell) => {
+        headers.push(cell.value as string)
+      })
+    } else {
+      const rowData: any = {}
+      row.eachCell((cell, colNumber) => {
+        rowData[headers[colNumber - 1]] = cell.value
+      })
+      rows.push(rowData)
+    }
+  })
+
+  return rows
+}
+
+export const createTestCases = (workbook: ExcelJS.Workbook) => {
+  const answersSheet = workbook.getWorksheet('answers')
+  if (!answersSheet) throw new Error('answers sheet not found')
+
+  const answers = sheetToJson(answersSheet)
 
   const testCases: { [name: string]: TestCase } = {}
   const testCaseList: TestCase[] = []
@@ -61,7 +85,10 @@ export const createTestCases = (workbook: xlsx.WorkBook) => {
   }
 
   Object.entries(testCases).forEach(([key, value]) => {
-    const expectations = xlsx.utils.sheet_to_json(workbook.Sheets[key]) as any[]
+    const sheet = workbook.getWorksheet(key)
+    if (!sheet) return
+
+    const expectations = sheetToJson(sheet)
     value.expectations = expectations.map((e) => ({
       domain: e.domain,
       item: e.item,

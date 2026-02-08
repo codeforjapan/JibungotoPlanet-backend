@@ -21,12 +21,15 @@ export class FootprintStack extends Stack {
         functionName: `${props.stage}${props.serviceName}footprintLambda`,
         entry: path.join(__dirname, './lambda/footprint.ts'),
         handler: 'handler',
-        runtime: Runtime.NODEJS_20_X,
+        runtime: Runtime.NODEJS_24_X,
         environment: {
           TABLE_NAME: props.dynamoTable.tableName
         },
         tracing: Tracing.ACTIVE,
-        timeout: Duration.seconds(10)
+        timeout: Duration.seconds(10),
+        bundling: {
+          externalModules: ['@aws-sdk/*']
+        }
       }
     )
     props.dynamoTable.grantReadData(this.lambda)
