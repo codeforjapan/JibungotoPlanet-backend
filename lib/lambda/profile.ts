@@ -1,19 +1,13 @@
-const awsServerlessExpress = require('aws-serverless-express')
+import serverlessExpress from '@codegenie/serverless-express'
 import app from './profile-app'
 
-app.listen(3000, function () {
-  console.log('App started')
-})
-
-/**
- * @type {import('http').Server}
- */
-const server = awsServerlessExpress.createServer(app)
+const serverlessExpressHandler = serverlessExpress({ app })
 
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 exports.handler = (event: any = {}, context: any = {}) => {
   console.log(`EVENT: ${JSON.stringify(event)}`)
-  return awsServerlessExpress.proxy(server, event, context, 'PROMISE').promise
+  // 型定義は callback 付きの Handler 型だが、実装は (event, context) だけを使い Promise を返す
+  return serverlessExpressHandler(event, context, () => {})
 }

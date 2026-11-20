@@ -1,8 +1,8 @@
 const { DynamoDBClient } = require('@aws-sdk/client-dynamodb')
 const { DynamoDBDocumentClient, QueryCommand, GetCommand } = require('@aws-sdk/lib-dynamodb')
-const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 import express from 'express'
+import { defaultBody, errorHandler, notFound } from './express-handlers'
 
 const TABLE_NAME = process.env.TABLE_NAME || ''
 const MOCK = process.env.LOCALSTACK_HOSTNAME ? true : false
@@ -46,7 +46,7 @@ const path = '/footprints'
 // declare a new express app
 const app: express.Express = express()
 app.use(bodyParser.json())
-app.use(awsServerlessExpressMiddleware.eventContext())
+app.use(defaultBody)
 
 // Enable CORS for all methods
 app.use(function (
@@ -148,6 +148,9 @@ app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
     res.json({ error: 'Could not load item & type: ' + err.message })
   }
 })
+
+app.use(notFound)
+app.use(errorHandler)
 
 // Export the app object. When executing the application local this does nothing. However,
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
