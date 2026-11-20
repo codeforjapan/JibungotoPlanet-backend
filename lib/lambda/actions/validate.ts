@@ -16,16 +16,27 @@ const schema = {
         '^hokkaido$|^tohoku$|^kanto$|^tokai$|^kinki$|^chugoku$|^sikoku$|^kyusyu$|^okinawa$'
     },
 
+    // 数値の回答には上限を設ける。
+    // 上限がないと極端な値（1e20 など）から計算した値が DynamoDB に保存できず、プロフィールが壊れるため
     housingAnswer: {
       type: 'object',
       properties: {
-        residentCount: { type: 'number', minimum: 1 },
-        electricityMonthlyConsumption: { type: 'number', minimum: 0 },
+        // 住居人数の選択肢は1〜15人
+        residentCount: { type: 'number', minimum: 1, maximum: 15 },
+        electricityMonthlyConsumption: {
+          type: 'number',
+          minimum: 0,
+          maximum: 10000
+        },
         useGas: { type: 'boolean' },
-        gasMonthlyConsumption: { type: 'number', minimum: 0 },
+        gasMonthlyConsumption: { type: 'number', minimum: 0, maximum: 1000 },
         useKerosene: { type: 'boolean' },
-        keroseneMonthlyConsumption: { type: 'number', minimum: 0 },
-        keroseneMonthCount: { type: 'number', minimum: 0 },
+        keroseneMonthlyConsumption: {
+          type: 'number',
+          minimum: 0,
+          maximum: 1000
+        },
+        keroseneMonthCount: { type: 'number', minimum: 0, maximum: 12 },
 
         housingSizeKey: {
           type: 'string',
@@ -85,18 +96,59 @@ const schema = {
         },
 
         hasPrivateCar: { type: 'boolean' },
-        privateCarAnnualMileage: { type: 'number', minimum: 0 },
-        trainWeeklyTravelingTime: { type: 'number', minimum: 0 },
-        busWeeklyTravelingTime: { type: 'number', minimum: 0 },
-        motorbikeWeeklyTravelingTime: { type: 'number', minimum: 0 },
-        otherCarWeeklyTravelingTime: { type: 'number', minimum: 0 },
+        privateCarAnnualMileage: {
+          type: 'number',
+          minimum: 0,
+          maximum: 100000
+        },
+        // 移動時間の上限は、1週間・1年間の時間数
+        trainWeeklyTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 7
+        },
+        busWeeklyTravelingTime: { type: 'number', minimum: 0, maximum: 24 * 7 },
+        motorbikeWeeklyTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 7
+        },
+        otherCarWeeklyTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 7
+        },
         hasTravelingTime: { type: 'boolean' },
-        otherCarAnnualTravelingTime: { type: 'number', minimum: 0 },
-        trainAnnualTravelingTime: { type: 'number', minimum: 0 },
-        busAnnualTravelingTime: { type: 'number', minimum: 0 },
-        motorbikeAnnualTravelingTime: { type: 'number', minimum: 0 },
-        airplaneAnnualTravelingTime: { type: 'number', minimum: 0 },
-        ferryAnnualTravelingTime: { type: 'number', minimum: 0 }
+        otherCarAnnualTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 365
+        },
+        trainAnnualTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 365
+        },
+        busAnnualTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 365
+        },
+        motorbikeAnnualTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 365
+        },
+        airplaneAnnualTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 365
+        },
+        ferryAnnualTravelingTime: {
+          type: 'number',
+          minimum: 0,
+          maximum: 24 * 365
+        }
       }
     },
 
