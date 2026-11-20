@@ -8,11 +8,11 @@ import { optionIntensityRates } from './actions/data'
 
 const { DynamoDBClient } = require('@aws-sdk/client-dynamodb')
 const { DynamoDBDocumentClient, GetCommand, PutCommand } = require('@aws-sdk/lib-dynamodb')
-const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 const { v4: uuid } = require('uuid')
 const shortid = require('shortid')
 import express from 'express'
+import { defaultBody, errorHandler, notFound } from './express-handlers'
 
 const FOOTPRINT_TABLE_NAME = process.env.FOOTPRINT_TABLE_NAME || ''
 const PARAMETER_TABLE_NAME = process.env.PARAMETER_TABLE_NAME || ''
@@ -50,7 +50,7 @@ const path = '/profiles'
 // declare a new express app
 const app: express.Express = express()
 app.use(bodyParser.json())
-app.use(awsServerlessExpressMiddleware.eventContext())
+app.use(defaultBody)
 
 // Enable CORS for all methods
 app.use(function (
@@ -336,6 +336,9 @@ app.post(path, async (req: express.Request, res: express.Response) => {
     res.json({ error: validate.errors })
   }
 })
+
+app.use(notFound)
+app.use(errorHandler)
 
 // Export the app object. When executing the application local this does nothing. However,
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
