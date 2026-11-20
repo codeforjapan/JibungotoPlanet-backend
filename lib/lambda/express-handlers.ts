@@ -31,7 +31,12 @@ export const errorHandler = (
   if (res.headersSent) {
     return next(err)
   }
-  const status = err.status || err.statusCode || 500
+  const errStatus = err.status || err.statusCode
+  // HTTP のエラーとして正しい値でなければ 500 にする
+  const status =
+    Number.isInteger(errStatus) && errStatus >= 400 && errStatus < 600
+      ? errStatus
+      : 500
   if (status >= 500) {
     console.error(err)
   }
