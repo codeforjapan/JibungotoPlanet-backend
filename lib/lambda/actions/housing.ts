@@ -62,6 +62,8 @@ const estimateHousing = async (
   if (residentCount <= 0) {
     return { baselines, estimations }
   }
+  // 住居人数の回答がない場合（途中までの回答など）は、住居人数で割る補正をせずベースラインのままにする
+  const hasResidentCount = typeof residentCount === 'number'
 
   // 下記部分でパラメータ名から一致を取る必要があるため、ケバブのまま変数化
   const estimationAmount = {
@@ -120,7 +122,7 @@ const estimateHousing = async (
   // otherEnergy
   // water
 
-  if (housingAnswer.housingSizeKey) {
+  if (hasResidentCount && housingAnswer.housingSizeKey) {
     const housingSize = await getData(
       'housing-size',
       housingAnswer.housingSizeKey
@@ -170,6 +172,7 @@ const estimateHousing = async (
 
   // 電力使用量
   if (
+    hasResidentCount &&
     housingAnswer.electricityMonthlyConsumption != undefined &&
     housingAnswer.electricityMonthlyConsumption != null &&
     housingAnswer.electricitySeasonFactorKey
@@ -218,6 +221,7 @@ const estimateHousing = async (
   if (housingAnswer.useGas) {
     let gasParam = null
     if (
+      hasResidentCount &&
       housingAnswer.gasMonthlyConsumption != undefined &&
       housingAnswer.gasMonthlyConsumption != null &&
       housingAnswer.gasSeasonFactorKey
@@ -260,6 +264,7 @@ const estimateHousing = async (
   // 灯油の使用の有無
   if (housingAnswer.useKerosene) {
     if (
+      hasResidentCount &&
       housingAnswer.keroseneMonthlyConsumption != undefined &&
       housingAnswer.keroseneMonthlyConsumption != null &&
       housingAnswer.keroseneMonthCount != undefined &&

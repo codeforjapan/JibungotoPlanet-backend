@@ -102,16 +102,35 @@ app.get(path + '/:id', async (req: express.Request, res: express.Response) => {
     }))
 
     const profile = data.Item
+    if (!profile) {
+      res.statusCode = 404
+      res.json({ error: 'Could not find item: ' + req.params.id })
+      return
+    }
 
     // 計算がされていない場合は遅延初期化
     if (!profile.estimated) {
-      await updateProfile(dynamodb, profile)
-      profile.estimated = true
-      profile.updatedAt = new Date().toISOString()
-      await dynamodb.send(new PutCommand({
-        TableName: profileTableName,
-        Item: profile
-      }))
+      const stored = {
+        estimated: profile.estimated,
+        updatedAt: profile.updatedAt,
+        baselines: profile.baselines,
+        estimations: profile.estimations,
+        actions: profile.actions
+      }
+      try {
+        await updateProfile(dynamodb, profile)
+        profile.estimated = true
+        profile.updatedAt = new Date().toISOString()
+        await dynamodb.send(new PutCommand({
+          TableName: profileTableName,
+          Item: profile
+        }))
+      } catch (err) {
+        // 再計算や保存に失敗しても、保存済みの内容を返す
+        // （500 を返すと、開くたびに同じ失敗を繰り返し、プロフィールを開けなくなるため）
+        console.error(`ESTIMATE_FAILED id=${profile.id}`, err)
+        Object.assign(profile, stored)
+      }
     }
 
     res.json(toResponse(profile, true))
@@ -220,6 +239,11 @@ app.put(path + '/:id', async (req: express.Request, res: express.Response) => {
         Key: { id }
       }))
       const profile = data.Item
+      if (!profile) {
+        res.statusCode = 404
+        res.json({ error: 'Could not find item: ' + id })
+        return
+      }
 
       if (body.mobilityAnswer) {
         profile.mobilityAnswer = body.mobilityAnswer
