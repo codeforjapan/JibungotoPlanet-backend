@@ -1,31 +1,35 @@
-// 保存済みのプロフィールの回答を、validate.ts の条件に合うように直すスクリプト。
+// 保存済みのプロフィールを、validate.ts の条件に合うように直すスクリプト。
 //
-// - 上限・下限を超える数値は、上限・下限に切り詰める
-// - 選択肢にない値や型の違う値は、回答から消す（未回答として扱う）
-// - 直したプロフィールは estimated を false にし、次に開いたときに再計算させる
+// - 回答の直し方は fix-profile.ts を参照
+// - 計算結果に安全な整数の範囲を超える数値があるプロフィールも対象にする（GET で返せず 500 になるため）
+// - 直したプロフィールは、その場で再計算して estimated を true にする
+//   （false のままだと、本人が開き直すまで共有ページが 404 になるため）
+//   再計算に失敗した場合は estimated を false にし、次に開いたときに再計算させる
+// - 読んでから書くまでの間にユーザーが回答を保存した場合は、上書きせずに飛ばす（もう一度実行すれば直る）
 //
 // 使い方（既定は書き込まない確認だけ。--apply を付けたときだけ書き込む）:
-//   AWS_PROFILE=footprint npx ts-node data/fix-profile-answers.ts --stage dev --report fix-report.json
-//   AWS_PROFILE=footprint npx ts-node data/fix-profile-answers.ts --stage dev --report fix-report.json --apply
+//   AWS_PROFILE=footprint npx ts-node data/fix-profile-answers.ts --stage dev --report fix-report.jsonl
+//   AWS_PROFILE=footprint npx ts-node data/fix-profile-answers.ts --stage dev --report fix-report.jsonl --apply
 //
-// report には、直したプロフィールの直す前と直した後の回答を書き出す（元に戻すときの控え）。
+// report には1件ごとに追記する（途中で止まっても、それまでの分は残る）。
+// - type: 'before' には、書き換える項目の元の値を型を残して書く（数値は { $number: "..." }、なかった項目は absent）
+// - type: 'result' には、書き込みの結果（applied / conflict / error）を書く
 import * as fs from 'fs'
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 import {
   DynamoDBDocumentClient,
   GetCommand,
-  NumberValue,
   ScanCommand,
   UpdateCommand
 } from '@aws-sdk/lib-dynamodb'
-import { validate } from '../lib/lambda/actions/validate'
-
-const ANSWER_KEYS = [
-  'housingAnswer',
-  'mobilityAnswer',
-  'foodAnswer',
-  'otherAnswer'
-]
+import {
+  ANSWER_KEYS,
+  fixProfile,
+  hasUnsafeNumber,
+  isValidAfterFix,
+  toPlain,
+  toRecord
+} from './fix-profile'
 
 const args = process.argv.slice(2)
 const option = (name: string) => {
@@ -41,82 +45,99 @@ if (!stage || !['dev', 'prd'].includes(stage) || !reportPath) {
   )
   process.exit(1)
 }
+if (fs.existsSync(reportPath)) {
+  console.error(`report already exists: ${reportPath}`)
+  process.exit(1)
+}
 const tableName = `${stage}JibungotoPlanetprofile`
 
+// 再計算に使うテーブルは、profile-app を読み込む前に環境変数で渡す
+process.env.FOOTPRINT_TABLE_NAME = `${stage}JibungotoPlanetfootprint`
+process.env.PARAMETER_TABLE_NAME = `${stage}JibungotoPlanetparameter`
+process.env.OPTION_TABLE_NAME = `${stage}JibungotoPlanetoption`
+process.env.PROFILE_TABLE_NAME = tableName
+const { updateProfile } = require('../lib/lambda/profile-app')
+
+// DynamoDBDocumentClient.from は元のクライアントの設定を書き換えるので、クライアントは別々に作る
+const newClient = () => new DynamoDBClient({ region: 'ap-northeast-1' })
 // 安全な整数の範囲を超える数値もそのまま読めるように、数値は NumberValue で受け取る
-const dynamodb = DynamoDBDocumentClient.from(
-  new DynamoDBClient({ region: 'ap-northeast-1' }),
-  { unmarshallOptions: { wrapNumbers: true } }
-)
+const dynamodb = DynamoDBDocumentClient.from(newClient(), {
+  unmarshallOptions: { wrapNumbers: true }
+})
+// 再計算用（footprint・parameter・option テーブルを読む）
+const calcDynamodb = DynamoDBDocumentClient.from(newClient())
 
-const schema: any = (validate as any).schema
+// 回答や属性が、読んだときから変わっていないことを書き込みの条件にする
+const CHECKED_KEYS = [...ANSWER_KEYS, 'gender', 'age', 'region']
 
-type Change = { field: string; before: any; after: any }
+const writeReport = (line: any) =>
+  fs.appendFileSync(reportPath, JSON.stringify(line) + '\n')
 
-const toNumber = (value: any) =>
-  value instanceof NumberValue ? Number(value.value) : value
-
-// 1つの回答（housingAnswer など）を直す。直した内容と、直した後の回答を返す
-const fixAnswer = (answerKey: string, answer: any) => {
-  const properties = schema.properties[answerKey].properties
-  const fixed: any = {}
-  const changes: Change[] = []
-  for (const [key, raw] of Object.entries<any>(answer)) {
-    const def = properties[key]
-    const value = toNumber(raw)
-    const field = `${answerKey}.${key}`
-    if (!def) {
-      // validate.ts が知らない項目は、そのまま残す
-      fixed[key] = raw
-      continue
-    }
-    if (def.type === 'number') {
-      if (typeof value !== 'number' || Number.isNaN(value)) {
-        changes.push({ field, before: String(value), after: null })
-      } else if (def.maximum !== undefined && value > def.maximum) {
-        fixed[key] = def.maximum
-        changes.push({ field, before: String(value), after: def.maximum })
-      } else if (def.minimum !== undefined && value < def.minimum) {
-        fixed[key] = def.minimum
-        changes.push({ field, before: String(value), after: def.minimum })
-      } else {
-        fixed[key] = value
-      }
-    } else if (def.type === 'string') {
-      if (
-        typeof value !== 'string' ||
-        (def.pattern && !new RegExp(def.pattern).test(value))
-      ) {
-        changes.push({ field, before: value, after: null })
-      } else {
-        fixed[key] = value
-      }
-    } else if (def.type === 'boolean') {
-      if (typeof value !== 'boolean') {
-        changes.push({ field, before: value, after: null })
-      } else {
-        fixed[key] = value
-      }
-    } else {
-      fixed[key] = raw
-    }
+const recalculate = async (profile: any, updates: any) => {
+  const target: any = {}
+  for (const key of ANSWER_KEYS) {
+    const value = key in updates ? updates[key] : toPlain(profile[key])
+    if (value !== undefined) target[key] = value
   }
-  return { fixed, changes }
+  await updateProfile(calcDynamodb, target)
+  const result = {
+    baselines: target.baselines,
+    estimations: target.estimations,
+    actions: target.actions
+  }
+  if (hasUnsafeNumber(result)) {
+    throw new Error('unsafe number in estimation')
+  }
+  return result
 }
 
-const fixProfile = (profile: any) => {
-  const answers: any = {}
-  const changes: Change[] = []
-  for (const answerKey of ANSWER_KEYS) {
-    const answer = profile[answerKey]
-    if (!answer || typeof answer !== 'object') continue
-    const result = fixAnswer(answerKey, answer)
-    if (result.changes.length > 0) {
-      answers[answerKey] = result.fixed
-      changes.push(...result.changes)
+const update = async (
+  id: string,
+  profile: any,
+  sets: any,
+  removes: string[]
+) => {
+  const names: any = {}
+  const values: any = {}
+  const setExprs: string[] = []
+  const removeExprs: string[] = []
+  const conditions = ['attribute_exists(id)']
+  let i = 0
+  const name = (key: string) => {
+    const n = `#k${i++}`
+    names[n] = key
+    return n
+  }
+  for (const [key, value] of Object.entries(sets)) {
+    const n = name(key)
+    values[`:v${n.slice(2)}`] = value
+    setExprs.push(`${n} = :v${n.slice(2)}`)
+  }
+  for (const key of removes) {
+    removeExprs.push(name(key))
+  }
+  for (const key of CHECKED_KEYS) {
+    const n = name(key)
+    if (profile[key] === undefined) {
+      conditions.push(`attribute_not_exists(${n})`)
+    } else {
+      values[`:c${n.slice(2)}`] = profile[key]
+      conditions.push(`${n} = :c${n.slice(2)}`)
     }
   }
-  return { answers, changes }
+  await dynamodb.send(
+    new UpdateCommand({
+      TableName: tableName,
+      Key: { id },
+      UpdateExpression:
+        'SET ' +
+        setExprs.join(', ') +
+        (removeExprs.length > 0 ? ' REMOVE ' + removeExprs.join(', ') : ''),
+      ConditionExpression: conditions.join(' AND '),
+      ExpressionAttributeNames: names,
+      ExpressionAttributeValues: values
+    })
+  )
 }
 
 const main = async () => {
@@ -130,16 +151,11 @@ const main = async () => {
   let startKey: any
   do {
     const data = await dynamodb.send(
-      new ScanCommand({
-        TableName: tableName,
-        ProjectionExpression:
-          'id, housingAnswer, mobilityAnswer, foodAnswer, otherAnswer',
-        ExclusiveStartKey: startKey
-      })
+      new ScanCommand({ TableName: tableName, ExclusiveStartKey: startKey })
     )
     for (const item of data.Items || []) {
       scanned++
-      if (fixProfile(item).changes.length > 0) {
+      if (fixProfile(item).changes.length > 0 || hasUnsafeNumber(item)) {
         candidates.push(item.id)
       }
     }
@@ -148,9 +164,9 @@ const main = async () => {
   console.log(`scanned: ${scanned}, to fix: ${candidates.length}`)
 
   // 2. 1件ずつ最新の内容を読み直して直す（スキャン中に回答が変わっていても、最新の内容を直す）
-  const report: any[] = []
+  const counts: { [result: string]: number } = {}
   const summary: { [field: string]: number } = {}
-  let invalidAfterFix = 0
+  const count = (result: string) => (counts[result] = (counts[result] || 0) + 1)
   for (const id of candidates) {
     const data = await dynamodb.send(
       new GetCommand({
@@ -161,71 +177,77 @@ const main = async () => {
     )
     const profile = data.Item
     if (!profile) continue
-    const { answers, changes } = fixProfile(profile)
-    if (changes.length === 0) continue
+    const { updates, changes } = fixProfile(profile)
+    if (changes.length === 0 && !hasUnsafeNumber(profile)) continue
 
+    const { valid, errors } = isValidAfterFix(profile, updates)
+    if (!valid) {
+      count('invalid')
+      console.error(`still invalid after fix: ${id}`, errors)
+      writeReport({ type: 'result', id, result: 'invalid', errors })
+      continue
+    }
+
+    let estimate: any
+    try {
+      estimate = {
+        ...(await recalculate(profile, updates)),
+        estimated: true,
+        updatedAt: new Date().toISOString()
+      }
+    } catch (err) {
+      count('recalculate_failed')
+      console.error(`recalculate failed: ${id}`, err)
+      estimate = { estimated: false }
+    }
+
+    const sets: any = { ...estimate }
+    const removes: string[] = []
+    for (const [key, value] of Object.entries(updates)) {
+      if (value === undefined) {
+        removes.push(key)
+      } else {
+        sets[key] = value
+      }
+    }
     for (const change of changes) {
       summary[change.field] = (summary[change.field] || 0) + 1
     }
-    // 直した後の回答全体が validate を通ることを確かめる
-    const after: any = {}
-    for (const answerKey of ANSWER_KEYS) {
-      if (profile[answerKey]) {
-        after[answerKey] = fixAnswer(answerKey, profile[answerKey]).fixed
-      }
-    }
-    if (!validate(after)) {
-      invalidAfterFix++
-      console.error(`still invalid after fix: ${id}`, validate.errors)
-      continue
-    }
-    report.push({
+    const keys = [...Object.keys(sets), ...removes]
+    writeReport({
+      type: 'before',
       id,
-      estimated: String(profile.estimated),
       changes,
       before: Object.fromEntries(
-        Object.keys(answers).map((key) => [
-          key,
-          JSON.parse(
-            JSON.stringify(profile[key], (_, v) =>
-              v instanceof NumberValue ? v.value : v
-            )
-          )
-        ])
+        keys
+          .filter((key) => profile[key] !== undefined)
+          .map((key) => [key, toRecord(profile[key])])
       ),
-      after: answers
+      absent: keys.filter((key) => profile[key] === undefined)
     })
 
-    if (apply) {
-      const names: any = { '#estimated': 'estimated' }
-      const values: any = { ':estimated': false }
-      const sets = ['#estimated = :estimated']
-      Object.keys(answers).forEach((key, i) => {
-        names[`#a${i}`] = key
-        values[`:a${i}`] = answers[key]
-        sets.push(`#a${i} = :a${i}`)
-      })
-      await dynamodb.send(
-        new UpdateCommand({
-          TableName: tableName,
-          Key: { id },
-          UpdateExpression: 'SET ' + sets.join(', '),
-          ConditionExpression: 'attribute_exists(id)',
-          ExpressionAttributeNames: names,
-          ExpressionAttributeValues: values
-        })
-      )
+    if (!apply) {
+      count('would_apply')
+      continue
+    }
+    try {
+      await update(id, profile, sets, removes)
+      count('applied')
+      writeReport({ type: 'result', id, result: 'applied' })
+    } catch (err: any) {
+      const result =
+        err?.name === 'ConditionalCheckFailedException' ? 'conflict' : 'error'
+      count(result)
+      console.error(`${result}: ${id}`, err?.message)
+      writeReport({ type: 'result', id, result, error: String(err?.message) })
     }
   }
 
-  fs.writeFileSync(reportPath, JSON.stringify(report, null, 2))
-  console.log(
-    `${apply ? 'fixed' : 'would fix'}: ${report.length} profiles (still invalid: ${invalidAfterFix})`
-  )
+  console.log('results:', counts)
   console.log('changes by field:')
   Object.entries(summary)
     .sort((a, b) => b[1] - a[1])
-    .forEach(([field, count]) => console.log(`  ${field}: ${count}`))
+    .forEach(([field, n]) => console.log(`  ${field}: ${n}`))
   console.log(`report: ${reportPath}`)
 }
 
