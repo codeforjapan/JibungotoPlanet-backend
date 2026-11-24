@@ -130,6 +130,10 @@ app.get(path + '/:id', async (req: express.Request, res: express.Response) => {
         // （500 を返すと、開くたびに同じ失敗を繰り返し、プロフィールを開けなくなるため）
         console.error(`ESTIMATE_FAILED id=${profile.id}`, err)
         Object.assign(profile, stored)
+        // 一度も計算できていない場合でも、フロントが扱えるように空の配列を返す
+        profile.baselines = profile.baselines || []
+        profile.estimations = profile.estimations || []
+        profile.actions = profile.actions || []
       }
     }
 
@@ -368,3 +372,6 @@ app.use(errorHandler)
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
 // this file
 export default app
+
+// データ修正スクリプト（data/fix-profile-answers.ts）から再計算に使う
+export { updateProfile }
