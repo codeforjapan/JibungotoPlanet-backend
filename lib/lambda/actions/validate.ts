@@ -1,6 +1,14 @@
 import Ajv from 'ajv'
 
-const ajv = new Ajv()
+const ajv = new Ajv({ allowUnionTypes: true })
+
+// 回答には、質問の変更で使わなくなった古い項目も保存されているので、schema にない項目も許す。
+// ただし数値は、極端な値が DynamoDB に保存できずエラーになるのを防ぐため、範囲を限る
+const legacyAnswer = {
+  type: ['string', 'number', 'boolean'],
+  minimum: -1000000,
+  maximum: 1000000
+}
 
 const schema = {
   type: 'object',
@@ -70,7 +78,8 @@ const schema = {
           type: 'string',
           pattern: '^northeast$|^middle$|^southwest$|^unknown$'
         }
-      }
+      },
+      additionalProperties: legacyAnswer
     },
 
     mobilityAnswer: {
@@ -149,7 +158,8 @@ const schema = {
           minimum: 0,
           maximum: 24 * 365
         }
-      }
+      },
+      additionalProperties: legacyAnswer
     },
 
     foodAnswer: {
@@ -209,7 +219,8 @@ const schema = {
           type: 'string',
           pattern: '^5k-less$|^5k-10k$|^10k-20k$|^20k-50k$|^50k-more$|^unknown$'
         }
-      }
+      },
+      additionalProperties: legacyAnswer
     },
 
     otherAnswer: {
@@ -250,6 +261,18 @@ const schema = {
           type: 'string',
           pattern:
             '^10k-less$|^10k-30k$|^30k-50k$|^50k-100k$|^100k-200k$|^200k-more$|^unknown$'
+        }
+      },
+      additionalProperties: legacyAnswer
+    },
+
+    // 実施率は0〜1
+    actionIntensityRates: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          value: { type: ['number', 'null'], minimum: 0, maximum: 1 }
         }
       }
     }
