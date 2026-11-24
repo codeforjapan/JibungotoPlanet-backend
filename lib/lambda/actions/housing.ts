@@ -122,7 +122,11 @@ const estimateHousing = async (
   // otherEnergy
   // water
 
-  if (hasResidentCount && housingAnswer.housingSizeKey) {
+  // 広さが「わからない」場合は住居人数で割らないので、住居人数の回答がなくても補正する
+  if (
+    housingAnswer.housingSizeKey &&
+    (hasResidentCount || housingAnswer.housingSizeKey === 'unknown')
+  ) {
     const housingSize = await getData(
       'housing-size',
       housingAnswer.housingSizeKey
