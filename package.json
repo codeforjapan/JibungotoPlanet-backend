@@ -8,6 +8,7 @@
     "test:custom": "REST_ENDPOINT=$ENDPOINT jest",
     "test:dev:single": "REST_ENDPOINT=https://dev-api-endpoint.jibungoto-planet.jp jest --testNamePattern",
     "jest": "jest",
+    "test:offline": "jest src/tests/validate.test.ts src/tests/fix-profile.test.ts src/tests/housing.test.ts src/tests/profile-get.test.ts",
     "lint": "eslint --ext .ts,.js lib/",
     "lint:fix": "prettier --write 'lib/*.ts' && eslint --fix lib/*.ts",
     "prepare": "husky",
