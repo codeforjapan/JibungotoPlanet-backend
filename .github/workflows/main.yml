@@ -28,3 +28,7 @@ jobs:
 
       - name: Lint
         run: yarn lint
+
+      # DynamoDB を使わないテストだけを実行する（ほかのテストは LocalStack か dev の API が必要）
+      - name: Test (offline)
+        run: yarn test:offline
