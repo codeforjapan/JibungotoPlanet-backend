@@ -83,6 +83,14 @@ process.env.FOOTPRINT_TABLE_NAME = `${stage}JibungotoPlanetfootprint`
 process.env.PARAMETER_TABLE_NAME = `${stage}JibungotoPlanetparameter`
 process.env.OPTION_TABLE_NAME = `${stage}JibungotoPlanetoption`
 process.env.PROFILE_TABLE_NAME = tableName
+// yarn build の古い .js が残っていると、ts-node はそちらを読み込み、古い計算や validate で直してしまう
+// （tsconfig.json の preferTsExts が効かない実行のしかたをしたときのための確認）
+if (!require.resolve('../lib/lambda/profile-app').endsWith('.ts')) {
+  console.error(
+    'stale .js found in lib/. run with TS_NODE_PREFER_TS_EXTS=true or remove the .js files'
+  )
+  process.exit(1)
+}
 const { updateProfile } = require('../lib/lambda/profile-app')
 
 // DynamoDBDocumentClient.from は元のクライアントの設定を書き換えるので、クライアントは別々に作る
