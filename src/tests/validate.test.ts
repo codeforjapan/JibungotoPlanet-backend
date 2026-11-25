@@ -23,6 +23,7 @@ describe('Test validate limits', () => {
 
   test.each([
     { housingAnswer: { residentCount: 16 } },
+    { housingAnswer: { residentCount: 2.5 } },
     { housingAnswer: { electricityMonthlyConsumption: 10001 } },
     { housingAnswer: { gasMonthlyConsumption: 1001 } },
     { housingAnswer: { keroseneMonthlyConsumption: 1001 } },

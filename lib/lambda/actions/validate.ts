@@ -30,7 +30,7 @@ const schema = {
       type: 'object',
       properties: {
         // 住居人数の選択肢は1〜15人
-        residentCount: { type: 'number', minimum: 1, maximum: 15 },
+        residentCount: { type: 'integer', minimum: 1, maximum: 15 },
         electricityMonthlyConsumption: {
           type: 'number',
           minimum: 0,
