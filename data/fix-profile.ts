@@ -39,6 +39,7 @@ export type Change = { field: string; before: any; after: any }
 // NumberValue（wrapNumbers で読んだ数値）を number に変える
 export const toPlain = (value: any): any => {
   if (value instanceof NumberValue) return Number(value.value)
+  if (value instanceof Set) return new Set([...value].map(toPlain))
   if (Array.isArray(value)) return value.map(toPlain)
   if (value && typeof value === 'object') {
     return Object.fromEntries(
@@ -48,9 +49,13 @@ export const toPlain = (value: any): any => {
   return value
 }
 
-// 型を残したまま JSON にする（数値は桁が丸まらないように { $number: "..." } で書く）
+// 型を残したまま JSON にする（数値は桁が丸まらないように { $number: "..." }、Set は { $set: [...] }、バイナリは { $binary: "base64" } で書く）
 export const toRecord = (value: any): any => {
   if (value instanceof NumberValue) return { $number: value.value }
+  if (value instanceof Set) return { $set: [...value].map(toRecord) }
+  if (value instanceof Uint8Array) {
+    return { $binary: Buffer.from(value).toString('base64') }
+  }
   if (Array.isArray(value)) return value.map(toRecord)
   if (value && typeof value === 'object') {
     return Object.fromEntries(
@@ -61,7 +66,7 @@ export const toRecord = (value: any): any => {
 }
 
 const show = (value: any) =>
-  value instanceof NumberValue ? value.value : JSON.stringify(value)
+  value instanceof NumberValue ? value.value : JSON.stringify(toRecord(value))
 
 // 安全な整数の範囲を超える数値や、有限でない数値を含むか
 export const hasUnsafeNumber = (value: any): boolean => {
@@ -87,7 +92,8 @@ const fixValue = (key: string, def: any, raw: any) => {
     Number.isFinite(value) &&
     def.maximum !== undefined &&
     value > def.maximum &&
-    value <= def.maximum * CLAMP_LIMIT_RATE &&
+    // 12 * 1.2 が 14.399999999999999 になるような誤差で、ちょうど1.2倍の値を消さないようにする
+    value <= def.maximum * CLAMP_LIMIT_RATE * (1 + 1e-12) &&
     !NO_CLAMP_KEYS.includes(key)
   ) {
     return { keep: true, value: def.maximum }
@@ -111,7 +117,13 @@ export const fixAnswer = (answerKey: string, answer: any) => {
       changes.push({ field, before: show(raw), after: null })
       continue
     }
-    fixed[key] = result.value
+    // __proto__ という名前の項目も、普通の項目として残す（fixed[key] = ... ではプロトタイプの変更になり、消えてしまう）
+    Object.defineProperty(fixed, key, {
+      value: result.value,
+      enumerable: true,
+      writable: true,
+      configurable: true
+    })
     if (result.value !== toPlain(raw)) {
       changes.push({ field, before: show(raw), after: result.value })
     }
@@ -217,3 +229,35 @@ export const buildUpdate = (
     ExpressionAttributeValues: values
   }
 }
+
+// 再計算の結果（失敗したら null）と直した内容から、書き込む内容を決める
+export const planWrite = (profile: any, updates: any, estimate: any | null) => {
+  const sets: any = {}
+  const removes: string[] = []
+  if (estimate) {
+    Object.assign(sets, estimate)
+  } else {
+    // 一時的な失敗（スロットリングなど）で、正常な計算結果を消さないようにする。
+    // 消すのは、保存済みの計算結果に巨大な数値があり、残すと GET が 500 になる場合だけ
+    if (!ESTIMATE_KEYS.some((key) => hasUnsafeNumber(profile[key]))) {
+      return { result: 'recalculate_failed' as const }
+    }
+    sets.estimated = false
+    removes.push(...ESTIMATE_KEYS)
+  }
+  for (const [key, value] of Object.entries(updates)) {
+    if (value === undefined) {
+      removes.push(key)
+    } else {
+      sets[key] = value
+    }
+  }
+  if (remainsUnsafe(profile, sets, removes)) {
+    return { result: 'unfixable' as const }
+  }
+  return { result: 'write' as const, sets, removes }
+}
+
+// 書き込みの失敗を、読んだ後に回答が変わった（conflict）か、それ以外（error）かに分ける
+export const writeErrorResult = (err: any) =>
+  err?.name === 'ConditionalCheckFailedException' ? 'conflict' : 'error'

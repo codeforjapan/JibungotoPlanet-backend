@@ -4,7 +4,8 @@
 // - 計算結果に安全な整数の範囲を超える数値があるプロフィールも対象にする（GET で返せず 500 になるため）
 // - 直したプロフィールは、その場で再計算して estimated を true にする
 //   （false のままだと、本人が開き直すまで共有ページが 404 になるため）
-//   再計算に失敗した場合は、計算結果を消して estimated を false にし、次に開いたときに再計算させる
+//   再計算に失敗した場合は、書き込まずに飛ばす（もう一度実行すれば拾える）。
+//   ただし保存済みの計算結果に巨大な数値がある場合は、計算結果を消して estimated を false にし、次に開いたときに再計算させる
 // - 読んでから書くまでの間にユーザーが回答を保存した場合は、上書きせずに飛ばす（もう一度実行すれば直る）
 // - 直しても書き換えない項目に巨大な数値が残るプロフィールは、書き換えずに記録だけする
 // - 1件ごとに失敗しても、記録して次のプロフィールに進む
@@ -27,14 +28,14 @@ import {
 } from '@aws-sdk/lib-dynamodb'
 import {
   ANSWER_KEYS,
-  ESTIMATE_KEYS,
   buildUpdate,
   fixProfile,
   hasUnsafeNumber,
   isValidAfterFix,
-  remainsUnsafe,
+  planWrite,
   toPlain,
-  toRecord
+  toRecord,
+  writeErrorResult
 } from './fix-profile'
 
 function usage(): never {
@@ -139,33 +140,24 @@ const fixOne = async (
     return
   }
 
-  const sets: any = {}
-  const removes: string[] = []
+  let estimate = null
   try {
-    Object.assign(sets, await recalculate(profile, updates), {
+    estimate = {
+      ...(await recalculate(profile, updates)),
       estimated: true,
       updatedAt: new Date().toISOString()
-    })
-  } catch (err) {
-    count('recalculate_failed')
-    console.error(`recalculate failed: ${id}`, err)
-    sets.estimated = false
-    removes.push(...ESTIMATE_KEYS)
-  }
-  for (const [key, value] of Object.entries(updates)) {
-    if (value === undefined) {
-      removes.push(key)
-    } else {
-      sets[key] = value
     }
+  } catch (err) {
+    console.error(`recalculate failed: ${id}`, err)
   }
-
-  if (remainsUnsafe(profile, sets, removes)) {
-    count('unfixable')
-    console.error(`unsafe number remains after fix: ${id}`)
-    writeReport({ type: 'result', id, result: 'unfixable' })
+  const plan = planWrite(profile, updates, estimate)
+  if (plan.result !== 'write') {
+    // 書き込まずに飛ばす（recalculate_failed は、もう一度実行すれば拾える）
+    count(plan.result)
+    writeReport({ type: 'result', id, result: plan.result })
     return
   }
+  const { sets, removes } = plan
 
   for (const change of changes) {
     summary[change.field] = (summary[change.field] || 0) + 1
@@ -194,8 +186,7 @@ const fixOne = async (
     count('applied')
     writeReport({ type: 'result', id, result: 'applied' })
   } catch (err: any) {
-    const result =
-      err?.name === 'ConditionalCheckFailedException' ? 'conflict' : 'error'
+    const result = writeErrorResult(err)
     count(result)
     console.error(`${result}: ${id}`, err?.message)
     writeReport({ type: 'result', id, result, error: String(err?.message) })
