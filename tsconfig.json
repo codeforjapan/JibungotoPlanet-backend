@@ -21,5 +21,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "cdk.out"]
+  "exclude": ["node_modules", "cdk.out"],
+  "ts-node": {
+    "preferTsExts": true
+  }
 }
