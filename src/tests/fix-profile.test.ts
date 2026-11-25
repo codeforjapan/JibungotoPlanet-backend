@@ -4,7 +4,10 @@ import {
   fixProfile,
   hasUnsafeNumber,
   isValidAfterFix,
-  remainsUnsafe
+  planWrite,
+  remainsUnsafe,
+  toRecord,
+  writeErrorResult
 } from '../../data/fix-profile'
 
 // DynamoDB を使わないテスト
@@ -24,6 +27,13 @@ describe('Test fixing stored profiles', () => {
         after: 10000
       }
     ])
+  })
+
+  test('clamps values exactly 1.2 times the limit despite rounding', () => {
+    const { updates } = fixProfile({
+      housingAnswer: { keroseneMonthCount: 14.4 }
+    })
+    expect(updates.housingAnswer).toEqual({ keroseneMonthCount: 12 })
   })
 
   test('removes values over 1.2 times the limit', () => {
@@ -83,6 +93,23 @@ describe('Test fixing stored profiles', () => {
         after: null
       }
     ])
+  })
+
+  test('keeps a key named __proto__ as an own property', () => {
+    const { updates } = fixProfile({
+      housingAnswer: JSON.parse('{"__proto__": 1, "gasMonthlyConsumption": -1}')
+    })
+    expect(Object.keys(updates.housingAnswer)).toEqual(['__proto__'])
+    expect(updates.housingAnswer.__proto__).toBe(1)
+  })
+
+  test('records sets and binaries with their types', () => {
+    expect(
+      toRecord({
+        s: new Set([NumberValue.from('1')]),
+        b: new Uint8Array([1, 2])
+      })
+    ).toEqual({ s: { $set: [{ $number: '1' }] }, b: { $binary: 'AQI=' } })
   })
 
   test('removes invalid top-level attributes', () => {
@@ -171,5 +198,55 @@ describe('Test fixing stored profiles', () => {
   test('omits REMOVE when nothing is removed', () => {
     const input = buildUpdate('table', { id: 'a' }, { estimated: true }, [])
     expect(input.UpdateExpression).toBe('SET #k0 = :v0')
+  })
+
+  describe('planWrite', () => {
+    const profile = {
+      id: 'a',
+      housingAnswer: { residentCount: 2, gasMonthlyConsumption: -1 },
+      age: '20s',
+      estimations: [{ value: 1 }]
+    }
+    const updates = { housingAnswer: { residentCount: 2 }, age: undefined }
+
+    test('writes the recalculated estimate and the fixed answers', () => {
+      const estimate = { estimations: [{ value: 2 }], estimated: true }
+      expect(planWrite(profile, updates, estimate)).toEqual({
+        result: 'write',
+        sets: { ...estimate, housingAnswer: { residentCount: 2 } },
+        removes: ['age']
+      })
+    })
+
+    test('skips without writing when recalculation fails', () => {
+      expect(planWrite(profile, updates, null)).toEqual({
+        result: 'recalculate_failed'
+      })
+    })
+
+    test('removes unsafe estimates when recalculation fails', () => {
+      const broken = { ...profile, actions: [{ value: 1e20 }] }
+      expect(planWrite(broken, updates, null)).toEqual({
+        result: 'write',
+        sets: { estimated: false, housingAnswer: { residentCount: 2 } },
+        removes: ['baselines', 'estimations', 'actions', 'age']
+      })
+    })
+
+    test('skips profiles with unsafe numbers it does not rewrite', () => {
+      const broken = { ...profile, additional_info: { x: 1e20 } }
+      expect(planWrite(broken, updates, { estimated: true })).toEqual({
+        result: 'unfixable'
+      })
+    })
+  })
+
+  test('tells conflicts from other write errors', () => {
+    expect(writeErrorResult({ name: 'ConditionalCheckFailedException' })).toBe(
+      'conflict'
+    )
+    expect(
+      writeErrorResult({ name: 'ProvisionedThroughputExceededException' })
+    ).toBe('error')
   })
 })

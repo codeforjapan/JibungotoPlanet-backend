@@ -47,4 +47,36 @@ describe('Test profile GET and PUT without the database', () => {
     )
     error.mockRestore()
   })
+
+  test('returns stored estimates when saving the recalculation fails', async () => {
+    const error = jest.spyOn(console, 'error').mockImplementation(() => {})
+    const baselines = [{ domain: 'housing', item: 'rent', value: 1 }]
+    let saved = false
+    send.mockImplementation((async (command: any) => {
+      const name = command.constructor.name
+      if (name === 'GetCommand' && command.input.Key.id === 'a') {
+        return {
+          // 回答がないので、再計算は DB を読まずに成功する
+          Item: { id: 'a', estimated: false, baselines }
+        }
+      }
+      if (name === 'PutCommand') {
+        saved = true
+        // prd で起きていたように、NaN などで保存に失敗する
+        throw new Error('Number NaN is not allowed')
+      }
+      return { Items: [] }
+    }) as any)
+
+    const res = await request(app).get('/profiles/a')
+    expect(saved).toBe(true)
+    expect(res.statusCode).toBe(200)
+    expect(res.body.baselines).toEqual(baselines)
+    expect(res.body.estimations).toEqual([])
+    expect(error).toHaveBeenCalledWith(
+      'ESTIMATE_FAILED id=a',
+      expect.any(Error)
+    )
+    error.mockRestore()
+  })
 })
